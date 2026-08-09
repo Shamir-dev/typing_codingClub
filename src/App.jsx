@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
 import LessonTyping from './pages/LessonTyping'
 import Review from './pages/Review'
+import TestResults from './pages/TestResults'
 import { getLanguage } from './content/languages'
 import { useProgress } from './hooks/useProgress'
 import { useSettings } from './hooks/useSettings'
@@ -14,13 +15,20 @@ const LESSONS_BY_LANGUAGE = {
   javascript: javascriptLessons,
 }
 
-// view: { name: 'home' } | { name: 'dashboard' } | { name: 'typing', lesson } | { name: 'review', lesson, result }
+// Flat id -> lesson lookup across every language, for pages (like the
+// global Test Results view) that show attempts regardless of language.
+const ALL_LESSONS_BY_ID = Object.fromEntries(
+  Object.values(LESSONS_BY_LANGUAGE).flat().map((l) => [l.id, l])
+)
+
+// view: { name: 'home' } | { name: 'dashboard' } | { name: 'typing', lesson }
+//     | { name: 'review', lesson, result } | { name: 'results' }
 export default function App() {
   const [languageId, setLanguageId] = useState('javascript')
   const [view, setView] = useState({ name: 'home' })
   const { progress, recordCompletion } = useProgress()
   const { theme, toggleTheme, soundMode, setSoundMode } = useSettings()
-  const { attemptsForLanguage, logAttempt } = useAttemptsLog()
+  const { attempts, attemptsForLanguage, logAttempt } = useAttemptsLog()
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
 
   const language = getLanguage(languageId)
@@ -43,6 +51,7 @@ export default function App() {
       difficulty: lesson.difficulty,
       wpm: result.wpm,
       accuracy: result.accuracy,
+      consistency: result.consistency,
       timeMs: result.timeMs,
       isPerfect: result.isPerfect,
     })
@@ -52,9 +61,11 @@ export default function App() {
   return (
     <div className="h-screen w-screen flex bg-base text-text">
       <Sidebar
-        activeLanguageId={view.name === 'home' ? null : languageId}
+        activeLanguageId={view.name === 'home' || view.name === 'results' ? null : languageId}
         onSelectLanguage={handleSelectLanguage}
         onGoHome={() => setView({ name: 'home' })}
+        onGoResults={() => setView({ name: 'results' })}
+        isResultsActive={view.name === 'results'}
         theme={theme}
         onToggleTheme={toggleTheme}
         soundMode={soundMode}
@@ -101,6 +112,12 @@ export default function App() {
               onRetry={() => setView({ name: 'typing', lesson: view.lesson })}
               onBack={() => setView({ name: 'dashboard' })}
             />
+          </div>
+        )}
+
+        {view.name === 'results' && (
+          <div className="flex-1 overflow-auto">
+            <TestResults attempts={attempts} lessonsById={ALL_LESSONS_BY_ID} />
           </div>
         )}
       </main>

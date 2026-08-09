@@ -6,20 +6,32 @@
     "difficulty": "easy",
     "title": "Find the Largest Number",
     "prompt": "Given an array of numbers, return the largest one.",
-    "approach": "Assume the first element is the largest so far, then walk through the rest of the array, updating that assumption whenever a bigger number shows up.",
+    "approach": {
+      "steps": [
+        "Assume the first element is the largest so far.",
+        "Loop through the rest of the array, starting at index 1.",
+        "Whenever a bigger number appears, update your \"largest so far\" value.",
+        "After the loop ends, that variable holds the true maximum."
+      ],
+      "example": "For [3, 7, 2]: start with largest = 3. Compare 7 > 3 \u2192 update to 7. Compare 2 > 7 \u2192 no update. Final answer: 7."
+    },
     "code": "function findLargest(numbers) {\n  let largest = numbers[0];\n\n  for (let i = 1; i < numbers.length; i++) {\n    if (numbers[i] > largest) {\n      largest = numbers[i];\n    }\n  }\n\n  return largest;\n}",
     "timeTargetSec": 60,
+    "complexity": { "time": "O(n)", "space": "O(1)" },
     "review": {
-      "walkthrough": "largest starts as numbers[0] so the loop has a baseline to compare against. The loop starts at index 1 (not 0) since index 0 is already accounted for. Each iteration only updates largest when it finds something bigger, so by the end largest holds the true maximum.",
+      "walkthroughSteps": [
+        "largest starts as numbers[0], giving the loop a baseline to compare against.",
+        "The loop begins at index 1, since index 0 is already accounted for.",
+        "Each iteration checks: is the current number bigger than largest?",
+        "If yes, largest is updated. If no, nothing changes.",
+        "After the final index, largest holds the maximum value in the array."
+      ],
       "commonMistakes": [
         "Starting largest at 0 instead of numbers[0] \u2014 fails on all-negative arrays",
         "Starting the loop at i = 0, redundantly comparing the first element to itself"
       ]
     },
-    "tags": [
-      "arrays",
-      "loops"
-    ],
+    "tags": ["arrays", "loops"],
     "charCount": 196
   },
   {
@@ -29,20 +41,30 @@
     "difficulty": "easy",
     "title": "Reverse a String",
     "prompt": "Given a string, return it reversed, without using the built-in .reverse() array method as a shortcut.",
-    "approach": "Build a new string by walking the original from the last character to the first, appending each character as you go.",
+    "approach": {
+      "steps": [
+        "Start with an empty result string.",
+        "Walk the original string backward, from the last character to the first.",
+        "Append each character to result as you go."
+      ],
+      "example": "For \"cat\": i=2 \u2192 't', result='t'. i=1 \u2192 'a', result='ta'. i=0 \u2192 'c', result='tac'."
+    },
     "code": "function reverseString(str) {\n  let result = \"\";\n\n  for (let i = str.length - 1; i >= 0; i--) {\n    result += str[i];\n  }\n\n  return result;\n}",
     "timeTargetSec": 60,
+    "complexity": { "time": "O(n)", "space": "O(n)" },
     "review": {
-      "walkthrough": "The loop starts at str.length - 1 because string indices are zero-based, so the last character sits one before the length. Counting down to 0 and appending each character builds the string back-to-front, which is exactly a reversal.",
+      "walkthroughSteps": [
+        "The loop starts at str.length - 1, the index of the last character.",
+        "Each pass appends str[i] to result, then decrements i.",
+        "Because we're reading the string back-to-front, the built string comes out reversed.",
+        "The loop stops once i drops below 0, meaning every character has been visited."
+      ],
       "commonMistakes": [
         "Starting at str.length instead of str.length - 1 \u2014 reads undefined on the first pass",
         "Using result = str[i] + result instead of += \u2014 works, but is slower on large strings"
       ]
     },
-    "tags": [
-      "strings",
-      "loops"
-    ],
+    "tags": ["strings", "loops"],
     "charCount": 141
   },
   {
@@ -52,20 +74,31 @@
     "difficulty": "medium",
     "title": "Two Sum",
     "prompt": "Given an array of integers and a target, return the indices of the two numbers that add up to the target. Assume exactly one solution exists.",
-    "approach": "A brute-force check of every pair is O(n^2). Instead, walk the array once, and for each number check a hash map for the complement (target minus the current number) that would complete the pair. Store each number's index in the map as you go.",
+    "approach": {
+      "steps": [
+        "A brute-force check of every pair is O(n\u00b2) \u2014 too slow for large arrays.",
+        "Instead, walk the array once, using a hash map to remember numbers already seen.",
+        "For each number, compute its complement (target - number) and check if that complement is already in the map.",
+        "If it is, that's your pair. If not, add the current number to the map and keep going."
+      ],
+      "example": "nums=[2,7,11,15], target=9. i=0 (2): complement=7, not seen yet \u2192 store 2\u21920. i=1 (7): complement=2, IS in map at index 0 \u2192 return [0,1]."
+    },
     "code": "function twoSum(nums, target) {\n  const seen = new Map();\n\n  for (let i = 0; i < nums.length; i++) {\n    const complement = target - nums[i];\n\n    if (seen.has(complement)) {\n      return [seen.get(complement), i];\n    }\n\n    seen.set(nums[i], i);\n  }\n\n  return [];\n}",
     "timeTargetSec": 120,
+    "complexity": { "time": "O(n)", "space": "O(n)" },
     "review": {
-      "walkthrough": "seen maps a number to its index. Before adding the current number, we check whether its complement already exists in the map \u2014 if it does, we've found our pair without a nested loop. We add the current number after checking, so a number never pairs with itself.",
+      "walkthroughSteps": [
+        "seen maps a number to the index where it appeared.",
+        "Before adding the current number, its complement is checked against the map first.",
+        "That ordering matters: checking before adding prevents a number from pairing with itself.",
+        "If a match is found, the stored index and the current index are returned immediately."
+      ],
       "commonMistakes": [
         "Adding nums[i] to the map before checking for the complement \u2014 can wrongly pair a number with itself",
         "Using a plain object instead of a Map \u2014 works for integer keys but Map is the clearer, safer choice"
       ]
     },
-    "tags": [
-      "arrays",
-      "hash-map"
-    ],
+    "tags": ["arrays", "hash-map"],
     "charCount": 267
   },
   {
@@ -75,20 +108,31 @@
     "difficulty": "medium",
     "title": "Reverse a Linked List",
     "prompt": "Given the head of a singly linked list, reverse it in place and return the new head.",
-    "approach": "Walk the list once, keeping track of the previous node. At each node, save the next node before overwriting the current node's pointer to point backward at prev, then advance both prev and current forward.",
+    "approach": {
+      "steps": [
+        "Walk the list once, keeping track of the previous node (starts as null).",
+        "At each node, save a reference to the next node before it gets overwritten.",
+        "Point the current node's next backward, at prev.",
+        "Advance both prev and current forward by one node."
+      ],
+      "example": "For 1\u21922\u21923: after all iterations the pointers flip to 1\u21902\u21903, and prev ends on node 3 \u2014 the new head."
+    },
     "code": "function reverseList(head) {\n  let prev = null;\n  let current = head;\n\n  while (current !== null) {\n    const next = current.next;\n    current.next = prev;\n    prev = current;\n    current = next;\n  }\n\n  return prev;\n}",
     "timeTargetSec": 120,
+    "complexity": { "time": "O(n)", "space": "O(1)" },
     "review": {
-      "walkthrough": "next is saved first because current.next is about to be overwritten and we'd otherwise lose our way forward. Each iteration flips one pointer to point backward. When current becomes null, prev is sitting on the last node visited, which is the new head.",
+      "walkthroughSteps": [
+        "next is saved first because current.next is about to be overwritten \u2014 without saving it, the rest of the list would be lost.",
+        "Each iteration flips exactly one pointer to point backward.",
+        "prev and current both advance forward, one node at a time.",
+        "When current becomes null, prev is sitting on the last node visited \u2014 the new head of the reversed list."
+      ],
       "commonMistakes": [
         "Forgetting to save next before reassigning current.next \u2014 loses the rest of the list",
         "Returning current instead of prev \u2014 current is null at the end of the loop"
       ]
     },
-    "tags": [
-      "linked-list",
-      "pointers"
-    ],
+    "tags": ["linked-list", "pointers"],
     "charCount": 217
   },
   {
@@ -98,20 +142,31 @@
     "difficulty": "hard",
     "title": "Longest Substring Without Repeating Characters",
     "prompt": "Given a string, find the length of the longest substring that has no repeating characters.",
-    "approach": "Use a sliding window with two pointers. Expand the right edge one character at a time, tracking the last-seen index of each character in a map. If a repeat shows up inside the current window, jump the left edge forward past the previous occurrence instead of restarting from scratch.",
+    "approach": {
+      "steps": [
+        "Use a sliding window with two pointers, left and right.",
+        "Expand right one character at a time, tracking each character's last-seen index in a map.",
+        "If the current character was already seen INSIDE the current window, jump left forward past that previous occurrence.",
+        "Track the longest window size seen so far."
+      ],
+      "example": "For \"abba\": right=1 window=[0,1] 'ab'. right=2 'b' repeats inside window \u2192 left jumps to 2. right=3 'a' was seen at 0, but that's outside the window (left=2) \u2192 no jump. Max length stays 2."
+    },
     "code": "function lengthOfLongestSubstring(s) {\n  const lastSeen = new Map();\n  let left = 0;\n  let maxLength = 0;\n\n  for (let right = 0; right < s.length; right++) {\n    const char = s[right];\n\n    if (lastSeen.has(char) && lastSeen.get(char) >= left) {\n      left = lastSeen.get(char) + 1;\n    }\n\n    lastSeen.set(char, right);\n    maxLength = Math.max(maxLength, right - left + 1);\n  }\n\n  return maxLength;\n}",
     "timeTargetSec": 150,
+    "complexity": { "time": "O(n)", "space": "O(min(n, alphabet size))" },
     "review": {
-      "walkthrough": "lastSeen.get(char) >= left checks whether the repeat happened INSIDE the current window, not just anywhere earlier in the string \u2014 that's what prevents the left pointer from moving backward. Moving left to lastSeen.get(char) + 1 skips past the duplicate instead of shrinking the window one step at a time, which keeps this O(n) instead of O(n^2).",
+      "walkthroughSteps": [
+        "lastSeen.get(char) >= left checks whether the repeat happened INSIDE the current window, not just anywhere earlier in the string.",
+        "That check is exactly what prevents left from ever moving backward.",
+        "Moving left to lastSeen.get(char) + 1 skips past the duplicate directly, instead of shrinking the window one step at a time.",
+        "maxLength is updated every iteration by comparing against the current window size, right - left + 1."
+      ],
       "commonMistakes": [
         "Forgetting the >= left check \u2014 jumps left backward on repeats from outside the window",
         "Recomputing the window length with a nested loop instead of tracking it with left and right directly"
       ]
     },
-    "tags": [
-      "strings",
-      "sliding-window"
-    ],
+    "tags": ["strings", "sliding-window"],
     "charCount": 402
   },
   {
@@ -121,20 +176,31 @@
     "difficulty": "hard",
     "title": "Breadth-First Traversal of a Graph",
     "prompt": "Given a graph as an adjacency list and a starting node, return the nodes in breadth-first order.",
-    "approach": "BFS explores level by level using a queue instead of recursion. Start by queueing the start node and marking it visited. Repeatedly dequeue a node, record it, and queue any of its unvisited neighbors, marking each as visited the moment it's queued (not when it's dequeued) to avoid adding it twice.",
+    "approach": {
+      "steps": [
+        "BFS explores a graph level by level, using a queue instead of recursion.",
+        "Start by queueing the start node and marking it visited.",
+        "Repeatedly dequeue a node, record it, and queue any unvisited neighbors.",
+        "Mark neighbors visited the moment they're queued \u2014 not when they're dequeued \u2014 to avoid queueing the same node twice."
+      ],
+      "example": "Graph: A\u2192[B,C], B\u2192[D], C\u2192[D]. Start at A: visit A, queue B,C. Visit B, queue D. Visit C, D already visited so skip. Visit D. Order: A, B, C, D."
+    },
     "code": "function bfs(graph, start) {\n  const visited = new Set([start]);\n  const queue = [start];\n  const order = [];\n\n  while (queue.length > 0) {\n    const node = queue.shift();\n    order.push(node);\n\n    for (const neighbor of graph[node]) {\n      if (!visited.has(neighbor)) {\n        visited.add(neighbor);\n        queue.push(neighbor);\n      }\n    }\n  }\n\n  return order;\n}",
     "timeTargetSec": 150,
+    "complexity": { "time": "O(V + E)", "space": "O(V)" },
     "review": {
-      "walkthrough": "Marking a neighbor visited at queue-time, not dequeue-time, is the key detail \u2014 otherwise the same node can be queued multiple times before it's ever processed. queue.shift() takes from the front, so nodes are processed in the order they were discovered, giving the level-by-level BFS property.",
+      "walkthroughSteps": [
+        "Marking a neighbor visited at queue-time, not dequeue-time, is the key detail \u2014 otherwise the same node could be queued multiple times before it's ever processed.",
+        "queue.shift() removes from the front, so nodes are processed in the order they were discovered.",
+        "That discovery order is what gives BFS its level-by-level property.",
+        "The loop ends once the queue is empty, meaning every reachable node has been visited."
+      ],
       "commonMistakes": [
         "Marking visited only when a node is dequeued \u2014 allows duplicate entries in the queue",
         "Using queue.pop() instead of queue.shift() \u2014 that turns it into DFS, not BFS"
       ]
     },
-    "tags": [
-      "graphs",
-      "bfs"
-    ],
+    "tags": ["graphs", "bfs"],
     "charCount": 370
   }
 ]

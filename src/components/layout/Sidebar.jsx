@@ -1,4 +1,4 @@
-import { Home, Keyboard, VolumeX, X, PanelLeftOpen } from 'lucide-react'
+import { Home, Keyboard, VolumeX, X, PanelLeftOpen, ListChecks } from 'lucide-react'
 import { LANGUAGES } from '../../content/languages'
 
 const SOUND_MODES = [
@@ -11,6 +11,8 @@ export default function Sidebar({
   activeLanguageId,
   onSelectLanguage,
   onGoHome,
+  onGoResults,
+  isResultsActive,
   theme,
   onToggleTheme,
   soundMode,
@@ -82,6 +84,17 @@ export default function Sidebar({
             </button>
           )
         })}
+
+        <div className="mt-2 pt-2 border-t border-line mx-2">
+          <button
+            onClick={onGoResults}
+            className={`w-full flex items-center gap-2.5 px-2 py-2 text-sm text-left rounded-md transition-all duration-150
+              ${isResultsActive ? 'bg-panel-raised text-text' : 'text-text-muted hover:text-text hover:bg-panel-raised/50'}`}
+          >
+            <ListChecks size={14} className="shrink-0" />
+            <span className="font-mono">Test Results</span>
+          </button>
+        </div>
       </nav>
 
       <div className="border-t border-line px-4 py-3 space-y-2">

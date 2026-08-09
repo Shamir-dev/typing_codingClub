@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { diffChars, CHAR_STATUS } from './diff'
 import { calculateAccuracy } from './timing'
+import { consistencyScore } from './consistency'
 
 const IDLE_PAUSE_MS = 5000
 const SAMPLE_INTERVAL_MS = 1000
@@ -232,6 +233,7 @@ export function useTypingEngine(targetCode) {
     mistakes: mistakeLog.current,
     wpmHistory: wpmHistoryRef.current,
     keystrokeIntervals: keystrokeIntervalsRef.current,
+    consistency: consistencyScore(wpmHistoryRef.current),
     handleKeystroke,
     resume,
     reset,
