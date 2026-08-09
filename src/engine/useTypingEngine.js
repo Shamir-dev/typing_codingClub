@@ -1,9 +1,14 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { diffChars, CHAR_STATUS } from './diff'
-import { calculateWPM, calculateAccuracy } from './timing'
+import { calculateAccuracy } from './timing'
 
 const IDLE_PAUSE_MS = 5000
 const SAMPLE_INTERVAL_MS = 1000
+
+function wpmFromChars(charCount, ms) {
+  if (ms <= 0) return 0
+  return Math.max(0, Math.round((charCount / 5) / (ms / 60000)))
+}
 
 // Drives a single typing session against one lesson's code string.
 export function useTypingEngine(targetCode) {
@@ -18,12 +23,24 @@ export function useTypingEngine(targetCode) {
   const sampleRef = useRef(null)
   const lastActivityRef = useRef(null)
   const pausedAtRef = useRef(null)
-  const wpmHistoryRef = useRef([])
 
-  // First-attempt correctness per character position, recorded once
-  // and never overwritten — this is what makes accuracy "correct on
-  // first try" (MonkeyType/TypeRacer style) instead of measuring only
-  // the final, possibly-corrected result.
+  // { t: seconds, raw: wpm incl. mistakes this window, actual: correct-only wpm this window }
+  // Per-WINDOW (instantaneous), not cumulative — a cumulative average
+  // mathematically converges to a flat line over time and can never
+  // show real typing jitter. This is what makes the graph look like
+  // MonkeyType's fluctuating raw/actual lines instead of a smooth decay.
+  const wpmHistoryRef = useRef([])
+  const keystrokeIntervalsRef = useRef([])
+  const lastKeystrokeTimeRef = useRef(null)
+
+  // Live mirror of `typed`, read inside the sampling interval — the
+  // interval closure is set up once per start/pause cycle and would
+  // otherwise see a stale `typed` value from whenever the effect ran.
+  const liveTypedRef = useRef('')
+  const lastSampleAtRef = useRef(null)
+  const lastSampleTypedLenRef = useRef(0)
+  const lastSampleCorrectRef = useRef(0)
+
   const firstAttemptRef = useRef(new Map())
 
   const isComplete = typed.length === targetCode.length
@@ -50,22 +67,39 @@ export function useTypingEngine(targetCode) {
     }
   }, [startedAt, finishedAt, isPaused])
 
-  // Samples instantaneous WPM roughly once a second, used to draw the
-  // consistency graph on the results screen.
+  // Samples instantaneous (this-window-only) raw + actual WPM roughly
+  // once a second, used to draw the results-screen consistency graph.
   useEffect(() => {
     if (startedAt && !finishedAt && !isPaused) {
+      if (lastSampleAtRef.current === null) {
+        lastSampleAtRef.current = startedAt
+      }
       sampleRef.current = setInterval(() => {
         const now = Date.now()
-        const elapsed = now - startedAt
-        const correctSoFar = [...firstAttemptRef.current.values()].filter(Boolean).length
+        const windowMs = now - lastSampleAtRef.current
+        if (windowMs <= 0) return
+
+        const currentTyped = liveTypedRef.current
+        const currentCorrect = currentTyped
+          .split('')
+          .filter((c, i) => c === targetCode[i]).length
+
+        const deltaChars = currentTyped.length - lastSampleTypedLenRef.current
+        const deltaCorrect = currentCorrect - lastSampleCorrectRef.current
+
         wpmHistoryRef.current.push({
-          t: Math.round(elapsed / 1000),
-          wpm: calculateWPM(correctSoFar, elapsed),
+          t: Math.round((now - startedAt) / 1000),
+          raw: wpmFromChars(Math.max(0, deltaChars), windowMs),
+          actual: wpmFromChars(Math.max(0, deltaCorrect), windowMs),
         })
+
+        lastSampleAtRef.current = now
+        lastSampleTypedLenRef.current = currentTyped.length
+        lastSampleCorrectRef.current = currentCorrect
       }, SAMPLE_INTERVAL_MS)
       return () => clearInterval(sampleRef.current)
     }
-  }, [startedAt, finishedAt, isPaused])
+  }, [startedAt, finishedAt, isPaused, targetCode])
 
   useEffect(() => {
     if (isComplete && startedAt && !finishedAt) {
@@ -81,10 +115,19 @@ export function useTypingEngine(targetCode) {
     if (!isPaused) return
     const idleDuration = Date.now() - (pausedAtRef.current || Date.now())
     setStartedAt((prev) => (prev !== null ? prev + idleDuration : prev))
+    if (lastSampleAtRef.current !== null) lastSampleAtRef.current += idleDuration
     pausedAtRef.current = null
     lastActivityRef.current = Date.now()
     setIsPaused(false)
   }, [isPaused])
+
+  const recordKeystrokeTiming = () => {
+    const now = Date.now()
+    if (lastKeystrokeTimeRef.current !== null) {
+      keystrokeIntervalsRef.current.push(now - lastKeystrokeTimeRef.current)
+    }
+    lastKeystrokeTimeRef.current = now
+  }
 
   const recordFirstAttempt = (index, isCorrect) => {
     if (!firstAttemptRef.current.has(index)) {
@@ -100,7 +143,11 @@ export function useTypingEngine(targetCode) {
       lastActivityRef.current = Date.now()
 
       if (key === 'Backspace') {
-        setTyped((prev) => prev.slice(0, -1))
+        setTyped((prev) => {
+          const next = prev.slice(0, -1)
+          liveTypedRef.current = next
+          return next
+        })
         return
       }
 
@@ -110,14 +157,18 @@ export function useTypingEngine(targetCode) {
           let insertion = ''
           while (idx < targetCode.length && targetCode[idx] === ' ') {
             recordFirstAttempt(idx, true)
+            recordKeystrokeTiming()
             insertion += ' '
             idx++
           }
           if (insertion.length === 0) {
             recordFirstAttempt(prev.length, targetCode[prev.length] === ' ')
+            recordKeystrokeTiming()
             insertion = ' '
           }
-          return prev + insertion
+          const next = prev + insertion
+          liveTypedRef.current = next
+          return next
         })
         return
       }
@@ -128,10 +179,13 @@ export function useTypingEngine(targetCode) {
 
         const isCorrect = key === targetCode[nextIndex]
         recordFirstAttempt(nextIndex, isCorrect)
+        recordKeystrokeTiming()
         if (!isCorrect) {
           mistakeLog.current.push({ index: nextIndex, expected: targetCode[nextIndex], got: key })
         }
-        return prev + key
+        const next = prev + key
+        liveTypedRef.current = next
+        return next
       })
     },
     [targetCode, startedAt, finishedAt, isPaused]
@@ -146,13 +200,19 @@ export function useTypingEngine(targetCode) {
     mistakeLog.current = []
     firstAttemptRef.current = new Map()
     wpmHistoryRef.current = []
+    keystrokeIntervalsRef.current = []
+    lastKeystrokeTimeRef.current = null
     lastActivityRef.current = null
     pausedAtRef.current = null
+    liveTypedRef.current = ''
+    lastSampleAtRef.current = null
+    lastSampleTypedLenRef.current = 0
+    lastSampleCorrectRef.current = 0
   }, [])
 
   const correctCharCount = typed.split('').filter((c, i) => c === targetCode[i]).length
   const charStatuses = diffChars(targetCode, typed)
-  const wpm = calculateWPM(correctCharCount, elapsedMs)
+  const wpm = wpmFromChars(correctCharCount, elapsedMs)
 
   const firstAttemptCorrect = [...firstAttemptRef.current.values()].filter(Boolean).length
   const firstAttemptTotal = firstAttemptRef.current.size
@@ -171,6 +231,7 @@ export function useTypingEngine(targetCode) {
     mistakeCount: mistakeLog.current.length,
     mistakes: mistakeLog.current,
     wpmHistory: wpmHistoryRef.current,
+    keystrokeIntervals: keystrokeIntervalsRef.current,
     handleKeystroke,
     resume,
     reset,

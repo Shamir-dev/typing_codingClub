@@ -1,4 +1,4 @@
-import { Home, Keyboard, VolumeX } from 'lucide-react'
+import { Home, Keyboard, VolumeX, X, PanelLeftOpen } from 'lucide-react'
 import { LANGUAGES } from '../../content/languages'
 
 const SOUND_MODES = [
@@ -15,21 +15,49 @@ export default function Sidebar({
   onToggleTheme,
   soundMode,
   onSetSoundMode,
+  collapsed,
+  onToggleCollapsed,
 }) {
+  // Collapsed: render a slim rail with just a reopen button, instead of
+  // unmounting the sidebar — keeps the toggle reachable regardless of
+  // screen size, same pattern as the DevInsights sidebar.
+  if (collapsed) {
+    return (
+      <div className="w-10 shrink-0 border-r border-line bg-panel h-full flex flex-col items-center pt-4">
+        <button
+          onClick={onToggleCollapsed}
+          title="Show sidebar"
+          className="text-text-faint hover:text-text p-1.5 rounded-md hover:bg-panel-raised transition-colors"
+        >
+          <PanelLeftOpen size={16} />
+        </button>
+      </div>
+    )
+  }
+
   return (
     <aside className="w-56 shrink-0 border-r border-line bg-panel h-full flex flex-col">
-      <button
-        onClick={onGoHome}
-        className="px-4 py-4 border-b border-line text-left hover:bg-panel-raised/50 transition-colors flex items-center gap-2"
-      >
-        <Home size={16} className="text-text-faint" />
-        <div>
-          <h1 className="font-display font-semibold text-sm tracking-wide text-text">
-            typing<span className="text-text-faint">/</span>club
-          </h1>
-          <p className="text-[11px] text-text-faint">code typing practice</p>
-        </div>
-      </button>
+      <div className="px-4 py-4 border-b border-line flex items-center gap-2">
+        <button
+          onClick={onGoHome}
+          className="flex-1 text-left hover:opacity-70 transition-opacity flex items-center gap-2"
+        >
+          <Home size={16} className="text-text-faint" />
+          <div>
+            <h1 className="font-display font-semibold text-sm tracking-wide text-text">
+              typing<span className="text-text-faint">/</span>club
+            </h1>
+            <p className="text-[11px] text-text-faint">code typing practice</p>
+          </div>
+        </button>
+        <button
+          onClick={onToggleCollapsed}
+          title="Collapse sidebar"
+          className="text-text-faint hover:text-text p-1 rounded-md hover:bg-panel-raised transition-colors shrink-0"
+        >
+          <X size={16} />
+        </button>
+      </div>
 
       <nav className="flex-1 overflow-y-auto py-2">
         {LANGUAGES.map((lang) => {

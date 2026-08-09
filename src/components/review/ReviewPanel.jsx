@@ -22,7 +22,7 @@ function summarizeMistakes(mistakes) {
   return [...byChar.values()].sort((a, b) => b.count - a.count)
 }
 
-export default function ReviewPanel({ lesson, wpm, accuracy, timeMs, mistakes, wpmHistory, accent, onRetry, onBack }) {
+export default function ReviewPanel({ lesson, wpm, accuracy, timeMs, mistakes, wpmHistory, keystrokeIntervals, accent, onRetry, onBack }) {
   const mistakeSummary = summarizeMistakes(mistakes || [])
 
   return (
@@ -49,7 +49,7 @@ export default function ReviewPanel({ lesson, wpm, accuracy, timeMs, mistakes, w
         </div>
       </div>
 
-      <ConsistencyGraph wpmHistory={wpmHistory} accent={accent} />
+      <ConsistencyGraph wpmHistory={wpmHistory} keystrokeIntervals={keystrokeIntervals} accent={accent} />
 
       <section className="mb-6">
         <h3 className="text-xs uppercase tracking-wider text-text-muted font-display font-medium mb-2">

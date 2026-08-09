@@ -10,6 +10,7 @@ export default function Review({ lesson, result, accent, onRetry, onBack }) {
         timeMs={result.timeMs}
         mistakes={result.mistakes}
         wpmHistory={result.wpmHistory}
+        keystrokeIntervals={result.keystrokeIntervals}
         accent={accent}
         onRetry={onRetry}
         onBack={onBack}

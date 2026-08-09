@@ -21,6 +21,7 @@ export default function App() {
   const { progress, recordCompletion } = useProgress()
   const { theme, toggleTheme, soundMode, setSoundMode } = useSettings()
   const { attemptsForLanguage, logAttempt } = useAttemptsLog()
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
 
   const language = getLanguage(languageId)
   const lessons = useMemo(() => LESSONS_BY_LANGUAGE[languageId] || [], [languageId])
@@ -58,6 +59,8 @@ export default function App() {
         onToggleTheme={toggleTheme}
         soundMode={soundMode}
         onSetSoundMode={setSoundMode}
+        collapsed={sidebarCollapsed}
+        onToggleCollapsed={() => setSidebarCollapsed((v) => !v)}
       />
 
       <main className="flex-1 h-full overflow-hidden flex flex-col">
