@@ -1,0 +1,188 @@
+import json
+
+lessons = [
+{
+  "id": "js-easy-001",
+  "language": "javascript",
+  "trackType": "dsa",
+  "difficulty": "easy",
+  "title": "Find the Largest Number",
+  "prompt": "Given an array of numbers, return the largest one.",
+  "approach": "Assume the first element is the largest so far, then walk through the rest of the array, updating that assumption whenever a bigger number shows up.",
+  "code": """function findLargest(numbers) {
+  let largest = numbers[0];
+
+  for (let i = 1; i < numbers.length; i++) {
+    if (numbers[i] > largest) {
+      largest = numbers[i];
+    }
+  }
+
+  return largest;
+}""",
+  "timeTargetSec": 60,
+  "review": {
+    "walkthrough": "largest starts as numbers[0] so the loop has a baseline to compare against. The loop starts at index 1 (not 0) since index 0 is already accounted for. Each iteration only updates largest when it finds something bigger, so by the end largest holds the true maximum.",
+    "commonMistakes": ["Starting largest at 0 instead of numbers[0] — fails on all-negative arrays", "Starting the loop at i = 0, redundantly comparing the first element to itself"]
+  },
+  "tags": ["arrays", "loops"]
+},
+{
+  "id": "js-easy-002",
+  "language": "javascript",
+  "trackType": "dsa",
+  "difficulty": "easy",
+  "title": "Reverse a String",
+  "prompt": "Given a string, return it reversed, without using the built-in .reverse() array method as a shortcut.",
+  "approach": "Build a new string by walking the original from the last character to the first, appending each character as you go.",
+  "code": """function reverseString(str) {
+  let result = "";
+
+  for (let i = str.length - 1; i >= 0; i--) {
+    result += str[i];
+  }
+
+  return result;
+}""",
+  "timeTargetSec": 60,
+  "review": {
+    "walkthrough": "The loop starts at str.length - 1 because string indices are zero-based, so the last character sits one before the length. Counting down to 0 and appending each character builds the string back-to-front, which is exactly a reversal.",
+    "commonMistakes": ["Starting at str.length instead of str.length - 1 — reads undefined on the first pass", "Using result = str[i] + result instead of += — works, but is slower on large strings"]
+  },
+  "tags": ["strings", "loops"]
+},
+{
+  "id": "js-medium-001",
+  "language": "javascript",
+  "trackType": "dsa",
+  "difficulty": "medium",
+  "title": "Two Sum",
+  "prompt": "Given an array of integers and a target, return the indices of the two numbers that add up to the target. Assume exactly one solution exists.",
+  "approach": "A brute-force check of every pair is O(n^2). Instead, walk the array once, and for each number check a hash map for the complement (target minus the current number) that would complete the pair. Store each number's index in the map as you go.",
+  "code": """function twoSum(nums, target) {
+  const seen = new Map();
+
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
+
+    if (seen.has(complement)) {
+      return [seen.get(complement), i];
+    }
+
+    seen.set(nums[i], i);
+  }
+
+  return [];
+}""",
+  "timeTargetSec": 120,
+  "review": {
+    "walkthrough": "seen maps a number to its index. Before adding the current number, we check whether its complement already exists in the map — if it does, we've found our pair without a nested loop. We add the current number after checking, so a number never pairs with itself.",
+    "commonMistakes": ["Adding nums[i] to the map before checking for the complement — can wrongly pair a number with itself", "Using a plain object instead of a Map — works for integer keys but Map is the clearer, safer choice"]
+  },
+  "tags": ["arrays", "hash-map"]
+},
+{
+  "id": "js-medium-002",
+  "language": "javascript",
+  "trackType": "dsa",
+  "difficulty": "medium",
+  "title": "Reverse a Linked List",
+  "prompt": "Given the head of a singly linked list, reverse it in place and return the new head.",
+  "approach": "Walk the list once, keeping track of the previous node. At each node, save the next node before overwriting the current node's pointer to point backward at prev, then advance both prev and current forward.",
+  "code": """function reverseList(head) {
+  let prev = null;
+  let current = head;
+
+  while (current !== null) {
+    const next = current.next;
+    current.next = prev;
+    prev = current;
+    current = next;
+  }
+
+  return prev;
+}""",
+  "timeTargetSec": 120,
+  "review": {
+    "walkthrough": "next is saved first because current.next is about to be overwritten and we'd otherwise lose our way forward. Each iteration flips one pointer to point backward. When current becomes null, prev is sitting on the last node visited, which is the new head.",
+    "commonMistakes": ["Forgetting to save next before reassigning current.next — loses the rest of the list", "Returning current instead of prev — current is null at the end of the loop"]
+  },
+  "tags": ["linked-list", "pointers"]
+},
+{
+  "id": "js-hard-001",
+  "language": "javascript",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Longest Substring Without Repeating Characters",
+  "prompt": "Given a string, find the length of the longest substring that has no repeating characters.",
+  "approach": "Use a sliding window with two pointers. Expand the right edge one character at a time, tracking the last-seen index of each character in a map. If a repeat shows up inside the current window, jump the left edge forward past the previous occurrence instead of restarting from scratch.",
+  "code": """function lengthOfLongestSubstring(s) {
+  const lastSeen = new Map();
+  let left = 0;
+  let maxLength = 0;
+
+  for (let right = 0; right < s.length; right++) {
+    const char = s[right];
+
+    if (lastSeen.has(char) && lastSeen.get(char) >= left) {
+      left = lastSeen.get(char) + 1;
+    }
+
+    lastSeen.set(char, right);
+    maxLength = Math.max(maxLength, right - left + 1);
+  }
+
+  return maxLength;
+}""",
+  "timeTargetSec": 150,
+  "review": {
+    "walkthrough": "lastSeen.get(char) >= left checks whether the repeat happened INSIDE the current window, not just anywhere earlier in the string — that's what prevents the left pointer from moving backward. Moving left to lastSeen.get(char) + 1 skips past the duplicate instead of shrinking the window one step at a time, which keeps this O(n) instead of O(n^2).",
+    "commonMistakes": ["Forgetting the >= left check — jumps left backward on repeats from outside the window", "Recomputing the window length with a nested loop instead of tracking it with left and right directly"]
+  },
+  "tags": ["strings", "sliding-window"]
+},
+{
+  "id": "js-hard-002",
+  "language": "javascript",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Breadth-First Traversal of a Graph",
+  "prompt": "Given a graph as an adjacency list and a starting node, return the nodes in breadth-first order.",
+  "approach": "BFS explores level by level using a queue instead of recursion. Start by queueing the start node and marking it visited. Repeatedly dequeue a node, record it, and queue any of its unvisited neighbors, marking each as visited the moment it's queued (not when it's dequeued) to avoid adding it twice.",
+  "code": """function bfs(graph, start) {
+  const visited = new Set([start]);
+  const queue = [start];
+  const order = [];
+
+  while (queue.length > 0) {
+    const node = queue.shift();
+    order.push(node);
+
+    for (const neighbor of graph[node]) {
+      if (!visited.has(neighbor)) {
+        visited.add(neighbor);
+        queue.push(neighbor);
+      }
+    }
+  }
+
+  return order;
+}""",
+  "timeTargetSec": 150,
+  "review": {
+    "walkthrough": "Marking a neighbor visited at queue-time, not dequeue-time, is the key detail — otherwise the same node can be queued multiple times before it's ever processed. queue.shift() takes from the front, so nodes are processed in the order they were discovered, giving the level-by-level BFS property.",
+    "commonMistakes": ["Marking visited only when a node is dequeued — allows duplicate entries in the queue", "Using queue.pop() instead of queue.shift() — that turns it into DFS, not BFS"]
+  },
+  "tags": ["graphs", "bfs"]
+}
+]
+
+for l in lessons:
+    l["charCount"] = len(l["code"])
+
+with open("/home/claude/typing-club/content/javascript/lessons.json", "w") as f:
+    json.dump(lessons, f, indent=2)
+
+for l in lessons:
+    print(l["id"], l["difficulty"], l["charCount"], "target", l["timeTargetSec"])

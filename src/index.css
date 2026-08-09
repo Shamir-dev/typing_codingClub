@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-base: #1c1d24;
+  --color-panel: #24262e;
+  --color-panel-raised: #2b2d37;
+  --color-line: #34363f;
+  --color-text: #e9e7e2;
+  --color-text-muted: #8b8d98;
+  --color-text-faint: #5c5e69;
+
+  --color-correct: #7ec699;
+  --color-incorrect: #e27878;
+  --color-cursor: #e9e7e2;
+
+  --color-js: #f0db4f;
+  --color-python: #5b9bd5;
+  --color-cpp: #6f9ceb;
+  --color-java: #e8825f;
+  --color-c: #9aa0ac;
+  --color-html: #e8825f;
+  --color-css: #5b9bd5;
+  --color-react: #61dafb;
+}
+
+/* Light theme — same variable names, different values, applied by
+   setting data-theme="light" on <html>. Every Tailwind utility that
+   reads var(--color-*) picks this up automatically, no class changes
+   needed anywhere else in the app. */
+[data-theme='light'] {
+  --color-base: #eaf3fb;
+  --color-panel: #ffffff;
+  --color-panel-raised: #f3f8fd;
+  --color-line: #d9e6f2;
+  --color-text: #23303f;
+  --color-text-muted: #5b7186;
+  --color-text-faint: #9db0c1;
+
+  --color-correct: #23a566;
+  --color-incorrect: #e0473d;
+  --color-cursor: #23303f;
+}
+
+[data-theme='light'] body {
+  background-image: linear-gradient(180deg, #cfe8fb 0%, #eaf3fb 40%, #eaf3fb 100%);
+  background-attachment: fixed;
+}
+
+body {
+  background-color: var(--color-base);
+  color: var(--color-text);
+  font-family: var(--font-display);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+::selection {
+  background-color: var(--color-correct);
+  color: var(--color-base);
+}
+
+/* Coding ligature fonts (JetBrains Mono included) merge sequences like
+   <=, ++, -- into single combined glyphs. Since this app renders each
+   character in its own span for per-character diffing, a merged glyph
+   makes individual characters look like they've vanished. Disabling
+   ligatures/contextual alternates keeps every character rendered as
+   its own distinct glyph. */
+.no-ligatures {
+  font-variant-ligatures: none;
+  font-feature-settings: 'liga' 0, 'calt' 0, 'dlig' 0, 'clig' 0;
+}
+
+@keyframes caret-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.typing-caret {
+  animation: caret-blink 1s step-start infinite;
+}
+
+@keyframes pop-in {
+  0% { opacity: 0; transform: translateY(4px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-pop-in {
+  animation: pop-in 0.25s ease-out;
+}
+
+@keyframes soft-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+.animate-soft-pulse {
+  animation: soft-pulse 2s ease-in-out infinite;
+}
+
+.card-lift {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.card-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.18);
+}
