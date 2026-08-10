@@ -1462,5 +1462,2350 @@
       "two-pointers"
     ],
     "charCount": 217
-  }
+  },
+  {
+  "id": "py-easy-036",
+  "language": "python",
+  "trackType": "dsa",
+  "difficulty": "easy",
+  "title": "Reverse String",
+  "prompt": "Reverse the characters of a given string and return the result.",
+  "approach": {
+    "steps": [
+      "Take the input string.",
+      "Use slicing with step -1 to reverse.",
+      "Return the reversed string."
+    ],
+    "example": "For 'hello', reversing produces 'olleh'."
+  },
+  "code": "def reverse_string(s):\n  return s[::-1]",
+  "timeTargetSec": 60,
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "Slicing with -1 iterates backward.",
+      "All characters are collected in reverse order.",
+      "Result is a new string."
+    ],
+    "commonMistakes": [
+      "Trying to reverse in place (strings are immutable).",
+      "Using loops unnecessarily instead of slicing."
+    ]
+  },
+  "tags": ["strings", "slicing"],
+  "charCount": 92
+},
+{
+  "id": "py-easy-037",
+  "language": "python",
+  "trackType": "dsa",
+  "difficulty": "easy",
+  "title": "Count Vowels",
+  "prompt": "Count the number of vowels in a given string.",
+  "approach": {
+    "steps": [
+      "Define a set of vowels.",
+      "Iterate through each character.",
+      "Increment count if character is in vowels.",
+      "Return the count."
+    ],
+    "example": "For 'apple pie', vowels are ['a','e','i','e'], count=4."
+  },
+  "code": "def count_vowels(s):\n  vowels = set('aeiouAEIOU')\n  return sum(1 for ch in s if ch in vowels)",
+  "timeTargetSec": 70,
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "Set lookup is O(1).",
+      "Generator expression counts matches.",
+      "Result is total vowel count."
+    ],
+    "commonMistakes": [
+      "Forgetting uppercase vowels.",
+      "Using list instead of set (slower lookups)."
+    ]
+  },
+  "tags": ["strings", "loops", "sets"],
+  "charCount": 108
+},
+{
+  "id": "py-easy-038",
+  "language": "python",
+  "trackType": "dsa",
+  "difficulty": "easy",
+  "title": "Sum of Digits",
+  "prompt": "Given an integer, return the sum of its digits.",
+  "approach": {
+    "steps": [
+      "Convert integer to string.",
+      "Iterate through characters.",
+      "Convert each to int and sum.",
+      "Return the total."
+    ],
+    "example": "For 472, digits ['4','7','2'] sum to 13."
+  },
+  "code": "def sum_digits(n):\n  return sum(int(ch) for ch in str(n))",
+  "timeTargetSec": 50,
+  "complexity": {
+    "time": "O(d)",
+    "space": "O(1)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "str(n) exposes digits.",
+      "int(ch) converts each digit.",
+      "sum aggregates them."
+    ],
+    "commonMistakes": [
+      "Forgetting to convert characters to int.",
+      "Trying to divide repeatedly instead of string conversion."
+    ]
+  },
+  "tags": ["math", "strings"],
+  "charCount": 89
+},
+{
+  "id": "py-easy-039",
+  "language": "python",
+  "trackType": "dsa",
+  "difficulty": "easy",
+  "title": "Check Palindrome",
+  "prompt": "Determine if a string reads the same forward and backward.",
+  "approach": {
+    "steps": [
+      "Compare string with its reverse.",
+      "Return True if equal, else False."
+    ],
+    "example": "For 'madam', reverse is 'madam', result True."
+  },
+  "code": "def is_palindrome(s):\n  return s == s[::-1]",
+  "timeTargetSec": 40,
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "Reverse string with slicing.",
+      "Check equality.",
+      "Return boolean."
+    ],
+    "commonMistakes": [
+      "Ignoring case sensitivity.",
+      "Not handling empty string correctly."
+    ]
+  },
+  "tags": ["strings", "comparison"],
+  "charCount": 74
+},
+{
+  "id": "py-easy-040",
+  "language": "python",
+  "trackType": "dsa",
+  "difficulty": "easy",
+  "title": "Find Minimum",
+  "prompt": "Return the smallest number in a list of integers.",
+  "approach": {
+    "steps": [
+      "Initialize min_val as first element.",
+      "Iterate through list.",
+      "Update min_val if smaller element found.",
+      "Return min_val."
+    ],
+    "example": "For [7, 2, 9, 4], minimum is 2."
+  },
+  "code": "def find_min(nums):\n  min_val = nums[0]\n  for n in nums:\n    if n < min_val:\n      min_val = n\n  return min_val",
+  "timeTargetSec": 60,
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "Start with first element.",
+      "Compare each element.",
+      "Update min_val when smaller found.",
+      "Return final min_val."
+    ],
+    "commonMistakes": [
+      "Not handling empty list.",
+      "Using max instead of min by mistake."
+    ]
+  },
+  "tags": ["arrays", "loops"],
+  "charCount": 96
+},
+{
+"id": "py-medium-041",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Group Words By Length",
+"prompt": "Given a list of words, group them into a dictionary where each key is a word length and each value contains the words having that length.",
+"approach": {
+"steps": [
+"Create an empty dictionary for the groups.",
+"Process each word and determine its length.",
+"Create a list when a length appears for the first time.",
+"Append each word to its matching length group."
+],
+"example": "For ['cat', 'apple', 'dog'], cat creates group 3, apple creates group 5, and dog joins group 3 to produce {3: ['cat', 'dog'], 5: ['apple']}."
+},
+"code": "def group_by_length(words):\n  groups = {}\n\n  for word in words:\n    length = len(word)\n    if length not in groups:\n      groups[length] = []\n    groups[length].append(word)\n\n  return groups",
+"timeTargetSec": 95,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"groups stores one list for every word length.",
+"The loop calculates len(word) for each input word.",
+"A missing length receives an empty list before insertion.",
+"append places the word into its corresponding group."
+],
+"commonMistakes": [
+"Using the word as the dictionary key instead of its length.",
+"Calling append before creating a missing list."
 ]
+},
+"tags": ["dictionaries", "strings", "grouping"]
+},
+{
+"id": "py-medium-042",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Count Word Frequencies",
+"prompt": "Given a sentence, count how many times each word appears and return the frequencies in a dictionary.",
+"approach": {
+"steps": [
+"Split the sentence into individual words.",
+"Create an empty frequency dictionary.",
+"Increase the count for each word encountered.",
+"Return the completed frequency dictionary."
+],
+"example": "For ['red', 'blue', 'red'], red starts at 1, blue becomes 1, and the second red raises its count to 2, producing {'red': 2, 'blue': 1}."
+},
+"code": "def word_frequencies(sentence):\n  words = sentence.split()\n  frequencies = {}\n\n  for word in words:\n    frequencies[word] = frequencies.get(word, 0) + 1\n\n  return frequencies",
+"timeTargetSec": 95,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"split converts the sentence into individual words.",
+"frequencies stores one count for every distinct word.",
+"get(word, 0) supplies zero when a word has not appeared.",
+"Each occurrence increases the corresponding count by one."
+],
+"commonMistakes": [
+"Using frequencies[word] += 1 before creating the key.",
+"Using split(' ') when arbitrary whitespace should separate words."
+]
+},
+"tags": ["dictionaries", "strings", "frequency"]
+},
+{
+"id": "py-medium-043",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Find Duplicate Values",
+"prompt": "Given a list of values, return a list containing each value that appears more than once without repeating duplicate results.",
+"approach": {
+"steps": [
+"Track values encountered for the first time.",
+"Track values already identified as duplicates.",
+"Process each value from left to right.",
+"Return the unique duplicate values."
+],
+"example": "For [4, 2, 4, 7, 2, 4], the second 4 marks 4 as a duplicate, the second 2 marks 2, and the final 4 does not add another result."
+},
+"code": "def find_duplicates(values):\n  seen = set()\n  duplicates = set()\n\n  for value in values:\n    if value in seen:\n      duplicates.add(value)\n    else:\n      seen.add(value)\n\n  return list(duplicates)",
+"timeTargetSec": 100,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"seen records values that have already appeared.",
+"A value found in seen has occurred before.",
+"duplicates is a set, so repeated duplicate encounters remain unique.",
+"Converting duplicates to a list gives the required result type."
+],
+"commonMistakes": [
+"Appending every repeated value and returning duplicates multiple times.",
+"Checking membership in duplicates instead of tracking first appearances in seen."
+]
+},
+"tags": ["sets", "lists", "duplicates"]
+},
+{
+"id": "py-medium-044",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Merge Sorted Lists",
+"prompt": "Merge two already sorted lists into one sorted list without sorting the combined list afterward.",
+"approach": {
+"steps": [
+"Create pointers for both input lists.",
+"Compare the current values from both lists.",
+"Append the smaller value and advance its pointer.",
+"Append all remaining values after one list is exhausted."
+],
+"example": "For [1, 4, 7] and [2, 3, 8], comparisons choose 1, then 2, then 3, then 4, leaving 7 and 8 to finish the merged list."
+},
+"code": "def merge_sorted(first, second):\n  merged = []\n  first_index = second_index = 0\n\n  while first_index < len(first) and second_index < len(second):\n    if first[first_index] <= second[second_index]:\n      merged.append(first[first_index])\n      first_index += 1\n    else:\n      merged.append(second[second_index])\n      second_index += 1\n\n  merged.extend(first[first_index:])\n  merged.extend(second[second_index:])\n  return merged",
+"timeTargetSec": 115,
+"complexity": {
+"time": "O(n + m)",
+"space": "O(n + m)"
+},
+"review": {
+"walkthroughSteps": [
+"first_index and second_index identify the next unused values.",
+"The loop compares both current values while both lists still contain elements.",
+"The smaller value is appended and its pointer advances.",
+"extend adds the remaining portion after one list is exhausted."
+],
+"commonMistakes": [
+"Advancing both indexes after selecting only one value.",
+"Forgetting to extend the result with the remaining list."
+]
+},
+"tags": ["lists", "two-pointers", "merging"]
+},
+{
+"id": "py-medium-045",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "First Unique Character",
+"prompt": "Return the first character in a string that appears exactly once. Return an empty string if every character repeats.",
+"approach": {
+"steps": [
+"Count every character in the string.",
+"Scan the original string from left to right.",
+"Check each character's stored frequency.",
+"Return the first character whose count is one."
+],
+"example": "For 'swiss', the counts are s: 3, w: 1, and i: 1, so the second character w is the first unique character."
+},
+"code": "def first_unique_character(text):\n  counts = {}\n\n  for character in text:\n    counts[character] = counts.get(character, 0) + 1\n\n  for character in text:\n    if counts[character] == 1:\n      return character\n\n  return ''",
+"timeTargetSec": 105,
+"complexity": {
+"time": "O(n)",
+"space": "O(k)"
+},
+"review": {
+"walkthroughSteps": [
+"counts stores the total frequency of every character.",
+"The first loop completes all frequencies before uniqueness is checked.",
+"The second loop preserves the original character order.",
+"The first character with count one is returned immediately."
+],
+"commonMistakes": [
+"Returning the first character with a positive count.",
+"Checking uniqueness during the first pass before later characters are counted."
+]
+},
+"tags": ["strings", "dictionaries", "frequency"]
+},
+{
+"id": "py-medium-046",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Two Sum Indices",
+"prompt": "Given a list of integers and a target value, return the indices of two different values whose sum equals the target.",
+"approach": {
+"steps": [
+"Create a dictionary mapping seen values to their indices.",
+"Visit each value from left to right.",
+"Calculate the complement needed to reach the target.",
+"Return the stored complement index and current index when found."
+],
+"example": "For [3, 5, 7] with target 10, 3 stores index 0, then 5 needs 5, and 7 needs 3, which was stored at index 0, giving [0, 2]."
+},
+"code": "def two_sum_indices(numbers, target):\n  seen = {}\n\n  for index, number in enumerate(numbers):\n    needed = target - number\n    if needed in seen:\n      return [seen[needed], index]\n    seen[number] = index\n\n  return []",
+"timeTargetSec": 110,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"seen records each previously visited number and its index.",
+"needed represents the value required to pair with the current number.",
+"A stored needed value means a valid pair has been found.",
+"The current number is stored only after checking for its complement."
+],
+"commonMistakes": [
+"Storing the current value before checking and accidentally using the same element twice.",
+"Returning values instead of their indices."
+]
+},
+"tags": ["dictionaries", "arrays", "two-sum"]
+},
+{
+"id": "py-medium-047",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Rotate List Right",
+"prompt": "Rotate a list to the right by a given number of positions and return the rotated list.",
+"approach": {
+"steps": [
+"Handle an empty list separately.",
+"Reduce the rotation count using the list length.",
+"Split the list at the rotation boundary.",
+"Join the ending portion before the starting portion."
+],
+"example": "For [1, 2, 3, 4, 5] rotated right by 2, the last two values [4, 5] move first and the result becomes [4, 5, 1, 2, 3]."
+},
+"code": "def rotate_right(numbers, positions):\n  if not numbers:\n    return []\n\n  positions %= len(numbers)\n  if positions == 0:\n    return numbers.copy()\n\n  split_index = len(numbers) - positions\n  return numbers[split_index:] + numbers[:split_index]",
+"timeTargetSec": 100,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"The empty check avoids taking a modulo by zero.",
+"positions %= len(numbers) removes complete rotations.",
+"split_index marks where the final positions begin.",
+"Slicing and concatenating the two sections produces the rotated order."
+],
+"commonMistakes": [
+"Using positions directly without reducing values larger than the list length.",
+"Splitting at positions instead of len(numbers) - positions."
+]
+},
+"tags": ["lists", "slicing", "rotation"]
+},
+{
+"id": "py-medium-048",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Find Missing Number",
+"prompt": "Given a list containing distinct integers from 0 through n with one value missing, return the missing value.",
+"approach": {
+"steps": [
+"Determine the expected sum from zero through n.",
+"Calculate the sum of the provided values.",
+"Subtract the actual sum from the expected sum.",
+"Return the difference as the missing value."
+],
+"example": "For [0, 1, 3, 4], n is 4, the expected sum is 10, the actual sum is 8, and their difference gives the missing value 2."
+},
+"code": "def find_missing(numbers):\n  length = len(numbers)\n  expected = length * (length + 1) // 2\n  actual = sum(numbers)\n  missing = expected - actual\n\n  return missing",
+"timeTargetSec": 95,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"length equals n because the list contains n values from a range of n + 1 possible values.",
+"expected calculates the complete range sum.",
+"actual calculates the sum of the supplied values.",
+"The difference is exactly the missing number."
+],
+"commonMistakes": [
+"Using length - 1 as n and calculating the wrong expected range.",
+"Using regular division and producing a float instead of integer division."
+]
+},
+"tags": ["math", "lists", "sums"]
+},
+{
+"id": "py-medium-049",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Longest Consecutive Run",
+"prompt": "Given an unsorted list of integers, return the length of the longest sequence of consecutive values.",
+"approach": {
+"steps": [
+"Put all values into a set for fast membership checks.",
+"Start sequences only when the previous value is absent.",
+"Count forward while consecutive values exist.",
+"Keep the largest sequence length found."
+],
+"example": "For [100, 4, 200, 1, 3, 2], value 1 starts a run of 1, 2, 3, 4, giving length 4, which becomes the maximum."
+},
+"code": "def longest_consecutive(numbers):\n  values = set(numbers)\n  longest = 0\n\n  for number in values:\n    if number - 1 not in values:\n      length = 1\n      while number + length in values:\n        length += 1\n      longest = max(longest, length)\n\n  return longest",
+"timeTargetSec": 120,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"values removes duplicates and provides fast membership checks.",
+"A number starts a sequence only when its predecessor is absent.",
+"The while loop counts consecutive successors.",
+"longest keeps the maximum sequence length seen so far."
+],
+"commonMistakes": [
+"Starting a count from every number and doing unnecessary repeated work.",
+"Sorting the input and then claiming the algorithm has constant extra space."
+]
+},
+"tags": ["sets", "sequences", "hashing"]
+},
+{
+"id": "py-medium-050",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Group Anagrams",
+"prompt": "Given a list of words, group words that contain the same letters with the same frequencies.",
+"approach": {
+"steps": [
+"Create a dictionary whose keys represent letter compositions.",
+"Sort each word to create its normalized key.",
+"Append the word to the matching group.",
+"Return all grouped word lists."
+],
+"example": "For ['eat', 'tea', 'tan'], eat and tea both produce the key 'aet', while tan produces 'ant', creating two groups."
+},
+"code": "def group_anagrams(words):\n  groups = {}\n\n  for word in words:\n    key = ''.join(sorted(word))\n    if key not in groups:\n      groups[key] = []\n    groups[key].append(word)\n\n  return list(groups.values())",
+"timeTargetSec": 115,
+"complexity": {
+"time": "O(n * k log k)",
+"space": "O(n * k)"
+},
+"review": {
+"walkthroughSteps": [
+"sorted(word) produces the same ordered letters for anagrams.",
+"join converts those sorted letters into a dictionary key.",
+"Each key receives a list containing all words with that composition.",
+"values returns the grouped lists without exposing the internal keys."
+],
+"commonMistakes": [
+"Using the original word as the key and preventing anagrams from grouping.",
+"Forgetting to join the sorted characters into a hashable string."
+]
+},
+"tags": ["dictionaries", "strings", "sorting"]
+},
+{
+"id": "py-medium-051",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Merge Overlapping Ranges",
+"prompt": "Given a list of numeric intervals, merge any intervals that overlap and return the resulting ranges.",
+"approach": {
+"steps": [
+"Sort intervals by their starting value.",
+"Start the result with the first interval.",
+"Compare each interval with the latest merged range.",
+"Extend the range when they overlap or append a new range otherwise."
+],
+"example": "For [[1, 3], [2, 5], [8, 10]], the first two overlap and become [1, 5], while [8, 10] stays separate."
+},
+"code": "def merge_intervals(intervals):\n  if not intervals:\n    return []\n\n  sorted_intervals = sorted(intervals)\n  merged = [sorted_intervals[0].copy()]\n\n  for start, end in sorted_intervals[1:]:\n    last_end = merged[-1][1]\n    if start <= last_end:\n      merged[-1][1] = max(last_end, end)\n    else:\n      merged.append([start, end])\n\n  return merged",
+"timeTargetSec": 120,
+"complexity": {
+"time": "O(n log n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"sorted_intervals puts possible overlaps next to each other.",
+"merged starts with a copy of the earliest interval.",
+"An interval overlaps when its start is no greater than the latest end.",
+"Overlapping ranges extend the last result; separate ranges are appended."
+],
+"commonMistakes": [
+"Checking only whether start is less than last_end and missing touching ranges.",
+"Modifying the original input intervals unintentionally."
+]
+},
+"tags": ["lists", "sorting", "intervals"]
+},
+{
+"id": "py-medium-052",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Top Frequent Values",
+"prompt": "Given a list of values and an integer k, return the k values that occur most frequently.",
+"approach": {
+"steps": [
+"Count each value with a dictionary.",
+"Sort the distinct values by descending frequency.",
+"Take the first k values.",
+"Return those values as a list."
+],
+"example": "For [1, 1, 2, 3, 3, 3] with k=2, frequency 3 is 3 and frequency 1 is 2, so the result is [3, 1]."
+},
+"code": "def top_frequent(values, k):\n  counts = {}\n\n  for value in values:\n    counts[value] = counts.get(value, 0) + 1\n\n  ordered = sorted(counts, key=counts.get, reverse=True)\n  return ordered[:k]",
+"timeTargetSec": 110,
+"complexity": {
+"time": "O(n log n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"counts records how often every distinct value occurs.",
+"sorted receives the dictionary keys and uses their frequencies as the sorting key.",
+"reverse=True places the highest frequencies first.",
+"Slicing returns only the first k values."
+],
+"commonMistakes": [
+"Sorting the values themselves instead of sorting by their frequencies.",
+"Forgetting reverse=True and returning the least frequent values first."
+]
+},
+"tags": ["dictionaries", "sorting", "frequency"]
+},
+{
+"id": "py-medium-053",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Evaluate Simple Expression",
+"prompt": "Evaluate a string containing non-negative integers separated by plus and minus operators from left to right.",
+"approach": {
+"steps": [
+"Split the expression into numbers and operators.",
+"Use the first number as the starting total.",
+"Apply each following operator to the next number.",
+"Return the final running total."
+],
+"example": "For '10 + 3 - 4', the total starts at 10, becomes 13 after plus 3, and becomes 9 after subtracting 4."
+},
+"code": "def evaluate_expression(expression):\n  tokens = expression.replace(' ', '')\n  total = int(tokens[0])\n  current = ''\n  operator = '+'\n\n  for character in tokens[1:]:\n    if character in '+-':\n      value = int(current)\n      total = total + value if operator == '+' else total - value\n      operator = character\n      current = ''\n    else:\n      current += character\n\n  value = int(current)\n  return total + value if operator == '+' else total - value",
+"timeTargetSec": 120,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"tokens removes spaces so the expression can be scanned uniformly.",
+"total begins with the first number and operator begins as plus.",
+"Each operator causes the previously collected number to be applied.",
+"The final collected number is applied after the loop finishes."
+],
+"commonMistakes": [
+"Applying the new operator before processing the number that came before it.",
+"Forgetting to process the final number because no operator follows it."
+]
+},
+"tags": ["strings", "parsing", "math"]
+},
+{
+"id": "py-medium-054",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Validate Parentheses",
+"prompt": "Given a string containing brackets, determine whether every opening bracket is correctly closed in the proper order.",
+"approach": {
+"steps": [
+"Use a stack for opening brackets.",
+"Map every closing bracket to its matching opener.",
+"Push opening brackets and validate each closing bracket.",
+"Return true only when all brackets match and the stack is empty."
+],
+"example": "For '([])', '(' is pushed, '[' is pushed, ']' matches '[', ')' matches '(', and the empty stack makes the result true."
+},
+"code": "def valid_parentheses(text):\n  stack = []\n  pairs = {')': '(', ']': '[', '}': '{'}\n\n  for character in text:\n    if character in pairs.values():\n      stack.append(character)\n    elif character in pairs:\n      if not stack or stack.pop() != pairs[character]:\n        return False\n\n  return not stack",
+"timeTargetSec": 110,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"stack keeps opening brackets in their nesting order.",
+"pairs maps each closing bracket to the opener it requires.",
+"A closing bracket must match the most recently opened bracket.",
+"An empty stack at the end confirms that every opening bracket was closed."
+],
+"commonMistakes": [
+"Checking only whether every bracket has a matching type without checking order.",
+"Calling pop on an empty stack before checking whether the stack contains anything."
+]
+},
+"tags": ["stacks", "strings", "validation"]
+},
+{
+"id": "py-medium-055",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Binary Search Position",
+"prompt": "Given a sorted list and a target value, return its index if found or the position where it should be inserted.",
+"approach": {
+"steps": [
+"Set left and right boundaries for the search.",
+"Inspect the middle value.",
+"Move the appropriate boundary based on the comparison.",
+"Return the left boundary when the search finishes."
+],
+"example": "For [1, 3, 5, 7] and target 6, the search checks 5, moves right, checks 7, moves left, and finishes with insertion index 3."
+},
+"code": "def search_insert(numbers, target):\n  left = 0\n  right = len(numbers)\n\n  while left < right:\n    middle = (left + right) // 2\n    if numbers[middle] < target:\n      left = middle + 1\n    else:\n      right = middle\n\n  return left",
+"timeTargetSec": 105,
+"complexity": {
+"time": "O(log n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"left and right describe the remaining search interval.",
+"middle selects the value that divides the current range.",
+"A smaller middle value means the target must be farther right.",
+"When the boundaries meet, left is the first valid target position."
+],
+"commonMistakes": [
+"Using right = len(numbers) - 1 while keeping the half-open loop condition.",
+"Moving left to middle instead of middle + 1 after a smaller value."
+]
+},
+"tags": ["binary-search", "lists", "search"]
+},
+{
+"id": "py-medium-056",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Transpose Matrix",
+"prompt": "Given a rectangular matrix, return a new matrix where rows become columns and columns become rows.",
+"approach": {
+"steps": [
+"Determine the number of rows and columns.",
+"Create one output row for every input column.",
+"Collect the matching element from each input row.",
+"Return the newly constructed matrix."
+],
+"example": "For [[1, 2, 3], [4, 5, 6]], the first output row takes 1 and 4, the second takes 2 and 5, and the result is [[1, 4], [2, 5], [3, 6]]."
+},
+"code": "def transpose_matrix(matrix):\n  if not matrix:\n    return []\n\n  row_count = len(matrix)\n  column_count = len(matrix[0])\n  transposed = []\n\n  for column in range(column_count):\n    new_row = []\n    for row in range(row_count):\n      new_row.append(matrix[row][column])\n    transposed.append(new_row)\n\n  return transposed",
+"timeTargetSec": 110,
+"complexity": {
+"time": "O(r * c)",
+"space": "O(r * c)"
+},
+"review": {
+"walkthroughSteps": [
+"row_count and column_count describe the matrix dimensions.",
+"The outer loop chooses each original column.",
+"The inner loop collects that column's value from every original row.",
+"Each collected column becomes one row in transposed."
+],
+"commonMistakes": [
+"Using matrix[column][row] and swapping indexes incorrectly.",
+"Assuming the matrix is square and using only one dimension."
+]
+},
+"tags": ["matrices", "nested-loops", "lists"]
+},
+{
+"id": "py-medium-057",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Spiral Matrix Traversal",
+"prompt": "Return the values of a matrix in clockwise spiral order starting from its top-left corner.",
+"approach": {
+"steps": [
+"Track the current top, bottom, left, and right boundaries.",
+"Traverse the top row from left to right.",
+"Traverse the right column and then the bottom row when available.",
+"Traverse the left column and shrink the boundaries until all values are visited."
+],
+"example": "For [[1, 2, 3], [4, 5, 6], [7, 8, 9]], the traversal visits 1, 2, 3, 6, 9, 8, 7, 4, and finally 5."
+},
+"code": "def spiral_order(matrix):\n  if not matrix:\n    return []\n\n  top, bottom = 0, len(matrix) - 1\n  left, right = 0, len(matrix[0]) - 1\n  result = []\n\n  while top <= bottom and left <= right:\n    result.extend(matrix[top][left:right + 1])\n    top += 1\n\n    for row in range(top, bottom + 1):\n      result.append(matrix[row][right])\n    right -= 1\n\n    if top <= bottom:\n      result.extend(matrix[bottom][left:right + 1][::-1])\n      bottom -= 1\n\n    if left <= right:\n      for row in range(bottom, top - 1, -1):\n        result.append(matrix[row][left])\n      left += 1\n\n  return result",
+"timeTargetSec": 120,
+"complexity": {
+"time": "O(r * c)",
+"space": "O(r * c)"
+},
+"review": {
+"walkthroughSteps": [
+"The four boundaries define the unvisited rectangle.",
+"The top row is consumed from left to right before top moves downward.",
+"The right and bottom boundaries are processed and then moved inward.",
+"The left boundary completes the layer before the loop continues with the smaller rectangle."
+],
+"commonMistakes": [
+"Traversing the bottom or left side twice when only one row or column remains.",
+"Forgetting to update a boundary after consuming its side."
+]
+},
+"tags": ["matrices", "boundaries", "simulation"]
+},
+{
+"id": "py-medium-058",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Move Zeros To End",
+"prompt": "Given a list of numbers, return a new list with all zero values moved to the end while preserving the order of non-zero values.",
+"approach": {
+"steps": [
+"Collect all non-zero values in their original order.",
+"Count how many zero values were present.",
+"Create the required number of trailing zeros.",
+"Join the two sections into the result."
+],
+"example": "For [0, 3, 0, 5, 2], the non-zero values stay [3, 5, 2], two zeros are added afterward, and the result is [3, 5, 2, 0, 0]."
+},
+"code": "def move_zeros(numbers):\n  non_zero = []\n  zero_count = 0\n\n  for number in numbers:\n    if number == 0:\n      zero_count += 1\n    else:\n      non_zero.append(number)\n\n  return non_zero + [0] * zero_count",
+"timeTargetSec": 95,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"non_zero stores values that should remain at the front.",
+"zero_count records how many zeros need to be appended.",
+"The loop preserves the order of every non-zero value.",
+"The final expression places exactly zero_count zeros after the preserved values."
+],
+"commonMistakes": [
+"Sorting the list and changing the order of non-zero values.",
+"Appending zeros inside the loop and producing the wrong ordering."
+]
+},
+"tags": ["lists", "filtering", "ordering"]
+},
+{
+"id": "py-medium-059",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Product Except Self",
+"prompt": "Given a list of integers, return a list where each position contains the product of every other value except the value at that position.",
+"approach": {
+"steps": [
+"Build prefix products for every position.",
+"Build suffix products while scanning from the right.",
+"Combine the prefix and suffix contributions for each position.",
+"Return the resulting products."
+],
+"example": "For [1, 2, 3, 4], the value at index 1 uses prefix 1 and suffix 12, giving 12, while index 2 uses prefix 2 and suffix 4, giving 8."
+},
+"code": "def product_except_self(numbers):\n  result = [1] * len(numbers)\n  prefix = 1\n\n  for index, number in enumerate(numbers):\n    result[index] = prefix\n    prefix *= number\n\n  suffix = 1\n  for index in range(len(numbers) - 1, -1, -1):\n    result[index] *= suffix\n    suffix *= numbers[index]\n\n  return result",
+"timeTargetSec": 120,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"The first pass stores the product of all values before each index.",
+"prefix is updated after each result position is assigned.",
+"The reverse pass multiplies each position by the product of values after it.",
+"The combined value therefore excludes the current element itself."
+],
+"commonMistakes": [
+"Multiplying the current number into its own prefix before storing the result.",
+"Updating suffix before multiplying the current result position."
+]
+},
+"tags": ["lists", "prefix", "products"]
+},
+{
+"id": "py-medium-060",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Maximum Subarray Sum",
+"prompt": "Given a list of integers, return the largest possible sum of a contiguous non-empty section of the list.",
+"approach": {
+"steps": [
+"Start the current sum and best sum with the first value.",
+"For each later value, decide whether to extend or restart the current section.",
+"Update the best sum whenever the current sum becomes larger.",
+"Return the largest recorded sum."
+],
+"example": "For [-2, 3, -1, 4, -5], the running section becomes 3, then 2, then 6, so the best sum becomes 6 before the final value reduces the current section."
+},
+"code": "def maximum_subarray(numbers):\n  if not numbers:\n    return 0\n\n  current_sum = best_sum = numbers[0]\n\n  for number in numbers[1:]:\n    current_sum = max(number, current_sum + number)\n    best_sum = max(best_sum, current_sum)\n\n  return best_sum",
+"timeTargetSec": 110,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"current_sum represents the best contiguous sum ending at the current position.",
+"Each number either starts a new section or extends the previous section.",
+"best_sum records the largest current_sum encountered.",
+"The final best_sum is the maximum sum of any contiguous non-empty section."
+],
+"commonMistakes": [
+"Resetting current_sum to zero and losing the correct result for all-negative input.",
+"Updating best_sum before calculating the new current_sum."
+]
+},
+"tags": ["lists", "dynamic-programming", "sums"]
+},
+
+{
+"id": "py-medium-061",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Count Subarray Sum",
+"prompt": "Given a list of integers and a target, count the number of contiguous subarrays whose sum equals the target.",
+"approach": {
+"steps": [
+"Track prefix sums and their frequencies.",
+"Start with a frequency of zero for the empty prefix.",
+"For each number, calculate the current prefix sum.",
+"Add the frequency of the required previous prefix to the answer."
+],
+"example": "For [1, 1, 1] with target 2, the first two values form one valid subarray, and the final two values form another, giving a count of 2."
+},
+"code": "def count_subarrays(numbers, target):\n  counts = {0: 1}\n  prefix = 0\n  total = 0\n\n  for number in numbers:\n    prefix += number\n    total += counts.get(prefix - target, 0)\n    counts[prefix] = counts.get(prefix, 0) + 1\n\n  return total",
+"timeTargetSec": 120,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"counts stores how often each prefix sum has appeared.",
+"prefix represents the sum from the beginning through the current value.",
+"A previous prefix equal to prefix - target creates a subarray with the target sum.",
+"The current prefix is stored after checking for matching previous prefixes."
+],
+"commonMistakes": [
+"Forgetting counts = {0: 1} for subarrays beginning at index zero.",
+"Checking only whether prefix - target exists instead of adding its frequency."
+]
+},
+"tags": ["prefix-sum", "dictionaries", "subarrays"]
+},
+{
+"id": "py-medium-062",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Find Common Elements",
+"prompt": "Given two lists of integers, return the values that appear in both lists without repeating values in the result.",
+"approach": {
+"steps": [
+"Convert the first list into a set.",
+"Create another set for common values.",
+"Check each value from the second list.",
+"Add it when it exists in the first set."
+],
+"example": "For [1, 2, 2, 4] and [2, 2, 3, 4], the shared values are 2 and 4, so the result contains each common value once."
+},
+"code": "def common_elements(first, second):\n  first_values = set(first)\n  common = set()\n\n  for value in second:\n    if value in first_values:\n      common.add(value)\n\n  return list(common)",
+"timeTargetSec": 90,
+"complexity": {
+"time": "O(n + m)",
+"space": "O(n + m)"
+},
+"review": {
+"walkthroughSteps": [
+"first_values provides fast membership checks for the first list.",
+"Each value from the second list is checked against that set.",
+"common is a set, so repeated matches are stored only once.",
+"The final set is converted to a list."
+],
+"commonMistakes": [
+"Appending every matching value and producing repeated results.",
+"Using nested loops unnecessarily instead of set membership."
+]
+},
+"tags": ["sets", "lists", "intersection"]
+},
+{
+"id": "py-medium-063",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Longest Increasing Run",
+"prompt": "Given a list of integers, return the length of the longest contiguous strictly increasing sequence.",
+"approach": {
+"steps": [
+"Track the current increasing run length.",
+"Compare each value with the previous value.",
+"Extend the run when the current value is larger.",
+"Reset the run and update the maximum when needed."
+],
+"example": "For [1, 2, 3, 2, 4, 5], the first run has length 3 and the final run has length 2, so the longest increasing run is 3."
+},
+"code": "def longest_increasing_run(numbers):\n  if not numbers:\n    return 0\n\n  current = best = 1\n\n  for index in range(1, len(numbers)):\n    if numbers[index] > numbers[index - 1]:\n      current += 1\n    else:\n      current = 1\n    best = max(best, current)\n\n  return best",
+"timeTargetSec": 95,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"current stores the length of the increasing run ending at the current index.",
+"A larger current value extends that run.",
+"A non-increasing comparison resets the run to one element.",
+"best records the largest run found."
+],
+"commonMistakes": [
+"Comparing against the wrong element instead of the previous value.",
+"Resetting current to zero instead of one after a break."
+]
+},
+"tags": ["lists", "sequences", "one-pass"]
+},
+{
+"id": "py-medium-064",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Sort By Frequency",
+"prompt": "Given a list of integers, return the values ordered from highest frequency to lowest frequency.",
+"approach": {
+"steps": [
+"Count the frequency of each value.",
+"Sort the distinct values using their frequencies.",
+"Order the frequencies from highest to lowest.",
+"Return the sorted values."
+],
+"example": "For [4, 2, 4, 3, 2, 4], value 4 occurs three times and value 2 occurs twice, so 4 appears before 2 in the result."
+},
+"code": "def sort_by_frequency(numbers):\n  counts = {}\n\n  for number in numbers:\n    counts[number] = counts.get(number, 0) + 1\n\n  return sorted(counts, key=counts.get, reverse=True)",
+"timeTargetSec": 100,
+"complexity": {
+"time": "O(n log n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"counts stores the frequency of every distinct number.",
+"sorted receives the dictionary keys as the values to order.",
+"counts.get supplies each value's frequency as its sorting key.",
+"reverse=True places higher frequencies first."
+],
+"commonMistakes": [
+"Sorting the original list instead of the distinct values.",
+"Forgetting reverse=True when the highest frequency must come first."
+]
+},
+"tags": ["dictionaries", "sorting", "frequency"]
+},
+{
+"id": "py-medium-065",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Remove Adjacent Duplicates",
+"prompt": "Given a string, repeatedly remove adjacent equal characters until no adjacent duplicates remain.",
+"approach": {
+"steps": [
+"Use a list as a stack of remaining characters.",
+"Process characters from left to right.",
+"Remove the top character when it matches the current character.",
+"Otherwise push the current character onto the stack."
+],
+"example": "For 'abbaca', b and b cancel, then a and a become adjacent and cancel, leaving 'ca' as the final string."
+},
+"code": "def remove_adjacent_duplicates(text):\n  stack = []\n\n  for character in text:\n    if stack and stack[-1] == character:\n      stack.pop()\n    else:\n      stack.append(character)\n\n  return ''.join(stack)",
+"timeTargetSec": 100,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"stack stores the current characters after previous cancellations.",
+"The top character is the only one that can become adjacent to the current character.",
+"Matching characters are removed together.",
+"The remaining stack is joined into the final string."
+],
+"commonMistakes": [
+"Removing only the first duplicate pair and stopping.",
+"Checking the previous input character instead of the current stack top."
+]
+},
+"tags": ["strings", "stacks", "simulation"]
+},
+{
+"id": "py-medium-066",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Find Peak Element",
+"prompt": "Given a list of integers, return an index whose value is greater than its immediate neighbors. Treat missing neighbors as negative infinity.",
+"approach": {
+"steps": [
+"Handle an empty list.",
+"Scan each position and compare it with available neighbors.",
+"Return the first position that satisfies the peak condition.",
+"Return the last valid index as a fallback."
+],
+"example": "For [1, 3, 2, 4], index 1 contains 3, which is greater than 1 and 2, so index 1 is a valid peak."
+},
+"code": "def find_peak(numbers):\n  if not numbers:\n    return -1\n\n  for index, number in enumerate(numbers):\n    left = numbers[index - 1] if index > 0 else float('-inf')\n    right = numbers[index + 1] if index + 1 < len(numbers) else float('-inf')\n\n    if number > left and number > right:\n      return index\n\n  return -1",
+"timeTargetSec": 105,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Each element is checked against its immediate neighbors.",
+"The first element has no left neighbor, so negative infinity is used.",
+"The final element has no right neighbor and is handled similarly.",
+"The first valid peak index is returned immediately."
+],
+"commonMistakes": [
+"Accessing index -1 for the first element as though it were a missing neighbor.",
+"Using greater-than-or-equal when the requirement asks for a strictly greater value."
+]
+},
+"tags": ["lists", "search", "comparison"]
+},
+{
+"id": "py-medium-067",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Minimum Window With Sum",
+"prompt": "Given a list of positive integers and a target, return the minimum length of a contiguous subarray whose sum is at least the target.",
+"approach": {
+"steps": [
+"Use two pointers to represent a sliding window.",
+"Expand the right side and add values to the current sum.",
+"Shrink from the left while the target condition remains satisfied.",
+"Track the smallest valid window length."
+],
+"example": "For [2, 3, 1, 2, 4, 3] with target 7, the window [4, 3] reaches 7 with length 2, which is the minimum."
+},
+"code": "def min_subarray_length(numbers, target):\n  left = 0\n  current_sum = 0\n  best = len(numbers) + 1\n\n  for right, number in enumerate(numbers):\n    current_sum += number\n\n    while current_sum >= target:\n      best = min(best, right - left + 1)\n      current_sum -= numbers[left]\n      left += 1\n\n  return 0 if best == len(numbers) + 1 else best",
+"timeTargetSec": 120,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"right expands the window by adding the current number.",
+"Once the sum reaches the target, left moves forward to shorten the window.",
+"best records the smallest valid length encountered.",
+"The result is zero when no window reaches the target."
+],
+"commonMistakes": [
+"Using this sliding window approach when negative numbers are allowed.",
+"Updating best only after removing the left value."
+]
+},
+"tags": ["sliding-window", "arrays", "two-pointers"]
+},
+{
+"id": "py-medium-068",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Find All Missing Values",
+"prompt": "Given a list containing integers from 1 through n, with some values repeated and others missing, return all missing values.",
+"approach": {
+"steps": [
+"Create a set containing every value from the input.",
+"Check every expected value from 1 through n.",
+"Collect values that are absent from the set.",
+"Return the missing values."
+],
+"example": "For [4, 3, 2, 7, 8, 2, 3, 1], the expected range is 1 through 8, and values 5 and 6 are absent."
+},
+"code": "def find_missing_values(numbers):\n  values = set(numbers)\n  missing = []\n\n  for number in range(1, len(numbers) + 1):\n    if number not in values:\n      missing.append(number)\n\n  return missing",
+"timeTargetSec": 105,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"values provides constant-average-time membership checks.",
+"The expected values run from 1 through the input length.",
+"Every absent expected value is appended to missing.",
+"Repeated input values do not affect the result."
+],
+"commonMistakes": [
+"Building the expected range from zero instead of one.",
+"Using the maximum value as n when the problem defines n as the list length."
+]
+},
+"tags": ["sets", "lists", "missing-values"]
+},
+{
+"id": "py-medium-069",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Check Permutation",
+"prompt": "Given two strings, determine whether they contain exactly the same characters with the same frequencies.",
+"approach": {
+"steps": [
+"Compare the string lengths.",
+"Count characters in the first string.",
+"Subtract counts using characters from the second string.",
+"Return true only when all counts balance to zero."
+],
+"example": "For 'listen' and 'silent', both strings contain the same six letters with matching frequencies, so they are permutations of each other."
+},
+"code": "def are_permutations(first, second):\n  if len(first) != len(second):\n    return False\n\n  counts = {}\n\n  for character in first:\n    counts[character] = counts.get(character, 0) + 1\n\n  for character in second:\n    if character not in counts:\n      return False\n    counts[character] -= 1\n\n  return all(count == 0 for count in counts.values())",
+"timeTargetSec": 105,
+"complexity": {
+"time": "O(n)",
+"space": "O(k)"
+},
+"review": {
+"walkthroughSteps": [
+"Different lengths immediately mean the strings cannot be permutations.",
+"counts records how many times each character appears in the first string.",
+"Each character in the second string consumes one occurrence.",
+"All remaining counts must equal zero for the strings to match."
+],
+"commonMistakes": [
+"Checking only whether both strings contain the same distinct characters.",
+"Ignoring character frequencies and accepting repeated-count mismatches."
+]
+},
+"tags": ["strings", "dictionaries", "frequency"]
+},
+{
+"id": "py-medium-070",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Partition By Parity",
+"prompt": "Given a list of integers, return a list where all even numbers appear before all odd numbers while preserving their relative order.",
+"approach": {
+"steps": [
+"Create separate lists for even and odd numbers.",
+"Process each value once.",
+"Append each value to the appropriate list.",
+"Join the even and odd sections."
+],
+"example": "For [3, 2, 8, 5, 4], the even values remain [2, 8, 4] and the odd values remain [3, 5], producing [2, 8, 4, 3, 5]."
+},
+"code": "def partition_by_parity(numbers):\n  evens = []\n  odds = []\n\n  for number in numbers:\n    if number % 2 == 0:\n      evens.append(number)\n    else:\n      odds.append(number)\n\n  return evens + odds",
+"timeTargetSec": 90,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"evens stores even numbers in their original order.",
+"odds stores odd numbers in their original order.",
+"The modulo operator determines each number's parity.",
+"Concatenating the lists places all evens before all odds."
+],
+"commonMistakes": [
+"Sorting the numbers and accidentally changing their relative order.",
+"Using division instead of the modulo operator for parity."
+]
+},
+"tags": ["lists", "filtering", "parity"]
+},
+{
+"id": "py-hard-071",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Longest Palindromic Substring",
+"prompt": "Given a string, return its longest substring that reads the same forward and backward.",
+"approach": {
+"steps": [
+"Treat every character and every adjacent pair as possible palindrome centers.",
+"Expand outward while characters match.",
+"Track the longest substring found.",
+"Return the longest palindrome."
+],
+"example": "For 'babad', expanding around the center of 'bab' finds a palindrome of length 3, which is longer than the other single-character matches."
+},
+"code": "def longest_palindrome(text):\n  if not text:\n    return ''\n\n  best = text[0]\n\n  def expand(left, right):\n    while left >= 0 and right < len(text) and text[left] == text[right]:\n      left -= 1\n      right += 1\n    return text[left + 1:right]\n\n  for index in range(len(text)):\n    odd = expand(index, index)\n    even = expand(index, index + 1)\n    if len(odd) > len(best):\n      best = odd\n    if len(even) > len(best):\n      best = even\n\n  return best",
+"timeTargetSec": 150,
+"complexity": {
+"time": "O(n^2)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"best stores the longest palindrome found so far.",
+"expand checks characters symmetrically around a chosen center.",
+"Odd and even length palindromes require different center definitions.",
+"Each longer result replaces best."
+],
+"commonMistakes": [
+"Checking only odd-length palindromes.",
+"Returning the center characters instead of the complete expanded substring."
+]
+},
+"tags": ["strings", "palindrome", "expansion"]
+},
+{
+"id": "py-hard-072",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Generate Permutations",
+"prompt": "Given a list of distinct values, return every possible ordering of those values.",
+"approach": {
+"steps": [
+"Use recursion to build one permutation at a time.",
+"Track values already selected for the current arrangement.",
+"Choose each unused value as the next position.",
+"Store a copy when the arrangement reaches full length."
+],
+"example": "For [1, 2, 3], choosing 1 first creates branches beginning with 1, while choosing 2 or 3 first creates the remaining ordering groups."
+},
+"code": "def permutations(numbers):\n  result = []\n  path = []\n  used = [False] * len(numbers)\n\n  def build():\n    if len(path) == len(numbers):\n      result.append(path.copy())\n      return\n\n    for index, number in enumerate(numbers):\n      if used[index]:\n        continue\n      used[index] = True\n      path.append(number)\n      build()\n      path.pop()\n      used[index] = False\n\n  build()\n  return result",
+"timeTargetSec": 170,
+"complexity": {
+"time": "O(n * n!)",
+"space": "O(n * n!)"
+},
+"review": {
+"walkthroughSteps": [
+"path stores the current partial permutation.",
+"used prevents selecting the same input position twice.",
+"Each recursive call chooses one unused value.",
+"A complete path is copied into result before backtracking."
+],
+"commonMistakes": [
+"Appending the same path object instead of copying it.",
+"Forgetting to undo used and path changes during backtracking."
+]
+},
+"tags": ["recursion", "backtracking", "permutations"]
+},
+{
+"id": "py-hard-073",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Combination Sum",
+"prompt": "Given distinct positive integers and a target, return combinations whose values add to the target. A value may be selected more than once.",
+"approach": {
+"steps": [
+"Use backtracking to construct candidate combinations.",
+"Stop when the remaining target becomes zero or negative.",
+"Allow the current value to be selected again.",
+"Move to the next value when exploring a new choice."
+],
+"example": "For [2, 3] with target 7, the combination [2, 2, 3] reaches the target, while selections exceeding 7 are stopped."
+},
+"code": "def combination_sum(numbers, target):\n  result = []\n  path = []\n\n  def backtrack(start, remaining):\n    if remaining == 0:\n      result.append(path.copy())\n      return\n    if remaining < 0:\n      return\n\n    for index in range(start, len(numbers)):\n      number = numbers[index]\n      if number > remaining:\n        break\n      path.append(number)\n      backtrack(index, remaining - number)\n      path.pop()\n\n  numbers = sorted(numbers)\n  backtrack(0, target)\n  return result",
+"timeTargetSec": 180,
+"complexity": {
+"time": "O(n^t)",
+"space": "O(t)"
+},
+"review": {
+"walkthroughSteps": [
+"Sorting allows the loop to stop when a value exceeds the remaining target.",
+"start prevents generating the same combination in different orders.",
+"Passing index instead of index + 1 allows the current value to be reused.",
+"path is copied only when the remaining target reaches zero."
+],
+"commonMistakes": [
+"Using index + 1 and accidentally preventing repeated values.",
+"Restarting from zero and generating duplicate combinations."
+]
+},
+"tags": ["backtracking", "recursion", "combinations"]
+},
+{
+"id": "py-hard-074",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Number of Islands",
+"prompt": "Given a grid containing land marked by '1' and water marked by '0', count the number of connected land regions.",
+"approach": {
+"steps": [
+"Scan every cell in the grid.",
+"Start a traversal whenever an unvisited land cell is found.",
+"Mark all connected land cells as visited.",
+"Increase the island count once for each new traversal."
+],
+"example": "For a grid with two separated groups of '1' cells, starting a flood fill from the first group counts one island and starting from the second counts another."
+},
+"code": "def count_islands(grid):\n  if not grid:\n    return 0\n\n  rows, columns = len(grid), len(grid[0])\n  islands = 0\n\n  def visit(row, column):\n    if row < 0 or row >= rows or column < 0 or column >= columns:\n      return\n    if grid[row][column] != '1':\n      return\n\n    grid[row][column] = '0'\n    visit(row + 1, column)\n    visit(row - 1, column)\n    visit(row, column + 1)\n    visit(row, column - 1)\n\n  for row in range(rows):\n    for column in range(columns):\n      if grid[row][column] == '1':\n        islands += 1\n        visit(row, column)\n\n  return islands",
+"timeTargetSec": 180,
+"complexity": {
+"time": "O(r * c)",
+"space": "O(r * c)"
+},
+"review": {
+"walkthroughSteps": [
+"Every unvisited land cell represents the possible start of a new island.",
+"visit recursively explores all four neighboring directions.",
+"Visited land is changed to water so it cannot be counted again.",
+"The outer scan counts each separate connected region once."
+],
+"commonMistakes": [
+"Exploring diagonal cells when only four-directional connections are allowed.",
+"Failing to mark visited land and repeatedly counting the same island."
+]
+},
+"tags": ["grids", "dfs", "recursion"]
+},
+{
+"id": "py-hard-075",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Course Schedule",
+"prompt": "Given courses and prerequisite pairs, determine whether all courses can be completed without a cyclic dependency.",
+"approach": {
+"steps": [
+"Build a directed graph from prerequisites.",
+"Track the number of incoming edges for each course.",
+"Process courses with zero prerequisites first.",
+"Return true when every course can be processed."
+],
+"example": "For prerequisites [[1, 0], [2, 1]], course 0 can be taken first, then 1, then 2, so all three courses can be completed."
+},
+"code": "from collections import deque\n\ndef can_finish(courses, prerequisites):\n  graph = [[] for _ in range(courses)]\n  indegree = [0] * courses\n\n  for course, prerequisite in prerequisites:\n    graph[prerequisite].append(course)\n    indegree[course] += 1\n\n  queue = deque(i for i in range(courses) if indegree[i] == 0)\n  completed = 0\n\n  while queue:\n    course = queue.popleft()\n    completed += 1\n\n    for next_course in graph[course]:\n      indegree[next_course] -= 1\n      if indegree[next_course] == 0:\n        queue.append(next_course)\n\n  return completed == courses",
+"timeTargetSec": 180,
+"complexity": {
+"time": "O(V + E)",
+"space": "O(V + E)"
+},
+"review": {
+"walkthroughSteps": [
+"graph stores courses that become available after each prerequisite is completed.",
+"indegree records how many prerequisites remain for every course.",
+"A zero-indegree course can safely enter the processing queue.",
+"If fewer than all courses are processed, a dependency cycle exists."
+],
+"commonMistakes": [
+"Adding the edge in the wrong direction.",
+"Returning true merely because the queue was initially non-empty."
+]
+},
+"tags": ["graphs", "topological-sort", "bfs"]
+},
+{
+"id": "py-hard-076",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Word Break",
+"prompt": "Given a string and a dictionary of words, determine whether the string can be completely segmented into dictionary words.",
+"approach": {
+"steps": [
+"Create a dynamic programming array for reachable string positions.",
+"Mark the starting position as reachable.",
+"For each reachable position, test dictionary words beginning there.",
+"Return whether the final position is reachable."
+],
+"example": "For 'leetcode' and ['leet', 'code'], position 0 reaches position 4 using leet, and position 4 reaches the end using code, so the result is true."
+},
+"code": "def word_break(text, words):\n  dictionary = set(words)\n  reachable = [False] * (len(text) + 1)\n  reachable[0] = True\n\n  for start in range(len(text)):\n    if not reachable[start]:\n      continue\n    for end in range(start + 1, len(text) + 1):\n      if text[start:end] in dictionary:\n        reachable[end] = True\n\n  return reachable[-1]",
+"timeTargetSec": 180,
+"complexity": {
+"time": "O(n^2)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"reachable[index] means the prefix ending at index can be segmented.",
+"Position zero is reachable because it represents an empty prefix.",
+"Only positions already reachable are used as new starting points.",
+"The final position indicates whether the entire string can be segmented."
+],
+"commonMistakes": [
+"Starting the dynamic programming array with all false values.",
+"Returning true after finding one dictionary word without checking the rest of the string."
+]
+},
+"tags": ["dynamic-programming", "strings", "sets"]
+},
+{
+"id": "py-hard-077",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Coin Change",
+"prompt": "Given coin denominations and a target amount, return the minimum number of coins required to reach the amount or -1 when it is impossible.",
+"approach": {
+"steps": [
+"Create a dynamic programming array for every amount up to the target.",
+"Initialize the zero amount with zero coins.",
+"For each amount, try every coin that fits.",
+"Keep the smallest number of coins found."
+],
+"example": "For coins [1, 2, 5] and amount 11, using 5, 5, and 1 reaches 11 with three coins, which is the minimum."
+},
+"code": "def coin_change(coins, amount):\n  impossible = amount + 1\n  dp = [impossible] * (amount + 1)\n  dp[0] = 0\n\n  for current in range(1, amount + 1):\n    for coin in coins:\n      if coin <= current:\n        dp[current] = min(dp[current], dp[current - coin] + 1)\n\n  return -1 if dp[amount] == impossible else dp[amount]",
+"timeTargetSec": 180,
+"complexity": {
+"time": "O(amount * n)",
+"space": "O(amount)"
+},
+"review": {
+"walkthroughSteps": [
+"dp[current] stores the minimum coins needed for the current amount.",
+"dp[0] is zero because no coins are required to create zero.",
+"Each usable coin builds the current answer from a smaller amount.",
+"An untouched target remains impossible and returns -1."
+],
+"commonMistakes": [
+"Initializing dp[0] to one instead of zero.",
+"Using a large value without checking whether the target remained unreachable."
+]
+},
+"tags": ["dynamic-programming", "arrays", "optimization"]
+},
+{
+"id": "py-hard-078",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "House Robber",
+"prompt": "Given money stored in houses along a street, return the maximum amount that can be collected without robbing two adjacent houses.",
+"approach": {
+"steps": [
+"Track the best result before the previous house.",
+"For each house, compare skipping it with robbing it.",
+"Update the two rolling best values.",
+"Return the best result after processing all houses."
+],
+"example": "For [2, 7, 9, 3, 1], selecting 2, 9, and 1 gives 12, which is better than any valid combination of adjacent houses."
+},
+"code": "def rob_houses(money):\n  previous = 0\n  current = 0\n\n  for amount in money:\n    previous, current = current, max(current, previous + amount)\n\n  return current",
+"timeTargetSec": 130,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"current stores the best amount through the previous processed house.",
+"previous stores the best amount through the house before it.",
+"Robbing the current house requires adding it to previous.",
+"Skipping it keeps current, so the larger choice becomes the new current."
+],
+"commonMistakes": [
+"Adding the current amount to current and accidentally allowing adjacent houses.",
+"Using only the previous house value instead of the best result two positions back."
+]
+},
+"tags": ["dynamic-programming", "arrays", "optimization"]
+},
+{
+"id": "py-hard-079",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Decode Encoded String",
+"prompt": "Decode a string encoded with patterns such as k[content], where the content inside brackets is repeated k times and patterns may be nested.",
+"approach": {
+"steps": [
+"Use stacks to store previous strings and repetition counts.",
+"Build the current number from consecutive digits.",
+"Push the current state when an opening bracket appears.",
+"Restore the previous state and repeat the completed content when a closing bracket appears."
+],
+"example": "For '3[a2[c]]', the inner 2[c] becomes cc, then a is added to form acc, and repeating it three times produces accaccacc."
+},
+"code": "def decode_string(text):\n  counts = []\n  strings = []\n  current = ''\n  number = 0\n\n  for character in text:\n    if character.isdigit():\n      number = number * 10 + int(character)\n    elif character == '[':\n      counts.append(number)\n      strings.append(current)\n      number = 0\n      current = ''\n    elif character == ']':\n      repeat = counts.pop()\n      previous = strings.pop()\n      current = previous + current * repeat\n    else:\n      current += character\n\n  return current",
+"timeTargetSec": 180,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"counts stores repetition numbers for unfinished nested sections.",
+"strings stores the text that existed before each opening bracket.",
+"A closing bracket completes the current section and restores its previous context.",
+"The completed section is repeated and attached to the previous string."
+],
+"commonMistakes": [
+"Resetting the repetition number before storing it.",
+"Processing closing brackets without restoring the previous string."
+]
+},
+"tags": ["stacks", "strings", "parsing"]
+},
+{
+"id": "py-hard-080",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Shortest Path In Grid",
+"prompt": "Given a grid where 0 represents an open cell and 1 represents a blocked cell, return the shortest number of moves from the top-left cell to the bottom-right cell.",
+"approach": {
+"steps": [
+"Use breadth-first search because every move has equal cost.",
+"Start from the top-left cell with distance zero.",
+"Visit valid neighboring cells while recording their distances.",
+"Return the distance when the destination is reached."
+],
+"example": "For a clear 3 by 3 grid, the shortest route from the top-left to the bottom-right takes four moves by following any shortest path."
+},
+"code": "from collections import deque\n\ndef shortest_path(grid):\n  if not grid or grid[0][0] == 1:\n    return -1\n\n  rows, columns = len(grid), len(grid[0])\n  queue = deque([(0, 0, 0)])\n  visited = {(0, 0)}\n\n  while queue:\n    row, column, distance = queue.popleft()\n    if row == rows - 1 and column == columns - 1:\n      return distance\n\n    for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n      next_row = row + dr\n      next_column = column + dc\n      if 0 <= next_row < rows and 0 <= next_column < columns:\n        if grid[next_row][next_column] == 0 and (next_row, next_column) not in visited:\n          visited.add((next_row, next_column))\n          queue.append((next_row, next_column, distance + 1))\n\n  return -1",
+"timeTargetSec": 180,
+"complexity": {
+"time": "O(r * c)",
+"space": "O(r * c)"
+},
+"review": {
+"walkthroughSteps": [
+"The queue processes cells in increasing distance from the start.",
+"visited prevents the same cell from entering the queue repeatedly.",
+"Only open cells inside the grid are valid next positions.",
+"The first time the destination is removed from the queue gives the shortest distance."
+],
+"commonMistakes": [
+"Using depth-first search and assuming the first found path is shortest.",
+"Marking cells visited only when removed from the queue instead of when added."
+]
+},
+"tags": ["graphs", "bfs", "grids"]
+},
+{
+"id": "py-hard-081",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Merge Overlapping Intervals",
+"prompt": "Given a list of intervals, merge all intervals that overlap and return the resulting non-overlapping intervals.",
+"approach": {
+"steps": [
+"Sort intervals by their starting value.",
+"Keep the first interval as the current merged interval.",
+"Extend the current interval when the next one overlaps it.",
+"Otherwise store the current interval and start a new one."
+],
+"example": "For [[1,3], [2,6], [8,10]], the first two intervals overlap and become [1,6], while [8,10] remains separate."
+},
+"code": "def merge_intervals(intervals):\n  if not intervals:\n    return []\n\n  intervals.sort(key=lambda item: item[0])\n  merged = [intervals[0]]\n\n  for start, end in intervals[1:]:\n    last_end = merged[-1][1]\n    if start <= last_end:\n      merged[-1][1] = max(last_end, end)\n    else:\n      merged.append([start, end])\n\n  return merged",
+"timeTargetSec": 150,
+"complexity": {
+"time": "O(n log n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"Sorting places potentially overlapping intervals next to each other.",
+"merged stores the intervals after combining overlaps.",
+"An overlap exists when the next start is no greater than the current end.",
+"The current end is extended to the larger ending value."
+],
+"commonMistakes": [
+"Comparing an interval only with the original first interval.",
+"Forgetting to update the ending value when intervals overlap."
+]
+},
+"tags": ["intervals", "sorting", "arrays"]
+},
+{
+"id": "py-hard-082",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Meeting Room Scheduling",
+"prompt": "Given meeting time intervals, determine whether one person can attend every meeting without overlapping meetings.",
+"approach": {
+"steps": [
+"Sort meetings by their starting time.",
+"Compare each meeting with the previous meeting.",
+"Detect an overlap when the next meeting starts before the previous one ends.",
+"Return false immediately when an overlap is found."
+],
+"example": "For [[0,30], [35,40], [45,50]], every meeting starts after the previous one ends, so all meetings can be attended."
+},
+"code": "def can_attend_meetings(meetings):\n  meetings.sort(key=lambda item: item[0])\n\n  for index in range(1, len(meetings)):\n    if meetings[index][0] < meetings[index - 1][1]:\n      return False\n\n  return True",
+"timeTargetSec": 110,
+"complexity": {
+"time": "O(n log n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"Sorting makes chronological comparison possible.",
+"Each meeting is compared with the meeting immediately before it.",
+"A start time before the previous end means the meetings overlap.",
+"If no overlap exists, every meeting can be attended."
+],
+"commonMistakes": [
+"Checking meetings in their original unsorted order.",
+"Treating a meeting that starts exactly when another ends as an overlap."
+]
+},
+"tags": ["intervals", "sorting", "scheduling"]
+},
+{
+"id": "py-hard-083",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Top K Frequent Elements",
+"prompt": "Given a list of integers and a value k, return the k values that occur most frequently.",
+"approach": {
+"steps": [
+"Count the frequency of every value.",
+"Group values by their frequency.",
+"Scan frequencies from highest to lowest.",
+"Collect values until k results are obtained."
+],
+"example": "For [1,1,1,2,2,3] with k equal to 2, values 1 and 2 are the two most frequent elements."
+},
+"code": "def top_k_frequent(numbers, k):\n  counts = {}\n  buckets = [[] for _ in range(len(numbers) + 1)]\n\n  for number in numbers:\n    counts[number] = counts.get(number, 0) + 1\n\n  for number, frequency in counts.items():\n    buckets[frequency].append(number)\n\n  result = []\n  for frequency in range(len(buckets) - 1, 0, -1):\n    for number in buckets[frequency]:\n      result.append(number)\n      if len(result) == k:\n        return result\n\n  return result",
+"timeTargetSec": 150,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"counts records how frequently each number occurs.",
+"Each number is placed into a bucket indexed by its frequency.",
+"Scanning buckets backward starts with the highest frequencies.",
+"The result stops as soon as k values have been collected."
+],
+"commonMistakes": [
+"Sorting the entire list when a frequency bucket approach is expected.",
+"Using the number itself as the bucket index instead of its frequency."
+]
+},
+"tags": ["hashing", "frequency", "bucket-sort"]
+},
+{
+"id": "py-hard-084",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Product Except Self",
+"prompt": "Given a list of integers, return a list where each position contains the product of every value except the value at that position.",
+"approach": {
+"steps": [
+"Store the product of all values to the left of each position.",
+"Traverse from right to left while maintaining a suffix product.",
+"Multiply each stored prefix product by the suffix product.",
+"Update the suffix product after each position."
+],
+"example": "For [1,2,3,4], the product except each position is [24,12,8,6], without using division."
+},
+"code": "def product_except_self(numbers):\n  result = [1] * len(numbers)\n  prefix = 1\n\n  for index, number in enumerate(numbers):\n    result[index] = prefix\n    prefix *= number\n\n  suffix = 1\n  for index in range(len(numbers) - 1, -1, -1):\n    result[index] *= suffix\n    suffix *= numbers[index]\n\n  return result",
+"timeTargetSec": 140,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The first pass stores products from elements to the left.",
+"The second pass supplies the product of elements to the right.",
+"Multiplying both values gives the required product for each position.",
+"No division is required, so zeros are handled naturally."
+],
+"commonMistakes": [
+"Including the current number in its own product.",
+"Using division and failing on inputs containing zero."
+]
+},
+"tags": ["arrays", "prefix-product", "suffix-product"]
+},
+{
+"id": "py-hard-085",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Three Sum",
+"prompt": "Given a list of integers, return all unique triplets whose values add up to zero.",
+"approach": {
+"steps": [
+"Sort the input list.",
+"Fix one value and use two pointers for the remaining values.",
+"Move pointers according to whether the current sum is too small or too large.",
+"Skip duplicate values to keep triplets unique."
+],
+"example": "For [-1,0,1,2,-1,-4], the unique triplets that sum to zero are [-1,-1,2] and [-1,0,1]."
+},
+"code": "def three_sum(numbers):\n  numbers.sort()\n  result = []\n\n  for index in range(len(numbers) - 2):\n    if index > 0 and numbers[index] == numbers[index - 1]:\n      continue\n\n    left, right = index + 1, len(numbers) - 1\n    while left < right:\n      total = numbers[index] + numbers[left] + numbers[right]\n      if total == 0:\n        result.append([numbers[index], numbers[left], numbers[right]])\n        left += 1\n        right -= 1\n        while left < right and numbers[left] == numbers[left - 1]:\n          left += 1\n        while left < right and numbers[right] == numbers[right + 1]:\n          right -= 1\n      elif total < 0:\n        left += 1\n      else:\n        right -= 1\n\n  return result",
+"timeTargetSec": 180,
+"complexity": {
+"time": "O(n^2)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Sorting makes pointer movement and duplicate detection possible.",
+"The fixed value reduces the remaining problem to two-sum.",
+"A small sum moves the left pointer right, while a large sum moves the right pointer left.",
+"Duplicate pointer values are skipped after finding a valid triplet."
+],
+"commonMistakes": [
+"Returning duplicate triplets.",
+"Moving both pointers in the wrong direction after comparing the sum."
+]
+},
+"tags": ["arrays", "two-pointers", "sorting"]
+},
+{
+"id": "py-hard-086",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Container With Most Water",
+"prompt": "Given heights of vertical lines, find two lines that together with the x-axis form the container holding the maximum amount of water.",
+"approach": {
+"steps": [
+"Place one pointer at each end of the list.",
+"Calculate the area formed by the two lines.",
+"Move the pointer at the shorter line inward.",
+"Keep the maximum area found."
+],
+"example": "For [1,8,6,2,5,4,8,3,7], the lines with heights 8 and 7 form the maximum container with area 49."
+},
+"code": "def max_water(heights):\n  left, right = 0, len(heights) - 1\n  best = 0\n\n  while left < right:\n    width = right - left\n    area = min(heights[left], heights[right]) * width\n    best = max(best, area)\n\n    if heights[left] < heights[right]:\n      left += 1\n    else:\n      right -= 1\n\n  return best",
+"timeTargetSec": 130,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The two pointers begin with the maximum possible width.",
+"The shorter line limits the water height.",
+"Moving the taller line cannot improve the limiting height while reducing width.",
+"The shorter side is therefore moved inward."
+],
+"commonMistakes": [
+"Moving both pointers after every calculation.",
+"Using the taller line as the limiting height."
+]
+},
+"tags": ["arrays", "two-pointers", "greedy"]
+},
+{
+"id": "py-hard-087",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Longest Consecutive Sequence",
+"prompt": "Given an unsorted list of integers, return the length of the longest sequence of consecutive values.",
+"approach": {
+"steps": [
+"Put all values into a set.",
+"Start a sequence only when the previous value is absent.",
+"Continue forward while consecutive values exist.",
+"Track the longest sequence length."
+],
+"example": "For [100,4,200,1,3,2], the sequence 1,2,3,4 has four consecutive values, so the answer is 4."
+},
+"code": "def longest_consecutive(numbers):\n  values = set(numbers)\n  best = 0\n\n  for number in values:\n    if number - 1 not in values:\n      length = 1\n      current = number\n      while current + 1 in values:\n        current += 1\n        length += 1\n      best = max(best, length)\n\n  return best",
+"timeTargetSec": 140,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"The set provides fast membership checks.",
+"A number starts a sequence only when its predecessor does not exist.",
+"The inner loop therefore runs only from sequence starting points.",
+"best stores the longest consecutive sequence found."
+],
+"commonMistakes": [
+"Sorting first and losing the intended linear-time approach.",
+"Starting a scan from every number instead of only sequence starts."
+]
+},
+"tags": ["sets", "arrays", "sequences"]
+},
+{
+"id": "py-hard-088",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Minimum Window Substring",
+"prompt": "Given strings s and t, return the smallest substring of s containing every character in t with the required frequencies.",
+"approach": {
+"steps": [
+"Count the required characters from t.",
+"Expand a sliding window over s.",
+"Track how many required characters are currently satisfied.",
+"Shrink the window while all requirements remain satisfied."
+],
+"example": "For s='ADOBECODEBANC' and t='ABC', the smallest valid window is 'BANC', which contains A, B, and C."
+},
+"code": "def min_window(s, t):\n  if not s or not t:\n    return ''\n\n  need = {}\n  for character in t:\n    need[character] = need.get(character, 0) + 1\n\n  have = {}\n  required = len(need)\n  formed = 0\n  left = 0\n  best = None\n\n  for right, character in enumerate(s):\n    have[character] = have.get(character, 0) + 1\n    if character in need and have[character] == need[character]:\n      formed += 1\n\n    while formed == required:\n      window = (right - left + 1, left, right)\n      if best is None or window[0] < best[0]:\n        best = window\n\n      removed = s[left]\n      have[removed] -= 1\n      if removed in need and have[removed] < need[removed]:\n        formed -= 1\n      left += 1\n\n  return '' if best is None else s[best[1]:best + 1]",
+"timeTargetSec": 210,
+"complexity": {
+"time": "O(n)",
+"space": "O(k)"
+},
+"review": {
+"walkthroughSteps": [
+"need stores the required frequency for each character.",
+"formed counts how many distinct requirements are currently satisfied.",
+"The right pointer expands the window until all requirements are met.",
+"The left pointer then removes unnecessary characters to minimize the window."
+],
+"commonMistakes": [
+"Checking only whether a required character exists instead of checking its frequency.",
+"Forgetting to reduce formed when removing a required character below its needed count."
+]
+},
+"tags": ["strings", "sliding-window", "hashing"]
+},
+{
+"id": "py-hard-089",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Validate Binary Search Tree",
+"prompt": "Given the root of a binary tree, determine whether it satisfies the binary search tree property.",
+"approach": {
+"steps": [
+"Recursively track the valid lower and upper bounds for each node.",
+"Require each node to remain strictly inside its bounds.",
+"Pass the node value as a new bound to its children.",
+"Return true only when every node satisfies its bounds."
+],
+"example": "For a tree with root 5, left value 3, and right value 7, both children satisfy the bounds created by the root, so the tree is valid."
+},
+"code": "def is_valid_bst(root):\n  def validate(node, low, high):\n    if node is None:\n      return True\n    if not low < node.value < high:\n      return False\n    return validate(node.left, low, node.value) and validate(node.right, node.value, high)\n\n  return validate(root, float('-inf'), float('inf'))",
+"timeTargetSec": 160,
+"complexity": {
+"time": "O(n)",
+"space": "O(h)"
+},
+"review": {
+"walkthroughSteps": [
+"Each node receives the valid numeric range inherited from its ancestors.",
+"The left subtree must stay below the current node.",
+"The right subtree must stay above the current node.",
+"The recursion succeeds only when every node remains within its range."
+],
+"commonMistakes": [
+"Comparing a node only with its immediate children.",
+"Allowing equal values when the BST definition requires strict ordering."
+]
+},
+"tags": ["trees", "recursion", "binary-search-tree"]
+},
+{
+"id": "py-hard-090",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Lowest Common Ancestor",
+"prompt": "Given a binary tree and two nodes, find their lowest common ancestor.",
+"approach": {
+"steps": [
+"Return the current node when it is empty or equals either target.",
+"Search both left and right subtrees.",
+"If both searches find a target, the current node is the ancestor.",
+"Otherwise return the side that contains a target."
+],
+"example": "For a tree where nodes 4 and 5 are both descendants of node 2, node 2 is their lowest common ancestor."
+},
+"code": "def lowest_common_ancestor(root, first, second):\n  if root is None or root is first or root is second:\n    return root\n\n  left = lowest_common_ancestor(root.left, first, second)\n  right = lowest_common_ancestor(root.right, first, second)\n\n  if left is not None and right is not None:\n    return root\n\n  return left if left is not None else right",
+"timeTargetSec": 160,
+"complexity": {
+"time": "O(n)",
+"space": "O(h)"
+},
+"review": {
+"walkthroughSteps": [
+"A target node immediately becomes a successful result for that branch.",
+"The recursive calls search both child subtrees.",
+"Finding one target on each side means the current node connects them.",
+"If only one side succeeds, that side's result is propagated upward."
+],
+"commonMistakes": [
+"Returning the first target found without checking the other subtree.",
+"Searching only one branch and missing an ancestor shared across both branches."
+]
+},
+"tags": ["trees", "recursion", "binary-tree"]
+},
+{
+"id": "py-hard-091",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Serialize Binary Tree",
+"prompt": "Convert a binary tree into a string representation and reconstruct the same tree from that representation.",
+"approach": {
+"steps": [
+"Traverse the tree in preorder.",
+"Store a marker for missing children.",
+"Join the traversal values into a string.",
+"Use the same preorder sequence to reconstruct the tree."
+],
+"example": "For a root 1 with left child 2 and no right child, serialization preserves the missing-child marker so the original structure can be reconstructed."
+},
+"code": "def serialize(root):\n  values = []\n\n  def visit(node):\n    if node is None:\n      values.append('#')\n      return\n    values.append(str(node.value))\n    visit(node.left)\n    visit(node.right)\n\n  visit(root)\n  return ','.join(values)\n\n\ndef deserialize(data):\n  values = iter(data.split(','))\n\n  def build():\n    value = next(values)\n    if value == '#':\n      return None\n    node = TreeNode(int(value))\n    node.left = build()\n    node.right = build()\n    return node\n\n  return build()",
+"timeTargetSec": 210,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"serialize records every node and every missing child.",
+"The missing-child marker preserves tree structure.",
+"deserialize consumes values in the same preorder order.",
+"Each non-marker value creates a node and recursively builds its children."
+],
+"commonMistakes": [
+"Skipping null children during serialization and losing structural information.",
+"Using a different traversal order during deserialization."
+]
+},
+"tags": ["trees", "serialization", "recursion"]
+},
+{
+"id": "py-hard-092",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Graph Clone",
+"prompt": "Given a connected graph node, create a deep copy of the entire graph while preserving all connections.",
+"approach": {
+"steps": [
+"Use a dictionary to map original nodes to their copies.",
+"Create a copy when an original node is first visited.",
+"Recursively clone every neighbor.",
+"Attach each cloned neighbor to the copied node."
+],
+"example": "For a graph where node 1 connects to nodes 2 and 3, cloning creates separate copies of 2 and 3 and connects them to the copy of 1."
+},
+"code": "def clone_graph(node):\n  if node is None:\n    return None\n\n  copies = {}\n\n  def clone(current):\n    if current in copies:\n      return copies[current]\n\n    copied = GraphNode(current.value)\n    copies[current] = copied\n\n    for neighbor in current.neighbors:\n      copied.neighbors.append(clone(neighbor))\n\n    return copied\n\n  return clone(node)",
+"timeTargetSec": 180,
+"complexity": {
+"time": "O(V + E)",
+"space": "O(V)"
+},
+"review": {
+"walkthroughSteps": [
+"copies prevents repeatedly cloning the same graph node.",
+"A copy is stored before its neighbors are processed.",
+"Each neighbor is recursively cloned and attached to the copy.",
+"Cycles are handled because previously seen nodes are returned from copies."
+],
+"commonMistakes": [
+"Creating a new copy every time a node is encountered.",
+"Storing the copy only after recursively visiting neighbors, which breaks on cycles."
+]
+},
+"tags": ["graphs", "dfs", "hashing"]
+},
+{
+"id": "py-hard-093",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Dijkstra Shortest Path",
+"prompt": "Given a weighted graph with non-negative edge weights and a starting node, return the shortest distance from the start to every node.",
+"approach": {
+"steps": [
+"Initialize every distance as infinity except the start.",
+"Use a priority queue to select the closest unprocessed node.",
+"Relax each outgoing edge.",
+"Push improved distances back into the priority queue."
+],
+"example": "For edges where 0 connects to 1 with weight 4 and to 2 with weight 1, the algorithm first reaches 2 cheaply and can then use it to improve paths to other nodes."
+},
+"code": "import heapq\n\ndef dijkstra(graph, start):\n  distances = {node: float('inf') for node in graph}\n  distances[start] = 0\n  heap = [(0, start)]\n\n  while heap:\n    distance, node = heapq.heappop(heap)\n    if distance != distances[node]:\n      continue\n\n    for neighbor, weight in graph[node]:\n      new_distance = distance + weight\n      if new_distance < distances[neighbor]:\n        distances[neighbor] = new_distance\n        heapq.heappush(heap, (new_distance, neighbor))\n\n  return distances",
+"timeTargetSec": 210,
+"complexity": {
+"time": "O((V + E) log V)",
+"space": "O(V)"
+},
+"review": {
+"walkthroughSteps": [
+"distances stores the best known distance to every node.",
+"The heap always exposes the smallest currently known distance.",
+"An edge is relaxed when traveling through the current node gives a shorter path.",
+"Stale heap entries are ignored when they no longer match distances."
+],
+"commonMistakes": [
+"Using Dijkstra with negative edge weights.",
+"Failing to ignore stale priority queue entries."
+]
+},
+"tags": ["graphs", "dijkstra", "priority-queue"]
+},
+{
+"id": "py-hard-094",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Union Find Connectivity",
+"prompt": "Given a number of nodes and undirected connections, determine whether two specified nodes belong to the same connected component.",
+"approach": {
+"steps": [
+"Initialize every node as its own parent.",
+"Find the root representative of each node.",
+"Union the roots when a connection joins different components.",
+"Compare the roots of the two requested nodes."
+],
+"example": "For connections [(0,1), (1,2)] nodes 0 and 2 share the same component, so checking their roots returns true."
+},
+"code": "def connected(nodes, edges, first, second):\n  parent = list(range(nodes))\n  size = [1] * nodes\n\n  def find(node):\n    while node != parent[node]:\n      parent[node] = parent[parent[node]]\n      node = parent[node]\n    return node\n\n  def union(a, b):\n    root_a, root_b = find(a), find(b)\n    if root_a == root_b:\n      return\n    if size[root_a] < size[root_b]:\n      root_a, root_b = root_b, root_a\n    parent[root_b] = root_a\n    size[root_a] += size[root_b]\n\n  for a, b in edges:\n    union(a, b)\n\n  return find(first) == find(second)",
+"timeTargetSec": 200,
+"complexity": {
+"time": "O((V + E) alpha(V))",
+"space": "O(V)"
+},
+"review": {
+"walkthroughSteps": [
+"Each node initially belongs to its own component.",
+"find returns the representative root of a component.",
+"union combines two different components using their roots.",
+"Path compression and union by size keep the structure shallow."
+],
+"commonMistakes": [
+"Connecting nodes directly without finding their roots.",
+"Forgetting path compression or component-size balancing in the implementation."
+]
+},
+"tags": ["graphs", "union-find", "connectivity"]
+},
+{
+"id": "py-hard-095",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Edit Distance",
+"prompt": "Given two strings, return the minimum number of insertions, deletions, and replacements needed to transform the first string into the second.",
+"approach": {
+"steps": [
+"Create a dynamic programming table for prefixes of both strings.",
+"Initialize empty-string transformation costs.",
+"Keep the previous diagonal value when characters match.",
+"Otherwise choose the cheapest insertion, deletion, or replacement."
+],
+"example": "For 'horse' and 'ros', changing horse through replacement and deletion operations requires three edits in total."
+},
+"code": "def edit_distance(first, second):\n  previous = list(range(len(second) + 1))\n\n  for row in range(1, len(first) + 1):\n    current = [row]\n    for column in range(1, len(second) + 1):\n      if first[row - 1] == second[column - 1]:\n        current.append(previous[column - 1])\n      else:\n        insert = current[column - 1]\n        delete = previous[column]\n        replace = previous[column - 1]\n        current.append(1 + min(insert, delete, replace))\n    previous = current\n\n  return previous[-1]",
+"timeTargetSec": 210,
+"complexity": {
+"time": "O(n * m)",
+"space": "O(m)"
+},
+"review": {
+"walkthroughSteps": [
+"previous stores edit costs for the previous row of the table.",
+"A matching pair needs no new operation and uses the diagonal value.",
+"A mismatch can be solved by insertion, deletion, or replacement.",
+"Only the previous row is required, reducing memory usage."
+],
+"commonMistakes": [
+"Using the wrong neighboring values for insertion and deletion.",
+"Forgetting that matching characters should copy the diagonal result without adding one."
+]
+},
+"tags": ["dynamic-programming", "strings", "optimization"]
+},
+{
+"id": "py-hard-096",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Longest Increasing Subsequence",
+"prompt": "Given a list of integers, return the length of the longest strictly increasing subsequence.",
+"approach": {
+"steps": [
+"Maintain a list of the smallest possible tail value for each subsequence length.",
+"Use binary search to locate where each number belongs.",
+"Replace an existing tail when the current number is smaller.",
+"The length of the tails list is the answer."
+],
+"example": "For [10,9,2,5,3,7,101,18], a longest increasing subsequence has length 4, such as [2,3,7,101]."
+},
+"code": "from bisect import bisect_left\n\ndef longest_increasing_subsequence(numbers):\n  tails = []\n\n  for number in numbers:\n    index = bisect_left(tails, number)\n    if index == len(tails):\n      tails.append(number)\n    else:\n      tails[index] = number\n\n  return len(tails)",
+"timeTargetSec": 190,
+"complexity": {
+"time": "O(n log n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"tails[index] stores the smallest tail known for a subsequence of length index plus one.",
+"bisect_left finds the first tail that is not smaller than the current value.",
+"A smaller tail gives future values more room to extend the subsequence.",
+"The number of stored tails equals the maximum subsequence length."
+],
+"commonMistakes": [
+"Using bisect_right and accidentally allowing equal values in a strictly increasing sequence.",
+"Interpreting tails itself as the actual longest subsequence."
+]
+},
+"tags": ["dynamic-programming", "binary-search", "subsequence"]
+},
+{
+"id": "py-hard-097",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Partition Equal Subset",
+"prompt": "Given a list of positive integers, determine whether it can be divided into two subsets with equal sums.",
+"approach": {
+"steps": [
+"Calculate the total sum.",
+"Return false when the total is odd.",
+"Use a set of reachable subset sums up to half the total.",
+"Check whether the target half sum becomes reachable."
+],
+"example": "For [1,5,11,5], the total is 22 and the target is 11, which can be formed by 11 or by 5 plus 5 plus 1, so the list can be partitioned."
+},
+"code": "def can_partition(numbers):\n  total = sum(numbers)\n  if total % 2:\n    return False\n\n  target = total // 2\n  reachable = {0}\n\n  for number in numbers:\n    next_sums = set(reachable)\n    for current in reachable:\n      if current + number <= target:\n        next_sums.add(current + number)\n    reachable = next_sums\n\n  return target in reachable",
+"timeTargetSec": 190,
+"complexity": {
+"time": "O(n * target)",
+"space": "O(target)"
+},
+"review": {
+"walkthroughSteps": [
+"An equal partition requires each subset to sum to half of the total.",
+"An odd total cannot be split into two equal integer sums.",
+"reachable stores sums that can be formed using processed values.",
+"The target being reachable means an equal partition exists."
+],
+"commonMistakes": [
+"Continuing when the total sum is odd.",
+"Reusing the same number multiple times within one iteration."
+]
+},
+"tags": ["dynamic-programming", "sets", "subset-sum"]
+},
+{
+"id": "py-hard-098",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Maximum Subarray Product",
+"prompt": "Given a list of integers, find the contiguous subarray with the largest product and return that product.",
+"approach": {
+"steps": [
+"Track both the maximum and minimum product ending at the current position.",
+"Swap them when the current number is negative.",
+"Extend the current products or start a new subarray.",
+"Track the largest product seen."
+],
+"example": "For [2,3,-2,4], the subarray [2,3] has product 6, which is larger than every other contiguous product."
+},
+"code": "def max_product(numbers):\n  if not numbers:\n    return 0\n\n  maximum = minimum = best = numbers[0]\n\n  for number in numbers[1:]:\n    if number < 0:\n      maximum, minimum = minimum, maximum\n\n    maximum = max(number, maximum * number)\n    minimum = min(number, minimum * number)\n    best = max(best, maximum)\n\n  return best",
+"timeTargetSec": 150,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"A negative number can turn a very small negative product into a large positive product.",
+"maximum and minimum therefore both need to be tracked.",
+"The values are swapped before multiplication when the current number is negative.",
+"best records the largest product ending at any position."
+],
+"commonMistakes": [
+"Tracking only the maximum product and losing useful negative products.",
+"Resetting the product whenever a negative number appears."
+]
+},
+"tags": ["arrays", "dynamic-programming", "products"]
+},
+{
+"id": "py-hard-099",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Kth Largest Element",
+"prompt": "Given an unsorted list of integers and k, return the kth largest value without fully sorting the list.",
+"approach": {
+"steps": [
+"Use a min-heap containing the largest k values seen so far.",
+"Add each number to the heap.",
+"Remove the smallest heap value when the heap grows beyond k.",
+"The remaining smallest heap value is the kth largest value."
+],
+"example": "For [3,2,1,5,6,4] with k equal to 2, the two largest values are 6 and 5, so the second largest value is 5."
+},
+"code": "import heapq\n\ndef kth_largest(numbers, k):\n  heap = []\n\n  for number in numbers:\n    heapq.heappush(heap, number)\n    if len(heap) > k:\n      heapq.heappop(heap)\n\n  return heap[0]",
+"timeTargetSec": 150,
+"complexity": {
+"time": "O(n log k)",
+"space": "O(k)"
+},
+"review": {
+"walkthroughSteps": [
+"The heap stores only the k largest values encountered so far.",
+"The smallest value inside that heap represents the current kth largest value.",
+"When a new value makes the heap too large, the smallest value is removed.",
+"After all values are processed, heap[0] is the kth largest value."
+],
+"commonMistakes": [
+"Using a max-heap and removing the largest value.",
+"Keeping more than k elements and unnecessarily increasing memory use."
+]
+},
+"tags": ["heaps", "arrays", "selection"]
+},
+{
+"id": "py-hard-100",
+"language": "python",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "LRU Cache",
+"prompt": "Implement a least recently used cache that supports constant-time get and put operations while removing the least recently used item when capacity is exceeded.",
+"approach": {
+"steps": [
+"Use a dictionary for constant-time key lookup.",
+"Use a doubly linked list to track usage order.",
+"Move accessed or inserted nodes to the most recently used position.",
+"Remove the least recently used node when capacity is exceeded."
+],
+"example": "For a cache of capacity 2, inserting keys 1 and 2 then accessing 1 makes 1 recent, so inserting key 3 removes key 2."
+},
+"code": "class Node:\n  def **init**(self, key=0, value=0):\n    self.key = key\n    self.value = value\n    self.prev = None\n    self.next = None\n\n\nclass LRUCache:\n  def **init**(self, capacity):\n    self.capacity = capacity\n    self.cache = {}\n    self.left = Node()\n    self.right = Node()\n    self.left.next = self.right\n    self.right.prev = self.left\n\n  def remove(self, node):\n    node.prev.next = node.next\n    node.next.prev = node.prev\n\n  def insert(self, node):\n    previous = self.right.prev\n    previous.next = node\n    node.prev = previous\n    node.next = self.right\n    self.right.prev = node\n\n  def get(self, key):\n    if key not in self.cache:\n      return -1\n    node = self.cache[key]\n    self.remove(node)\n    self.insert(node)\n    return node.value\n\n  def put(self, key, value):\n    if key in self.cache:\n      self.remove(self.cache[key])\n\n    node = Node(key, value)\n    self.cache[key] = node\n    self.insert(node)\n\n    if len(self.cache) > self.capacity:\n      oldest = self.left.next\n      self.remove(oldest)\n      del self.cache[oldest.key]",
+"timeTargetSec": 240,
+"complexity": {
+"time": "O(1) per operation",
+"space": "O(capacity)"
+},
+"review": {
+"walkthroughSteps": [
+"The dictionary maps keys directly to their linked-list nodes.",
+"The doubly linked list stores nodes from least recently used to most recently used.",
+"get moves an accessed node to the most recently used position.",
+"put removes the least recently used node when capacity is exceeded."
+],
+"commonMistakes": [
+"Updating the dictionary without removing the old linked-list node.",
+"Removing the most recently used node instead of the least recently used node."
+]
+},
+"tags": ["design", "hashing", "linked-list"]
+}
+]
+
+
+
+
+
+

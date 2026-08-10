@@ -1436,7 +1436,2318 @@
 ]
 },
 "tags": ["arrays", "indexing", "swapping"]
-}
+},
+{
+"id": "cpp-medium-041",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Rotate Array Left",
+"prompt": "Given an array and a number k, rotate the array to the left by k positions.",
+"approach": {
+"steps": [
+"Reduce k using the array length.",
+"Store the first k values.",
+"Shift the remaining values to the left.",
+"Place the stored values at the end."
+],
+"example": "For [1, 2, 3, 4, 5] and k = 2, rotating left moves 1 and 2 to the end, producing [3, 4, 5, 1, 2]."
+},
+"code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<int> values = {1, 2, 3, 4, 5};\n    int k = 2;\n    int n = values.size();\n\n    k %= n;\n    vector<int> result;\n\n    for (int i = k; i < n; i++) result.push_back(values[i]);\n    for (int i = 0; i < k; i++) result.push_back(values[i]);\n\n    for (int value : result) cout << value << ' ';\n    return 0;\n}",
+"timeTargetSec": 90,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"k is reduced so it never exceeds the array length.",
+"Elements after index k become the beginning of the result.",
+"The first k elements are appended afterward.",
+"The resulting array represents the left rotation."
+],
+"commonMistakes": [
+"Forgetting to reduce k when it is larger than the array length.",
+"Rotating in the wrong direction."
 ]
+},
+"tags": ["arrays", "rotation", "vectors"]
+},
+{
+"id": "cpp-medium-042",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Find Missing Number",
+"prompt": "Given an array containing numbers from 1 to n with one number missing, find the missing number.",
+"approach": {
+"steps": [
+"Calculate the expected sum from 1 through n.",
+"Calculate the sum of the provided values.",
+"Subtract the actual sum from the expected sum.",
+"The difference is the missing number."
+],
+"example": "For [1, 2, 4, 5] with n = 5, the expected sum is 15 and the array sum is 12, so the missing number is 3."
+},
+"code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<int> values = {1, 2, 4, 5};\n    int n = 5;\n    int expected = n * (n + 1) / 2;\n    int actual = 0;\n\n    for (int value : values) actual += value;\n\n    cout << expected - actual;\n    return 0;\n}",
+"timeTargetSec": 85,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The formula calculates the complete range sum.",
+"The loop calculates the sum of existing values.",
+"The missing value is the difference between those sums.",
+"No extra array is required."
+],
+"commonMistakes": [
+"Using the array size instead of n when calculating the expected sum.",
+"Adding the missing value instead of subtracting the actual sum."
+]
+},
+"tags": ["arrays", "math", "summation"]
+},
+{
+"id": "cpp-medium-043",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Count Value Frequencies",
+"prompt": "Given an array of integers, count how many times each distinct value appears.",
+"approach": {
+"steps": [
+"Create a map to store each value's count.",
+"Visit every array element.",
+"Increase the count associated with that value.",
+"Print each value with its frequency."
+],
+"example": "For [2, 3, 2, 4, 3, 2], the frequency of 2 is 3, the frequency of 3 is 2, and the frequency of 4 is 1."
+},
+"code": "#include <iostream>\n#include <vector>\n#include <map>\nusing namespace std;\n\nint main() {\n    vector<int> values = {2, 3, 2, 4, 3, 2};\n    map<int, int> frequency;\n\n    for (int value : values) frequency[value]++;\n\n    for (auto item : frequency) {\n        cout << item.first << ':' << item.second << ' ';\n    }\n\n    return 0;\n}",
+"timeTargetSec": 95,
+"complexity": {
+"time": "O(n log n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"The map creates a separate entry for each distinct value.",
+"The increment operator increases its occurrence count.",
+"Repeated values update the existing entry.",
+"The map can then be traversed to display the frequencies."
+],
+"commonMistakes": [
+"Resetting the count when a value appears again.",
+"Using the array index as the map key."
+]
+},
+"tags": ["arrays", "maps", "frequency"]
+},
+{
+"id": "cpp-medium-044",
+"language": "cpp",
+"trackType": "string",
+"difficulty": "medium",
+"title": "Check Anagram Strings",
+"prompt": "Given two strings, determine whether they contain the same characters with the same frequencies.",
+"approach": {
+"steps": [
+"Compare the lengths of both strings.",
+"Count every character in the first string.",
+"Subtract counts using the second string.",
+"Check whether every final count is zero."
+],
+"example": "For 'listen' and 'silent', every character has the same frequency, so the strings are anagrams."
+},
+"code": "#include <iostream>\n#include <string>\n#include <map>\nusing namespace std;\n\nint main() {\n    string first = 'listen';\n    string second = 'silent';\n    map<char, int> count;\n\n    if (first.size() != second.size()) {\n        cout << 'false';\n        return 0;\n    }\n\n    for (char ch : first) count[ch]++;\n    for (char ch : second) count[ch]--;\n\n    for (auto item : count) {\n        if (item.second != 0) {\n            cout << 'false';\n            return 0;\n        }\n    }\n\n    cout << 'true';\n    return 0;\n}",
+"timeTargetSec": 100,
+"complexity": {
+"time": "O(n log k)",
+"space": "O(k)"
+},
+"review": {
+"walkthroughSteps": [
+"Different lengths immediately rule out an anagram.",
+"Characters from the first string increase their counts.",
+"Characters from the second string decrease those counts.",
+"All zero counts confirm matching character frequencies."
+],
+"commonMistakes": [
+"Checking only whether the same characters exist.",
+"Ignoring character frequency."
+]
+},
+"tags": ["strings", "maps", "frequency"]
+},
+{
+"id": "cpp-medium-045",
+"language": "cpp",
+"trackType": "string",
+"difficulty": "medium",
+"title": "Find First Non-Repeating Character",
+"prompt": "Given a string, find the first character that occurs exactly once.",
+"approach": {
+"steps": [
+"Count the frequency of every character.",
+"Traverse the string from left to right.",
+"Check the frequency of each character.",
+"Return the first character whose count is one."
+],
+"example": "For 'swiss', s appears three times, w appears once, and i appears once, so w is the first non-repeating character."
+},
+"code": "#include <iostream>\n#include <string>\n#include <map>\nusing namespace std;\n\nint main() {\n    string text = 'swiss';\n    map<char, int> frequency;\n\n    for (char ch : text) frequency[ch]++;\n\n    for (char ch : text) {\n        if (frequency[ch] == 1) {\n            cout << ch;\n            return 0;\n        }\n    }\n\n    cout << 'None';\n    return 0;\n}",
+"timeTargetSec": 95,
+"complexity": {
+"time": "O(n log k)",
+"space": "O(k)"
+},
+"review": {
+"walkthroughSteps": [
+"The first pass determines how often every character occurs.",
+"The second pass preserves the original character order.",
+"A frequency of one identifies a non-repeating character.",
+"The first qualifying character is immediately returned."
+],
+"commonMistakes": [
+"Returning any unique character instead of the first one.",
+"Checking uniqueness before counting all characters."
+]
+},
+"tags": ["strings", "maps", "frequency"]
+},
+{
+"id": "cpp-medium-046",
+"language": "cpp",
+"trackType": "string",
+"difficulty": "medium",
+"title": "Remove Vowels",
+"prompt": "Given a string, create a new string after removing every vowel.",
+"approach": {
+"steps": [
+"Traverse every character in the string.",
+"Check whether the character is a vowel.",
+"Append only non-vowel characters to the result.",
+"Print the resulting string."
+],
+"example": "For 'programming', removing the vowels a, o, and i produces 'prgrmmng'."
+},
+"code": "#include <iostream>\n#include <string>\nusing namespace std;\n\nbool isVowel(char ch) {\n    return ch == 'a' || ch == 'e' || ch == 'i' ||\n           ch == 'o' || ch == 'u';\n}\n\nint main() {\n    string text = 'programming';\n    string result;\n\n    for (char ch : text) {\n        if (!isVowel(ch)) result += ch;\n    }\n\n    cout << result;\n    return 0;\n}",
+"timeTargetSec": 85,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"isVowel isolates the vowel-checking logic.",
+"Each character is tested once.",
+"Only characters that fail the vowel test are appended.",
+"The original string remains unchanged."
+],
+"commonMistakes": [
+"Forgetting one of the five lowercase vowels.",
+"Appending vowels instead of non-vowels."
+]
+},
+"tags": ["strings", "loops", "functions"]
+},
+{
+"id": "cpp-medium-047",
+"language": "cpp",
+"trackType": "string",
+"difficulty": "medium",
+"title": "Count Words in Sentence",
+"prompt": "Given a sentence containing words separated by spaces, count the number of words.",
+"approach": {
+"steps": [
+"Track whether the current position is inside a word.",
+"Start a new word when a non-space follows a space.",
+"Increase the count only at the beginning of each word.",
+"Return the total word count."
+],
+"example": "For 'C++ is powerful', the sentence contains three words because each group of non-space characters forms one word."
+},
+"code": "#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    string text = 'C++ is powerful';\n    int words = 0;\n    bool insideWord = false;\n\n    for (char ch : text) {\n        if (ch != ' ' && !insideWord) {\n            words++;\n            insideWord = true;\n        } else if (ch == ' ') {\n            insideWord = false;\n        }\n    }\n\n    cout << words;\n    return 0;\n}",
+"timeTargetSec": 90,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"insideWord records whether the loop is already inside a word.",
+"A non-space after a space begins a new word.",
+"Additional characters in the same word do not increase the count.",
+"Spaces reset the word state."
+],
+"commonMistakes": [
+"Counting every non-space character.",
+"Counting consecutive spaces as multiple words."
+]
+},
+"tags": ["strings", "loops", "state"]
+},
+{
+"id": "cpp-medium-048",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Maximum Consecutive Ones",
+"prompt": "Given an array containing zeros and ones, find the longest consecutive sequence of ones.",
+"approach": {
+"steps": [
+"Track the current number of consecutive ones.",
+"Increase it when the value is one.",
+"Reset it when the value is zero.",
+"Keep the largest count found."
+],
+"example": "For [1, 1, 0, 1, 1, 1], the longest consecutive sequence of ones contains three values."
+},
+"code": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    vector<int> values = {1, 1, 0, 1, 1, 1};\n    int current = 0;\n    int best = 0;\n\n    for (int value : values) {\n        if (value == 1) {\n            current++;\n            best = max(best, current);\n        } else {\n            current = 0;\n        }\n    }\n\n    cout << best;\n    return 0;\n}",
+"timeTargetSec": 90,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"current measures the active run of ones.",
+"A one extends that run.",
+"A zero breaks the run and resets current.",
+"best preserves the longest run seen so far."
+],
+"commonMistakes": [
+"Failing to reset the current count after zero.",
+"Returning the final run instead of the maximum run."
+]
+},
+"tags": ["arrays", "loops", "counting"]
+},
+{
+"id": "cpp-medium-049",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Build Prefix Sum Array",
+"prompt": "Given an array of integers, create a prefix sum array where each position stores the sum of all values up to that position.",
+"approach": {
+"steps": [
+"Create a result array with the same size.",
+"Store the first value as the first prefix sum.",
+"Add each value to the previous prefix sum.",
+"Store the running total at each position."
+],
+"example": "For [2, 4, 3, 5], the prefix sum array is [2, 6, 9, 14] because each position contains the running total."
+},
+"code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<int> values = {2, 4, 3, 5};\n    vector<int> prefix(values.size());\n\n    prefix[0] = values[0];\n    for (int i = 1; i < values.size(); i++) {\n        prefix[i] = prefix[i - 1] + values[i];\n    }\n\n    for (int value : prefix) cout << value << ' ';\n    return 0;\n}",
+"timeTargetSec": 90,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"The first prefix position equals the first input value.",
+"Each later position adds the current value to the previous prefix.",
+"The running total is stored rather than recalculated.",
+"The resulting array can answer cumulative sums directly."
+],
+"commonMistakes": [
+"Adding only the previous input value.",
+"Starting the prefix array with zero instead of the first value."
+]
+},
+"tags": ["arrays", "prefix-sum", "running-total"]
+},
+{
+"id": "cpp-medium-050",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Find Pair With Target Sum",
+"prompt": "Given an array of integers and a target value, find two different elements whose sum equals the target.",
+"approach": {
+"steps": [
+"Store previously seen values in a set.",
+"For each value, calculate the required complement.",
+"Check whether the complement was already seen.",
+"Store the current value when no pair is found."
+],
+"example": "For [2, 7, 11, 15] and target 9, 2 needs 7 and 7 has already been seen, so the pair is 2 and 7."
+},
+"code": "#include <iostream>\n#include <vector>\n#include <unordered_set>\nusing namespace std;\n\nint main() {\n    vector<int> values = {2, 7, 11, 15};\n    int target = 9;\n    unordered_set<int> seen;\n\n    for (int value : values) {\n        int needed = target - value;\n        if (seen.count(needed)) {\n            cout << needed << ' ' << value;\n            return 0;\n        }\n        seen.insert(value);\n    }\n\n    cout << 'No pair';\n    return 0;\n}",
+"timeTargetSec": 105,
+"complexity": {
+"time": "O(n) average",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"The complement is the value needed to reach the target.",
+"Previously visited values are stored in the set.",
+"A set lookup determines whether the complement exists.",
+"The current value is stored only after checking for its pair."
+],
+"commonMistakes": [
+"Checking the current value against itself before inserting it.",
+"Searching the whole array repeatedly with nested loops."
+]
+},
+"tags": ["arrays", "hashing", "two-sum"]
+},
+{
+"id": "cpp-medium-051",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Sort Binary Array",
+"prompt": "Given an array containing only zeros and ones, rearrange it so all zeros appear before all ones.",
+"approach": {
+"steps": [
+"Track the position where the next zero should go.",
+"Traverse the array from left to right.",
+"When a zero appears, swap it into the next zero position.",
+"Advance the zero position after each swap."
+],
+"example": "For [1, 0, 1, 0, 0], moving each zero to the next available position produces [0, 0, 0, 1, 1]."
+},
+"code": "#include <iostream>\n#include <vector>\n#include <utility>\nusing namespace std;\n\nint main() {\n    vector<int> values = {1, 0, 1, 0, 0};\n    int zeroPos = 0;\n\n    for (int i = 0; i < values.size(); i++) {\n        if (values[i] == 0) {\n            swap(values[i], values[zeroPos]);\n            zeroPos++;\n        }\n    }\n\n    for (int value : values) cout << value << ' ';\n    return 0;\n}",
+"timeTargetSec": 95,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"zeroPos marks where the next zero belongs.",
+"A zero is swapped into that position.",
+"The position advances after placing the zero.",
+"All remaining positions contain ones."
+],
+"commonMistakes": [
+"Moving ones instead of zeros without tracking their position.",
+"Using nested loops for an array containing only two values."
+]
+},
+"tags": ["arrays", "two-pointers", "sorting"]
+},
+{
+"id": "cpp-medium-052",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Merge Two Sorted Arrays",
+"prompt": "Given two sorted arrays, merge them into one sorted array without sorting the combined result afterward.",
+"approach": {
+"steps": [
+"Use one pointer for each input array.",
+"Compare the values at both pointers.",
+"Append the smaller value and advance its pointer.",
+"Append the remaining values after one array is exhausted."
+],
+"example": "For [1, 4, 7] and [2, 3, 6], comparing both fronts produces [1, 2, 3, 4, 6, 7]."
+},
+"code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<int> first = {1, 4, 7};\n    vector<int> second = {2, 3, 6};\n    vector<int> result;\n    int i = 0, j = 0;\n\n    while (i < first.size() && j < second.size()) {\n        if (first[i] <= second[j]) result.push_back(first[i++]);\n        else result.push_back(second[j++]);\n    }\n\n    while (i < first.size()) result.push_back(first[i++]);\n    while (j < second.size()) result.push_back(second[j++]);\n\n    for (int value : result) cout << value << ' ';\n    return 0;\n}",
+"timeTargetSec": 105,
+"complexity": {
+"time": "O(n + m)",
+"space": "O(n + m)"
+},
+"review": {
+"walkthroughSteps": [
+"Each pointer identifies the smallest remaining value in its array.",
+"The smaller value is copied into the result.",
+"One pointer advances after every comparison.",
+"Remaining values are already sorted and can be appended directly."
+],
+"commonMistakes": [
+"Sorting the merged array again.",
+"Forgetting to append the remaining values."
+]
+},
+"tags": ["arrays", "two-pointers", "merging"]
+},
+{
+"id": "cpp-medium-053",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Find Common Array Values",
+"prompt": "Given two arrays, find the values that appear in both arrays without adding duplicate values to the result.",
+"approach": {
+"steps": [
+"Store values from the first array in a set.",
+"Traverse the second array.",
+"Check whether each value exists in the first set.",
+"Use another set to prevent duplicate output."
+],
+"example": "For [1, 2, 2, 3] and [2, 2, 4, 3], the common distinct values are 2 and 3."
+},
+"code": "#include <iostream>\n#include <vector>\n#include <unordered_set>\nusing namespace std;\n\nint main() {\n    vector<int> first = {1, 2, 2, 3};\n    vector<int> second = {2, 2, 4, 3};\n    unordered_set<int> values(first.begin(), first.end());\n    unordered_set<int> common;\n\n    for (int value : second) {\n        if (values.count(value)) common.insert(value);\n    }\n\n    for (int value : common) cout << value << ' ';\n    return 0;\n}",
+"timeTargetSec": 105,
+"complexity": {
+"time": "O(n + m) average",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"The first set provides constant-average membership checks.",
+"Each value from the second array is tested against that set.",
+"A second set keeps each common value only once.",
+"The result therefore contains distinct intersections."
+],
+"commonMistakes": [
+"Printing the same common value multiple times.",
+"Comparing every pair with nested loops unnecessarily."
+]
+},
+"tags": ["arrays", "sets", "intersection"]
+},
+{
+"id": "cpp-medium-054",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Calculate Row Sums",
+"prompt": "Given a matrix, calculate the sum of every row and print the resulting row sums.",
+"approach": {
+"steps": [
+"Traverse each row of the matrix.",
+"Reset a sum for the current row.",
+"Add every value in that row.",
+"Print the completed row sum."
+],
+"example": "For [[1, 2, 3], [4, 5, 6]], the row sums are 6 and 15 because each row is summed independently."
+},
+"code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<vector<int>> matrix = {\n        {1, 2, 3},\n        {4, 5, 6}\n    };\n\n    for (const auto& row : matrix) {\n        int sum = 0;\n        for (int value : row) sum += value;\n        cout << sum << ' ';\n    }\n\n    return 0;\n}",
+"timeTargetSec": 100,
+"complexity": {
+"time": "O(rows × cols)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The outer loop selects one row at a time.",
+"The row sum starts at zero for every new row.",
+"The inner loop adds all values from that row.",
+"The completed sum is printed before moving to the next row."
+],
+"commonMistakes": [
+"Failing to reset the sum for each row.",
+"Adding values from different rows into one total."
+]
+},
+"tags": ["matrices", "nested-loops", "summation"]
+},
+{
+"id": "cpp-medium-055",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Calculate Main Diagonal Sum",
+"prompt": "Given a square matrix, calculate the sum of the values on its main diagonal.",
+"approach": {
+"steps": [
+"Traverse the matrix by row index.",
+"Use the same index for the column.",
+"Add each matrix[i][i] value.",
+"Print the final diagonal sum."
+],
+"example": "For [[1, 2, 3], [4, 5, 6], [7, 8, 9]], the main diagonal contains 1, 5, and 9, giving a sum of 15."
+},
+"code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<vector<int>> matrix = {\n        {1, 2, 3},\n        {4, 5, 6},\n        {7, 8, 9}\n    };\n\n    int sum = 0;\n    for (int i = 0; i < matrix.size(); i++) {\n        sum += matrix[i][i];\n    }\n\n    cout << sum;\n    return 0;\n}",
+"timeTargetSec": 90,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The main diagonal uses equal row and column indexes.",
+"Only one value is selected from each row.",
+"Each selected value is added to sum.",
+"The final total represents the main diagonal sum."
+],
+"commonMistakes": [
+"Using matrix[i][i + 1] instead of matrix[i][i].",
+"Calculating the secondary diagonal instead."
+]
+},
+"tags": ["matrices", "diagonal", "loops"]
+},
+{
+"id": "cpp-medium-056",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Transpose a Matrix",
+"prompt": "Given a matrix, create its transpose by converting every row into a column.",
+"approach": {
+"steps": [
+"Create a result matrix with reversed dimensions.",
+"Visit every original matrix position.",
+"Place matrix[i][j] at result[j][i].",
+"Print the transposed matrix."
+],
+"example": "For [[1, 2, 3], [4, 5, 6]], transposing swaps rows and columns to produce [[1, 4], [2, 5], [3, 6]]."
+},
+"code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<vector<int>> matrix = {\n        {1, 2, 3},\n        {4, 5, 6}\n    };\n\n    int rows = matrix.size();\n    int cols = matrix[0].size();\n    vector<vector<int>> result(cols, vector<int>(rows));\n\n    for (int i = 0; i < rows; i++) {\n        for (int j = 0; j < cols; j++) {\n            result[j][i] = matrix[i][j];\n        }\n    }\n\n    for (const auto& row : result) {\n        for (int value : row) cout << value << ' ';\n        cout << '\n';\n    }\n\n    return 0;\n}",
+"timeTargetSec": 110,
+"complexity": {
+"time": "O(rows × cols)",
+"space": "O(rows × cols)"
+},
+"review": {
+"walkthroughSteps": [
+"The transpose has the original column count as its row count.",
+"Each original row-column position becomes a column-row position.",
+"The assignment result[j][i] performs that swap.",
+"The completed matrix has reversed dimensions."
+],
+"commonMistakes": [
+"Writing result[i][j] and producing an unchanged matrix.",
+"Using the original dimensions for a non-square matrix."
+]
+},
+"tags": ["matrices", "two-dimensional-arrays", "transpose"]
+},
+{
+"id": "cpp-medium-057",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Binary Search",
+"prompt": "Given a sorted array and a target value, find the target's index using binary search.",
+"approach": {
+"steps": [
+"Set left and right boundaries around the search range.",
+"Calculate the middle index.",
+"Move the left or right boundary according to the comparison.",
+"Return the middle index when the target is found."
+],
+"example": "For [2, 4, 6, 8, 10] and target 8, binary search narrows the range until index 3 is identified."
+},
+"code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<int> values = {2, 4, 6, 8, 10};\n    int target = 8;\n    int left = 0;\n    int right = values.size() - 1;\n\n    while (left <= right) {\n        int middle = left + (right - left) / 2;\n\n        if (values[middle] == target) {\n            cout << middle;\n            return 0;\n        }\n\n        if (values[middle] < target) left = middle + 1;\n        else right = middle - 1;\n    }\n\n    cout << -1;\n    return 0;\n}",
+"timeTargetSec": 105,
+"complexity": {
+"time": "O(log n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The middle value divides the sorted search range.",
+"A smaller middle value means the target is to the right.",
+"A larger middle value means the target is to the left.",
+"The search ends when the target is found or the range becomes empty."
+],
+"commonMistakes": [
+"Using binary search on an unsorted array.",
+"Failing to move the boundary after checking the middle."
+]
+},
+"tags": ["arrays", "binary-search", "search"]
+},
+{
+"id": "cpp-medium-058",
+"language": "cpp",
+"trackType": "math",
+"difficulty": "medium",
+"title": "Convert Decimal to Binary",
+"prompt": "Given a positive decimal integer, convert it to its binary representation.",
+"approach": {
+"steps": [
+"Repeatedly divide the number by two.",
+"Store each remainder.",
+"Continue until the number becomes zero.",
+"Print the stored remainders in reverse order."
+],
+"example": "For decimal 13, repeated division produces remainders 1, 0, 1, and 1, which reversed gives the binary value 1101."
+},
+"code": "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int number = 13;\n    string binary;\n\n    while (number > 0) {\n        binary += char('0' + number % 2);\n        number /= 2;\n    }\n\n    reverse(binary.begin(), binary.end());\n    cout << binary;\n    return 0;\n}",
+"timeTargetSec": 100,
+"complexity": {
+"time": "O(log n)",
+"space": "O(log n)"
+},
+"review": {
+"walkthroughSteps": [
+"Division by two produces the next binary digit as a remainder.",
+"The remainders are generated from least significant to most significant.",
+"The number becomes smaller after every division.",
+"Reversing the collected digits produces the correct binary order."
+],
+"commonMistakes": [
+"Printing remainders in the order they are generated.",
+"Forgetting the special case where the input is zero."
+]
+},
+"tags": ["numbers", "conversion", "binary"]
+},
+{
+"id": "cpp-medium-059",
+"language": "cpp",
+"trackType": "math",
+"difficulty": "medium",
+"title": "Generate Fibonacci Sequence",
+"prompt": "Given n, print the first n values of the Fibonacci sequence.",
+"approach": {
+"steps": [
+"Start with the first two Fibonacci values.",
+"Print the current value.",
+"Calculate the next value from the previous two.",
+"Continue until n values have been produced."
+],
+"example": "For n = 7, the first seven Fibonacci values are 0, 1, 1, 2, 3, 5, and 8."
+},
+"code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n = 7;\n    long long first = 0;\n    long long second = 1;\n\n    for (int i = 0; i < n; i++) {\n        cout << first << ' ';\n        long long next = first + second;\n        first = second;\n        second = next;\n    }\n\n    return 0;\n}",
+"timeTargetSec": 95,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"first and second store consecutive Fibonacci values.",
+"The current first value is printed before updating.",
+"next is calculated from the two stored values.",
+"Both variables then advance to the next pair."
+],
+"commonMistakes": [
+"Starting the sequence with 1, 1 when zero is expected first.",
+"Updating first before calculating the next value."
+]
+},
+"tags": ["math", "loops", "fibonacci"]
+},
+{
+"id": "cpp-medium-060",
+"language": "cpp",
+"trackType": "math",
+"difficulty": "medium",
+"title": "Check Armstrong Number",
+"prompt": "Given a positive integer, determine whether it equals the sum of its digits raised to the power of the number of digits.",
+"approach": {
+"steps": [
+"Count the number of digits.",
+"Extract each digit from the number.",
+"Raise each digit to the digit count and add it.",
+"Compare the calculated sum with the original number."
+],
+"example": "For 153, there are three digits and 1 cubed plus 5 cubed plus 3 cubed equals 153, so it is an Armstrong number."
+},
+"code": "#include <iostream>\n#include <cmath>\nusing namespace std;\n\nint main() {\n    int number = 153;\n    int original = number;\n    int digits = 0;\n    int sum = 0;\n\n    int temp = number;\n    while (temp > 0) {\n        digits++;\n        temp /= 10;\n    }\n\n    temp = number;\n    while (temp > 0) {\n        int digit = temp % 10;\n        sum += static_cast<int>(pow(digit, digits));\n        temp /= 10;\n    }\n\n    cout << (sum == original ? 'true' : 'false');\n    return 0;\n}",
+"timeTargetSec": 110,
+"complexity": {
+"time": "O(d)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The first loop determines how many digits the number contains.",
+"The second loop extracts each digit using modulo ten.",
+"Each digit is raised to the total digit count.",
+"The resulting sum is compared with the original number."
+],
+"commonMistakes": [
+"Always cubing the digits instead of using the actual digit count.",
+"Changing the original number before saving it for comparison."
+]
+},
+"tags": ["math", "numbers", "digits"]
+},
+
+{
+"id": "cpp-medium-061",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Sum Each Matrix Row",
+"prompt": "Given a matrix of integers, return a vector containing the sum of every row.",
+"approach": {
+"steps": [
+"Create a result vector for the row sums.",
+"Visit each row of the matrix.",
+"Add every value in the current row.",
+"Store the completed sum in the result vector."
+],
+"example": "For [[1, 2, 3], [4, 5, 6]], the first row becomes 6 and the second row becomes 15, producing [6, 15]."
+},
+"code": "vector<int> rowSums(vector<vector<int>>& matrix) {\n  vector<int> sums;\n  for (const auto& row : matrix) {\n    int total = 0;\n    for (int value : row) {\n      total += value;\n    }\n    sums.push_back(total);\n  }\n  return sums;\n}",
+"timeTargetSec": 95,
+"complexity": {
+"time": "O(r * c)",
+"space": "O(r)"
+},
+"review": {
+"walkthroughSteps": [
+"rowSums creates a vector named sums for the completed row totals.",
+"The outer loop visits each row independently.",
+"The inner loop adds every value into total.",
+"Each finished total is appended before the next row is processed."
+],
+"commonMistakes": [
+"Forgetting to reset total to zero for every new row.",
+"Appending the total before all values in the row have been processed."
+]
+},
+"tags": [
+"matrix",
+"loops",
+"arrays"
+]
+},
+{
+"id": "cpp-medium-062",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Rotate Array Right",
+"prompt": "Rotate an integer array to the right by one position and return the resulting array.",
+"approach": {
+"steps": [
+"Handle arrays with fewer than two values.",
+"Save the final value before shifting.",
+"Move each earlier value one position to the right.",
+"Place the saved value at the first position."
+],
+"example": "For [1, 2, 3, 4], save 4, shift 3 to index 3, 2 to index 2, and 1 to index 1, producing [4, 1, 2, 3]."
+},
+"code": "vector<int> rotateRight(vector<int> values) {\n  if (values.size() < 2) {\n    return values;\n  }\n  int lastValue = values.back();\n  for (int i = values.size() - 1; i > 0; --i) {\n    values[i] = values[i - 1];\n  }\n  values[0] = lastValue;\n  return values;\n}",
+"timeTargetSec": 90,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"rotateRight receives values by value so the original array is preserved.",
+"lastValue stores the element that would otherwise be overwritten.",
+"The loop shifts elements from right to left so each source value remains available.",
+"The saved value is placed at index zero."
+],
+"commonMistakes": [
+"Shifting from left to right and overwriting values before using them.",
+"Accessing the last element when the vector is empty."
+]
+},
+"tags": [
+"arrays",
+"shifting"
+]
+},
+{
+"id": "cpp-medium-063",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Find Array Intersection",
+"prompt": "Return the values that appear in both integer arrays, keeping each common value only once.",
+"approach": {
+"steps": [
+"Check each value from the first array.",
+"Search for that value in the second array.",
+"Check that it has not already been added.",
+"Append each new common value to the result."
+],
+"example": "For [1, 2, 2, 3] and [2, 3, 4], 2 and 3 appear in both arrays, so the result becomes [2, 3]."
+},
+"code": "vector<int> intersection(vector<int>& first, vector<int>& second) {\n  vector<int> result;\n  for (int value : first) {\n    bool found = false;\n    for (int other : second) {\n      if (value == other) {\n        found = true;\n        break;\n      }\n    }\n    if (found && find(result.begin(), result.end(), value) == result.end()) {\n      result.push_back(value);\n    }\n  }\n  return result;\n}",
+"timeTargetSec": 105,
+"complexity": {
+"time": "O(n * m + n^2)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"intersection checks each value from first against second.",
+"found records whether the current value exists in the second array.",
+"The find call prevents the same common value from being inserted twice.",
+"Only unique common values are pushed into result."
+],
+"commonMistakes": [
+"Adding a value every time it is found in the second array, creating duplicates.",
+"Forgetting to stop the inner search after the first match."
+]
+},
+"tags": [
+"arrays",
+"search"
+]
+},
+{
+"id": "cpp-medium-064",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Move Zeros To End",
+"prompt": "Move every zero in an integer array to the end while keeping the relative order of nonzero values.",
+"approach": {
+"steps": [
+"Create a result vector for nonzero values.",
+"Scan the original array once.",
+"Append every nonzero value in its original order.",
+"Append enough zeros to match the original size."
+],
+"example": "For [0, 4, 0, 2, 7], the nonzero values become [4, 2, 7], then two zeros are appended to produce [4, 2, 7, 0, 0]."
+},
+"code": "vector<int> moveZeros(vector<int>& values) {\n  vector<int> result;\n  for (int value : values) {\n    if (value != 0) {\n      result.push_back(value);\n    }\n  }\n  while (result.size() < values.size()) {\n    result.push_back(0);\n  }\n  return result;\n}",
+"timeTargetSec": 95,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"moveZeros creates result to hold all nonzero values.",
+"The first loop preserves their original order.",
+"The while loop fills the remaining positions with zeros.",
+"The returned vector therefore contains all nonzeros followed by all zeros."
+],
+"commonMistakes": [
+"Removing zeros without preserving the original order of nonzero values.",
+"Adding a fixed number of zeros instead of counting the remaining positions."
+]
+},
+"tags": [
+"arrays",
+"filtering"
+]
+},
+{
+"id": "cpp-medium-065",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Find Majority Value",
+"prompt": "Return the value that appears more than half of the time in an integer array. Assume such a value exists.",
+"approach": {
+"steps": [
+"Start with the first value as the current candidate.",
+"Track a count representing the candidate's balance.",
+"Increase the count for a matching value and decrease it otherwise.",
+"Return the final candidate."
+],
+"example": "For [2, 2, 1, 2, 3, 2, 2], candidate 2 keeps a positive balance after opposing values reduce its count, so the result is 2."
+},
+"code": "int findMajority(vector<int>& values) {\n  int candidate = values[0];\n  int count = 0;\n  for (int value : values) {\n    if (count == 0) {\n      candidate = value;\n    }\n    if (value == candidate) {\n      ++count;\n    } else {\n      --count;\n    }\n  }\n  return candidate;\n}",
+"timeTargetSec": 100,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"findMajority keeps candidate as the value currently competing for majority.",
+"When count reaches zero, the next value becomes the new candidate.",
+"Matching values strengthen the candidate while different values weaken it.",
+"Because a true majority exists, the final candidate is that majority value."
+],
+"commonMistakes": [
+"Changing the candidate without first checking whether count is zero.",
+"Increasing the count for every value instead of comparing it with candidate."
+]
+},
+"tags": [
+"arrays",
+"counting"
+]
+},
+{
+"id": "cpp-medium-066",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Longest Increasing Run",
+"prompt": "Find the length of the longest contiguous run where each value is greater than the value immediately before it.",
+"approach": {
+"steps": [
+"Start the current run at length one.",
+"Compare each value with its previous value.",
+"Extend the run when the sequence increases.",
+"Reset and update the maximum when the increase stops."
+],
+"example": "For [1, 3, 5, 2, 4, 6, 8], the increasing runs have lengths 3 and 4, so the longest run has length 4."
+},
+"code": "int longestIncreasingRun(vector<int>& values) {\n  if (values.empty()) {\n    return 0;\n  }\n  int currentLength = 1;\n  int longestLength = 1;\n  for (int i = 1; i < values.size(); ++i) {\n    if (values[i] > values[i - 1]) {\n      ++currentLength;\n    } else {\n      currentLength = 1;\n    }\n    longestLength = max(longestLength, currentLength);\n  }\n  return longestLength;\n}",
+"timeTargetSec": 100,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"longestIncreasingRun handles an empty vector before accessing an element.",
+"currentLength represents the increasing run ending at the current position.",
+"A larger current value extends that run; otherwise it starts again at one.",
+"longestLength records the largest run seen during the scan."
+],
+"commonMistakes": [
+"Comparing a value with the wrong previous position after the run resets.",
+"Forgetting that a single value is itself an increasing run of length one."
+]
+},
+"tags": [
+"arrays",
+"sequences"
+]
+},
+{
+"id": "cpp-medium-067",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Separate Positive And Negative",
+"prompt": "Rearrange an integer array so negative values come first and nonnegative values follow, while preserving the order within each group.",
+"approach": {
+"steps": [
+"Create a result vector with enough space for the values.",
+"Append all negative values in their original order.",
+"Scan the array again for nonnegative values.",
+"Return the combined result."
+],
+"example": "For [3, -2, 5, -7, 0], the negative group becomes [-2, -7] and the nonnegative group becomes [3, 5, 0], producing [-2, -7, 3, 5, 0]."
+},
+"code": "vector<int> separateSigns(vector<int>& values) {\n  vector<int> result;\n  result.reserve(values.size());\n  for (int value : values) {\n    if (value < 0) {\n      result.push_back(value);\n    }\n  }\n  for (int value : values) {\n    if (value >= 0) {\n      result.push_back(value);\n    }\n  }\n  return result;\n}",
+"timeTargetSec": 95,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"separateSigns reserves result space for the final arrangement.",
+"The first loop collects only negative values in their original order.",
+"The second loop collects zero and positive values in their original order.",
+"Combining both passes gives the required two groups without sorting."
+],
+"commonMistakes": [
+"Treating zero as negative instead of placing it with nonnegative values.",
+"Sorting the array and unintentionally changing the order inside each group."
+]
+},
+"tags": [
+"arrays",
+"partition"
+]
+},
+{
+"id": "cpp-medium-068",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Find Missing Range Value",
+"prompt": "Given distinct values from 0 through n with one value missing, return the missing value.",
+"approach": {
+"steps": [
+"Start the missing value with n.",
+"Use each index to represent a value in the expected range.",
+"Combine the index and array value with XOR.",
+"Return the remaining unmatched value."
+],
+"example": "For [3, 0, 1], the expected values are 0 through 3; matching values cancel through XOR and 2 remains as the missing value."
+},
+"code": "int missingValue(vector<int>& values) {\n  int missing = values.size();\n  for (int i = 0; i < values.size(); ++i) {\n    missing ^= i;\n    missing ^= values[i];\n  }\n  return missing;\n}",
+"timeTargetSec": 105,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"missingValue begins with n because the indexes only cover zero through n minus one.",
+"Each index and stored value are XORed into missing.",
+"Equal numbers cancel because XORing a value with itself produces zero.",
+"The only number left is the missing value."
+],
+"commonMistakes": [
+"Starting the accumulator at zero and forgetting to include n.",
+"Using addition without accounting for the possibility of larger intermediate sums."
+]
+},
+"tags": [
+"arrays",
+"xor"
+]
+},
+{
+"id": "cpp-medium-069",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Compress Consecutive Values",
+"prompt": "Remove consecutive duplicate values from an integer array while keeping the first value from each consecutive group.",
+"approach": {
+"steps": [
+"Return an empty result for an empty input.",
+"Store the first value immediately.",
+"Compare each later value with the last stored value.",
+"Append only values that differ from the previous stored value."
+],
+"example": "For [1, 1, 2, 2, 2, 3, 1], repeated neighbors collapse to [1, 2, 3, 1] while the final 1 remains separate."
+},
+"code": "vector<int> compressValues(vector<int>& values) {\n  vector<int> result;\n  if (values.empty()) {\n    return result;\n  }\n  result.push_back(values[0]);\n  for (int i = 1; i < values.size(); ++i) {\n    if (values[i] != result.back()) {\n      result.push_back(values[i]);\n    }\n  }\n  return result;\n}",
+"timeTargetSec": 95,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"compressValues handles an empty input before reading index zero.",
+"The first value starts the compressed result.",
+"Each later value is compared with result.back(), the last kept value.",
+"Only a change between neighboring groups causes a new value to be stored."
+],
+"commonMistakes": [
+"Removing every repeated value instead of only consecutive duplicates.",
+"Reading values[0] before checking whether the vector is empty."
+]
+},
+"tags": [
+"arrays",
+"duplicates"
+]
+},
+{
+"id": "cpp-medium-070",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Longest Common Prefix",
+"prompt": "Find the longest starting sequence shared by every string in a vector.",
+"approach": {
+"steps": [
+"Use the first string as the initial prefix.",
+"Compare that prefix with each following string.",
+"Shorten the prefix until it matches the current string's beginning.",
+"Return the remaining prefix."
+],
+"example": "For ['flower', 'flow', 'flight'], the prefix changes from 'flower' to 'flow' and then to 'fl', so the result is 'fl'."
+},
+"code": "string commonPrefix(vector<string>& words) {\n  if (words.empty()) {\n    return '';\n  }\n  string prefix = words[0];\n  for (int i = 1; i < words.size(); ++i) {\n    int length = min(prefix.size(), words[i].size());\n    int match = 0;\n    while (match < length && prefix[match] == words[i][match]) {\n      ++match;\n    }\n    prefix = prefix.substr(0, match);\n    if (prefix.empty()) {\n      break;\n    }\n  }\n  return prefix;\n}",
+"timeTargetSec": 110,
+"complexity": {
+"time": "O(n * m)",
+"space": "O(m)"
+},
+"review": {
+"walkthroughSteps": [
+"commonPrefix starts with the first word as the current candidate.",
+"For each next word, length limits comparison to the shorter string.",
+"match advances while both strings contain the same character at the same position.",
+"prefix is shortened to the matched portion before continuing."
+],
+"commonMistakes": [
+"Comparing characters beyond the length of the shorter string.",
+"Checking for a common substring instead of a common prefix."
+]
+},
+"tags": [
+"strings",
+"prefix"
+]
+},
+{
+"id": "cpp-hard-071",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Spiral Matrix Traversal",
+"prompt": "Return all values of a matrix in clockwise spiral order, starting from its top-left corner.",
+"approach": {
+"steps": [
+"Track the current top, bottom, left, and right boundaries.",
+"Traverse the top row from left to right.",
+"Traverse the right column and then the bottom row when valid.",
+"Traverse the left column and shrink the boundaries after each layer."
+],
+"example": "For [[1,2,3],[4,5,6],[7,8,9]], the outer layer gives 1,2,3,6,9,8,7,4 and the remaining center gives 5."
+},
+"code": "vector<int> spiralOrder(vector<vector<int>>& matrix) {\n  vector<int> result;\n  if (matrix.empty()) {\n    return result;\n  }\n  int top = 0, bottom = matrix.size() - 1;\n  int left = 0, right = matrix[0].size() - 1;\n  while (top <= bottom && left <= right) {\n    for (int col = left; col <= right; ++col) {\n      result.push_back(matrix[top][col]);\n    }\n    ++top;\n    for (int row = top; row <= bottom; ++row) {\n      result.push_back(matrix[row][right]);\n    }\n    --right;\n    if (top <= bottom) {\n      for (int col = right; col >= left; --col) {\n        result.push_back(matrix[bottom][col]);\n      }\n      --bottom;\n    }\n    if (left <= right) {\n      for (int row = bottom; row >= top; --row) {\n        result.push_back(matrix[row][left]);\n      }\n      ++left;\n    }\n  }\n  return result;\n}",
+"timeTargetSec": 140,
+"complexity": {
+"time": "O(r * c)",
+"space": "O(r * c)"
+},
+"review": {
+"walkthroughSteps": [
+"spiralOrder maintains four boundaries that describe the unvisited rectangle.",
+"The top row and right column are consumed before their boundaries move inward.",
+"The bottom row is processed only when a valid row remains.",
+"The left column is similarly guarded so single-row and single-column layers are not repeated."
+],
+"commonMistakes": [
+"Reading the bottom row twice when only one row remains.",
+"Forgetting the boundary checks before traversing the final left or bottom edge."
+]
+},
+"tags": [
+"matrix",
+"simulation",
+"boundaries"
+]
+},
+{
+"id": "cpp-hard-072",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Maximum Subarray Sum",
+"prompt": "Find the largest possible sum of a nonempty contiguous section of an integer array.",
+"approach": {
+"steps": [
+"Start the current and best sums with the first value.",
+"Decide whether to extend the current section or restart at the current value.",
+"Update the best sum after every position.",
+"Return the largest sum found."
+],
+"example": "For [-2,1,-3,4,-1,2,1], the strongest section becomes [4,-1,2,1] with sum 6, which is the maximum."
+},
+"code": "int maxSubarraySum(vector<int>& values) {\n  int currentSum = values[0];\n  int bestSum = values[0];\n  for (int i = 1; i < values.size(); ++i) {\n    currentSum = max(values[i], currentSum + values[i]);\n    bestSum = max(bestSum, currentSum);\n  }\n  return bestSum;\n}",
+"timeTargetSec": 125,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"maxSubarraySum begins with the first value because the chosen section must be nonempty.",
+"currentSum chooses between starting at the current value or extending the previous section.",
+"bestSum records the largest currentSum seen so far.",
+"The single pass therefore considers every possible ending position efficiently."
+],
+"commonMistakes": [
+"Starting both sums at zero, which gives the wrong result when all values are negative.",
+"Updating bestSum before updating currentSum for the current value."
+]
+},
+"tags": [
+"arrays",
+"dynamic-programming"
+]
+},
+{
+"id": "cpp-hard-073",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Subarray Sum Target",
+"prompt": "Return the number of contiguous subarrays whose values add exactly to a given target.",
+"approach": {
+"steps": [
+"Track the running prefix sum while scanning the array.",
+"Store how often each prefix sum has appeared.",
+"Look for an earlier prefix equal to the current sum minus the target.",
+"Add its frequency to the answer."
+],
+"example": "For [1,2,1] with target 3, prefix sums 1,3,4 reveal [1,2] and [2,1], giving an answer of 2."
+},
+"code": "int countTargetSubarrays(vector<int>& values, int target) {\n  unordered_map<int, int> prefixCount;\n  prefixCount[0] = 1;\n  int prefixSum = 0;\n  int totalMatches = 0;\n  for (int value : values) {\n    prefixSum += value;\n    int needed = prefixSum - target;\n    if (prefixCount.count(needed)) {\n      totalMatches += prefixCount[needed];\n    }\n    ++prefixCount[prefixSum];\n  }\n  return totalMatches;\n}",
+"timeTargetSec": 145,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"countTargetSubarrays begins with prefixCount[0] equal to one to represent an empty prefix.",
+"prefixSum records the total from the start through the current value.",
+"An earlier sum of prefixSum minus target means the section between those prefixes has the target sum.",
+"The stored frequency is added because multiple earlier prefixes can create multiple matching sections."
+],
+"commonMistakes": [
+"Checking the needed prefix only after inserting the current prefix sum.",
+"Omitting prefixCount[0] and therefore missing subarrays that begin at index zero."
+]
+},
+"tags": [
+"arrays",
+"prefix-sum",
+"hash-map"
+]
+},
+{
+"id": "cpp-hard-074",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Product Except Self",
+"prompt": "For each array position, return the product of every value except the value at that position, without using division.",
+"approach": {
+"steps": [
+"Store products of all values appearing before each position.",
+"Traverse backward while tracking products appearing after each position.",
+"Multiply the two sides for each result position.",
+"Return the completed product vector."
+],
+"example": "For [1,2,3,4], prefix products give [1,1,2,6] and the backward products produce [24,12,8,6]."
+},
+"code": "vector<int> productExceptSelf(vector<int>& values) {\n  vector<int> result(values.size(), 1);\n  int prefix = 1;\n  for (int i = 0; i < values.size(); ++i) {\n    result[i] = prefix;\n    prefix *= values[i];\n  }\n  int suffix = 1;\n  for (int i = values.size() - 1; i >= 0; --i) {\n    result[i] *= suffix;\n    suffix *= values[i];\n  }\n  return result;\n}",
+"timeTargetSec": 130,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"productExceptSelf first places the product of all earlier values into result.",
+"The forward pass updates prefix after storing the current prefix product.",
+"The backward pass multiplies each position by the product of all later values.",
+"Combining the two sides gives every product without division."
+],
+"commonMistakes": [
+"Updating result after multiplying prefix by the current value.",
+"Using division, which fails when the array contains zero."
+]
+},
+"tags": [
+"arrays",
+"prefix-product"
+]
+},
+{
+"id": "cpp-hard-075",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Merge Overlapping Intervals",
+"prompt": "Merge all overlapping numeric intervals and return a list containing the resulting non-overlapping intervals.",
+"approach": {
+"steps": [
+"Sort intervals by their starting value.",
+"Use the first interval as the current merged interval.",
+"Extend it whenever the next interval overlaps.",
+"Start a new interval when there is a gap."
+],
+"example": "For [[1,3],[2,6],[8,10],[9,12]], the first two merge into [1,6] and the last two merge into [8,12]."
+},
+"code": "vector<vector<int>> mergeIntervals(vector<vector<int>>& intervals) {\n  if (intervals.empty()) {\n    return {};\n  }\n  sort(intervals.begin(), intervals.end());\n  vector<vector<int>> merged;\n  merged.push_back(intervals[0]);\n  for (int i = 1; i < intervals.size(); ++i) {\n    vector<int>& current = merged.back();\n    if (intervals[i][0] <= current[1]) {\n      current[1] = max(current[1], intervals[i][1]);\n    } else {\n      merged.push_back(intervals[i]);\n    }\n  }\n  return merged;\n}",
+"timeTargetSec": 145,
+"complexity": {
+"time": "O(n log n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"mergeIntervals sorts intervals so possible overlaps appear next to one another.",
+"The first interval initializes merged.",
+"For each next interval, its start is compared with the end of the current merged interval.",
+"Overlapping intervals extend the current end; otherwise a new interval is appended."
+],
+"commonMistakes": [
+"Checking overlap before sorting the intervals.",
+"Replacing the current end instead of taking the larger ending value."
+]
+},
+"tags": [
+"intervals",
+"sorting"
+]
+},
+{
+"id": "cpp-hard-076",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Three Sum Zero",
+"prompt": "Return unique triples of values whose sum is zero.",
+"approach": {
+"steps": [
+"Sort the values so duplicates and ordering can be handled consistently.",
+"Fix one value and search the remaining section with two pointers.",
+"Move pointers according to whether the current sum is too small or too large.",
+"Skip repeated values after recording a valid triple."
+],
+"example": "For [-1,0,1,2,-1,-4], sorting gives [-4,-1,-1,0,1,2], producing the unique triples [-1,-1,2] and [-1,0,1]."
+},
+"code": "vector<vector<int>> threeSumZero(vector<int>& values) {\n  vector<vector<int>> result;\n  sort(values.begin(), values.end());\n  for (int i = 0; i < values.size() - 2; ++i) {\n    if (i > 0 && values[i] == values[i - 1]) continue;\n    int left = i + 1, right = values.size() - 1;\n    while (left < right) {\n      int sum = values[i] + values[left] + values[right];\n      if (sum == 0) {\n        result.push_back({values[i], values[left], values[right]});\n        while (left < right && values[left] == values[left + 1]) ++left;\n        while (left < right && values[right] == values[right - 1]) --right;\n        ++left;\n        --right;\n      } else if (sum < 0) {\n        ++left;\n      } else {\n        --right;\n      }\n    }\n  }\n  return result;\n}",
+"timeTargetSec": 160,
+"complexity": {
+"time": "O(n^2)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"threeSumZero sorts values so pointer movement directly reflects the sum.",
+"The outer loop fixes one value while left and right search the remaining range.",
+"A sum below zero moves left forward, while a sum above zero moves right backward.",
+"Duplicate values are skipped so the result contains each valid triple only once."
+],
+"commonMistakes": [
+"Failing to skip duplicate fixed values and producing repeated triples.",
+"Moving both pointers incorrectly after finding a valid triple."
+]
+},
+"tags": [
+"arrays",
+"two-pointers",
+"sorting"
+]
+},
+{
+"id": "cpp-hard-077",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Longest Unique Substring",
+"prompt": "Find the length of the longest substring containing no repeated characters.",
+"approach": {
+"steps": [
+"Maintain a sliding window with left and right boundaries.",
+"Store the most recent position of each character.",
+"Move the left boundary past a repeated character when necessary.",
+"Update the longest window length after each character."
+],
+"example": "For 'abcabcbb', the window grows to 'abc' with length 3, then shifts when 'a' repeats, so the longest length remains 3."
+},
+"code": "int longestUniqueSubstring(string text) {\n  vector<int> lastSeen(256, -1);\n  int left = 0;\n  int longest = 0;\n  for (int right = 0; right < text.size(); ++right) {\n    unsigned char current = text[right];\n    if (lastSeen[current] >= left) {\n      left = lastSeen[current] + 1;\n    }\n    lastSeen[current] = right;\n    longest = max(longest, right - left + 1);\n  }\n  return longest;\n}",
+"timeTargetSec": 145,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"longestUniqueSubstring uses lastSeen to remember where each character most recently appeared.",
+"right expands the current window one character at a time.",
+"When a repeated character is still inside the window, left jumps beyond its previous position.",
+"longest records the largest duplicate-free window encountered."
+],
+"commonMistakes": [
+"Moving left backward when a repeated character was last seen before the current window.",
+"Resetting the whole window instead of moving only the left boundary."
+]
+},
+"tags": [
+"strings",
+"sliding-window",
+"hashing"
+]
+},
+{
+"id": "cpp-hard-078",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Validate Bracket Sequence",
+"prompt": "Determine whether a string containing brackets is correctly balanced and properly nested.",
+"approach": {
+"steps": [
+"Create a stack for opening brackets.",
+"Push every opening bracket as it appears.",
+"For a closing bracket, verify it matches the stack top.",
+"Return true only when every bracket is matched and the stack is empty."
+],
+"example": "For '([{}])', each closing bracket matches the latest opening bracket, leaving an empty stack and producing true."
+},
+"code": "bool isValidBrackets(string text) {\n  stack<char> brackets;\n  for (char current : text) {\n    if (current == '(' || current == '[' || current == '{') {\n      brackets.push(current);\n    } else {\n      if (brackets.empty()) return false;\n      char opening = brackets.top();\n      if ((current == ')' && opening != '(') ||\n          (current == ']' && opening != '[') ||\n          (current == '}' && opening != '{')) {\n        return false;\n      }\n      brackets.pop();\n    }\n  }\n  return brackets.empty();\n}",
+"timeTargetSec": 135,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"isValidBrackets pushes every opening bracket because the most recent one must close first.",
+"A closing bracket requires a nonempty stack.",
+"The stack top is compared with the correct opening type before it is removed.",
+"An empty stack at the end confirms that every opening bracket was matched."
+],
+"commonMistakes": [
+"Popping the stack before checking whether the bracket types match.",
+"Returning true after processing the string without checking for unmatched opening brackets."
+]
+},
+"tags": [
+"strings",
+"stack"
+]
+},
+{
+"id": "cpp-hard-079",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Binary Matrix Search",
+"prompt": "Search for a target in a matrix where every row is sorted and each row's first value is greater than the previous row's last value.",
+"approach": {
+"steps": [
+"Treat the matrix as one sorted sequence.",
+"Use binary search over virtual positions.",
+"Convert each virtual position into a row and column.",
+"Compare the mapped value with the target and narrow the range."
+],
+"example": "For [[1,3,5],[7,9,11],[13,15,17]], searching for 9 maps the middle position to row 1 and column 1, finding the target."
+},
+"code": "bool searchMatrix(vector<vector<int>>& matrix, int target) {\n  if (matrix.empty() || matrix[0].empty()) {\n    return false;\n  }\n  int rows = matrix.size();\n  int cols = matrix[0].size();\n  int left = 0;\n  int right = rows * cols - 1;\n  while (left <= right) {\n    int middle = left + (right - left) / 2;\n    int row = middle / cols;\n    int col = middle % cols;\n    if (matrix[row][col] == target) return true;\n    if (matrix[row][col] < target) left = middle + 1;\n    else right = middle - 1;\n  }\n  return false;\n}",
+"timeTargetSec": 140,
+"complexity": {
+"time": "O(log(r * c))",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"searchMatrix treats all matrix cells as one ordered sequence.",
+"middle is converted into row and col using division and remainder.",
+"The mapped value determines which half can be discarded.",
+"The search ends when the target is found or the valid range becomes empty."
+],
+"commonMistakes": [
+"Using matrix.size() as though it were the total number of cells.",
+"Using the number of rows instead of the number of columns when converting middle to a row and column."
+]
+},
+"tags": [
+"matrix",
+"binary-search"
+]
+},
+{
+"id": "cpp-hard-080",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Generate Pascal Rows",
+"prompt": "Generate the first n rows of Pascal's triangle, where each inner value is the sum of the two values directly above it.",
+"approach": {
+"steps": [
+"Create one row at a time with the correct length.",
+"Place one at both ends of every row.",
+"Calculate each inner value from the previous row.",
+"Append each completed row to the triangle."
+],
+"example": "For n = 4, the rows begin [1], then [1,1], then [1,2,1], and finally [1,3,3,1]."
+},
+"code": "vector<vector<int>> generatePascal(int rows) {\n  vector<vector<int>> triangle;\n  for (int rowIndex = 0; rowIndex < rows; ++rowIndex) {\n    vector<int> current(rowIndex + 1, 1);\n    if (rowIndex > 1) {\n      for (int col = 1; col < rowIndex; ++col) {\n        current[col] = triangle[rowIndex - 1][col - 1] +\n                       triangle[rowIndex - 1][col];\n      }\n    }\n    triangle.push_back(current);\n  }\n  return triangle;\n}",
+"timeTargetSec": 130,
+"complexity": {
+"time": "O(n^2)",
+"space": "O(n^2)"
+},
+"review": {
+"walkthroughSteps": [
+"generatePascal creates each row with rowIndex plus one positions initialized to one.",
+"The first and last values remain one for every row.",
+"Inner positions are calculated from the two neighboring values in the previous row.",
+"Each completed current row is stored so later rows can use it."
+],
+"commonMistakes": [
+"Accessing triangle[rowIndex - 1] when generating the first row.",
+"Changing the edge values that should remain one."
+]
+},
+"tags": [
+"matrix",
+"arrays",
+"dynamic-programming"
+]
+},
+
+{
+  "id": "cpp-hard-081",
+  "language": "cpp",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Find Longest Increasing Subsequence",
+  "prompt": "Find the length of the longest strictly increasing subsequence in an array of integers.",
+  "approach": {
+    "steps": [
+      "Create a dp array where each position stores the best subsequence ending there.",
+      "Initialize every dp value to one.",
+      "Compare each element with earlier elements and extend valid increasing subsequences.",
+      "Return the largest value in the dp array."
+    ],
+    "example": "For [10, 9, 2, 5, 3, 7, 101, 18], the longest increasing subsequence has length 4, such as [2, 5, 7, 101]."
+  },
+  "code": "int longestIncreasingSubsequence(vector<int> nums) {\n  int n = nums.size();\n  vector<int> dp(n, 1);\n  int best = 0;\n  for (int i = 0; i < n; ++i) {\n    for (int j = 0; j < i; ++j) {\n      if (nums[j] < nums[i]) {\n        dp[i] = max(dp[i], dp[j] + 1);\n      }\n    }\n    best = max(best, dp[i]);\n  }\n  return best;\n}",
+  "timeTargetSec": 130,
+  "complexity": {
+    "time": "O(n^2)",
+    "space": "O(n)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "longestIncreasingSubsequence creates dp values initialized to one.",
+      "Each earlier smaller value can extend the subsequence ending at the current position.",
+      "The best subsequence length is updated while processing each element.",
+      "The largest dp value represents the final answer."
+    ],
+    "commonMistakes": [
+      "Allowing equal values in a strictly increasing subsequence.",
+      "Forgetting that every individual element forms a subsequence of length one."
+    ]
+  },
+  "tags": [
+    "dynamic-programming",
+    "arrays",
+    "subsequence"
+  ]
+},
+{
+  "id": "cpp-hard-082",
+  "language": "cpp",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Find Maximum Subarray Product",
+  "prompt": "Find the maximum product that can be obtained from a contiguous subarray of integers.",
+  "approach": {
+    "steps": [
+      "Track both the maximum and minimum product ending at each position.",
+      "Use the current value with both previous products.",
+      "Swap the maximum and minimum when the current value is negative.",
+      "Keep the largest maximum product found."
+    ],
+    "example": "For [2, 3, -2, 4], the maximum product is 6 from the subarray [2, 3]."
+  },
+  "code": "int maxProductSubarray(vector<int> nums) {\n  int currentMax = nums[0];\n  int currentMin = nums[0];\n  int answer = nums[0];\n  for (int i = 1; i < nums.size(); ++i) {\n    if (nums[i] < 0) swap(currentMax, currentMin);\n    currentMax = max(nums[i], currentMax * nums[i]);\n    currentMin = min(nums[i], currentMin * nums[i]);\n    answer = max(answer, currentMax);\n  }\n  return answer;\n}",
+  "timeTargetSec": 125,
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "The algorithm keeps the largest and smallest products ending at the current position.",
+      "A negative value can turn the smallest product into the largest product.",
+      "Each current product either starts a new subarray or extends the previous one.",
+      "The largest current maximum becomes the answer."
+    ],
+    "commonMistakes": [
+      "Tracking only the maximum product.",
+      "Ignoring how a negative value changes the maximum and minimum."
+    ]
+  },
+  "tags": [
+    "arrays",
+    "dynamic-programming",
+    "subarray"
+  ]
+},
+{
+  "id": "cpp-hard-083",
+  "language": "cpp",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Find Coin Change Minimum",
+  "prompt": "Find the minimum number of coins needed to make a target amount using unlimited copies of the given coin values.",
+  "approach": {
+    "steps": [
+      "Create a dp array indexed by the amount.",
+      "Initialize unreachable amounts with a value larger than any possible answer.",
+      "For each amount, try every available coin.",
+      "Return the computed value for the target or -1 if it remains unreachable."
+    ],
+    "example": "For coins [1, 2, 5] and amount 11, the minimum is 3 coins using 5, 5, and 1."
+  },
+  "code": "int coinChange(vector<int> coins, int amount) {\n  vector<int> dp(amount + 1, amount + 1);\n  dp[0] = 0;\n  for (int current = 1; current <= amount; ++current) {\n    for (int coin : coins) {\n      if (coin <= current) {\n        dp[current] = min(dp[current], dp[current - coin] + 1);\n      }\n    }\n  }\n  return dp[amount] > amount ? -1 : dp[amount];\n}",
+  "timeTargetSec": 130,
+  "complexity": {
+    "time": "O(amount * n)",
+    "space": "O(amount)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "coinChange stores the minimum coins required for every amount up to the target.",
+      "Each coin is considered when it can contribute to the current amount.",
+      "The best previous amount is extended by one coin.",
+      "An unreachable target is converted to -1."
+    ],
+    "commonMistakes": [
+      "Forgetting to initialize dp[0] as zero.",
+      "Treating an unreachable intermediate amount as a valid solution."
+    ]
+  },
+  "tags": [
+    "dynamic-programming",
+    "arrays",
+    "optimization"
+  ]
+},
+{
+  "id": "cpp-hard-084",
+  "language": "cpp",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Find Unique Paths",
+  "prompt": "Count the number of different paths from the top-left to the bottom-right of a grid when movement is allowed only right or down.",
+  "approach": {
+    "steps": [
+      "Create a dp table representing the number of ways to reach each cell.",
+      "Initialize the first row and first column with one path.",
+      "Calculate every remaining cell from its top and left neighbors.",
+      "Return the value at the bottom-right cell."
+    ],
+    "example": "For a 3 by 3 grid, there are 6 unique paths from the top-left cell to the bottom-right cell."
+  },
+  "code": "int uniquePaths(int rows, int cols) {\n  vector<vector<int>> dp(rows, vector<int>(cols, 1));\n  for (int r = 1; r < rows; ++r) {\n    for (int c = 1; c < cols; ++c) {\n      dp[r][c] = dp[r - 1][c] + dp[r][c - 1];\n    }\n  }\n  return dp[rows - 1][cols - 1];\n}",
+  "timeTargetSec": 120,
+  "complexity": {
+    "time": "O(rows * cols)",
+    "space": "O(rows * cols)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "uniquePaths creates a table initialized to one because border cells have only one possible direction.",
+      "Every inner cell can be reached from above or from the left.",
+      "The two path counts are added for each cell.",
+      "The final cell contains the total number of paths."
+    ],
+    "commonMistakes": [
+      "Using diagonal movement even though it is not allowed.",
+      "Forgetting to initialize the first row and column."
+    ]
+  },
+  "tags": [
+    "dynamic-programming",
+    "matrix",
+    "paths"
+  ]
+},
+{
+  "id": "cpp-hard-085",
+  "language": "cpp",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Find Longest Common Subsequence",
+  "prompt": "Find the length of the longest subsequence that appears in the same order in two strings.",
+  "approach": {
+    "steps": [
+      "Create a dp table for prefixes of both strings.",
+      "Match equal characters by extending the diagonal result.",
+      "For different characters, keep the better result from the top or left cell.",
+      "Return the value for the complete pair of strings."
+    ],
+    "example": "For 'abcde' and 'ace', the longest common subsequence is 'ace', so the answer is 3."
+  },
+  "code": "int longestCommonSubsequence(string a, string b) {\n  int n = a.size(), m = b.size();\n  vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));\n  for (int i = 1; i <= n; ++i) {\n    for (int j = 1; j <= m; ++j) {\n      if (a[i - 1] == b[j - 1])\n        dp[i][j] = dp[i - 1][j - 1] + 1;\n      else\n        dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);\n    }\n  }\n  return dp[n][m];\n}",
+  "timeTargetSec": 135,
+  "complexity": {
+    "time": "O(n * m)",
+    "space": "O(n * m)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "The table stores the best subsequence length for every pair of prefixes.",
+      "Matching characters extend the result from the diagonal cell.",
+      "Nonmatching characters discard one character and keep the better option.",
+      "The final table cell gives the complete answer."
+    ],
+    "commonMistakes": [
+      "Treating a subsequence like a substring.",
+      "Comparing the wrong character indexes after using one-based dp indexes."
+    ]
+  },
+  "tags": [
+    "strings",
+    "dynamic-programming",
+    "subsequence"
+  ]
+},
+{
+  "id": "cpp-hard-086",
+  "language": "cpp",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Find Edit Distance",
+  "prompt": "Find the minimum number of insertions, deletions, and replacements needed to transform one string into another.",
+  "approach": {
+    "steps": [
+      "Create a dp table for prefixes of both strings.",
+      "Initialize the first row and column with insertion and deletion counts.",
+      "Keep the diagonal value when characters match.",
+      "Otherwise choose the cheapest insertion, deletion, or replacement."
+    ],
+    "example": "For 'horse' and 'ros', the minimum edit distance is 3."
+  },
+  "code": "int editDistance(string a, string b) {\n  int n = a.size(), m = b.size();\n  vector<vector<int>> dp(n + 1, vector<int>(m + 1));\n  for (int i = 0; i <= n; ++i) dp[i][0] = i;\n  for (int j = 0; j <= m; ++j) dp[0][j] = j;\n  for (int i = 1; i <= n; ++i) {\n    for (int j = 1; j <= m; ++j) {\n      if (a[i - 1] == b[j - 1]) dp[i][j] = dp[i - 1][j - 1];\n      else dp[i][j] = 1 + min({dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]});\n    }\n  }\n  return dp[n][m];\n}",
+  "timeTargetSec": 140,
+  "complexity": {
+    "time": "O(n * m)",
+    "space": "O(n * m)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "editDistance stores the minimum operations for every pair of string prefixes.",
+      "The first row and column represent transforming an empty string.",
+      "Matching characters require no additional operation.",
+      "Different characters choose the cheapest of three possible operations."
+    ],
+    "commonMistakes": [
+      "Forgetting the base cases for empty prefixes.",
+      "Using only replacement when insertion and deletion may be cheaper."
+    ]
+  },
+  "tags": [
+    "strings",
+    "dynamic-programming",
+    "optimization"
+  ]
+},
+{
+  "id": "cpp-hard-087",
+  "language": "cpp",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Detect Cycle In Linked List",
+  "prompt": "Determine whether a singly linked list contains a cycle using constant extra space.",
+  "approach": {
+    "steps": [
+      "Use a slow pointer moving one node at a time.",
+      "Use a fast pointer moving two nodes at a time.",
+      "Move both pointers until the fast pointer reaches the end or they meet.",
+      "Return true when the two pointers meet."
+    ],
+    "example": "For a list whose last node points back to the second node, the slow and fast pointers eventually meet, confirming a cycle."
+  },
+  "code": "bool hasCycle(ListNode* head) {\n  ListNode* slow = head;\n  ListNode* fast = head;\n  while (fast != nullptr && fast->next != nullptr) {\n    slow = slow->next;\n    fast = fast->next->next;\n    if (slow == fast) return true;\n  }\n  return false;\n}",
+  "timeTargetSec": 125,
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "hasCycle starts both pointers at the head.",
+      "The fast pointer moves twice as quickly as the slow pointer.",
+      "A cycle causes the faster pointer to eventually catch the slower pointer.",
+      "Reaching null proves that the list has no cycle."
+    ],
+    "commonMistakes": [
+      "Dereferencing fast->next before checking whether it is null.",
+      "Comparing node values instead of node addresses."
+    ]
+  },
+  "tags": [
+    "linked-list",
+    "two-pointers",
+    "cycle-detection"
+  ]
+},
+{
+  "id": "cpp-hard-088",
+  "language": "cpp",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Find Cycle Start",
+  "prompt": "Find the node where a cycle begins in a singly linked list using constant extra space.",
+  "approach": {
+    "steps": [
+      "Use slow and fast pointers to detect whether a cycle exists.",
+      "Stop when both pointers meet inside the cycle.",
+      "Move one pointer back to the head.",
+      "Move both pointers one step at a time until they meet again."
+    ],
+    "example": "For a list where the tail points to the third node, the second pointer phase meets at that third node, which is the cycle start."
+  },
+  "code": "ListNode* cycleStart(ListNode* head) {\n  ListNode* slow = head;\n  ListNode* fast = head;\n  while (fast && fast->next) {\n    slow = slow->next;\n    fast = fast->next->next;\n    if (slow == fast) break;\n  }\n  if (!fast || !fast->next) return nullptr;\n  slow = head;\n  while (slow != fast) {\n    slow = slow->next;\n    fast = fast->next;\n  }\n  return slow;\n}",
+  "timeTargetSec": 135,
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "The first phase determines whether the pointers can meet inside a cycle.",
+      "If no meeting occurs before null, there is no cycle.",
+      "After a meeting, one pointer returns to the head.",
+      "Equal one-step movement makes their next meeting the cycle entry."
+    ],
+    "commonMistakes": [
+      "Returning the first meeting point as the cycle start.",
+      "Skipping the null check after the detection phase."
+    ]
+  },
+  "tags": [
+    "linked-list",
+    "two-pointers",
+    "cycle-detection"
+  ]
+},
+{
+  "id": "cpp-hard-089",
+  "language": "cpp",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Merge K Sorted Lists",
+  "prompt": "Merge multiple sorted linked lists into one sorted linked list.",
+  "approach": {
+    "steps": [
+      "Place the first node of every nonempty list into a min-heap.",
+      "Remove the smallest node from the heap.",
+      "Append it to the result and insert its next node.",
+      "Continue until the heap becomes empty."
+    ],
+    "example": "For lists [1,4], [2,5], and [3,6], the merged list becomes [1,2,3,4,5,6]."
+  },
+  "code": "ListNode* mergeKLists(vector<ListNode*>& lists) {\n  priority_queue<ListNode*, vector<ListNode*>, Compare> pq;\n  for (ListNode* node : lists) if (node) pq.push(node);\n  ListNode dummy(0);\n  ListNode* tail = &dummy;\n  while (!pq.empty()) {\n    ListNode* node = pq.top();\n    pq.pop();\n    tail->next = node;\n    tail = node;\n    if (node->next) pq.push(node->next);\n  }\n  return dummy.next;\n}",
+  "timeTargetSec": 145,
+  "complexity": {
+    "time": "O(n log k)",
+    "space": "O(k)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "mergeKLists keeps one candidate node from each list in the heap.",
+      "The heap always exposes the smallest available node.",
+      "After removing a node, its successor becomes the next candidate.",
+      "The linked nodes are connected directly to form the merged list."
+    ],
+    "commonMistakes": [
+      "Adding every node to the heap instead of only current candidates.",
+      "Forgetting to insert the removed node's next node."
+    ]
+  },
+  "tags": [
+    "linked-list",
+    "heap",
+    "sorting"
+  ]
+},
+{
+  "id": "cpp-hard-090",
+  "language": "cpp",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Find Top K Frequent Elements",
+  "prompt": "Return the k values that occur most frequently in an integer array.",
+  "approach": {
+    "steps": [
+      "Count the frequency of every value.",
+      "Store values in buckets indexed by frequency.",
+      "Process buckets from the highest frequency downward.",
+      "Collect values until k elements have been selected."
+    ],
+    "example": "For [1,1,1,2,2,3] and k = 2, the two most frequent values are 1 and 2."
+  },
+  "code": "vector<int> topKFrequent(vector<int> nums, int k) {\n  unordered_map<int, int> freq;\n  for (int value : nums) ++freq[value];\n  vector<vector<int>> buckets(nums.size() + 1);\n  for (auto& [value, count] : freq) buckets[count].push_back(value);\n  vector<int> result;\n  for (int count = nums.size(); count >= 1 && result.size() < k; --count) {\n    for (int value : buckets[count]) {\n      result.push_back(value);\n      if (result.size() == k) break;\n    }\n  }\n  return result;\n}",
+  "timeTargetSec": 140,
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "topKFrequent counts each distinct value with a hash map.",
+      "Each value is placed into a bucket matching its frequency.",
+      "Buckets are scanned from the highest frequency downward.",
+      "The process stops as soon as k values are collected."
+    ],
+    "commonMistakes": [
+      "Sorting the entire array when frequency buckets can avoid it.",
+      "Continuing to collect values after reaching k."
+    ]
+  },
+  "tags": [
+    "hash-map",
+    "arrays",
+    "frequency"
+  ]
+},
+{
+  "id": "cpp-hard-091",
+  "language": "cpp",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Find Number Of Islands",
+  "prompt": "Count the number of connected groups of land cells in a two-dimensional grid.",
+  "approach": {
+    "steps": [
+      "Scan every cell in the grid.",
+      "When an unvisited land cell is found, count a new island.",
+      "Run depth-first search to visit all connected land cells.",
+      "Continue scanning until every cell has been processed."
+    ],
+    "example": "For a grid containing two separate connected groups of '1' cells, the island count is 2."
+  },
+  "code": "void dfs(vector<vector<char>>& grid, int r, int c) {\n  if (r < 0 || c < 0 || r >= grid.size() || c >= grid[0].size() || grid[r][c] != '1') return;\n  grid[r][c] = '0';\n  dfs(grid, r + 1, c);\n  dfs(grid, r - 1, c);\n  dfs(grid, r, c + 1);\n  dfs(grid, r, c - 1);\n}\nint numIslands(vector<vector<char>>& grid) {\n  int count = 0;\n  for (int r = 0; r < grid.size(); ++r)\n    for (int c = 0; c < grid[0].size(); ++c)\n      if (grid[r][c] == '1') {\n        ++count;\n        dfs(grid, r, c);\n      }\n  return count;\n}",
+  "timeTargetSec": 140,
+  "complexity": {
+    "time": "O(rows * cols)",
+    "space": "O(rows * cols)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "numIslands scans every grid position looking for unvisited land.",
+      "Each new land component creates exactly one island count.",
+      "dfs marks connected land as visited.",
+      "Every cell is visited at most once during the complete process."
+    ],
+    "commonMistakes": [
+      "Forgetting to mark visited cells.",
+      "Checking diagonal cells when only four directions are connected."
+    ]
+  },
+  "tags": [
+    "matrix",
+    "dfs",
+    "graph"
+  ]
+},
+{
+  "id": "cpp-hard-092",
+  "language": "cpp",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Clone Graph",
+  "prompt": "Create a deep copy of an undirected graph while preserving every node and edge.",
+  "approach": {
+    "steps": [
+      "Use a hash map from original nodes to cloned nodes.",
+      "Return an existing clone when a node has already been copied.",
+      "Create and store a clone before visiting its neighbors.",
+      "Recursively clone every neighbor and connect it to the current clone."
+    ],
+    "example": "For a graph where node 1 connects to nodes 2 and 3, the clone contains separate copies of 1, 2, and 3 with the same connections."
+  },
+  "code": "Node* cloneGraph(Node* node) {\n  if (!node) return nullptr;\n  unordered_map<Node*, Node*> copied;\n  function<Node*(Node*)> clone = [&](Node* current) {\n    if (copied.count(current)) return copied[current];\n    Node* copy = new Node(current->val);\n    copied[current] = copy;\n    for (Node* neighbor : current->neighbors)\n      copy->neighbors.push_back(clone(neighbor));\n    return copy;\n  };\n  return clone(node);\n}",
+  "timeTargetSec": 145,
+  "complexity": {
+    "time": "O(V + E)",
+    "space": "O(V)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "cloneGraph keeps a mapping between each original node and its clone.",
+      "A clone is stored before its neighbors are processed to handle cycles.",
+      "Every neighbor is recursively cloned and attached.",
+      "The returned node starts the completely independent graph."
+    ],
+    "commonMistakes": [
+      "Creating multiple clones of the same original node.",
+      "Storing the clone only after recursively processing neighbors."
+    ]
+  },
+  "tags": [
+    "graph",
+    "dfs",
+    "hash-map"
+  ]
+},
+{
+  "id": "cpp-hard-093",
+  "language": "cpp",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Course Schedule Ordering",
+  "prompt": "Return an ordering of courses that satisfies all prerequisite relationships, or return an empty result when the prerequisites form a cycle.",
+  "approach": {
+    "steps": [
+      "Build an adjacency list and indegree count for every course.",
+      "Add all courses with zero indegree to a queue.",
+      "Remove courses from the queue and reduce the indegree of their neighbors.",
+      "Return the ordering only if every course was processed."
+    ],
+    "example": "For courses 2 and 1 with prerequisite [1,0], a valid ordering is [0,1,2] because each prerequisite appears first."
+  },
+  "code": "vector<int> courseOrder(int n, vector<vector<int>> prerequisites) {\n  vector<vector<int>> graph(n);\n  vector<int> indegree(n, 0);\n  for (auto& pair : prerequisites) {\n    graph[pair[1]].push_back(pair[0]);\n    ++indegree[pair[0]];\n  }\n  queue<int> q;\n  for (int i = 0; i < n; ++i)\n    if (indegree[i] == 0) q.push(i);\n  vector<int> order;\n  while (!q.empty()) {\n    int course = q.front();\n    q.pop();\n    order.push_back(course);\n    for (int next : graph[course])\n      if (--indegree[next] == 0) q.push(next);\n  }\n  return order.size() == n ? order : vector<int>{};\n}",
+  "timeTargetSec": 145,
+  "complexity": {
+    "time": "O(V + E)",
+    "space": "O(V + E)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "courseOrder builds directed edges from prerequisites to dependent courses.",
+      "Indegree identifies courses whose prerequisites are already satisfied.",
+      "Processing a course reduces the remaining prerequisite count of its neighbors.",
+      "Processing fewer than n courses proves that a cycle exists."
+    ],
+    "commonMistakes": [
+      "Reversing the prerequisite edge direction.",
+      "Returning a partial ordering when a cycle prevents completion."
+    ]
+  },
+  "tags": [
+    "graph",
+    "topological-sort",
+    "queue"
+  ]
+},
+{
+  "id": "cpp-hard-094",
+  "language": "cpp",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Find Shortest Grid Path",
+  "prompt": "Find the shortest number of moves from the top-left to the bottom-right of a grid where blocked cells cannot be entered.",
+  "approach": {
+    "steps": [
+      "Use breadth-first search starting from the top-left cell.",
+      "Store the distance reached for each cell.",
+      "Visit each valid neighboring cell once.",
+      "Return the distance when the destination is reached or -1 when unreachable."
+    ],
+    "example": "For an open 3 by 3 grid, the shortest path from the top-left to the bottom-right uses 4 moves."
+  },
+  "code": "int shortestPath(vector<vector<int>>& grid) {\n  int rows = grid.size(), cols = grid[0].size();\n  if (grid[0][0] == 1 || grid[rows - 1][cols - 1] == 1) return -1;\n  queue<pair<int, int>> q;\n  vector<vector<int>> dist(rows, vector<int>(cols, -1));\n  q.push({0, 0});\n  dist[0][0] = 0;\n  int dr[] = {1, -1, 0, 0};\n  int dc[] = {0, 0, 1, -1};\n  while (!q.empty()) {\n    auto [r, c] = q.front(); q.pop();\n    for (int d = 0; d < 4; ++d) {\n      int nr = r + dr[d], nc = c + dc[d];\n      if (nr >= 0 && nc >= 0 && nr < rows && nc < cols &&\n          grid[nr][nc] == 0 && dist[nr][nc] == -1) {\n        dist[nr][nc] = dist[r][c] + 1;\n        q.push({nr, nc});\n      }\n    }\n  }\n  return dist[rows - 1][cols - 1];\n}",
+  "timeTargetSec": 140,
+  "complexity": {
+    "time": "O(rows * cols)",
+    "space": "O(rows * cols)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "shortestPath starts breadth-first search from the source cell.",
+      "The first visit to a cell gives its shortest distance.",
+      "Only open and unvisited neighboring cells enter the queue.",
+      "The destination distance remains -1 when no path exists."
+    ],
+    "commonMistakes": [
+      "Using depth-first search when shortest unweighted paths are required.",
+      "Visiting blocked cells or revisiting already processed cells."
+    ]
+  },
+  "tags": [
+    "graph",
+    "bfs",
+    "matrix"
+  ]
+},
+{
+  "id": "cpp-hard-095",
+  "language": "cpp",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Find Minimum Meeting Rooms",
+  "prompt": "Find the minimum number of rooms required to hold all meetings without overlapping meetings sharing a room.",
+  "approach": {
+    "steps": [
+      "Separate meeting start and end times.",
+      "Sort both time arrays.",
+      "Process starts and ends in chronological order.",
+      "Increase rooms for a new overlap and release a room when a meeting ends."
+    ],
+    "example": "For meetings [0,30], [5,10], and [15,20], two rooms are required because the first meeting overlaps each smaller meeting."
+  },
+  "code": "int minMeetingRooms(vector<vector<int>> intervals) {\n  vector<int> starts, ends;\n  for (auto& meeting : intervals) {\n    starts.push_back(meeting[0]);\n    ends.push_back(meeting[1]);\n  }\n  sort(starts.begin(), starts.end());\n  sort(ends.begin(), ends.end());\n  int rooms = 0, endIndex = 0;\n  for (int start : starts) {\n    if (start < ends[endIndex]) ++rooms;\n    else ++endIndex;\n  }\n  return rooms;\n}",
+  "timeTargetSec": 135,
+  "complexity": {
+    "time": "O(n log n)",
+    "space": "O(n)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "minMeetingRooms stores all starting and ending times separately.",
+      "Sorted times make the next scheduling event easy to identify.",
+      "A start before the earliest active end requires another room.",
+      "Otherwise an existing room becomes available."
+    ],
+    "commonMistakes": [
+      "Comparing unsorted meeting intervals directly.",
+      "Treating a meeting ending at the same time as the next start as an overlap."
+    ]
+  },
+  "tags": [
+    "intervals",
+    "sorting",
+    "greedy"
+  ]
+},
+{
+  "id": "cpp-hard-096",
+  "language": "cpp",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Find Maximum Stock Profit",
+  "prompt": "Find the maximum profit from buying and selling a stock multiple times when only one stock can be held at a time.",
+  "approach": {
+    "steps": [
+      "Scan the prices from left to right.",
+      "Compare each price with the previous price.",
+      "Add every positive increase to the total profit.",
+      "Ignore decreases because they cannot improve the result."
+    ],
+    "example": "For prices [7,1,5,3,6,4], the maximum profit is 7 from gains of 4 and 3."
+  },
+  "code": "int maxProfit(vector<int> prices) {\n  int profit = 0;\n  for (int i = 1; i < prices.size(); ++i) {\n    if (prices[i] > prices[i - 1])\n      profit += prices[i] - prices[i - 1];\n  }\n  return profit;\n}",
+  "timeTargetSec": 120,
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "maxProfit examines each consecutive price change.",
+      "Every positive change can be treated as a profitable transaction segment.",
+      "Adding all positive changes captures every available upward movement.",
+      "The total becomes the maximum achievable profit."
+    ],
+    "commonMistakes": [
+      "Ignoring profitable increases between two larger transactions.",
+      "Trying to hold more than one stock at a time."
+    ]
+  },
+  "tags": [
+    "arrays",
+    "greedy",
+    "stock"
+  ]
+},
+{
+  "id": "cpp-hard-097",
+  "language": "cpp",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Find Largest Rectangle Histogram",
+  "prompt": "Find the largest rectangular area that can be formed under a histogram.",
+  "approach": {
+    "steps": [
+      "Use a stack of indexes whose heights are increasing.",
+      "When a shorter bar appears, calculate areas for bars that must end.",
+      "Use the current index as the right boundary for each removed bar.",
+      "Process remaining stack entries after the scan."
+    ],
+    "example": "For heights [2,1,5,6,2,3], the largest rectangle has area 10 using the bars with heights 5 and 6."
+  },
+  "code": "int largestRectangleArea(vector<int> heights) {\n  stack<int> st;\n  heights.push_back(0);\n  int best = 0;\n  for (int i = 0; i < heights.size(); ++i) {\n    while (!st.empty() && heights[st.top()] > heights[i]) {\n      int height = heights[st.top()];\n      st.pop();\n      int left = st.empty() ? -1 : st.top();\n      best = max(best, height * (i - left - 1));\n    }\n    st.push(i);\n  }\n  return best;\n}",
+  "timeTargetSec": 150,
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "largestRectangleArea keeps indexes of bars in increasing height order.",
+      "A shorter bar reveals the right boundary for taller bars in the stack.",
+      "The previous stack index provides the left boundary.",
+      "A zero-height sentinel forces all remaining bars to be processed."
+    ],
+    "commonMistakes": [
+      "Using the stack values instead of their indexes.",
+      "Forgetting to process the bars remaining after the main loop."
+    ]
+  },
+  "tags": [
+    "stack",
+    "arrays",
+    "monotonic-stack"
+  ]
+},
+{
+  "id": "cpp-hard-098",
+  "language": "cpp",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Serialize Binary Tree",
+  "prompt": "Convert a binary tree into a string representation that can later be used to reconstruct the same tree.",
+  "approach": {
+    "steps": [
+      "Traverse the tree recursively.",
+      "Store a marker for every null child.",
+      "Store each node value in traversal order.",
+      "Separate values so the resulting string can be parsed reliably."
+    ],
+    "example": "For a tree with root 1 and children 2 and 3, serialization records the node values together with null markers for missing children."
+  },
+  "code": "string serialize(TreeNode* root) {\n  if (!root) return \"#\";\n  return to_string(root->val) + \",\" + serialize(root->left) + \",\" + serialize(root->right);\n}",
+  "timeTargetSec": 135,
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "serialize visits every node exactly once.",
+      "Null markers preserve the structure of missing children.",
+      "Node values are written in preorder.",
+      "The resulting sequence contains enough information for reconstruction."
+    ],
+    "commonMistakes": [
+      "Skipping null markers and losing tree structure.",
+      "Using separators that cannot be distinguished from stored values."
+    ]
+  },
+  "tags": [
+    "binary-tree",
+    "recursion",
+    "serialization"
+  ]
+},
+{
+  "id": "cpp-hard-099",
+  "language": "cpp",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Find Lowest Common Ancestor",
+  "prompt": "Find the lowest node in a binary tree that has two given nodes in its subtree.",
+  "approach": {
+    "steps": [
+      "Return null when the current node is null.",
+      "Return the current node when it matches either target.",
+      "Search both left and right subtrees.",
+      "Return the current node when both sides contain a target; otherwise return the non-null side."
+    ],
+    "example": "For a tree where nodes 4 and 5 are in different branches below node 2, node 2 is their lowest common ancestor."
+  },
+  "code": "TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {\n  if (!root || root == p || root == q) return root;\n  TreeNode* left = lowestCommonAncestor(root->left, p, q);\n  TreeNode* right = lowestCommonAncestor(root->right, p, q);\n  if (left && right) return root;\n  return left ? left : right;\n}",
+  "timeTargetSec": 135,
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(h)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "lowestCommonAncestor recursively searches both branches.",
+      "Finding either target returns that node upward.",
+      "When both recursive calls return nodes, the current node connects both targets.",
+      "Otherwise the existing non-null result continues upward."
+    ],
+    "commonMistakes": [
+      "Returning the first target found without searching the other branch.",
+      "Ignoring the case where one target is an ancestor of the other."
+    ]
+  },
+  "tags": [
+    "binary-tree",
+    "recursion",
+    "tree"
+  ]
+},
+{
+  "id": "cpp-hard-100",
+  "language": "cpp",
+  "trackType": "dsa",
+  "difficulty": "hard",
+  "title": "Find Word In Grid",
+  "prompt": "Determine whether a target word can be formed in a character grid by moving horizontally or vertically without reusing a cell.",
+  "approach": {
+    "steps": [
+      "Try starting the search from every cell matching the first character.",
+      "Use depth-first search to explore four neighboring directions.",
+      "Mark the current cell as temporarily visited during the search.",
+      "Restore the cell after exploring so other paths can use it."
+    ],
+    "example": "For a grid containing 'A', 'B', and 'C' along one connected path, the word 'ABC' can be found when each letter is visited in order without reusing a cell."
+  },
+  "code": "bool searchWord(vector<vector<char>>& board, string word, int r, int c, int index) {\n  if (index == word.size()) return true;\n  if (r < 0 || c < 0 || r >= board.size() || c >= board[0].size() || board[r][c] != word[index]) return false;\n  char saved = board[r][c];\n  board[r][c] = '#';\n  bool found = searchWord(board, word, r + 1, c, index + 1) ||\n               searchWord(board, word, r - 1, c, index + 1) ||\n               searchWord(board, word, r, c + 1, index + 1) ||\n               searchWord(board, word, r, c - 1, index + 1);\n  board[r][c] = saved;\n  return found;\n}\nbool exist(vector<vector<char>>& board, string word) {\n  for (int r = 0; r < board.size(); ++r)\n    for (int c = 0; c < board[0].size(); ++c)\n      if (searchWord(board, word, r, c, 0)) return true;\n  return false;\n}",
+  "timeTargetSec": 150,
+  "complexity": {
+    "time": "O(rows * cols * 4^L)",
+    "space": "O(L)"
+  },
+  "review": {
+    "walkthroughSteps": [
+      "exist tries every grid cell as a possible starting position.",
+      "searchWord checks whether the current cell matches the required character.",
+      "The cell is marked temporarily so the same cell cannot be reused in one path.",
+      "The original character is restored before returning to another path."
+    ],
+    "commonMistakes": [
+      "Allowing the same cell to be reused during one word search.",
+      "Failing to restore the cell after backtracking."
+    ]
+  },
+  "tags": [
+    "matrix",
+    "backtracking",
+    "dfs"
+  ]
+}
+
+
+]
+
 
 

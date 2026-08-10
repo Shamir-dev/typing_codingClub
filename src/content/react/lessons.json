@@ -1442,7 +1442,796 @@
 ]
 },
 "tags": ["useState", "forms", "arrays", "map"]
-}
+},
+
+
+
+{"id":"react-medium-041","language":"react","trackType":"practice","difficulty":"medium","title":"Live Search List","prompt":"Build a component that filters a list of names as the user types in a search field.","approach":{"steps":["Use useState to store the search text.","Render a controlled input for the search value.","Filter the names using the current search text.","Render the filtered names with map()."],"example":"For 'alex' entered into the search field, only names containing 'alex' are displayed."},"code":"import { useState } from 'react';\n\nexport default function LiveSearchList() {\n  const [search, setSearch] = useState('');\n  const names = ['Alex', 'Maria', 'John', 'Alexander'];\n  const filteredNames = names.filter(name =>\n    name.toLowerCase().includes(search.toLowerCase())\n  );\n\n  return (\n    <div>\n      <input\n        value={search}\n        onChange={e => setSearch(e.target.value)}\n        placeholder='Search names'\n      />\n      <ul>\n        {filteredNames.map(name => <li key={name}>{name}</li>)}\n      </ul>\n    </div>\n  );\n}","timeTargetSec":100,"complexity":{"time":"O(n) per search","space":"O(n)"},"review":{"walkthroughSteps":["search stores the current input value.","filteredNames recalculates the matching names.","The input updates search through onChange.","The filtered results are rendered with map()."],"commonMistakes":["Using the original list instead of filteredNames.","Forgetting to make the input controlled.","Using an unstable value as the list key."]},"tags":["useState","controlled-input","filter","map"]},
+{"id":"react-medium-042","language":"react","trackType":"practice","difficulty":"medium","title":"Show Current Time","prompt":"Build a component that displays the current time and updates it every second.","approach":{"steps":["Use useState to store the current time.","Use useEffect to create an interval.","Update the time once every second.","Clear the interval when the component unmounts."],"example":"When the component is mounted, the displayed time changes automatically every second."},"code":"import { useEffect, useState } from 'react';\n\nexport default function CurrentTime() {\n  const [time, setTime] = useState(new Date());\n\n  useEffect(() => {\n    const timer = setInterval(() => setTime(new Date()), 1000);\n    return () => clearInterval(timer);\n  }, []);\n\n  return <p>Current time: {time.toLocaleTimeString()}</p>;\n}","timeTargetSec":105,"complexity":{"time":"O(1) per update","space":"O(1)"},"review":{"walkthroughSteps":["The initial state stores the current Date object.","useEffect creates one interval after mounting.","setTime causes the displayed value to update.","The cleanup function removes the interval when the component unmounts."],"commonMistakes":["Forgetting the cleanup function.","Creating the interval during every render.","Leaving the dependency array out of the effect."]},"tags":["useState","useEffect","timer","cleanup"]},
+{"id":"react-medium-043","language":"react","trackType":"practice","difficulty":"medium","title":"Character Limit Input","prompt":"Build a controlled text field that prevents users from entering more than a specified number of characters.","approach":{"steps":["Use useState to store the input text.","Set a maximum length for the input.","Update the state from onChange.","Display the current character count below the field."],"example":"For a limit of 20, typing beyond the twentieth character does not add another character."},"code":"import { useState } from 'react';\n\nexport default function LimitedInput() {\n  const [text, setText] = useState('');\n  const limit = 20;\n\n  return (\n    <div>\n      <input\n        value={text}\n        maxLength={limit}\n        onChange={e => setText(e.target.value)}\n      />\n      <p>{text.length} / {limit}</p>\n    </div>\n  );\n}","timeTargetSec":95,"complexity":{"time":"O(1) per input update","space":"O(n)"},"review":{"walkthroughSteps":["text stores the current field value.","maxLength enforces the character limit.","onChange keeps React state synchronized with the field.","The paragraph displays the current length."],"commonMistakes":["Using the wrong JSX attribute name.","Making the field uncontrolled.","Displaying the limit instead of the current length."]},"tags":["useState","controlled-input","forms"]},
+{"id":"react-medium-044","language":"react","trackType":"practice","difficulty":"medium","title":"Accordion Item","prompt":"Build an accordion component that expands or collapses its content when its heading is clicked.","approach":{"steps":["Use useState to store whether the item is open.","Render the heading as a clickable button.","Conditionally render the content when open.","Change the state when the button is clicked."],"example":"When the heading is clicked while closed, its hidden content becomes visible."},"code":"import { useState } from 'react';\n\nexport default function AccordionItem() {\n  const [open, setOpen] = useState(false);\n\n  return (\n    <div>\n      <button onClick={() => setOpen(!open)}>\n        Account Details\n      </button>\n      {open && <p>Your account information is shown here.</p>}\n    </div>\n  );\n}","timeTargetSec":95,"complexity":{"time":"O(1) per toggle","space":"O(1)"},"review":{"walkthroughSteps":["open tracks the visibility state.","The button toggles open between true and false.","The && expression renders content only when open is true.","The component rerenders after the state changes."],"commonMistakes":["Using assignment instead of a state update.","Rendering the content regardless of open.","Calling the event handler during rendering."]},"tags":["useState","conditional-rendering","events"]},
+{"id":"react-medium-045","language":"react","trackType":"practice","difficulty":"medium","title":"Selected List Item","prompt":"Build a component that lets the user select one item from a rendered list and highlights the selected item.","approach":{"steps":["Use useState to store the selected item.","Render each item with map().","Update the selected value when an item is clicked.","Apply conditional JSX based on the selected value."],"example":"For a list containing 'Red', clicking 'Red' marks Red as the selected item."},"code":"import { useState } from 'react';\n\nexport default function SelectedList() {\n  const [selected, setSelected] = useState('');\n  const items = ['Red', 'Green', 'Blue'];\n\n  return (\n    <ul>\n      {items.map(item => (\n        <li key={item}>\n          <button onClick={() => setSelected(item)}>\n            {item} {selected === item && '(selected)'}\n          </button>\n        </li>\n      ))}\n    </ul>\n  );\n}","timeTargetSec":100,"complexity":{"time":"O(n) per render","space":"O(n)"},"review":{"walkthroughSteps":["selected stores the currently chosen item.","map() creates one button for every item.","Clicking a button stores that item in state.","The selected label appears only for the matching item."],"commonMistakes":["Comparing the item with the wrong state value.","Forgetting a key on mapped elements.","Updating every item instead of only the clicked item."]},"tags":["useState","map","events","conditional-rendering"]},
+{"id":"react-medium-046","language":"react","trackType":"practice","difficulty":"medium","title":"Form Validation","prompt":"Build a small form that validates a required name field before showing a success message.","approach":{"steps":["Use state for the name and validation message.","Handle the form submission with onSubmit.","Prevent the browser's default submission behavior.","Show an error when the field is empty and success otherwise."],"example":"Submitting with an empty name shows a validation message instead of the success message."},"code":"import { useState } from 'react';\n\nexport default function FormValidation() {\n  const [name, setName] = useState('');\n  const [message, setMessage] = useState('');\n\n  function handleSubmit(e) {\n    e.preventDefault();\n    setMessage(name.trim() ? 'Form submitted.' : 'Name is required.');\n  }\n\n  return (\n    <form onSubmit={handleSubmit}>\n      <input value={name} onChange={e => setName(e.target.value)} />\n      <button type='submit'>Submit</button>\n      {message && <p>{message}</p>}\n    </form>\n  );\n}","timeTargetSec":105,"complexity":{"time":"O(n) for trimming input","space":"O(n)"},"review":{"walkthroughSteps":["name stores the controlled field value.","handleSubmit prevents the browser's default form action.","The trimmed value determines whether validation succeeds.","message is rendered only after submission."],"commonMistakes":["Forgetting preventDefault().","Checking the untrimmed value for empty input.","Using a submit button without a form handler."]},"tags":["forms","useState","validation","events"]},
+{"id":"react-medium-047","language":"react","trackType":"practice","difficulty":"medium","title":"Add Item Form","prompt":"Build a component where a user enters a value and adds it to a displayed list.","approach":{"steps":["Use state for the input value and list items.","Handle the form submission.","Append the new value to the existing list.","Clear the input after a successful addition."],"example":"After entering 'Notebook' and submitting, Notebook appears as a new item in the list."},"code":"import { useState } from 'react';\n\nexport default function AddItemForm() {\n  const [value, setValue] = useState('');\n  const [items, setItems] = useState(['Pen']);\n\n  function handleSubmit(e) {\n    e.preventDefault();\n    if (!value.trim()) return;\n    setItems([...items, value.trim()]);\n    setValue('');\n  }\n\n  return (\n    <div>\n      <form onSubmit={handleSubmit}>\n        <input value={value} onChange={e => setValue(e.target.value)} />\n        <button type='submit'>Add</button>\n      </form>\n      <ul>{items.map(item => <li key={item}>{item}</li>)}</ul>\n    </div>\n  );\n}","timeTargetSec":105,"complexity":{"time":"O(n) per render","space":"O(n)"},"review":{"walkthroughSteps":["value controls the input field.","items stores the current list.","The spread operator creates a new list with the added item.","setValue clears the field after submission."],"commonMistakes":["Mutating the existing array directly.","Adding empty strings.","Forgetting to clear the input."]},"tags":["useState","forms","arrays","map"]},
+{"id":"react-medium-048","language":"react","trackType":"practice","difficulty":"medium","title":"Remove List Item","prompt":"Build a component where each rendered list item has a button that removes that item.","approach":{"steps":["Store the items in state.","Render the items with map().","Attach a remove handler to each item button.","Create a new array without the selected item."],"example":"For ['Pen', 'Book', 'Bag'], removing Book leaves Pen and Bag in the rendered list."},"code":"import { useState } from 'react';\n\nexport default function RemoveListItem() {\n  const [items, setItems] = useState(['Pen', 'Book', 'Bag']);\n\n  function removeItem(itemToRemove) {\n    setItems(items.filter(item => item !== itemToRemove));\n  }\n\n  return (\n    <ul>\n      {items.map(item => (\n        <li key={item}>\n          {item}\n          <button onClick={() => removeItem(item)}>Remove</button>\n        </li>\n      ))}\n    </ul>\n  );\n}","timeTargetSec":105,"complexity":{"time":"O(n) per removal","space":"O(n)"},"review":{"walkthroughSteps":["items holds the rendered values.","Each item receives its own remove button.","removeItem filters out the selected value.","setItems triggers the list to render again."],"commonMistakes":["Using splice directly on state.","Removing every matching item unintentionally.","Forgetting to pass the current item to the handler."]},"tags":["useState","filter","map","events"]},
+{"id":"react-medium-049","language":"react","trackType":"practice","difficulty":"medium","title":"Quantity Selector","prompt":"Build a component with plus and minus buttons that control a quantity without allowing it to fall below one.","approach":{"steps":["Use useState to store the quantity.","Render the current quantity.","Increase it from the plus button.","Decrease it only when the current value is greater than one."],"example":"If the quantity is 1, clicking minus keeps it at 1 instead of producing 0."},"code":"import { useState } from 'react';\n\nexport default function QuantitySelector() {\n  const [quantity, setQuantity] = useState(1);\n\n  return (\n    <div>\n      <button onClick={() => setQuantity(q => Math.max(1, q - 1))}>-</button>\n      <span>{quantity}</span>\n      <button onClick={() => setQuantity(q => q + 1)}>+</button>\n    </div>\n  );\n}","timeTargetSec":95,"complexity":{"time":"O(1) per update","space":"O(1)"},"review":{"walkthroughSteps":["quantity starts at one.","The minus handler keeps the value at least one.","The plus handler increments the current value.","The displayed span always reflects the state."],"commonMistakes":["Allowing the quantity to become zero.","Using a stale quantity value for rapid updates.","Displaying a hard-coded quantity."]},"tags":["useState","events","functional-update"]},
+{"id":"react-medium-050","language":"react","trackType":"practice","difficulty":"medium","title":"Tabs Component","prompt":"Build a component with multiple tabs that displays different content based on the active tab.","approach":{"steps":["Use state to store the active tab.","Render tab buttons from a small configuration array.","Update the active tab when a button is clicked.","Conditionally render the matching content."],"example":"When 'Profile' is selected, the profile content replaces the content from the previously active tab."},"code":"import { useState } from 'react';\n\nexport default function Tabs() {\n  const [activeTab, setActiveTab] = useState('Home');\n  const tabs = {\n    Home: 'Welcome home.',\n    Profile: 'Your profile is here.',\n    Settings: 'Adjust your settings.'\n  };\n\n  return (\n    <div>\n      <div>\n        {Object.keys(tabs).map(tab => (\n          <button key={tab} onClick={() => setActiveTab(tab)}>\n            {tab}\n          </button>\n        ))}\n      </div>\n      <p>{tabs[activeTab]}</p>\n    </div>\n  );\n}","timeTargetSec":110,"complexity":{"time":"O(n) per render","space":"O(n)"},"review":{"walkthroughSteps":["activeTab stores the selected tab name.","Object.keys creates the available tab buttons.","Clicking a button changes activeTab.","The object lookup renders the matching content."],"commonMistakes":["Using a tab value that does not exist.","Forgetting a key for mapped buttons.","Rendering every tab's content at once."]},"tags":["useState","map","objects","conditional-ui"]},
+{"id":"react-medium-051","language":"react","trackType":"practice","difficulty":"medium","title":"Loading State","prompt":"Build a component that displays a loading message briefly and then shows its main content.","approach":{"steps":["Use state to track whether loading is active.","Use useEffect to start a short timeout.","Change loading to false after the timeout.","Render different content based on the loading state."],"example":"While loading is true, the component shows 'Loading...'; afterward it shows the main content."},"code":"import { useEffect, useState } from 'react';\n\nexport default function LoadingState() {\n  const [loading, setLoading] = useState(true);\n\n  useEffect(() => {\n    const timer = setTimeout(() => setLoading(false), 1500);\n    return () => clearTimeout(timer);\n  }, []);\n\n  return loading ? <p>Loading...</p> : <p>Content loaded.</p>;\n}","timeTargetSec":105,"complexity":{"time":"O(1)","space":"O(1)"},"review":{"walkthroughSteps":["loading starts as true.","useEffect schedules the state change after mounting.","The timeout cleanup runs when the component unmounts.","A ternary expression chooses the displayed content."],"commonMistakes":["Forgetting timeout cleanup.","Running the effect after every render.","Using a normal if statement incorrectly inside JSX."]},"tags":["useState","useEffect","loading","conditional-rendering"]},
+{"id":"react-medium-052","language":"react","trackType":"practice","difficulty":"medium","title":"Digital Counter Timer","prompt":"Build a component that starts a second counter when mounted and displays the elapsed seconds.","approach":{"steps":["Use state to store elapsed seconds.","Create an interval inside useEffect.","Increment the value every second.","Clean up the interval when the component unmounts."],"example":"After three seconds of mounting, the displayed elapsed value reaches 3."},"code":"import { useEffect, useState } from 'react';\n\nexport default function DigitalCounterTimer() {\n  const [seconds, setSeconds] = useState(0);\n\n  useEffect(() => {\n    const timer = setInterval(() => setSeconds(s => s + 1), 1000);\n    return () => clearInterval(timer);\n  }, []);\n\n  return <p>Elapsed: {seconds}s</p>;\n}","timeTargetSec":105,"complexity":{"time":"O(1) per update","space":"O(1)"},"review":{"walkthroughSteps":["seconds starts at zero.","The interval uses a functional state update every second.","The displayed value comes directly from seconds.","The cleanup prevents the interval from continuing after unmounting."],"commonMistakes":["Using seconds + 1 inside a long-running interval.","Leaving out cleanup.","Creating multiple intervals through repeated effects."]},"tags":["useEffect","useState","interval","cleanup"]},
+{"id":"react-medium-053","language":"react","trackType":"practice","difficulty":"medium","title":"Character Search Result","prompt":"Build a component that displays whether a typed search term exists in a fixed list of products.","approach":{"steps":["Store the search value with useState.","Render a controlled input.","Use some() to check whether a product matches.","Render a matching or empty-state message."],"example":"For a search value of 'phone', the component reports a match when the product list contains 'Phone Case'."},"code":"import { useState } from 'react';\n\nexport default function ProductSearch() {\n  const [search, setSearch] = useState('');\n  const products = ['Phone Case', 'Keyboard', 'Mouse'];\n  const found = products.some(product =>\n    product.toLowerCase().includes(search.toLowerCase())\n  );\n\n  return (\n    <div>\n      <input value={search} onChange={e => setSearch(e.target.value)} />\n      {search && <p>{found ? 'Product found.' : 'No product found.'}</p>}\n    </div>\n  );\n}","timeTargetSec":105,"complexity":{"time":"O(n) per search","space":"O(1)"},"review":{"walkthroughSteps":["search stores the typed query.","some() checks whether any product contains that query.","The result is stored in found for rendering.","The message remains hidden until the user enters a value."],"commonMistakes":["Checking exact equality instead of partial matching.","Ignoring letter case.","Showing the result before a search value exists."]},"tags":["useState","some","controlled-input","conditional-rendering"]},
+{"id":"react-medium-054","language":"react","trackType":"practice","difficulty":"medium","title":"Checkbox Group","prompt":"Build a component with multiple checkboxes and display the names of all selected options.","approach":{"steps":["Store selected options in an array state.","Render each option as a controlled checkbox.","Add or remove the option when its checkbox changes.","Render the selected options below the group."],"example":"If 'Email' and 'SMS' are checked, the selected list displays Email and SMS."},"code":"import { useState } from 'react';\n\nexport default function CheckboxGroup() {\n  const [selected, setSelected] = useState([]);\n  const options = ['Email', 'SMS', 'Phone'];\n\n  function toggleOption(option) {\n    setSelected(current =>\n      current.includes(option)\n        ? current.filter(item => item !== option)\n        : [...current, option]\n    );\n  }\n\n  return (\n    <div>\n      {options.map(option => (\n        <label key={option}>\n          <input\n            type='checkbox'\n            checked={selected.includes(option)}\n            onChange={() => toggleOption(option)}\n          />\n          {option}\n        </label>\n      ))}\n      <p>{selected.join(', ') || 'Nothing selected'}</p>\n    </div>\n  );\n}","timeTargetSec":115,"complexity":{"time":"O(n) per toggle","space":"O(n)"},"review":{"walkthroughSteps":["selected stores all checked option names.","includes() determines each checkbox's checked state.","The toggle function removes an existing option or adds a new one.","join() creates the displayed summary."],"commonMistakes":["Mutating the selected array directly.","Using one boolean for multiple checkboxes.","Forgetting the checked prop on controlled inputs."]},"tags":["useState","checkbox","arrays","controlled-input"]},
+{"id":"react-medium-055","language":"react","trackType":"practice","difficulty":"medium","title":"Sort Rendered Items","prompt":"Build a component that displays a list of numbers and lets the user switch between ascending and descending order.","approach":{"steps":["Store the current sort direction in state.","Render buttons for the two directions.","Create a sorted copy before rendering.","Map the sorted values into list elements."],"example":"For [4, 1, 3], ascending order renders 1, 3, 4 while descending order renders 4, 3, 1."},"code":"import { useState } from 'react';\n\nexport default function SortNumbers() {\n  const [ascending, setAscending] = useState(true);\n  const numbers = [4, 1, 3, 2];\n  const sorted = [...numbers].sort((a, b) =>\n    ascending ? a - b : b - a\n  );\n\n  return (\n    <div>\n      <button onClick={() => setAscending(true)}>Ascending</button>\n      <button onClick={() => setAscending(false)}>Descending</button>\n      <ul>{sorted.map(number => <li key={number}>{number}</li>)}</ul>\n    </div>\n  );\n}","timeTargetSec":110,"complexity":{"time":"O(n log n) per render","space":"O(n)"},"review":{"walkthroughSteps":["ascending stores the selected ordering.","A copied array is sorted so the original data is not mutated.","The comparator changes according to the selected direction.","The sorted values are rendered with map()."],"commonMistakes":["Sorting the original array directly.","Using the wrong comparator for descending order.","Using array indexes unnecessarily as keys."]},"tags":["useState","sort","arrays","map"]},
+{"id":"react-medium-056","language":"react","trackType":"practice","difficulty":"medium","title":"Filtered Categories","prompt":"Build a component that lets the user select a category and renders only products belonging to that category.","approach":{"steps":["Store the selected category in state.","Render category buttons from the available categories.","Filter products using the selected category.","Render the filtered products with map()."],"example":"When 'Books' is selected, only products whose category is 'Books' appear in the list."},"code":"import { useState } from 'react';\n\nexport default function FilteredCategories() {\n  const [category, setCategory] = useState('All');\n  const products = [\n    { name: 'Novel', category: 'Books' },\n    { name: 'Pen', category: 'Stationery' },\n    { name: 'Guide', category: 'Books' }\n  ];\n  const categories = ['All', 'Books', 'Stationery'];\n  const visible = products.filter(product =>\n    category === 'All' || product.category === category\n  );\n\n  return (\n    <div>\n      {categories.map(item => (\n        <button key={item} onClick={() => setCategory(item)}>{item}</button>\n      ))}\n      <ul>{visible.map(product => <li key={product.name}>{product.name}</li>)}</ul>\n    </div>\n  );\n}","timeTargetSec":115,"complexity":{"time":"O(n) per render","space":"O(n)"},"review":{"walkthroughSteps":["category stores the selected filter.","The category buttons update that state.","filter() keeps products matching the selected category.","The resulting products are rendered as list items."],"commonMistakes":["Filtering against the wrong property.","Forgetting the All category condition.","Mutating the product array."]},"tags":["useState","filter","map","objects"]},
+{"id":"react-medium-057","language":"react","trackType":"practice","difficulty":"medium","title":"Modal Toggle","prompt":"Build a component that opens a small modal message and closes it with a button inside the modal.","approach":{"steps":["Use state to track whether the modal is visible.","Render an open button when the modal is closed.","Conditionally render the modal content.","Use a close button to update the visibility state."],"example":"Clicking 'Open' displays the modal, and clicking 'Close' removes it from the rendered output."},"code":"import { useState } from 'react';\n\nexport default function ModalToggle() {\n  const [open, setOpen] = useState(false);\n\n  return (\n    <div>\n      <button onClick={() => setOpen(true)}>Open</button>\n      {open && (\n        <div>\n          <p>This is a modal message.</p>\n          <button onClick={() => setOpen(false)}>Close</button>\n        </div>\n      )}\n    </div>\n  );\n}","timeTargetSec":100,"complexity":{"time":"O(1) per toggle","space":"O(1)"},"review":{"walkthroughSteps":["open determines whether the modal exists.","The Open button sets open to true.","Conditional rendering displays the modal only when open is true.","The Close button sets open back to false."],"commonMistakes":["Rendering the modal unconditionally.","Using the wrong state value for the condition.","Forgetting the close action."]},"tags":["useState","modal","conditional-rendering"]},
+{"id":"react-medium-058","language":"react","trackType":"practice","difficulty":"medium","title":"Countdown Timer","prompt":"Build a countdown component that decreases from a starting number to zero once every second.","approach":{"steps":["Use state to store the remaining seconds.","Create an interval inside useEffect.","Decrease the value only while it is above zero.","Clear the interval during cleanup."],"example":"Starting at 3 displays 3, then 2, then 1, and finally 0."},"code":"import { useEffect, useState } from 'react';\n\nexport default function CountdownTimer() {\n  const [seconds, setSeconds] = useState(3);\n\n  useEffect(() => {\n    if (seconds === 0) return;\n    const timer = setInterval(() => {\n      setSeconds(value => Math.max(0, value - 1));\n    }, 1000);\n    return () => clearInterval(timer);\n  }, [seconds]);\n\n  return <p>{seconds === 0 ? 'Done!' : `Time: ${seconds}`}</p>;\n}","timeTargetSec":115,"complexity":{"time":"O(1) per update","space":"O(1)"},"review":{"walkthroughSteps":["seconds stores the remaining countdown value.","The effect starts an interval whenever a positive value exists.","The functional update decreases the latest state value.","The effect stops creating an interval when seconds reaches zero."],"commonMistakes":["Allowing the counter to become negative.","Forgetting interval cleanup.","Using an effect dependency that prevents updates."]},"tags":["useState","useEffect","timer","cleanup"]},
+{"id":"react-medium-059","language":"react","trackType":"practice","difficulty":"medium","title":"Reusable Badge","prompt":"Build a reusable Badge component that receives a label and status through props and changes its displayed text based on the status.","approach":{"steps":["Create a Badge component that accepts props.","Read the label and status values.","Render the label beside the status.","Use a conditional expression for the status text."],"example":"For label 'Server' and status 'online', the badge displays Server: Online."},"code":"function Badge({ label, status }) {\n  const text = status === 'online' ? 'Online' : 'Offline';\n\n  return <span>{label}: {text}</span>;\n}\n\nexport default function BadgeExample() {\n  return <Badge label='Server' status='online' />;\n}","timeTargetSec":95,"complexity":{"time":"O(1)","space":"O(1)"},"review":{"walkthroughSteps":["Badge receives label and status through props.","The status value determines the displayed status text.","The component combines both values in one span.","BadgeExample demonstrates how the component can be reused."],"commonMistakes":["Using state when props are sufficient.","Reading the wrong prop name.","Forgetting to pass required props."]},"tags":["props","reusable-component","conditional-rendering"]},
+{"id":"react-medium-060","language":"react","trackType":"practice","difficulty":"medium","title":"Editable Profile Field","prompt":"Build a small profile editor where the user can switch between viewing a name and editing that name with a controlled input.","approach":{"steps":["Use state for the current name and edit mode.","Render the name when edit mode is disabled.","Render a controlled input when editing.","Toggle edit mode with the Edit and Save buttons."],"example":"Clicking 'Edit' replaces the displayed name with an input, and 'Save' returns to the updated name."},"code":"import { useState } from 'react';\n\nexport default function EditableProfile() {\n  const [name, setName] = useState('Sam');\n  const [editing, setEditing] = useState(false);\n\n  return (\n    <div>\n      {editing ? (\n        <input value={name} onChange={e => setName(e.target.value)} />\n      ) : (\n        <p>{name}</p>\n      )}\n      <button onClick={() => setEditing(!editing)}>\n        {editing ? 'Save' : 'Edit'}\n      </button>\n    </div>\n  );\n}","timeTargetSec":105,"complexity":{"time":"O(1) per update","space":"O(n)"},"review":{"walkthroughSteps":["name stores the current profile name.","editing determines whether the display or input is rendered.","The input remains synchronized with name through onChange.","The button switches between Edit and Save modes."],"commonMistakes":["Using a separate uncontrolled input.","Changing the name only after leaving edit mode.","Rendering both the input and text at the same time."]},"tags":["useState","props","controlled-input","conditional-rendering"]},
+
+
+{
+  "id": "react-medium-061",
+  "language": "react",
+  "trackType": "practice",
+  "difficulty": "medium",
+  "title": "Searchable List",
+  "prompt": "Build a component that filters a list of names as the user types in a search field.",
+  "approach": {
+    "steps": [
+      "Use useState to store the search text.",
+      "Render a controlled input connected to the search state.",
+      "Filter the names using the current search text.",
+      "Render the filtered names with map()."
+    ],
+    "example": "For 'alex' in the search field, only names containing 'alex' should remain visible."
+  },
+  "code": "import { useState } from 'react';\n\nexport default function SearchableList() {\n  const [search, setSearch] = useState('');\n  const names = ['Alex', 'Maria', 'Sam', 'Daniel'];\n  const filtered = names.filter(name =>\n    name.toLowerCase().includes(search.toLowerCase())\n  );\n\n  return (\n    <div>\n      <input\n        value={search}\n        onChange={e => setSearch(e.target.value)}\n        placeholder='Search names'\n      />\n      <ul>\n        {filtered.map(name => <li key={name}>{name}</li>)}\n      </ul>\n    </div>\n  );\n}",
+  "timeTargetSec": 100,
+  "review": {
+    "walkthroughSteps": [
+      "search stores the current input value.",
+      "The input updates search whenever the user types.",
+      "filtered contains only names matching the search text.",
+      "The filtered names are rendered as list items."
+    ],
+    "commonMistakes": [
+      "Using an uncontrolled input instead of connecting value to state.",
+      "Forgetting to normalize both strings before comparing them."
+    ]
+  },
+  "tags": [
+    "useState",
+    "controlled-input",
+    "filter",
+    "list-rendering"
+  ]
+},
+{
+  "id": "react-medium-062",
+  "language": "react",
+  "trackType": "practice",
+  "difficulty": "medium",
+  "title": "Tab Navigation",
+  "prompt": "Build a component with three tabs that displays different content based on the selected tab.",
+  "approach": {
+    "steps": [
+      "Use useState to store the active tab.",
+      "Render one button for each tab.",
+      "Update the active tab when a button is clicked.",
+      "Conditionally render content for the active tab."
+    ],
+    "example": "For the 'Profile' tab, the component displays the profile content while hiding the other sections."
+  },
+  "code": "import { useState } from 'react';\n\nexport default function TabNavigation() {\n  const [active, setActive] = useState('Home');\n  const tabs = ['Home', 'Profile', 'Settings'];\n\n  return (\n    <div>\n      <div>\n        {tabs.map(tab => (\n          <button key={tab} onClick={() => setActive(tab)}>\n            {tab}\n          </button>\n        ))}\n      </div>\n      <section>\n        {active === 'Home' && <p>Home content</p>}\n        {active === 'Profile' && <p>Profile content</p>}\n        {active === 'Settings' && <p>Settings content</p>}\n      </section>\n    </div>\n  );\n}",
+  "timeTargetSec": 105,
+  "review": {
+    "walkthroughSteps": [
+      "active stores the currently selected tab.",
+      "Each button changes active when clicked.",
+      "The matching section is rendered with conditional JSX.",
+      "Only the selected tab's content is displayed."
+    ],
+    "commonMistakes": [
+      "Using separate state values for every tab.",
+      "Rendering every content section regardless of the active tab."
+    ]
+  },
+  "tags": [
+    "useState",
+    "tabs",
+    "conditional-rendering",
+    "events"
+  ]
+},
+{
+  "id": "react-medium-063",
+  "language": "react",
+  "trackType": "practice",
+  "difficulty": "medium",
+  "title": "Accordion Panel",
+  "prompt": "Build an accordion component where clicking a question expands or collapses its answer.",
+  "approach": {
+    "steps": [
+      "Use state to store the currently open question.",
+      "Render the questions with map().",
+      "Toggle the selected question when its button is clicked.",
+      "Conditionally render the matching answer."
+    ],
+    "example": "For 'What is React?', clicking the question opens its answer, and clicking it again closes the answer."
+  },
+  "code": "import { useState } from 'react';\n\nexport default function Accordion() {\n  const [open, setOpen] = useState(null);\n  const items = [\n    { question: 'What is React?', answer: 'A UI library.' },\n    { question: 'What is JSX?', answer: 'A syntax for writing UI.' },\n    { question: 'What are props?', answer: 'Inputs passed to components.' }\n  ];\n\n  return (\n    <div>\n      {items.map((item, index) => (\n        <div key={item.question}>\n          <button onClick={() => setOpen(open === index ? null : index)}>\n            {item.question}\n          </button>\n          {open === index && <p>{item.answer}</p>}\n        </div>\n      ))}\n    </div>\n  );\n}",
+  "timeTargetSec": 105,
+  "review": {
+    "walkthroughSteps": [
+      "open stores the index of the expanded question.",
+      "Clicking an open question sets open to null.",
+      "Clicking another question changes the stored index.",
+      "Only the matching answer is rendered."
+    ],
+    "commonMistakes": [
+      "Keeping multiple unrelated boolean states for every question.",
+      "Forgetting to close the current panel when it is clicked again."
+    ]
+  },
+  "tags": [
+    "useState",
+    "accordion",
+    "conditional-rendering",
+    "map"
+  ]
+},
+{
+  "id": "react-medium-064",
+  "language": "react",
+  "trackType": "practice",
+  "difficulty": "medium",
+  "title": "Select Dropdown",
+  "prompt": "Build a controlled select component that displays the selected category below the dropdown.",
+  "approach": {
+    "steps": [
+      "Use useState to store the selected category.",
+      "Connect the select value to that state.",
+      "Update the state through onChange.",
+      "Render the selected category below the control."
+    ],
+    "example": "For 'Books' selected from the dropdown, the component displays 'Selected: Books'."
+  },
+  "code": "import { useState } from 'react';\n\nexport default function CategorySelect() {\n  const [category, setCategory] = useState('Books');\n\n  return (\n    <div>\n      <select value={category} onChange={e => setCategory(e.target.value)}>\n        <option>Books</option>\n        <option>Movies</option>\n        <option>Games</option>\n      </select>\n      <p>Selected: {category}</p>\n    </div>\n  );\n}",
+  "timeTargetSec": 90,
+  "review": {
+    "walkthroughSteps": [
+      "category stores the selected option.",
+      "The select value is controlled by category.",
+      "onChange updates the state with the new option.",
+      "The paragraph reflects the current selection."
+    ],
+    "commonMistakes": [
+      "Reading the selected value without updating state.",
+      "Using a defaultValue when a controlled select is required."
+    ]
+  },
+  "tags": [
+    "useState",
+    "select",
+    "controlled-input",
+    "onChange"
+  ]
+},
+{
+  "id": "react-medium-065",
+  "language": "react",
+  "trackType": "practice",
+  "difficulty": "medium",
+  "title": "Form Validation",
+  "prompt": "Build a small form that validates a required username before showing a success message.",
+  "approach": {
+    "steps": [
+      "Use state to store the username and validation message.",
+      "Update the username through a controlled input.",
+      "Prevent submission when the username is empty.",
+      "Show a success message after valid submission."
+    ],
+    "example": "For an empty username, the form shows an error instead of submitting successfully."
+  },
+  "code": "import { useState } from 'react';\n\nexport default function ValidatedForm() {\n  const [username, setUsername] = useState('');\n  const [message, setMessage] = useState('');\n\n  function handleSubmit(e) {\n    e.preventDefault();\n    if (!username.trim()) {\n      setMessage('Username is required');\n      return;\n    }\n    setMessage('Form submitted successfully');\n  }\n\n  return (\n    <form onSubmit={handleSubmit}>\n      <input\n        value={username}\n        onChange={e => setUsername(e.target.value)}\n        placeholder='Username'\n      />\n      <button type='submit'>Submit</button>\n      {message && <p>{message}</p>}\n    </form>\n  );\n}",
+  "timeTargetSec": 110,
+  "review": {
+    "walkthroughSteps": [
+      "username stores the current field value.",
+      "handleSubmit prevents the browser's default form submission.",
+      "An empty trimmed value produces an error message.",
+      "A valid value produces the success message."
+    ],
+    "commonMistakes": [
+      "Allowing the browser to reload the page on submit.",
+      "Checking the raw value without trimming whitespace."
+    ]
+  },
+  "tags": [
+    "forms",
+    "validation",
+    "useState",
+    "events"
+  ]
+},
+{
+  "id": "react-medium-066",
+  "language": "react",
+  "trackType": "practice",
+  "difficulty": "medium",
+  "title": "Live Clock",
+  "prompt": "Build a component that displays the current time and updates it every second.",
+  "approach": {
+    "steps": [
+      "Use useState to store the current time.",
+      "Use useEffect to create a one-second interval.",
+      "Update the time state inside the interval.",
+      "Clear the interval when the component unmounts."
+    ],
+    "example": "While the component is visible, the displayed time changes every second without refreshing the page."
+  },
+  "code": "import { useEffect, useState } from 'react';\n\nexport default function LiveClock() {\n  const [time, setTime] = useState(new Date());\n\n  useEffect(() => {\n    const timer = setInterval(() => setTime(new Date()), 1000);\n    return () => clearInterval(timer);\n  }, []);\n\n  return <h2>{time.toLocaleTimeString()}</h2>;\n}",
+  "timeTargetSec": 105,
+  "review": {
+    "walkthroughSteps": [
+      "time stores the latest Date object.",
+      "The effect creates an interval when the component mounts.",
+      "The interval updates time every second.",
+      "The cleanup function removes the interval when the component unmounts."
+    ],
+    "commonMistakes": [
+      "Creating an interval without cleanup.",
+      "Leaving changing state inside the effect dependency array."
+    ]
+  },
+  "tags": [
+    "useState",
+    "useEffect",
+    "setInterval",
+    "cleanup"
+  ]
+},
+{
+  "id": "react-medium-067",
+  "language": "react",
+  "trackType": "practice",
+  "difficulty": "medium",
+  "title": "Checkbox Group",
+  "prompt": "Build a component with multiple checkboxes that displays all currently selected skills.",
+  "approach": {
+    "steps": [
+      "Store selected skills in an array state.",
+      "Render each skill as a controlled checkbox.",
+      "Add a skill when its checkbox is selected.",
+      "Remove a skill when its checkbox is cleared."
+    ],
+    "example": "If 'React' and 'JavaScript' are selected, both skills appear in the selected list."
+  },
+  "code": "import { useState } from 'react';\n\nexport default function SkillSelector() {\n  const [selected, setSelected] = useState([]);\n  const skills = ['React', 'JavaScript', 'Python'];\n\n  function toggleSkill(skill) {\n    setSelected(current =>\n      current.includes(skill)\n        ? current.filter(item => item !== skill)\n        : [...current, skill]\n    );\n  }\n\n  return (\n    <div>\n      {skills.map(skill => (\n        <label key={skill}>\n          <input\n            type='checkbox'\n            checked={selected.includes(skill)}\n            onChange={() => toggleSkill(skill)}\n          />\n          {skill}\n        </label>\n      ))}\n      <p>Selected: {selected.join(', ') || 'None'}</p>\n    </div>\n  );\n}",
+  "timeTargetSec": 115,
+  "review": {
+    "walkthroughSteps": [
+      "selected stores all currently checked skills.",
+      "Each checkbox checks whether its skill exists in selected.",
+      "toggleSkill removes an existing skill or adds a new one.",
+      "The selected values are displayed below the controls."
+    ],
+    "commonMistakes": [
+      "Mutating the selected array directly.",
+      "Using one boolean state for a group of independent selections."
+    ]
+  },
+  "tags": [
+    "useState",
+    "checkbox",
+    "arrays",
+    "controlled-input"
+  ]
+},
+{
+  "id": "react-medium-068",
+  "language": "react",
+  "trackType": "practice",
+  "difficulty": "medium",
+  "title": "Dynamic List Editor",
+  "prompt": "Build a component that lets the user add new items to a displayed list.",
+  "approach": {
+    "steps": [
+      "Use state for the input text and item list.",
+      "Control the input with the input state.",
+      "Add a non-empty item when the button is clicked.",
+      "Clear the input after adding the item."
+    ],
+    "example": "Entering 'Notebook' and clicking Add places 'Notebook' at the end of the visible list."
+  },
+  "code": "import { useState } from 'react';\n\nexport default function DynamicList() {\n  const [text, setText] = useState('');\n  const [items, setItems] = useState(['Pen', 'Book']);\n\n  function addItem() {\n    if (!text.trim()) return;\n    setItems(current => [...current, text.trim()]);\n    setText('');\n  }\n\n  return (\n    <div>\n      <input value={text} onChange={e => setText(e.target.value)} />\n      <button onClick={addItem}>Add</button>\n      <ul>\n        {items.map((item, index) => <li key={`${item}-${index}`}>{item}</li>)}\n      </ul>\n    </div>\n  );\n}",
+  "timeTargetSec": 110,
+  "review": {
+    "walkthroughSteps": [
+      "text stores the current input.",
+      "items stores every added list item.",
+      "addItem ignores blank values and appends valid text.",
+      "The input is cleared after a successful addition."
+    ],
+    "commonMistakes": [
+      "Using push() directly on the state array.",
+      "Failing to clear the input after adding an item."
+    ]
+  },
+  "tags": [
+    "useState",
+    "dynamic-list",
+    "events",
+    "array-state"
+  ]
+},
+{
+  "id": "react-medium-069",
+  "language": "react",
+  "trackType": "practice",
+  "difficulty": "medium",
+  "title": "Filtered Categories",
+  "prompt": "Build a component that filters products by a selected category and displays the matching products.",
+  "approach": {
+    "steps": [
+      "Store the selected category with useState.",
+      "Render category buttons for the available filters.",
+      "Filter the product data using the selected category.",
+      "Render the matching products with map()."
+    ],
+    "example": "When 'Books' is selected, only products whose category is 'Books' appear."
+  },
+  "code": "import { useState } from 'react';\n\nexport default function CategoryFilter() {\n  const [category, setCategory] = useState('All');\n  const products = [\n    { name: 'React Guide', category: 'Books' },\n    { name: 'Keyboard', category: 'Tech' },\n    { name: 'JS Handbook', category: 'Books' }\n  ];\n  const visible = category === 'All'\n    ? products\n    : products.filter(product => product.category === category);\n\n  return (\n    <div>\n      {['All', 'Books', 'Tech'].map(item => (\n        <button key={item} onClick={() => setCategory(item)}>{item}</button>\n      ))}\n      <ul>\n        {visible.map(product => <li key={product.name}>{product.name}</li>)}\n      </ul>\n    </div>\n  );\n}",
+  "timeTargetSec": 115,
+  "review": {
+    "walkthroughSteps": [
+      "category stores the active filter.",
+      "Each button changes the active category.",
+      "visible contains either every product or matching products.",
+      "The visible products are rendered as list items."
+    ],
+    "commonMistakes": [
+      "Changing the original products array when filtering.",
+      "Forgetting to handle the All category separately."
+    ]
+  },
+  "tags": [
+    "useState",
+    "filter",
+    "category-filter",
+    "list-rendering"
+  ]
+},
+{
+  "id": "react-medium-070",
+  "language": "react",
+  "trackType": "practice",
+  "difficulty": "medium",
+  "title": "Persistent Preference",
+  "prompt": "Build a component that stores a selected display preference in localStorage and restores it when the component loads.",
+  "approach": {
+    "steps": [
+      "Initialize the preference state from localStorage.",
+      "Render controls for changing the preference.",
+      "Use useEffect to save changes to localStorage.",
+      "Display the currently selected preference."
+    ],
+    "example": "If 'compact' is selected, refreshing the component restores 'compact' from localStorage."
+  },
+  "code": "import { useEffect, useState } from 'react';\n\nexport default function DisplayPreference() {\n  const [mode, setMode] = useState(() =>\n    localStorage.getItem('display-mode') || 'comfortable'\n  );\n\n  useEffect(() => {\n    localStorage.setItem('display-mode', mode);\n  }, [mode]);\n\n  return (\n    <div>\n      <button onClick={() => setMode('comfortable')}>Comfortable</button>\n      <button onClick={() => setMode('compact')}>Compact</button>\n      <p>Mode: {mode}</p>\n    </div>\n  );\n}",
+  "timeTargetSec": 115,
+  "review": {
+    "walkthroughSteps": [
+      "mode is initialized from the saved localStorage value.",
+      "The buttons update mode when clicked.",
+      "The effect runs whenever mode changes.",
+      "The current preference is written back to localStorage."
+    ],
+    "commonMistakes": [
+      "Reading localStorage directly during every render.",
+      "Forgetting to include mode in the effect dependency array."
+    ]
+  },
+  "tags": [
+    "useState",
+    "useEffect",
+    "localStorage",
+    "persistence"
+  ]
+},
+{
+  "id": "react-hard-071",
+  "language": "react",
+  "trackType": "practice",
+  "difficulty": "hard",
+  "title": "Reusable Modal",
+  "prompt": "Build a reusable modal component that opens from a button and closes through a close control.",
+  "approach": {
+    "steps": [
+      "Use state in the parent component to control visibility.",
+      "Create a Modal component that receives open and onClose props.",
+      "Render modal content only when open is true.",
+      "Call onClose from the modal close button."
+    ],
+    "example": "When 'Open Details' is clicked, the modal appears and its close button hides it again."
+  },
+  "code": "import { useState } from 'react';\n\nfunction Modal({ open, onClose }) {\n  if (!open) return null;\n\n  return (\n    <div role='dialog'>\n      <h2>Details</h2>\n      <p>This is reusable modal content.</p>\n      <button onClick={onClose}>Close</button>\n    </div>\n  );\n}\n\nexport default function ModalExample() {\n  const [open, setOpen] = useState(false);\n\n  return (\n    <div>\n      <button onClick={() => setOpen(true)}>Open Details</button>\n      <Modal open={open} onClose={() => setOpen(false)} />\n    </div>\n  );\n}",
+  "timeTargetSec": 125,
+  "review": {
+    "walkthroughSteps": [
+      "The parent owns the modal visibility state.",
+      "Modal receives visibility and close behavior through props.",
+      "The modal returns null while closed.",
+      "The close button calls the parent's state update."
+    ],
+    "commonMistakes": [
+      "Creating separate visibility state inside the modal.",
+      "Forgetting to pass the close handler from the parent."
+    ]
+  },
+  "tags": [
+    "components",
+    "props",
+    "useState",
+    "composition"
+  ]
+},
+{
+  "id": "react-hard-072",
+  "language": "react",
+  "trackType": "practice",
+  "difficulty": "hard",
+  "title": "Custom Toggle Hook",
+  "prompt": "Create a reusable useToggle hook and use it to control a panel's visibility.",
+  "approach": {
+    "steps": [
+      "Create a custom hook that stores a boolean state.",
+      "Return the state and a function that toggles it.",
+      "Use the hook inside the component.",
+      "Render the panel based on the returned boolean."
+    ],
+    "example": "When the toggle starts false, clicking the button changes it to true and reveals the panel."
+  },
+  "code": "import { useState } from 'react';\n\nfunction useToggle(initial = false) {\n  const [value, setValue] = useState(initial);\n  const toggle = () => setValue(current => !current);\n  return [value, toggle];\n}\n\nexport default function TogglePanel() {\n  const [open, toggle] = useToggle(false);\n\n  return (\n    <div>\n      <button onClick={toggle}>{open ? 'Hide' : 'Show'}</button>\n      {open && <p>Panel content is visible.</p>}\n    </div>\n  );\n}",
+  "timeTargetSec": 125,
+  "review": {
+    "walkthroughSteps": [
+      "useToggle keeps boolean state inside a reusable hook.",
+      "toggle updates the value based on its previous state.",
+      "The component receives the current value and toggle function.",
+      "Conditional JSX controls whether the panel is visible."
+    ],
+    "commonMistakes": [
+      "Calling hooks conditionally.",
+      "Updating the boolean from a stale value instead of the previous state."
+    ]
+  },
+  "tags": [
+    "custom-hook",
+    "useState",
+    "reusability",
+    "conditional-rendering"
+  ]
+},
+{
+  "id": "react-hard-073",
+  "language": "react",
+  "trackType": "practice",
+  "difficulty": "hard",
+  "title": "Reducer Counter",
+  "prompt": "Build a counter using useReducer with actions for incrementing, decrementing, and resetting the value.",
+  "approach": {
+    "steps": [
+      "Create a reducer that handles increment, decrement, and reset actions.",
+      "Initialize the counter with useReducer.",
+      "Dispatch an action from each button.",
+      "Render the current reducer state."
+    ],
+    "example": "After two increments and one decrement from zero, the displayed counter becomes 1."
+  },
+  "code": "import { useReducer } from 'react';\n\nfunction reducer(state, action) {\n  if (action.type === 'increment') return state + 1;\n  if (action.type === 'decrement') return state - 1;\n  if (action.type === 'reset') return 0;\n  return state;\n}\n\nexport default function ReducerCounter() {\n  const [count, dispatch] = useReducer(reducer, 0);\n\n  return (\n    <div>\n      <button onClick={() => dispatch({ type: 'decrement' })}>-</button>\n      <span>{count}</span>\n      <button onClick={() => dispatch({ type: 'increment' })}>+</button>\n      <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>\n    </div>\n  );\n}",
+  "timeTargetSec": 130,
+  "review": {
+    "walkthroughSteps": [
+      "The reducer describes how each action changes the count.",
+      "useReducer provides the current state and dispatch function.",
+      "Buttons dispatch named actions instead of changing state directly.",
+      "The rendered count always reflects the reducer state."
+    ],
+    "commonMistakes": [
+      "Changing state directly inside the component.",
+      "Using action names that do not match the reducer cases."
+    ]
+  },
+  "tags": [
+    "useReducer",
+    "state-management",
+    "actions",
+    "reducer"
+  ]
+},
+{
+  "id": "react-hard-074",
+  "language": "react",
+  "trackType": "practice",
+  "difficulty": "hard",
+  "title": "Context Theme",
+  "prompt": "Build a small theme context that lets a nested button read and toggle the current theme.",
+  "approach": {
+    "steps": [
+      "Create a ThemeContext with createContext.",
+      "Store the theme and toggle function in the provider.",
+      "Wrap the child component with the provider.",
+      "Read the context from the child with useContext."
+    ],
+    "example": "When the current theme is 'light', clicking the nested button changes it to 'dark'."
+  },
+  "code": "import { createContext, useContext, useState } from 'react';\n\nconst ThemeContext = createContext();\n\nfunction ThemeButton() {\n  const { theme, toggleTheme } = useContext(ThemeContext);\n  return <button onClick={toggleTheme}>Theme: {theme}</button>;\n}\n\nexport default function ThemeExample() {\n  const [theme, setTheme] = useState('light');\n  const toggleTheme = () =>\n    setTheme(current => current === 'light' ? 'dark' : 'light');\n\n  return (\n    <ThemeContext.Provider value={{ theme, toggleTheme }}>\n      <ThemeButton />\n    </ThemeContext.Provider>\n  );\n}",
+  "timeTargetSec": 135,
+  "review": {
+    "walkthroughSteps": [
+      "ThemeContext provides shared theme data.",
+      "The parent stores the current theme and toggle behavior.",
+      "The provider makes both values available to descendants.",
+      "ThemeButton reads the values through useContext."
+    ],
+    "commonMistakes": [
+      "Calling useContext outside the matching provider.",
+      "Passing only the theme while forgetting the toggle function."
+    ]
+  },
+  "tags": [
+    "context",
+    "useContext",
+    "useState",
+    "shared-state"
+  ]
+},
+{
+  "id": "react-hard-075",
+  "language": "react",
+  "trackType": "practice",
+  "difficulty": "hard",
+  "title": "Memoized Filter",
+  "prompt": "Build a product list that uses useMemo to calculate filtered products from a search term.",
+  "approach": {
+    "steps": [
+      "Store the search term with useState.",
+      "Keep the product data in the component.",
+      "Use useMemo to calculate the filtered list from search.",
+      "Render the memoized result."
+    ],
+    "example": "When 'phone' is entered, the memoized list contains only products whose names include 'phone'."
+  },
+  "code": "import { useMemo, useState } from 'react';\n\nexport default function MemoizedFilter() {\n  const [search, setSearch] = useState('');\n  const products = ['Phone', 'Laptop', 'Headphones', 'Monitor'];\n\n  const filtered = useMemo(() => {\n    return products.filter(product =>\n      product.toLowerCase().includes(search.toLowerCase())\n    );\n  }, [search]);\n\n  return (\n    <div>\n      <input value={search} onChange={e => setSearch(e.target.value)} />\n      <ul>\n        {filtered.map(product => <li key={product}>{product}</li>)}\n      </ul>\n    </div>\n  );\n}",
+  "timeTargetSec": 125,
+  "review": {
+    "walkthroughSteps": [
+      "search stores the current filter text.",
+      "useMemo recalculates filtered only when search changes.",
+      "The filtering callback compares product names with search.",
+      "The memoized list is rendered with map()."
+    ],
+    "commonMistakes": [
+      "Leaving search out of the dependency array.",
+      "Using useMemo without connecting it to the calculated value."
+    ]
+  },
+  "tags": [
+    "useMemo",
+    "useState",
+    "filter",
+    "optimization"
+  ]
+},
+{
+  "id": "react-hard-076",
+  "language": "react",
+  "trackType": "practice",
+  "difficulty": "hard",
+  "title": "Debounced Search",
+  "prompt": "Build a search component that waits briefly after typing stops before updating the displayed search value.",
+  "approach": {
+    "steps": [
+      "Store the immediate input and delayed search values separately.",
+      "Use useEffect to create a short timeout after input changes.",
+      "Clear the previous timeout when the input changes again.",
+      "Display the delayed search value."
+    ],
+    "example": "If the user types 'react' continuously, the displayed search value updates after typing pauses instead of after every character."
+  },
+  "code": "import { useEffect, useState } from 'react';\n\nexport default function DebouncedSearch() {\n  const [query, setQuery] = useState('');\n  const [debounced, setDebounced] = useState('');\n\n  useEffect(() => {\n    const timer = setTimeout(() => setDebounced(query), 500);\n    return () => clearTimeout(timer);\n  }, [query]);\n\n  return (\n    <div>\n      <input\n        value={query}\n        onChange={e => setQuery(e.target.value)}\n        placeholder='Search'\n      />\n      <p>Searching for: {debounced}</p>\n    </div>\n  );\n}",
+  "timeTargetSec": 135,
+  "review": {
+    "walkthroughSteps": [
+      "query updates immediately with every keystroke.",
+      "The effect starts a timeout whenever query changes.",
+      "Cleanup cancels the previous timeout before a new one starts.",
+      "debounced changes only after the typing pause completes."
+    ],
+    "commonMistakes": [
+      "Forgetting to clear the previous timeout.",
+      "Using debounced as the input value instead of query."
+    ]
+  },
+  "tags": [
+    "useEffect",
+    "useState",
+    "debounce",
+    "cleanup"
+  ]
+},
+{
+  "id": "react-hard-077",
+  "language": "react",
+  "trackType": "practice",
+  "difficulty": "hard",
+  "title": "Paginated List",
+  "prompt": "Build a component that displays a fixed number of products per page with previous and next controls.",
+  "approach": {
+    "steps": [
+      "Store the current page with useState.",
+      "Calculate the start and end positions for the current page.",
+      "Use slice() to select visible products.",
+      "Disable navigation when the first or last page is reached."
+    ],
+    "example": "With two products per page, page 2 displays the second pair of products from the full list."
+  },
+  "code": "import { useState } from 'react';\n\nexport default function PaginatedList() {\n  const [page, setPage] = useState(1);\n  const products = ['Phone', 'Laptop', 'Monitor', 'Keyboard', 'Mouse', 'Tablet'];\n  const perPage = 2;\n  const totalPages = Math.ceil(products.length / perPage);\n  const visible = products.slice((page - 1) * perPage, page * perPage);\n\n  return (\n    <div>\n      <ul>\n        {visible.map(product => <li key={product}>{product}</li>)}\n      </ul>\n      <button disabled={page === 1} onClick={() => setPage(page - 1)}>\n        Previous\n      </button>\n      <span> Page {page} of {totalPages} </span>\n      <button disabled={page === totalPages} onClick={() => setPage(page + 1)}>\n        Next\n      </button>\n    </div>\n  );\n}",
+  "timeTargetSec": 140,
+  "review": {
+    "walkthroughSteps": [
+      "page stores the currently visible page.",
+      "The slice boundaries are calculated from page and perPage.",
+      "Only the current page's products are rendered.",
+      "Navigation buttons are disabled at the list boundaries."
+    ],
+    "commonMistakes": [
+      "Using the page number directly as the slice start.",
+      "Allowing page to move below one or above totalPages."
+    ]
+  },
+  "tags": [
+    "pagination",
+    "useState",
+    "slice",
+    "list-rendering"
+  ]
+},
+{
+  "id": "react-hard-078",
+  "language": "react",
+  "trackType": "practice",
+  "difficulty": "hard",
+  "title": "Sortable List",
+  "prompt": "Build a product list that can be sorted by name in ascending or descending order.",
+  "approach": {
+    "steps": [
+      "Store the sorting direction with useState.",
+      "Create a copied array before sorting the products.",
+      "Sort the copied array according to the selected direction.",
+      "Render the sorted result and provide a direction toggle."
+    ],
+    "example": "When ascending order is selected, 'Apple' appears before 'Phone' in the displayed product list."
+  },
+  "code": "import { useMemo, useState } from 'react';\n\nexport default function SortableList() {\n  const [ascending, setAscending] = useState(true);\n  const products = ['Phone', 'Apple', 'Laptop', 'Monitor'];\n\n  const sorted = useMemo(() => {\n    return [...products].sort((a, b) =>\n      ascending ? a.localeCompare(b) : b.localeCompare(a)\n    );\n  }, [ascending]);\n\n  return (\n    <div>\n      <button onClick={() => setAscending(current => !current)}>\n        Sort {ascending ? 'Descending' : 'Ascending'}\n      </button>\n      <ul>\n        {sorted.map(product => <li key={product}>{product}</li>)}\n      </ul>\n    </div>\n  );\n}",
+  "timeTargetSec": 140,
+  "review": {
+    "walkthroughSteps": [
+      "ascending stores the current sorting direction.",
+      "A copied products array prevents direct mutation.",
+      "useMemo sorts the copied array whenever the direction changes.",
+      "The sorted values are rendered as list items."
+    ],
+    "commonMistakes": [
+      "Calling sort() directly on the original array.",
+      "Reversing the comparison without changing the state."
+    ]
+  },
+  "tags": [
+    "useMemo",
+    "useState",
+    "sorting",
+    "immutability"
+  ]
+},
+{
+  "id": "react-hard-079",
+  "language": "react",
+  "trackType": "practice",
+  "difficulty": "hard",
+  "title": "Multi Field Form",
+  "prompt": "Build a controlled registration form with name and email fields and display the submitted values.",
+  "approach": {
+    "steps": [
+      "Store the form fields together in one state object.",
+      "Use one change handler for both inputs.",
+      "Prevent the default form submission.",
+      "Store and display the submitted form values."
+    ],
+    "example": "Submitting name 'Sam' and email 'sam@example.com' displays both submitted values below the form."
+  },
+  "code": "import { useState } from 'react';\n\nexport default function RegistrationForm() {\n  const [form, setForm] = useState({ name: '', email: '' });\n  const [submitted, setSubmitted] = useState(null);\n\n  function handleChange(e) {\n    setForm(current => ({ ...current, [e.target.name]: e.target.value }));\n  }\n\n  function handleSubmit(e) {\n    e.preventDefault();\n    setSubmitted(form);\n  }\n\n  return (\n    <div>\n      <form onSubmit={handleSubmit}>\n        <input name='name' value={form.name} onChange={handleChange} />\n        <input name='email' value={form.email} onChange={handleChange} />\n        <button type='submit'>Register</button>\n      </form>\n      {submitted && (\n        <p>{submitted.name} - {submitted.email}</p>\n      )}\n    </div>\n  );\n}",
+  "timeTargetSec": 135,
+  "review": {
+    "walkthroughSteps": [
+      "form stores both controlled field values in one object.",
+      "handleChange updates only the field named by the input.",
+      "handleSubmit prevents the default browser submission.",
+      "The submitted object is rendered after a successful submission."
+    ],
+    "commonMistakes": [
+      "Replacing the whole form object when updating one field.",
+      "Using the input value without setting its name attribute."
+    ]
+  },
+  "tags": [
+    "forms",
+    "useState",
+    "controlled-input",
+    "objects"
+  ]
+},
+{
+  "id": "react-hard-080",
+  "language": "react",
+  "trackType": "practice",
+  "difficulty": "hard",
+  "title": "Reusable Data Table",
+  "prompt": "Build a reusable table component that receives column definitions and row data through props.",
+  "approach": {
+    "steps": [
+      "Create a Table component that accepts columns and rows as props.",
+      "Render column headers from the column definitions.",
+      "Render each row using the matching column keys.",
+      "Use stable keys for both rows and cells."
+    ],
+    "example": "For rows containing name and role values, the table renders those fields under the matching column headers."
+  },
+  "code": "function DataTable({ columns, rows }) {\n  return (\n    <table>\n      <thead>\n        <tr>\n          {columns.map(column => <th key={column.key}>{column.label}</th>)}\n        </tr>\n      </thead>\n      <tbody>\n        {rows.map(row => (\n          <tr key={row.id}>\n            {columns.map(column => (\n              <td key={column.key}>{row[column.key]}</td>\n            ))}\n          </tr>\n        ))}\n      </tbody>\n    </table>\n  );\n}\n\nexport default function TableExample() {\n  const columns = [\n    { key: 'name', label: 'Name' },\n    { key: 'role', label: 'Role' }\n  ];\n  const rows = [\n    { id: 1, name: 'Sam', role: 'Developer' },\n    { id: 2, name: 'Alex', role: 'Designer' }\n  ];\n\n  return <DataTable columns={columns} rows={rows} />;\n}",
+  "timeTargetSec": 145,
+  "review": {
+    "walkthroughSteps": [
+      "DataTable receives its structure and data through props.",
+      "Column definitions determine the table headers.",
+      "Each row is rendered using the configured column keys.",
+      "The example component supplies reusable table data."
+    ],
+    "commonMistakes": [
+      "Hardcoding every column inside the reusable component.",
+      "Using array indexes instead of stable row identifiers when available."
+    ]
+  },
+  "tags": [
+    "props",
+    "reusable-components",
+    "tables",
+    "map"
+  ]
+},
+{"id":"react-hard-081","language":"react","trackType":"practice","difficulty":"hard","title":"Search With Debounce","prompt":"Build a search component that delays filtering until the user pauses typing.","approach":{"steps":["Use state for the search text.","Use useEffect to create a short delay before updating the result.","Clear the previous timer when the text changes.","Render the current filtered value."],"example":"For 'rea' typed quickly, the result updates after typing pauses instead of after every keystroke."},"code":"import { useEffect, useState } from 'react';\n\nexport default function SearchBox() {\n  const [text, setText] = useState('');\n  const [query, setQuery] = useState('');\n\n  useEffect(() => {\n    const timer = setTimeout(() => setQuery(text), 400);\n    return () => clearTimeout(timer);\n  }, [text]);\n\n  return <input value={text} onChange={e => setText(e.target.value)} placeholder={'Search...'} />;\n}","timeTargetSec":130,"complexity":{"time":"O(1) per update","space":"O(1)"},"review":{"walkthroughSteps":["text stores the immediate input value.","useEffect waits before copying text into query.","The cleanup removes the previous timer.","The controlled input always reflects text."],"commonMistakes":["Forgetting to clear the previous timer.","Using the delayed value as the input value."]},"tags":["useEffect","state","debounce"]},
+{"id":"react-hard-082","language":"react","trackType":"practice","difficulty":"hard","title":"Filter List With Memo","prompt":"Build a component that filters a list based on a search value while memoizing the filtered result.","approach":{"steps":["Store the search text with useState.","Use useMemo to calculate matching items.","Compare each item with the lowercase search text.","Render the memoized list with map."],"example":"For ['React', 'Python', 'Redux'] and 're', only React and Redux remain visible."},"code":"import { useMemo, useState } from 'react';\n\nexport default function FilterList() {\n  const [text, setText] = useState('');\n  const items = ['React', 'Python', 'Redux'];\n  const filtered = useMemo(() => items.filter(item => item.toLowerCase().includes(text.toLowerCase())), [text]);\n\n  return <div><input value={text} onChange={e => setText(e.target.value)} /><ul>{filtered.map(item => <li key={item}>{item}</li>)}</ul></div>;\n}","timeTargetSec":130,"complexity":{"time":"O(n) per filter","space":"O(n)"},"review":{"walkthroughSteps":["The input controls the search text.","useMemo recalculates matching items when text changes.","includes checks whether each item contains the query.","map renders the filtered items."],"commonMistakes":["Leaving text out of the dependency array.","Using a non-unique value as the key."]},"tags":["useMemo","filter","map"]},
+{"id":"react-hard-083","language":"react","trackType":"practice","difficulty":"hard","title":"Previous Value Tracker","prompt":"Build a component that displays both the current value and the previous value after each change.","approach":{"steps":["Store the current value with useState.","Create a ref to remember the previous value.","Update the ref inside useEffect after rendering.","Display both values."],"example":"If the value changes from '10' to '20', the component displays 20 as current and 10 as previous."},"code":"import { useEffect, useRef, useState } from 'react';\n\nexport default function PreviousValue() {\n  const [value, setValue] = useState(0);\n  const previous = useRef();\n\n  useEffect(() => {\n    previous.current = value;\n  }, [value]);\n\n  return <div><button onClick={() => setValue(value + 1)}>Value {value}</button><p>Previous: {previous.current ?? 'None'}</p></div>;\n}","timeTargetSec":125,"complexity":{"time":"O(1) per update","space":"O(1)"},"review":{"walkthroughSteps":["state stores the current value.","The ref persists without causing another render.","useEffect records the current value after rendering.","The displayed previous value therefore comes from the prior render."],"commonMistakes":["Using state for the previous value unnecessarily.","Updating the ref during render."]},"tags":["useRef","useEffect","state"]},
+{"id":"react-hard-084","language":"react","trackType":"practice","difficulty":"hard","title":"Reducer Counter","prompt":"Build a counter component using useReducer with increment, decrement, and reset actions.","approach":{"steps":["Create a reducer that receives state and an action.","Handle increment, decrement, and reset cases.","Initialize useReducer with zero.","Dispatch actions from separate buttons."],"example":"Starting at 3, clicking decrement changes the displayed value to 2, while reset returns it to 0."},"code":"import { useReducer } from 'react';\n\nfunction reducer(state, action) {\n  if (action.type === 'increment') return state + 1;\n  if (action.type === 'decrement') return state - 1;\n  if (action.type === 'reset') return 0;\n  return state;\n}\n\nexport default function Counter() {\n  const [count, dispatch] = useReducer(reducer, 0);\n  return <div><button onClick={() => dispatch({ type: 'decrement' })}>-</button><span>{count}</span><button onClick={() => dispatch({ type: 'increment' })}>+</button><button onClick={() => dispatch({ type: 'reset' })}>Reset</button></div>;\n}","timeTargetSec":140,"complexity":{"time":"O(1) per action","space":"O(1)"},"review":{"walkthroughSteps":["reducer decides how each action changes the state.","useReducer provides the current count and dispatch function.","Buttons dispatch explicit action objects.","Unknown actions return the existing state."],"commonMistakes":["Mutating state directly.","Forgetting to return the existing state for unknown actions."]},"tags":["useReducer","state","actions"]},
+{"id":"react-hard-085","language":"react","trackType":"practice","difficulty":"hard","title":"Custom Toggle Hook","prompt":"Build a reusable custom hook that manages a boolean toggle and use it inside a component.","approach":{"steps":["Create a useToggle function with useState.","Return the boolean value and toggle function.","Use the custom hook inside the component.","Render different text based on the value."],"example":"When the toggle starts false, clicking the button changes the displayed state from 'Off' to 'On'."},"code":"import { useState } from 'react';\n\nfunction useToggle(initial = false) {\n  const [value, setValue] = useState(initial);\n  const toggle = () => setValue(current => !current);\n  return [value, toggle];\n}\n\nexport default function Toggle() {\n  const [enabled, toggle] = useToggle();\n  return <button onClick={toggle}>{enabled ? 'On' : 'Off'}</button>;\n}","timeTargetSec":135,"complexity":{"time":"O(1) per toggle","space":"O(1)"},"review":{"walkthroughSteps":["useToggle owns the boolean state.","The toggle function flips the current value.","The component receives the hook's returned pair.","Conditional rendering displays the current state."],"commonMistakes":["Calling hooks conditionally.","Using the old value instead of the functional state update."]},"tags":["custom-hook","useState","reusability"]},
+{"id":"react-hard-086","language":"react","trackType":"practice","difficulty":"hard","title":"Memoized Child Component","prompt":"Build a parent and child component where the child is memoized to avoid rendering when its props stay unchanged.","approach":{"steps":["Create a child component that receives a label prop.","Wrap the child with React.memo.","Store unrelated parent state separately.","Update the unrelated state from a button."],"example":"Clicking the parent counter changes its value while the memoized child keeps the same props."},"code":"import { memo, useState } from 'react';\n\nconst Label = memo(function Label({ text }) {\n  return <p>{text}</p>;\n});\n\nexport default function Parent() {\n  const [count, setCount] = useState(0);\n  return <div><button onClick={() => setCount(count + 1)}>{count}</button><Label text={'Stable label'} /></div>;\n}","timeTargetSec":125,"complexity":{"time":"O(1) child comparison","space":"O(1)"},"review":{"walkthroughSteps":["Parent state changes when the button is clicked.","Label receives the same text prop each time.","memo compares the child's props.","The child can skip rendering when its props are unchanged."],"commonMistakes":["Changing the child prop on every render.","Using memo when the child actually depends on changing props."]},"tags":["memo","props","performance"]},
+{"id":"react-hard-087","language":"react","trackType":"practice","difficulty":"hard","title":"Stable Callback Prop","prompt":"Build a parent component that passes a memoized callback to a memoized child component.","approach":{"steps":["Create a memoized child receiving an onAction prop.","Use useCallback to preserve the callback reference.","Keep the callback independent of changing state.","Pass the callback to the child button."],"example":"The child receives the same callback reference while the parent counter changes."},"code":"import { memo, useCallback, useState } from 'react';\n\nconst Action = memo(function Action({ onAction }) {\n  return <button onClick={onAction}>Run</button>;\n});\n\nexport default function Parent() {\n  const [count, setCount] = useState(0);\n  const run = useCallback(() => console.log('Action'), []);\n  return <div><button onClick={() => setCount(count + 1)}>{count}</button><Action onAction={run} /></div>;\n}","timeTargetSec":130,"complexity":{"time":"O(1) callback creation","space":"O(1)"},"review":{"walkthroughSteps":["useCallback preserves the callback reference.","Action is memoized and receives the stable function.","The counter changes independently of the callback.","The child button invokes the callback when clicked."],"commonMistakes":["Leaving unstable inline functions when testing memoization.","Adding unnecessary dependencies to useCallback."]},"tags":["useCallback","memo","performance"]},
+{"id":"react-hard-088","language":"react","trackType":"practice","difficulty":"hard","title":"Local Storage State","prompt":"Build a component that initializes state from localStorage and saves changes whenever the value changes.","approach":{"steps":["Read the stored value during state initialization.","Use a fallback when no stored value exists.","Use useEffect to save the updated value.","Render a controlled input for the value."],"example":"After entering 'Sam', refreshing the component can restore 'Sam' from localStorage."},"code":"import { useEffect, useState } from 'react';\n\nexport default function SavedName() {\n  const [name, setName] = useState(() => localStorage.getItem('name') || '');\n\n  useEffect(() => {\n    localStorage.setItem('name', name);\n  }, [name]);\n\n  return <input value={name} onChange={e => setName(e.target.value)} placeholder={'Name'} />;\n}","timeTargetSec":130,"complexity":{"time":"O(1) per save","space":"O(1)"},"review":{"walkthroughSteps":["The initializer reads the existing stored value once.","The input controls name state.","useEffect runs whenever name changes.","The latest value is written back to localStorage."],"commonMistakes":["Reading localStorage on every render.","Forgetting name in the effect dependency array."]},"tags":["useEffect","localStorage","state"]},
+{"id":"react-hard-089","language":"react","trackType":"practice","difficulty":"hard","title":"Async Data State","prompt":"Build a component that loads data asynchronously and displays loading, error, and success states.","approach":{"steps":["Create state for data, loading, and error.","Start the request inside useEffect.","Set loading before the request begins.","Render the appropriate state after the request finishes."],"example":"While the request is running the component shows 'Loading', then displays the returned data after success."},"code":"import { useEffect, useState } from 'react';\n\nexport default function DataBox() {\n  const [data, setData] = useState(null);\n  const [error, setError] = useState(false);\n\n  useEffect(() => {\n    fetch('/api/data').then(response => response.json()).then(setData).catch(() => setError(true));\n  }, []);\n\n  if (error) return <p>Unable to load</p>;\n  if (!data) return <p>Loading...</p>;\n  return <p>{data.name}</p>;\n}","timeTargetSec":140,"complexity":{"time":"O(1) component processing","space":"O(1) excluding response"},"review":{"walkthroughSteps":["The effect starts the request after mounting.","Successful data is stored in state.","A failed request sets the error state.","Conditional rendering chooses loading, error, or success output."],"commonMistakes":["Starting the fetch directly during render.","Rendering data before checking whether it exists."]},"tags":["useEffect","fetch","async-state"]},
+{"id":"react-hard-090","language":"react","trackType":"practice","difficulty":"hard","title":"Abort Fetch Request","prompt":"Build a component that fetches data with an AbortController and cancels the request when the component unmounts.","approach":{"steps":["Create an AbortController inside useEffect.","Pass its signal to fetch.","Store the successful response in state.","Abort the request in the cleanup function."],"example":"If the component unmounts while the request is pending, cleanup aborts the active request."},"code":"import { useEffect, useState } from 'react';\n\nexport default function UserData() {\n  const [user, setUser] = useState(null);\n\n  useEffect(() => {\n    const controller = new AbortController();\n    fetch('/api/user', { signal: controller.signal }).then(r => r.json()).then(setUser).catch(() => {});\n    return () => controller.abort();\n  }, []);\n\n  return <p>{user ? user.name : 'Loading...'}</p>;\n}","timeTargetSec":145,"complexity":{"time":"O(1) component processing","space":"O(1) excluding response"},"review":{"walkthroughSteps":["The controller owns the request cancellation signal.","fetch receives that signal.","Successful data updates user state.","Cleanup aborts the request when the effect is removed."],"commonMistakes":["Creating the controller outside the effect.","Forgetting to return the cleanup function."]},"tags":["useEffect","AbortController","fetch"]},
+{"id":"react-hard-091","language":"react","trackType":"practice","difficulty":"hard","title":"Dynamic Form Fields","prompt":"Build a form that allows users to add and remove controlled input fields dynamically.","approach":{"steps":["Store the field values in an array state.","Render each value with map.","Update one field using its index.","Append a new empty field and remove selected fields."],"example":"Starting with one field, clicking 'Add' creates another input while each existing value remains unchanged."},"code":"import { useState } from 'react';\n\nexport default function DynamicForm() {\n  const [fields, setFields] = useState(['']);\n  const update = (index, value) => setFields(fields.map((item, i) => i === index ? value : item));\n  const add = () => setFields([...fields, '']);\n  const remove = index => setFields(fields.filter((_, i) => i !== index));\n\n  return <div>{fields.map((field, i) => <div key={i}><input value={field} onChange={e => update(i, e.target.value)} /><button onClick={() => remove(i)}>Remove</button></div>)}<button onClick={add}>Add</button></div>;\n}","timeTargetSec":145,"complexity":{"time":"O(n) per update","space":"O(n)"},"review":{"walkthroughSteps":["fields stores every controlled input value.","map updates only the selected field.","add creates another empty field.","filter removes the selected field."],"commonMistakes":["Mutating the fields array directly.","Using an incorrect index when updating or removing."]},"tags":["forms","arrays","controlled-input"]},
+{"id":"react-hard-092","language":"react","trackType":"practice","difficulty":"hard","title":"Select All Items","prompt":"Build a selectable list with individual checkboxes and a select-all checkbox.","approach":{"steps":["Store selected item identifiers in state.","Toggle individual identifiers with a helper.","Check whether every item is selected.","Replace the selection when select-all changes."],"example":"For three items, selecting all checks every box, while clearing select-all removes every selection."},"code":"import { useState } from 'react';\n\nexport default function SelectList() {\n  const items = ['A', 'B', 'C'];\n  const [selected, setSelected] = useState([]);\n  const all = selected.length === items.length;\n  const toggle = item => setSelected(selected.includes(item) ? selected.filter(x => x !== item) : [...selected, item]);\n\n  return <div><label><input type={'checkbox'} checked={all} onChange={() => setSelected(all ? [] : items)} />Select all</label>{items.map(item => <label key={item}><input type={'checkbox'} checked={selected.includes(item)} onChange={() => toggle(item)} />{item}</label>)}</div>;\n}","timeTargetSec":145,"complexity":{"time":"O(n) per selection","space":"O(n)"},"review":{"walkthroughSteps":["selected stores the currently checked identifiers.","all checks whether the full list is selected.","toggle adds or removes one identifier.","The select-all checkbox replaces the complete selection."],"commonMistakes":["Mutating selected directly.","Checking select-all from the number of available items incorrectly."]},"tags":["checkbox","state","arrays"]},
+{"id":"react-hard-093","language":"react","trackType":"practice","difficulty":"hard","title":"Sortable List","prompt":"Build a component that sorts displayed items between ascending and descending order.","approach":{"steps":["Store the sort direction in state.","Use the direction to create a sorted copy.","Avoid mutating the original item array.","Render the sorted values with map."],"example":"For [3, 1, 2], ascending order displays 1, 2, 3 and descending displays 3, 2, 1."},"code":"import { useMemo, useState } from 'react';\n\nexport default function SortList() {\n  const [ascending, setAscending] = useState(true);\n  const items = [3, 1, 2];\n  const sorted = useMemo(() => [...items].sort((a, b) => ascending ? a - b : b - a), [ascending]);\n\n  return <div><button onClick={() => setAscending(!ascending)}>Reverse</button><ul>{sorted.map(item => <li key={item}>{item}</li>)}</ul></div>;\n}","timeTargetSec":140,"complexity":{"time":"O(n log n)","space":"O(n)"},"review":{"walkthroughSteps":["ascending determines the requested order.","A copied array prevents mutation of items.","sort compares values according to the direction.","map renders the sorted result."],"commonMistakes":["Sorting the original array directly.","Using a string comparison for numeric values."]},"tags":["useMemo","sort","immutability"]},
+{"id":"react-hard-094","language":"react","trackType":"practice","difficulty":"hard","title":"Pagination Controls","prompt":"Build a small paginated list that displays a fixed number of items and provides next and previous controls.","approach":{"steps":["Store the current page in state.","Calculate the visible slice from the page.","Disable previous on the first page.","Disable next on the final page."],"example":"For five items with two per page, page one shows the first two items and page two shows the next two."},"code":"import { useState } from 'react';\n\nexport default function Pager() {\n  const items = ['A', 'B', 'C', 'D', 'E'];\n  const size = 2;\n  const [page, setPage] = useState(0);\n  const visible = items.slice(page * size, page * size + size);\n  const last = Math.ceil(items.length / size) - 1;\n\n  return <div><ul>{visible.map(item => <li key={item}>{item}</li>)}</ul><button disabled={page === 0} onClick={() => setPage(page - 1)}>Prev</button><button disabled={page === last} onClick={() => setPage(page + 1)}>Next</button></div>;\n}","timeTargetSec":145,"complexity":{"time":"O(k) per render","space":"O(k)"},"review":{"walkthroughSteps":["page identifies the current page.","slice selects only the visible items.","last calculates the final valid page.","Buttons change page while disabled states prevent invalid navigation."],"commonMistakes":["Allowing page to become negative.","Using the wrong slice boundaries."]},"tags":["pagination","slice","state"]},
+{"id":"react-hard-095","language":"react","trackType":"practice","difficulty":"hard","title":"Modal With Escape","prompt":"Build a modal component that opens from a button and closes when the Escape key is pressed.","approach":{"steps":["Store the modal visibility in state.","Attach a keydown listener when the modal is open.","Close the modal when Escape is detected.","Remove the listener during cleanup."],"example":"After opening the modal, pressing Escape changes the view back to the closed state."},"code":"import { useEffect, useState } from 'react';\n\nexport default function Modal() {\n  const [open, setOpen] = useState(false);\n\n  useEffect(() => {\n    if (!open) return;\n    const close = e => e.key === 'Escape' && setOpen(false);\n    window.addEventListener('keydown', close);\n    return () => window.removeEventListener('keydown', close);\n  }, [open]);\n\n  return <div><button onClick={() => setOpen(true)}>Open</button>{open && <div role={'dialog'}><p>Modal content</p><button onClick={() => setOpen(false)}>Close</button></div>}</div>;\n}","timeTargetSec":150,"complexity":{"time":"O(1) per event","space":"O(1)"},"review":{"walkthroughSteps":["open controls whether the dialog is rendered.","The effect adds a keyboard listener only while open.","Escape closes the modal through state.","Cleanup removes the listener when open changes or unmounts."],"commonMistakes":["Adding listeners without cleanup.","Listening for Escape when the modal is closed."]},"tags":["useEffect","events","modal"]},
+{"id":"react-hard-096","language":"react","trackType":"practice","difficulty":"hard","title":"Click Outside Panel","prompt":"Build a panel that closes when the user clicks outside its content area.","approach":{"steps":["Store the panel visibility in state.","Create a ref for the panel content.","Listen for document clicks while the panel is open.","Close only when the click target is outside the referenced element."],"example":"Clicking inside the panel keeps it open, while clicking outside closes it."},"code":"import { useEffect, useRef, useState } from 'react';\n\nexport default function Panel() {\n  const [open, setOpen] = useState(false);\n  const panel = useRef(null);\n\n  useEffect(() => {\n    if (!open) return;\n    const close = e => !panel.current?.contains(e.target) && setOpen(false);\n    document.addEventListener('mousedown', close);\n    return () => document.removeEventListener('mousedown', close);\n  }, [open]);\n\n  return <div><button onClick={() => setOpen(true)}>Open</button>{open && <section ref={panel}><p>Panel</p></section>}</div>;\n}","timeTargetSec":150,"complexity":{"time":"O(1) per click","space":"O(1)"},"review":{"walkthroughSteps":["panel stores a reference to the rendered section.","The document listener receives every mouse click.","contains checks whether the target is inside the panel.","Outside clicks change open to false."],"commonMistakes":["Checking the target against the wrong element.","Forgetting to remove the document listener."]},"tags":["useRef","useEffect","events"]},
+{"id":"react-hard-097","language":"react","trackType":"practice","difficulty":"hard","title":"Context Theme Provider","prompt":"Build a small theme context that lets a child component read and change the current theme.","approach":{"steps":["Create a context with createContext.","Store the theme in the provider state.","Expose theme and toggle through the provider value.","Read the context inside a child component with useContext."],"example":"Starting with 'light', clicking the theme button changes the displayed theme to 'dark'."},"code":"import { createContext, useContext, useState } from 'react';\n\nconst ThemeContext = createContext();\n\nfunction ThemeProvider({ children }) {\n  const [theme, setTheme] = useState('light');\n  const toggle = () => setTheme(theme === 'light' ? 'dark' : 'light');\n  return <ThemeContext.Provider value={{ theme, toggle }}>{children}</ThemeContext.Provider>;\n}\n\nfunction Button() {\n  const { theme, toggle } = useContext(ThemeContext);\n  return <button onClick={toggle}>Theme: {theme}</button>;\n}\n\nexport default function App() {\n  return <ThemeProvider><Button /></ThemeProvider>;\n}","timeTargetSec":155,"complexity":{"time":"O(1) context update","space":"O(1) excluding consumers"},"review":{"walkthroughSteps":["ThemeProvider owns the shared theme state.","The provider exposes theme and toggle through context.","Button reads both values with useContext.","Clicking the button updates the shared context state."],"commonMistakes":["Using context outside its provider.","Mutating the context value directly."]},"tags":["context","useContext","provider"]},
+{"id":"react-hard-098","language":"react","trackType":"practice","difficulty":"hard","title":"Reducer Form","prompt":"Build a controlled form whose multiple fields are managed through a single useReducer state object.","approach":{"steps":["Create a reducer that updates one field by name.","Initialize all form fields in one state object.","Dispatch changes from each input.","Render the current values from reducer state."],"example":"Typing 'Sam' into the name field updates only the name property while the email field stays unchanged."},"code":"import { useReducer } from 'react';\n\nfunction reducer(state, action) {\n  return { ...state, [action.name]: action.value };\n}\n\nexport default function Form() {\n  const [form, dispatch] = useReducer(reducer, { name: '', email: '' });\n  const change = e => dispatch({ name: e.target.name, value: e.target.value });\n  return <form><input name={'name'} value={form.name} onChange={change} /><input name={'email'} value={form.email} onChange={change} /></form>;\n}","timeTargetSec":150,"complexity":{"time":"O(m) per update","space":"O(m)"},"review":{"walkthroughSteps":["The reducer keeps all fields inside one object.","Each input identifies its field through name.","change dispatches the changed name and value.","The reducer returns a new object while preserving other fields."],"commonMistakes":["Mutating the existing form object.","Using the input value without its field name."]},"tags":["useReducer","forms","controlled-input"]},
+{"id":"react-hard-099","language":"react","trackType":"practice","difficulty":"hard","title":"Optimized Derived Stats","prompt":"Build a component that calculates summary statistics from a list using memoized derived values.","approach":{"steps":["Store the source values in state.","Use useMemo to calculate the total.","Derive the average from the memoized total.","Render the count, total, and average."],"example":"For [10, 20, 30], the component displays a count of 3, total of 60, and average of 20."},"code":"import { useMemo, useState } from 'react';\n\nexport default function Stats() {\n  const [values, setValues] = useState([10, 20, 30]);\n  const total = useMemo(() => values.reduce((sum, value) => sum + value, 0), [values]);\n  const average = values.length ? total / values.length : 0;\n  const add = () => setValues([...values, 10]);\n\n  return <div><p>Count: {values.length}</p><p>Total: {total}</p><p>Average: {average}</p><button onClick={add}>Add 10</button></div>;\n}","timeTargetSec":145,"complexity":{"time":"O(n) per recalculation","space":"O(1) excluding values"},"review":{"walkthroughSteps":["values is the source state.","useMemo calculates the total when values changes.","average uses the memoized total and current length.","add creates a new array with another value."],"commonMistakes":["Mutating values with push.","Calculating the average before handling an empty list."]},"tags":["useMemo","reduce","derived-state"]},
+{"id":"react-hard-100","language":"react","trackType":"practice","difficulty":"hard","title":"Reusable Data List","prompt":"Build a reusable list component that accepts data, a loading state, and a render function through props.","approach":{"steps":["Create a component that receives items and loading props.","Render a loading message before the list.","Use the render prop to control each item's output.","Map through the supplied items with stable keys."],"example":"For ['React', 'JavaScript'], the component can render each value using the supplied item renderer."},"code":"export default function DataList({ items, loading, renderItem }) {\n  if (loading) return <p>Loading...</p>;\n  if (!items.length) return <p>No items</p>;\n\n  return <ul>{items.map((item, index) => <li key={item.id ?? index}>{renderItem(item)}</li>)}</ul>;\n}","timeTargetSec":145,"complexity":{"time":"O(n)","space":"O(n) for rendered elements"},"review":{"walkthroughSteps":["The component receives all rendering inputs through props.","Loading takes priority over the list.","An empty collection displays a fallback message.","renderItem determines how each item is displayed."],"commonMistakes":["Trying to assume a fixed item shape.","Rendering the list while loading."]},"tags":["props","render-prop","map","reusability"]}
+
+
+
+
 ]
 
 

@@ -953,5 +953,2843 @@
       "strings"
     ],
     "charCount": 200
-  }
+  },
+
+{
+"id": "js-easy-021",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Count Positive Numbers",
+"prompt": "Given an array of numbers, return how many values are greater than zero.",
+"approach": {
+"steps": [
+"Start a counter at zero.",
+"Visit each number in the array.",
+"Increase the counter when the number is positive.",
+"Return the final count."
+],
+"example": "For [-2, 4, 7, 0, -1], the counter becomes 1 after 4, then 2 after 7, so the result is 2."
+},
+"code": "function countPositive(numbers) {\n  let count = 0;\n\n  for (const number of numbers) {\n    if (number > 0) {\n      count += 1;\n    }\n  }\n\n  return count;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"count stores how many positive values have been found.",
+"The loop checks every value in numbers.",
+"Only values greater than zero increase count.",
+"The final count is returned after the full array is processed."
+],
+"commonMistakes": [
+"Counting zero as a positive number.",
+"Returning the counter before the loop finishes."
+]
+},
+"tags": ["arrays", "loops", "counting"]
+},
+{
+"id": "js-easy-022",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Count Negative Numbers",
+"prompt": "Given an array of numbers, return how many values are less than zero.",
+"approach": {
+"steps": [
+"Initialize a counter to zero.",
+"Check each number in the array.",
+"Increase the counter for every negative value.",
+"Return the counter."
+],
+"example": "For [3, -4, -2, 8, -1], the counter reaches 1, then 2, then 3, giving a result of 3."
+},
+"code": "function countNegative(numbers) {\n  let count = 0;\n\n  for (const number of numbers) {\n    if (number < 0) {\n      count += 1;\n    }\n  }\n\n  return count;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"count begins at zero because no values have been checked.",
+"The loop examines every number exactly once.",
+"A number below zero causes count to increase.",
+"The completed count is returned."
+],
+"commonMistakes": [
+"Using > 0 instead of < 0.",
+"Counting zero as a negative number."
+]
+},
+"tags": ["arrays", "loops", "counting"]
+},
+{
+"id": "js-easy-023",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Multiply Array Elements",
+"prompt": "Given an array of numbers, return the product of all its elements.",
+"approach": {
+"steps": [
+"Start the product at one.",
+"Visit each number in the array.",
+"Multiply the running product by the current number.",
+"Return the final product."
+],
+"example": "For [2, 3, 4], the product changes from 1 to 2, then 6, then 24, so the result is 24."
+},
+"code": "function multiplyElements(numbers) {\n  let product = 1;\n\n  for (const number of numbers) {\n    product *= number;\n  }\n\n  return product;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"product starts at one so the first multiplication keeps the value unchanged.",
+"Each loop iteration multiplies product by the current number.",
+"The running value therefore contains the product of all processed elements.",
+"The final product is returned."
+],
+"commonMistakes": [
+"Starting product at zero and making every result zero.",
+"Adding the numbers instead of multiplying them."
+]
+},
+"tags": ["arrays", "loops", "math"]
+},
+{
+"id": "js-easy-024",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Count Odd Numbers",
+"prompt": "Given an array of integers, return the number of odd values in the array.",
+"approach": {
+"steps": [
+"Initialize a counter at zero.",
+"Check each number using the remainder operator.",
+"Increase the counter when the remainder is not zero.",
+"Return the final count."
+],
+"example": "For [2, 5, 8, 9], 5 and 9 have a remainder of 1 when divided by 2, giving a count of 2."
+},
+"code": "function countOddNumbers(numbers) {\n  let count = 0;\n\n  for (const number of numbers) {\n    if (number % 2 !== 0) {\n      count += 1;\n    }\n  }\n\n  return count;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"count records the number of odd values found.",
+"The loop checks every number with % 2.",
+"An odd integer leaves a non-zero remainder.",
+"The final counter is returned."
+],
+"commonMistakes": [
+"Using === 0 and counting even numbers instead.",
+"Checking number / 2 instead of number % 2."
+]
+},
+"tags": ["arrays", "loops", "math"]
+},
+{
+"id": "js-easy-025",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Double Each Number",
+"prompt": "Given an array of numbers, return a new array where every value is multiplied by two.",
+"approach": {
+"steps": [
+"Create an empty result array.",
+"Visit each number.",
+"Multiply the number by two.",
+"Add the doubled value to the result."
+],
+"example": "For [2, 5, 7], the transformed values are 4, 10, and 14, producing [4, 10, 14]."
+},
+"code": "function doubleNumbers(numbers) {\n  const doubled = [];\n\n  for (const number of numbers) {\n    doubled.push(number * 2);\n  }\n\n  return doubled;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"doubled stores the transformed values without changing numbers.",
+"The loop visits each input value once.",
+"number * 2 creates the transformed value.",
+"push appends each transformed value to doubled."
+],
+"commonMistakes": [
+"Changing the original array instead of creating a result.",
+"Using number + 2 instead of number * 2."
+]
+},
+"tags": ["arrays", "loops", "map"]
+},
+{
+"id": "js-easy-026",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Filter Even Numbers",
+"prompt": "Given an array of integers, return a new array containing only the even values.",
+"approach": {
+"steps": [
+"Create an empty result array.",
+"Check every number for evenness.",
+"Add even numbers to the result.",
+"Return the filtered array."
+],
+"example": "For [1, 4, 7, 8, 10], the values 4, 8, and 10 pass the even check, producing [4, 8, 10]."
+},
+"code": "function getEvenNumbers(numbers) {\n  const evens = [];\n\n  for (const number of numbers) {\n    if (number % 2 === 0) {\n      evens.push(number);\n    }\n  }\n\n  return evens;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"evens stores only values that pass the condition.",
+"Each number is tested with number % 2.",
+"A remainder of zero means the value is even.",
+"Matching values are appended to evens."
+],
+"commonMistakes": [
+"Using !== 0 and returning odd values.",
+"Removing values from the original array while iterating."
+]
+},
+"tags": ["arrays", "filter", "loops"]
+},
+{
+"id": "js-easy-027",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Replace Spaces",
+"prompt": "Given a string, return a new string with every space replaced by a hyphen.",
+"approach": {
+"steps": [
+"Start with the original string.",
+"Find every space character.",
+"Replace each space with a hyphen.",
+"Return the transformed string."
+],
+"example": "For 'hello world again', each space becomes a hyphen, producing 'hello-world-again'."
+
+},
+"code": "function replaceSpaces(text) {\n  return text.replaceAll(' ', '-');\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"text contains the original string.",
+"replaceAll searches for every space rather than stopping after one.",
+"Each matched space is replaced with a hyphen.",
+"The transformed string is returned without modifying the original string."
+],
+"commonMistakes": [
+"Using replace and changing only the first space.",
+"Replacing spaces with an empty string and removing the separators."
+]
+},
+"tags": ["strings", "replace", "methods"]
+},
+{
+"id": "js-easy-028",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Convert To Uppercase",
+"prompt": "Given a string, return the same text with all alphabetic characters converted to uppercase.",
+"approach": {
+"steps": [
+"Receive the input string.",
+"Use the string uppercase conversion method.",
+"Keep the resulting transformed value.",
+"Return the uppercase string."
+],
+"example": "For 'JavaScript', converting the string produces 'JAVASCRIPT'."
+},
+"code": "function makeUppercase(text) {\n  const uppercaseText = text.toUpperCase();\n  return uppercaseText;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"text stores the input value.",
+"toUpperCase creates an uppercase version of the string.",
+"The original string is not changed because strings are immutable.",
+"uppercaseText is returned to the caller."
+],
+"commonMistakes": [
+"Writing toUppercase instead of toUpperCase.",
+"Expecting the original string variable to change automatically."
+]
+},
+"tags": ["strings", "methods", "text"]
+},
+{
+"id": "js-easy-029",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Trim Text",
+"prompt": "Given a string, remove whitespace from the beginning and end and return the cleaned string.",
+"approach": {
+"steps": [
+"Receive the text value.",
+"Remove leading whitespace.",
+"Remove trailing whitespace.",
+"Return the cleaned text."
+],
+"example": "For    hello world   ', trimming removes the outer spaces and produces 'hello world'."
+},
+"code": "function cleanText(text) {\n  const cleanedText = text.trim();\n  return cleanedText;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"text contains the original input including surrounding whitespace.",
+"trim removes whitespace from both ends.",
+"The internal space between words remains unchanged.",
+"cleanedText contains the returned result."
+],
+"commonMistakes": [
+"Using replace to remove only one space.",
+"Removing all spaces including spaces between words."
+]
+},
+"tags": ["strings", "methods", "text"]
+},
+{
+"id": "js-easy-030",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Check Starts With",
+"prompt": "Given a string and a prefix, return true if the string begins with that prefix and false otherwise.",
+"approach": {
+"steps": [
+"Receive the string and prefix.",
+"Compare the beginning of the string with the prefix.",
+"Use the boolean result of the comparison.",
+"Return that result."
+],
+"example": "For 'javascript' and 'java', the string begins with the prefix, so the result is true."
+},
+"code": "function startsWithPrefix(text, prefix) {\n  return text.startsWith(prefix);\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"text is the value being tested.",
+"prefix is the required starting sequence.",
+"startsWith checks whether prefix occurs at the beginning.",
+"The resulting boolean is returned directly."
+],
+"commonMistakes": [
+"Using includes, which allows the prefix to appear anywhere.",
+"Checking the end of the string instead of the beginning."
+]
+},
+"tags": ["strings", "methods", "boolean"]
+},
+{
+"id": "js-easy-031",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Check Ends With",
+"prompt": "Given a string and a suffix, return true if the string ends with that suffix and false otherwise.",
+"approach": {
+"steps": [
+"Receive the string and suffix.",
+"Check the ending portion of the string.",
+"Use the boolean result of the check.",
+"Return the result."
+],
+"example": "For 'photo.png' and '.png', the string ends with the suffix, so the function returns true."
+},
+"code": "function endsWithSuffix(text, suffix) {\n  return text.endsWith(suffix);\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"text contains the string being tested.",
+"suffix contains the required ending.",
+"endsWith checks whether suffix matches the end of text.",
+"The boolean result is returned directly."
+],
+"commonMistakes": [
+"Using startsWith and checking the wrong side.",
+"Using includes and accepting suffixes that occur in the middle."
+]
+},
+"tags": ["strings", "methods", "boolean"]
+},
+{
+"id": "js-easy-032",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Join Array Words",
+"prompt": "Given an array of words, combine them into one sentence with a single space between each word.",
+"approach": {
+"steps": [
+"Receive the array of words.",
+"Use a space as the separator.",
+"Join the array elements in their existing order.",
+"Return the resulting sentence."
+],
+"example": "For [I, learn, JavaScript], joining with spaces produces I learn JavaScript."
+},
+"code": "function makeSentence(words) {\n  const sentence = words.join(' ');\n  return sentence;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"words contains each individual word.",
+"join uses a single space as the separator.",
+"The words remain in their original array order.",
+"sentence stores the completed string."
+],
+"commonMistakes": [
+"Using join('') and removing all spaces between words.",
+"Adding a trailing space manually after every word."
+]
+},
+"tags": ["arrays", "strings", "join"]
+},
+{
+"id": "js-easy-033",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Split Sentence",
+"prompt": "Given a sentence containing words separated by spaces, return an array containing each word.",
+"approach": {
+"steps": [
+"Receive the sentence string.",
+"Use a space as the separator.",
+"Split the sentence into individual words.",
+"Return the resulting array."
+],
+"example": "For learn JavaScript daily, splitting on spaces produces [learn, JavaScript, daily]."
+},
+"code": "function getWords(sentence) {\n  const words = sentence.split(' ');\n  return words;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"sentence contains the complete input text.",
+"split searches for each space separator.",
+"Each separated section becomes one array element.",
+"words is returned as the collection of individual words."
+],
+"commonMistakes": [
+"Using split('') and getting individual characters.",
+"Forgetting to provide the space separator."
+]
+},
+"tags": ["strings", "arrays", "split"]
+},
+{
+"id": "js-easy-034",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Get First Array Element",
+"prompt": "Given an array, return its first element. Return undefined naturally when the array is empty.",
+"approach": {
+"steps": [
+"Receive the input array.",
+"Access the element at index zero.",
+"Store the accessed value.",
+"Return that value."
+],
+"example": "For [red, blue, green], index 0 contains red, so the result is red."
+},
+"code": "function getFirstElement(items) {\n  const firstItem = items[0];\n  return firstItem;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(1)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Arrays use zero-based indexing.",
+"items[0] therefore refers to the first position.",
+"firstItem stores whatever value exists at that position.",
+"The stored value is returned."
+],
+"commonMistakes": [
+"Using items[1] and returning the second element.",
+"Trying to use firstItem() as though it were a function."
+]
+},
+"tags": ["arrays", "indexing", "basics"]
+},
+{
+"id": "js-easy-035",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Get Last Array Element",
+"prompt": "Given an array, return its last element.",
+"approach": {
+"steps": [
+"Find the array length.",
+"Calculate the final valid index.",
+"Access the value at that index.",
+"Return the last value."
+],
+"example": "For [10, 20, 30], the length is 3, so index 2 contains the final value 30."
+},
+"code": "function getLastElement(items) {\n  const lastIndex = items.length - 1;\n  return items[lastIndex];\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(1)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"items.length gives the number of elements.",
+"The last valid index is one less than the length.",
+"lastIndex therefore points to the final element.",
+"That element is returned from the array."
+],
+"commonMistakes": [
+"Using items.length directly as an index.",
+"Forgetting that JavaScript arrays start at index zero."
+]
+},
+"tags": ["arrays", "indexing", "basics"]
+},
+{
+"id": "js-easy-036",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Copy An Array",
+"prompt": "Given an array, return a new array containing the same elements without reusing the original array reference.",
+"approach": {
+"steps": [
+"Receive the original array.",
+"Create a shallow copy of its elements.",
+"Keep the new array separate from the original reference.",
+"Return the copied array."
+],
+"example": "For [1, 2, 3], spreading the array creates another array containing 1, 2, and 3."
+},
+"code": "function copyArray(items) {\n  const copiedItems = [...items];\n  return copiedItems;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"items refers to the original array.",
+"The spread operator copies its elements into a new array.",
+"copiedItems therefore has a different array reference.",
+"The new array is returned."
+],
+"commonMistakes": [
+"Writing const copiedItems = items and only copying the reference.",
+"Using the spread operator incorrectly outside an array literal."
+]
+},
+"tags": ["arrays", "spread", "references"]
+},
+{
+"id": "js-easy-037",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Find First Match",
+"prompt": "Given an array of numbers and a target value, return the first number that equals the target, or undefined if none exists.",
+"approach": {
+"steps": [
+"Visit the numbers from left to right.",
+"Compare each number with the target.",
+"Stop when the first matching value is found.",
+"Return the matching value."
+],
+"example": "For [4, 8, 3, 8] and target 8, the first matching value is the second element, so the result is 8."
+},
+"code": "function findFirstMatch(numbers, target) {\n  for (const number of numbers) {\n    if (number === target) {\n      return number;\n    }\n  }\n\n  return undefined;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The loop checks values in their original order.",
+"Strict equality compares each number with target.",
+"return immediately stops the loop at the first match.",
+"If the loop finishes, undefined indicates no match was found."
+],
+"commonMistakes": [
+"Continuing to search after finding the first match.",
+"Using assignment = instead of comparison ===."
+]
+},
+"tags": ["arrays", "search", "loops"]
+},
+{
+"id": "js-easy-038",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Calculate Rectangle Area",
+"prompt": "Given the width and height of a rectangle, return its area.",
+"approach": {
+"steps": [
+"Receive the rectangle width.",
+"Receive the rectangle height.",
+"Multiply width by height.",
+"Return the calculated area."
+],
+"example": "For width 6 and height 4, multiplying 6 by 4 gives an area of 24."
+},
+"code": "function rectangleArea(width, height) {\n  const area = width * height;\n  return area;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(1)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"width and height represent the two rectangle dimensions.",
+"Multiplication combines both dimensions into the area.",
+"area stores the calculated result.",
+"The result is returned to the caller."
+],
+"commonMistakes": [
+"Adding width and height instead of multiplying them.",
+"Using perimeter logic for an area calculation."
+]
+},
+"tags": ["math", "functions", "basics"]
+},
+{
+"id": "js-easy-039",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Calculate Circle Area",
+"prompt": "Given the radius of a circle, return its area using Math.PI.",
+"approach": {
+"steps": [
+"Receive the circle radius.",
+"Square the radius.",
+"Multiply the squared radius by Math.PI.",
+"Return the area."
+],
+"example": "For radius 2, radius squared is 4, and multiplying by Math.PI gives an area of approximately 12.57."
+},
+"code": "function circleArea(radius) {\n  const squaredRadius = radius * radius;\n  const area = Math.PI * squaredRadius;\n  return area;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(1)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"radius stores the circle's radius.",
+"squaredRadius calculates radius multiplied by itself.",
+"Math.PI multiplied by squaredRadius gives the circle area.",
+"The calculated area is returned."
+],
+"commonMistakes": [
+"Multiplying Math.PI by radius instead of radius squared.",
+"Using a rough integer approximation without using Math.PI."
+]
+},
+"tags": ["math", "functions", "Math"]
+},
+{
+"id": "js-easy-040",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Convert Minutes To Seconds",
+"prompt": "Given a number of minutes, return the equivalent number of seconds.",
+"approach": {
+"steps": [
+"Receive the number of minutes.",
+"Use the conversion of 60 seconds per minute.",
+"Multiply minutes by 60.",
+"Return the converted value."
+],
+"example": "For 5 minutes, multiplying 5 by 60 gives 300 seconds."
+},
+"code": "function minutesToSeconds(minutes) {\n  const secondsPerMinute = 60;\n  const seconds = minutes * secondsPerMinute;\n  return seconds;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(1)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"minutes contains the input duration.",
+"secondsPerMinute stores the fixed conversion factor.",
+"Multiplying the two values converts minutes into seconds.",
+"seconds is returned as the final converted duration."
+],
+"commonMistakes": [
+"Dividing by 60 instead of multiplying.",
+"Using 100 seconds per minute instead of the correct conversion factor."
+]
+},
+"tags": ["math", "conversion", "functions"]
+},
+
+{
+"id": "js-medium-041",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Group Words By Length",
+"prompt": "Given an array of words, group the words into an object where each key is a word length and its value is an array of words having that length.",
+"approach": {
+"steps": [
+"Create an empty result object.",
+"Visit each word and determine its length.",
+"Create an array for a new length when needed.",
+"Append each word to the matching length group."
+],
+"example": "For ['cat', 'dog', 'apple'], the length keys become 3: ['cat', 'dog'] and 5: ['apple']."
+
+},
+"code": "function groupByLength(words) {\n  const groups = {};\n\n  for (const word of words) {\n    const length = word.length;\n\n    if (!groups[length]) {\n      groups[length] = [];\n    }\n\n    groups[length].push(word);\n  }\n\n  return groups;\n}",
+"timeTargetSec": 100,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"groups starts as an empty object that will store arrays.",
+"The loop calculates each word's length and uses it as a key.",
+"A missing key receives a new empty array before insertion.",
+"push adds the current word to its matching length group."
+],
+"commonMistakes": [
+"Trying to call push on a group before creating its array.",
+"Using the word itself as the object key instead of word.length."
+]
+},
+"tags": ["arrays", "objects", "loops"]
+},
+{
+"id": "js-medium-042",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Count Character Frequency",
+"prompt": "Create a function that counts how many times each character appears in a string and returns the counts in an object.",
+"approach": {
+"steps": [
+"Create an empty frequency object.",
+"Visit each character in the string.",
+"Initialize unseen characters to zero.",
+"Increment the count for every occurrence."
+],
+"example": "For banana',' the counts progress to b: 1, a: 3, and n: 2 after processing the string."
+},
+"code": "function countCharacters(text) {\n  const frequency = {};\n\n  for (const character of text) {\n    if (frequency[character] === undefined) {\n      frequency[character] = 0;\n    }\n\n    frequency[character] += 1;\n  }\n\n  return frequency;\n}",
+"timeTargetSec": 95,
+"complexity": {
+"time": "O(n)",
+"space": "O(k)"
+},
+"review": {
+"walkthroughSteps": [
+"frequency stores one count for each distinct character.",
+"The loop processes every character exactly once.",
+"An unseen character is initialized with zero.",
+"The increment operation records another occurrence."
+],
+"commonMistakes": [
+"Incrementing an undefined property without initializing it.",
+"Using the full string as the object key instead of each character."
+]
+},
+"tags": ["strings", "hash-map", "frequency"]
+},
+{
+"id": "js-medium-043",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Find Duplicate Values",
+"prompt": "Return a new array containing each value that appears more than once in the input array, without repeating duplicate results.",
+"approach": {
+"steps": [
+"Track values that have already appeared.",
+"Track values that have already been reported as duplicates.",
+"Process each array value once.",
+"Add a value to the result when its second occurrence is found."
+],
+"example": "For [2, 4, 2, 5, 4, 4], the result becomes [2, 4] because both values appear multiple times."
+},
+"code": "function findDuplicates(values) {\n  const seen = new Set();\n  const duplicates = new Set();\n\n  for (const value of values) {\n    if (seen.has(value)) {\n      duplicates.add(value);\n    } else {\n      seen.add(value);\n    }\n  }\n\n  return [...duplicates];\n}",
+"timeTargetSec": 105,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"seen records values encountered for the first time.",
+"A value already in seen has appeared before.",
+"duplicates is a Set, so repeated duplicate encounters stay unique.",
+"The spread operator converts the final Set into an array."
+],
+"commonMistakes": [
+"Using only an array and accidentally returning the same duplicate multiple times.",
+"Adding every value to duplicates instead of only repeated values."
+]
+},
+"tags": ["arrays", "set", "duplicates"]
+},
+{
+"id": "js-medium-044",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Merge Sorted Arrays",
+"prompt": "Merge two already sorted numeric arrays into one sorted array without sorting the combined result afterward.",
+"approach": {
+"steps": [
+"Keep one pointer for each input array.",
+"Compare the pointed values.",
+"Append the smaller value and advance its pointer.",
+"Append remaining values after one array is exhausted."
+],
+"example": "Merging [1, 4, 7] and [2, 3, 8] produces [1, 2, 3, 4, 7, 8] by repeatedly choosing the smaller front value."
+},
+"code": "function mergeSortedArrays(first, second) {\n  const merged = [];\n  let firstIndex = 0;\n  let secondIndex = 0;\n\n  while (firstIndex < first.length && secondIndex < second.length) {\n    if (first[firstIndex] <= second[secondIndex]) {\n      merged.push(first[firstIndex++]);\n    } else {\n      merged.push(second[secondIndex++]);\n    }\n  }\n\n  return merged.concat(first.slice(firstIndex), second.slice(secondIndex));\n}",
+"timeTargetSec": 115,
+"complexity": {
+"time": "O(n + m)",
+"space": "O(n + m)"
+},
+"review": {
+"walkthroughSteps": [
+"firstIndex and secondIndex identify the next unused values.",
+"The while loop compares both current values while both arrays contain elements.",
+"The smaller value is pushed and its pointer advances.",
+"concat appends whichever input values remain after the main comparison loop."
+],
+"commonMistakes": [
+"Advancing both pointers after choosing only one value.",
+"Forgetting to append the remaining portion of an array."
+]
+},
+"tags": ["arrays", "two-pointers", "sorting"]
+},
+{
+"id": "js-medium-045",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Longest Word",
+"prompt": "Return the longest word from an array of words. If multiple words share the maximum length, return the first one encountered.",
+"approach": {
+"steps": [
+"Start with the first word as the current longest.",
+"Compare each later word with the current longest.",
+"Replace the current value only when a strictly longer word appears.",
+"Return the stored word."
+],
+"example": "For ['red', 'mountain', 'sky'], mountain becomes the longest after its length exceeds red, and sky does not replace it."
+
+},
+"code": "function findLongestWord(words) {\n  if (words.length === 0) {\n    return '';\n  }\n\n  let longest = words[0];\n\n  for (let index = 1; index < words.length; index += 1) {\n    if (words[index].length > longest.length) {\n      longest = words[index];\n    }\n  }\n\n  return longest;\n}",
+"timeTargetSec": 95,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The empty-array check prevents accessing a missing first element.",
+"longest starts as the first available word.",
+"Each later word replaces longest only when it has greater length.",
+"Using > rather than >= preserves the first word when lengths tie."
+],
+"commonMistakes": [
+"Using >= and accidentally returning the last word among tied lengths.",
+"Starting with an undefined longest value."
+]
+},
+"tags": ["arrays", "strings", "loops"]
+},
+{
+"id": "js-medium-046",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Sum Object Values",
+"prompt": "Create a function that receives an object containing numeric values and returns the total of all values.",
+"approach": {
+"steps": [
+"Get the object's values.",
+"Start the running total at zero.",
+"Add each numeric value to the total.",
+"Return the accumulated total."
+],
+"example": "For { apples: 3, oranges: 4, bananas: 2 }, the running total is 3, then 7, then 9."
+},
+"code": "function sumObjectValues(prices) {\n  const values = Object.values(prices);\n  let total = 0;\n\n  for (const value of values) {\n    total += value;\n  }\n\n  return total;\n}",
+"timeTargetSec": 90,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"Object.values extracts the object's numeric values into an array.",
+"total starts at zero so the first value can be added safely.",
+"The loop accumulates each value into total.",
+"The final total is returned after every value has been processed."
+],
+"commonMistakes": [
+"Looping over object keys and accidentally adding property names.",
+"Starting total as undefined instead of zero."
+]
+},
+"tags": ["objects", "loops", "arrays"]
+},
+{
+"id": "js-medium-047",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Partition By Sign",
+"prompt": "Separate an array of numbers into positive and non-positive values and return both groups in an object.",
+"approach": {
+"steps": [
+"Create separate arrays for positive and non-positive values.",
+"Visit every number in the input.",
+"Place each number into the appropriate group.",
+"Return both groups together."
+],
+"example": "For [4, -2, 0, 7, -5], positive becomes [4, 7] and nonPositive becomes [-2, 0, -5]."
+},
+"code": "function partitionNumbers(numbers) {\n  const positive = [];\n  const nonPositive = [];\n\n  for (const number of numbers) {\n    if (number > 0) {\n      positive.push(number);\n    } else {\n      nonPositive.push(number);\n    }\n  }\n\n  return { positive, nonPositive };\n}",
+"timeTargetSec": 90,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"positive and nonPositive hold the two output groups.",
+"Each input number is checked against zero.",
+"Positive numbers go into positive; zero and negative numbers go into nonPositive.",
+"The returned object exposes both completed arrays."
+],
+"commonMistakes": [
+"Treating zero as positive by using >= instead of >.",
+"Forgetting to place negative values into the second array."
+]
+},
+"tags": ["arrays", "loops", "filter"]
+},
+{
+"id": "js-medium-048",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Flatten One Level",
+"prompt": "Flatten an array containing one level of nested arrays into a single array while preserving the original order.",
+"approach": {
+"steps": [
+"Create an empty result array.",
+"Visit each element of the input.",
+"Append nested elements when the current value is an array.",
+"Append normal values directly."
+],
+"example": "For [1, [2, 3], 4, [5]], the result becomes [1, 2, 3, 4, 5] in the original left-to-right order."
+},
+"code": "function flattenOneLevel(values) {\n  const flattened = [];\n\n  for (const value of values) {\n    if (Array.isArray(value)) {\n      for (const nestedValue of value) {\n        flattened.push(nestedValue);\n      }\n    } else {\n      flattened.push(value);\n    }\n  }\n\n  return flattened;\n}",
+"timeTargetSec": 110,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"flattened stores the final sequence without changing the input.",
+"Array.isArray identifies values that contain one nested level.",
+"Nested values are pushed individually in their existing order.",
+"Non-array values are pushed directly into the same result."
+],
+"commonMistakes": [
+"Pushing the nested array itself and leaving it nested.",
+"Using recursion even though only one nesting level is required."
+]
+},
+"tags": ["arrays", "flattening", "loops"]
+},
+{
+"id": "js-medium-049",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Find First Unique",
+"prompt": "Return the first character in a string that occurs exactly once. Return an empty string if every character repeats.",
+"approach": {
+"steps": [
+"Count every character in the string.",
+"Scan the string again from left to right.",
+"Check each character's stored frequency.",
+"Return the first character whose count is one."
+],
+"example": "For 'swiss', the counts show s: 3, w: 1, i: 1, so the first unique character is w."
+},
+"code": "function firstUniqueCharacter(text) {\n  const counts = {};\n\n  for (const character of text) {\n    counts[character] = (counts[character] ?? 0) + 1;\n  }\n\n  for (const character of text) {\n    if (counts[character] === 1) {\n      return character;\n    }\n  }\n\n  return '';\n}",
+"timeTargetSec": 105,
+"complexity": {
+"time": "O(n)",
+"space": "O(k)"
+},
+"review": {
+"walkthroughSteps": [
+"counts records the total frequency of every character.",
+"The nullish fallback gives an unseen character a starting count of zero.",
+"The second loop preserves the original string order.",
+"The first character with frequency one is returned immediately."
+],
+"commonMistakes": [
+"Returning the first character whose count is greater than zero.",
+"Using only one pass and deciding uniqueness before seeing later characters."
+]
+},
+"tags": ["strings", "hash-map", "frequency"]
+},
+{
+"id": "js-medium-050",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Partition By Property",
+"prompt": "Given an array of objects and a property name, return an object containing two arrays: items where the property is truthy and items where it is falsy.",
+"approach": {
+"steps": [
+"Create truthy and falsy result arrays.",
+"Read the requested property from each item.",
+"Place each item into the matching group.",
+"Return both groups in one object."
+],
+"example": "For users with active values [true, false, true], the first group contains users one and three while the second contains user two."
+},
+"code": "function partitionByProperty(items, propertyName) {\n  const truthy = [];\n  const falsy = [];\n\n  for (const item of items) {\n    if (item[propertyName]) {\n      truthy.push(item);\n    } else {\n      falsy.push(item);\n    }\n  }\n\n  return { truthy, falsy };\n}",
+"timeTargetSec": 105,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"The two arrays represent the truthy and falsy partitions.",
+"Bracket notation lets propertyName determine which property is checked.",
+"Each item is added to exactly one group.",
+"The returned object keeps both partitions available to the caller."
+],
+"commonMistakes": [
+"Using item.propertyName instead of item[propertyName].",
+"Checking the property name itself rather than its value."
+]
+},
+"tags": ["objects", "arrays", "dynamic-properties"]
+},
+{
+"id": "js-medium-051",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Create Lookup Map",
+"prompt": "Convert an array of objects into an object lookup keyed by each object's id property.",
+"approach": {
+"steps": [
+"Create an empty lookup object.",
+"Visit each object in the input array.",
+"Use its id as the lookup key.",
+"Store the complete object at that key."
+],
+"example": "For objects with ids 7 and 9, the result has lookup[7] and lookup[9] pointing to their corresponding objects."
+},
+"code": "function createLookup(items) {\n  const lookup = {};\n\n  for (const item of items) {\n    lookup[item.id] = item;\n  }\n\n  return lookup;\n}",
+"timeTargetSec": 90,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"lookup starts empty and will become an id-to-object map.",
+"The loop visits every source object once.",
+"item.id becomes the dynamic property key.",
+"The complete item is stored so later lookups can access all of its data."
+],
+"commonMistakes": [
+"Using the array index as the lookup key instead of item.id.",
+"Storing only the item's name and losing its other properties."
+]
+},
+"tags": ["objects", "arrays", "hash-map"]
+},
+{
+"id": "js-medium-052",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Calculate Category Totals",
+"prompt": "Given transaction objects with a category and amount, return an object containing the total amount for each category.",
+"approach": {
+"steps": [
+"Create an empty totals object.",
+"Read the category and amount from each transaction.",
+"Initialize a missing category with zero.",
+"Add each amount to its category total."
+],
+"example": "For food amounts 10 and 15 plus travel amount 20, the totals become { food: 25, travel: 20 }."
+},
+"code": "function categoryTotals(transactions) {\n  const totals = {};\n\n  for (const transaction of transactions) {\n    const category = transaction.category;\n    totals[category] = (totals[category] ?? 0) + transaction.amount;\n  }\n\n  return totals;\n}",
+"timeTargetSec": 105,
+"complexity": {
+"time": "O(n)",
+"space": "O(k)"
+},
+"review": {
+"walkthroughSteps": [
+"totals stores one accumulated amount per category.",
+"The current category is extracted from each transaction.",
+"Nullish coalescing supplies zero when that category has not appeared.",
+"The transaction amount is added to the existing category total."
+],
+"commonMistakes": [
+"Resetting a category total instead of adding to it.",
+"Using || when a valid accumulated value could be zero."
+]
+},
+"tags": ["objects", "reduce", "aggregation"]
+},
+{
+"id": "js-medium-053",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Sort Without Mutation",
+"prompt": "Return a new array containing the input numbers in ascending order without changing the original array.",
+"approach": {
+"steps": [
+"Create a shallow copy of the input array.",
+"Sort the copy using numeric comparison.",
+"Leave the original array untouched.",
+"Return the sorted copy."
+],
+"example": "For [10, 2, 5], the returned array is [2, 5, 10] while the original array remains [10, 2, 5]."
+},
+"code": "function sortAscending(numbers) {\n  const sorted = [...numbers];\n\n  sorted.sort((first, second) => first - second);\n\n  return sorted;\n}",
+"timeTargetSec": 90,
+"complexity": {
+"time": "O(n log n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"The spread operator creates a new array reference.",
+"sort runs only on that new array.",
+"The numeric comparator ensures values are ordered numerically.",
+"Returning sorted leaves the original numbers unchanged."
+],
+"commonMistakes": [
+"Calling numbers.sort directly and mutating the input.",
+"Calling sort without a comparator and getting lexicographic numeric ordering."
+]
+},
+"tags": ["arrays", "sorting", "immutability"]
+},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+"id": "js-medium-056",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Count Words in a Sentence",
+"prompt": "Given a sentence, count how many words it contains. Ignore extra spaces between words and at the beginning or end.",
+"approach": {
+"steps": [
+"Remove unnecessary spaces from both ends.",
+"Handle an empty sentence as zero words.",
+"Split the sentence using whitespace.",
+"Return the number of resulting words."
+],
+"example": "For '  JavaScript   makes   web apps  ', the extra spaces are ignored and the sentence contains 4 words."
+},
+"code": "function countWords(sentence) {\n  const text = sentence.trim();\n  if (!text) return 0;\n  return text.split(/s+/).length;\n}",
+"timeTargetSec": 90,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"trim removes spaces around the sentence.",
+"An empty trimmed string contains no words.",
+"The whitespace pattern handles multiple spaces.",
+"The array length gives the word count."
+],
+"commonMistakes": [
+"Splitting only on a single space.",
+"Counting an empty string as one word."
+]
+},
+"tags": ["strings", "arrays", "regex"]
+},
+{
+"id": "js-medium-057",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Remove Falsy Values",
+"prompt": "Given an array containing different JavaScript values, return a new array with all falsy values removed.",
+"approach": {
+"steps": [
+"Use the array filter method.",
+"Treat each value as a boolean condition.",
+"Keep values that evaluate to true.",
+"Return the filtered array."
+],
+"example": "For [0, 'hello', false, 7, '', null], removing falsy values leaves ['hello', 7]."
+},
+"code": "function removeFalsy(values) {\n  return values.filter(Boolean);\n}",
+"timeTargetSec": 85,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"filter checks every array value.",
+"Boolean converts each value to true or false.",
+"Falsy values produce false and are removed.",
+"Truthy values remain in the new array."
+],
+"commonMistakes": [
+"Checking only for null and undefined.",
+"Changing the original array unnecessarily."
+]
+},
+"tags": ["arrays", "filter", "javascript-values"]
+},
+{
+"id": "js-medium-058",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Find Common Array Elements",
+"prompt": "Given two arrays of primitive values, return the values that appear in both arrays without returning duplicates.",
+"approach": {
+"steps": [
+"Create a Set from the second array.",
+"Filter the first array using that Set.",
+"Use another Set to prevent duplicate results.",
+"Return the common values."
+],
+"example": "For [1, 2, 2, 3] and [2, 3, 4], the common values are [2, 3] without repeating 2."
+},
+"code": "function commonElements(first, second) {\n  const lookup = new Set(second);\n  const result = new Set();\n\n  for (const value of first) {\n    if (lookup.has(value)) result.add(value);\n  }\n\n  return [...result];\n}",
+"timeTargetSec": 105,
+"complexity": {
+"time": "O(n + m)",
+"space": "O(m + n)"
+},
+"review": {
+"walkthroughSteps": [
+"Set provides fast membership checks for the second array.",
+"Each value in the first array is tested against that Set.",
+"The result Set automatically removes duplicates.",
+"The spread operator converts the Set back to an array."
+],
+"commonMistakes": [
+"Using nested loops unnecessarily.",
+"Returning duplicate common values."
+]
+},
+"tags": ["arrays", "sets", "filter"]
+},
+{
+"id": "js-medium-059",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Chunk an Array",
+"prompt": "Given an array and a chunk size, divide the array into smaller arrays containing at most the specified number of elements.",
+"approach": {
+"steps": [
+"Start from the beginning of the array.",
+"Take a slice using the requested chunk size.",
+"Add each slice to the result.",
+"Continue until all elements are processed."
+],
+"example": "For [1, 2, 3, 4, 5] with a chunk size of 2, the result is [[1, 2], [3, 4], [5]]."
+},
+"code": "function chunkArray(values, size) {\n  const result = [];\n\n  for (let index = 0; index < values.length; index += size) {\n    result.push(values.slice(index, index + size));\n  }\n\n  return result;\n}",
+"timeTargetSec": 105,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"The loop advances by the requested chunk size.",
+"slice extracts the current section without changing the source array.",
+"The final chunk may contain fewer elements.",
+"Every element is included exactly once."
+],
+"commonMistakes": [
+"Using splice and accidentally mutating the input.",
+"Skipping elements when advancing the loop."
+]
+},
+"tags": ["arrays", "slice", "iteration"]
+},
+{
+"id": "js-medium-060",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Rotate an Array",
+"prompt": "Given an array and a number k, rotate the array to the right by k positions.",
+"approach": {
+"steps": [
+"Normalize k using the array length.",
+"Split the array near its end.",
+"Move the final k values to the beginning.",
+"Join the remaining values after them."
+],
+"example": "For [1, 2, 3, 4, 5] rotated right by 2 positions, the result is [4, 5, 1, 2, 3]."
+},
+"code": "function rotateArray(values, k) {\n  if (values.length === 0) return [];\n  k %= values.length;\n  return values.slice(-k).concat(values.slice(0, -k));\n}",
+"timeTargetSec": 105,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"Modulo prevents unnecessary full rotations.",
+"slice(-k) selects the values that move to the front.",
+"slice(0, -k) keeps the remaining values.",
+"concat combines the two sections in rotated order."
+],
+"commonMistakes": [
+"Failing when k is larger than the array length.",
+"Rotating left instead of right."
+]
+},
+"tags": ["arrays", "slice", "modulo"]
+},
+{
+"id": "js-medium-061",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Check Anagram",
+"prompt": "Given two strings, determine whether they contain the same characters with the same frequencies.",
+"approach": {
+"steps": [
+"Normalize both strings.",
+"Return false when their lengths differ.",
+"Count characters from the first string.",
+"Subtract counts using the second string and verify every count remains valid."
+],
+"example": "For 'listen' and 'silent', every character appears the same number of times, so they are anagrams."
+},
+"code": "function isAnagram(first, second) {\n  first = first.toLowerCase();\n  second = second.toLowerCase();\n  if (first.length !== second.length) return false;\n\n  const counts = {};\n  for (const char of first) {\n    counts[char] = (counts[char] || 0) + 1;\n  }\n\n  for (const char of second) {\n    if (!counts[char]) return false;\n    counts[char]--;\n  }\n\n  return true;\n}",
+"timeTargetSec": 110,
+"complexity": {
+"time": "O(n)",
+"space": "O(k)"
+},
+"review": {
+"walkthroughSteps": [
+"Both strings are converted to the same case.",
+"Different lengths immediately rule out an anagram.",
+"The first string builds character frequencies.",
+"The second string consumes those frequencies."
+],
+"commonMistakes": [
+"Comparing only unique characters instead of their frequencies.",
+"Forgetting the early length check."
+]
+},
+"tags": ["strings", "hashing", "frequency"]
+},
+{
+"id": "js-medium-062",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Compress Repeated Characters",
+"prompt": "Given a string, replace consecutive repeated characters with the character followed by its count.",
+"approach": {
+"steps": [
+"Track the current character and its consecutive count.",
+"Increase the count while the same character continues.",
+"Append the character and count when it changes.",
+"Append the final group after the loop."
+],
+"example": "For 'aaabbc', consecutive groups become 'a3b2c1' because a repeats three times, b twice, and c once."
+},
+"code": "function compressString(text) {\n  if (!text) return '';\n  let result = '';\n  let count = 1;\n\n  for (let index = 1; index <= text.length; index++) {\n    if (text[index] === text[index - 1]) {\n      count++;\n    } else {\n      result += text[index - 1] + count;\n      count = 1;\n    }\n  }\n\n  return result;\n}",
+"timeTargetSec": 110,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"count records the length of the current repeated group.",
+"The next character determines whether the group continues.",
+"A changed character closes the current group.",
+"The loop boundary ensures the final group is also written."
+],
+"commonMistakes": [
+"Forgetting the final repeated group.",
+"Counting all occurrences instead of only consecutive occurrences."
+]
+},
+"tags": ["strings", "iteration", "compression"]
+},
+{
+"id": "js-medium-063",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Find the Second Largest",
+"prompt": "Given an array of numbers, find the second largest distinct value without sorting the array.",
+"approach": {
+"steps": [
+"Track the largest value seen.",
+"Track the second largest distinct value.",
+"Update both values when a larger number appears.",
+"Ignore values equal to the current largest."
+],
+"example": "For [8, 3, 12, 5, 12], the largest distinct value is 12 and the second largest is 8."
+},
+"code": "function secondLargest(values) {\n  let largest = -Infinity;\n  let second = -Infinity;\n\n  for (const value of values) {\n    if (value > largest) {\n      second = largest;\n      largest = value;\n    } else if (value > second && value < largest) {\n      second = value;\n    }\n  }\n\n  return second === -Infinity ? null : second;\n}",
+"timeTargetSec": 105,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"largest and second track the top two distinct values.",
+"A new largest pushes the previous largest into second.",
+"A value between the two updates only second.",
+"Duplicates of largest are ignored."
+],
+"commonMistakes": [
+"Sorting when a single pass is sufficient.",
+"Allowing the largest value to become the second largest."
+]
+},
+"tags": ["arrays", "numbers", "iteration"]
+},
+{
+"id": "js-medium-064",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Sort Object Keys",
+"prompt": "Given an object with numeric values, return a new object whose keys are arranged in alphabetical order.",
+"approach": {
+"steps": [
+"Get all object keys.",
+"Sort the keys alphabetically.",
+"Build a new object in the sorted order.",
+"Copy each corresponding value."
+],
+"example": "For {zebra: 3, apple: 1, mango: 2}, sorting the keys produces an object ordered as apple, mango, zebra."
+},
+"code": "function sortObjectKeys(object) {\n  const sorted = {};\n  const keys = Object.keys(object).sort();\n\n  for (const key of keys) {\n    sorted[key] = object[key];\n  }\n\n  return sorted;\n}",
+"timeTargetSec": 100,
+"complexity": {
+"time": "O(n log n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"Object.keys extracts the object's property names.",
+"sort orders those keys alphabetically.",
+"The loop creates a separate object.",
+"Each sorted key receives its original value."
+],
+"commonMistakes": [
+"Sorting values instead of keys.",
+"Changing the original object unnecessarily."
+]
+},
+"tags": ["objects", "sorting", "keys"]
+},
+{
+"id": "js-medium-065",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Group Objects by Property",
+"prompt": "Given an array of objects and a property name, group the objects into an object using that property value as the group key.",
+"approach": {
+"steps": [
+"Create an empty result object.",
+"Read the grouping property from each item.",
+"Create an array when a group does not exist.",
+"Push the item into its corresponding group."
+],
+"example": "For users with roles 'admin', 'user', and 'admin', grouping by role creates an admin group with two users and a user group with one."
+},
+"code": "function groupBy(items, property) {\n  const groups = {};\n\n  for (const item of items) {\n    const key = item[property];\n    if (!groups[key]) groups[key] = [];\n    groups[key].push(item);\n  }\n\n  return groups;\n}",
+"timeTargetSec": 115,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"Each item supplies the key used for grouping.",
+"A missing key gets a new empty array.",
+"The current item is appended to that group.",
+"All items remain available inside their respective groups."
+],
+"commonMistakes": [
+"Overwriting an existing group instead of appending.",
+"Using a fixed property instead of the supplied property name."
+]
+},
+"tags": ["objects", "arrays", "grouping"]
+},
+{
+"id": "js-medium-066",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Count Word Frequencies",
+"prompt": "Given a sentence, return an object containing the number of times each word appears.",
+"approach": {
+"steps": [
+"Normalize the sentence to lowercase.",
+"Split it into words.",
+"Use an object to store word counts.",
+"Increase the count whenever a word appears."
+],
+"example": "For 'cat dog cat', the frequency object contains cat with count 2 and dog with count 1."
+},
+"code": "function wordFrequency(sentence) {\n  const words = sentence.toLowerCase().trim().split(/s+/);\n  const counts = {};\n\n  if (!sentence.trim()) return counts;\n\n  for (const word of words) {\n    counts[word] = (counts[word] || 0) + 1;\n  }\n\n  return counts;\n}",
+"timeTargetSec": 105,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"Lowercase normalization makes matching case-insensitive.",
+"Whitespace separates the sentence into words.",
+"counts stores each word's current frequency.",
+"Every occurrence increments its corresponding count."
+],
+"commonMistakes": [
+"Treating uppercase and lowercase words as different.",
+"Creating a word entry without incrementing repeated occurrences."
+]
+},
+"tags": ["strings", "objects", "frequency"]
+},
+{
+"id": "js-medium-067",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Find Missing Number",
+"prompt": "Given an array containing distinct numbers from 0 through n with one number missing, find the missing number.",
+"approach": {
+"steps": [
+"Use the expected sum of numbers from 0 through n.",
+"Calculate the actual array sum.",
+"Subtract the actual sum from the expected sum.",
+"Return the difference."
+],
+"example": "For [3, 0, 1], the expected values are 0 through 3, and the missing value is 2."
+},
+"code": "function missingNumber(values) {\n  const n = values.length;\n  const expected = n * (n + 1) / 2;\n  const actual = values.reduce((sum, value) => sum + value, 0);\n  return expected - actual;\n}",
+"timeTargetSec": 100,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"For an array of length n, the complete range ends at n.",
+"The arithmetic formula gives the complete range sum.",
+"The array sum lacks exactly one value.",
+"Subtracting the two sums reveals that missing value."
+],
+"commonMistakes": [
+"Using values.length - 1 as the maximum number.",
+"Assuming the array starts at 1 instead of 0."
+]
+},
+"tags": ["arrays", "math", "reduce"]
+},
+{
+"id": "js-medium-068",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Move Zeros to End",
+"prompt": "Given an array of numbers, move all zeros to the end while preserving the relative order of non-zero values.",
+"approach": {
+"steps": [
+"Track the position where the next non-zero value belongs.",
+"Scan the array once.",
+"Place each non-zero value at that position.",
+"Fill the remaining positions with zeros."
+],
+"example": "For [0, 1, 0, 3, 12], moving zeros to the end produces [1, 3, 12, 0, 0]."
+},
+"code": "function moveZeros(values) {\n  let position = 0;\n\n  for (const value of values) {\n    if (value !== 0) {\n      values[position++] = value;\n    }\n  }\n\n  while (position < values.length) {\n    values[position++] = 0;\n  }\n\n  return values;\n}",
+"timeTargetSec": 110,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"position marks the next location for a non-zero value.",
+"Non-zero values are compacted toward the beginning.",
+"Their original relative order is preserved.",
+"The unused suffix is filled with zeros."
+],
+"commonMistakes": [
+"Sorting the array and changing the order of non-zero values.",
+"Removing zeros without restoring the array length."
+]
+},
+"tags": ["arrays", "two-pointers", "in-place"]
+},
+{
+"id": "js-medium-069",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Find Longest Consecutive Sequence",
+"prompt": "Given an unsorted array of integers, return the length of the longest sequence of consecutive numbers.",
+"approach": {
+"steps": [
+"Store all values in a Set.",
+"Start a sequence only when the previous value is absent.",
+"Count consecutive values from that starting point.",
+"Track the longest sequence."
+],
+"example": "For [100, 4, 200, 1, 3, 2], the sequence 1, 2, 3, 4 has length 4."
+},
+"code": "function longestConsecutive(values) {\n  const numbers = new Set(values);\n  let best = 0;\n\n  for (const value of numbers) {\n    if (!numbers.has(value - 1)) {\n      let current = value;\n      let length = 1;\n\n      while (numbers.has(current + 1)) {\n        current++;\n        length++;\n      }\n\n      best = Math.max(best, length);\n    }\n  }\n\n  return best;\n}",
+"timeTargetSec": 115,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"The Set allows constant-time membership checks.",
+"A sequence begins only when its predecessor is missing.",
+"The inner loop walks forward through consecutive values.",
+"best records the longest sequence found."
+],
+"commonMistakes": [
+"Sorting first when a Set-based solution is expected.",
+"Starting a sequence from every number."
+]
+},
+"tags": ["arrays", "sets", "sequences"]
+},
+{
+"id": "js-medium-070",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "medium",
+"title": "Find First Repeated Value",
+"prompt": "Given an array of values, return the first value encountered that appears more than once.",
+"approach": {
+"steps": [
+"Create a Set for previously seen values.",
+"Scan the array from left to right.",
+"Return a value when it already exists in the Set.",
+"Add unseen values to the Set."
+],
+"example": "For [5, 1, 3, 1, 5], the first repeated value encountered is 1 because its second appearance occurs before 5 repeats."
+},
+"code": "function firstRepeated(values) {\n  const seen = new Set();\n\n  for (const value of values) {\n    if (seen.has(value)) return value;\n    seen.add(value);\n  }\n\n  return null;\n}",
+"timeTargetSec": 100,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"seen records every value encountered so far.",
+"A value already in seen is repeated.",
+"Scanning from left to right guarantees the earliest repeated occurrence is found.",
+"null is returned when no value repeats."
+],
+"commonMistakes": [
+"Returning the most frequent value instead of the first repeated value.",
+"Checking the entire array for every element."
+]
+},
+"tags": ["arrays", "sets", "search"]
+},
+{
+"id": "js-hard-071",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Deep Clone an Object",
+"prompt": "Create a deep copy of an object so that nested objects and arrays are copied instead of sharing references with the original.",
+"approach": {
+"steps": [
+"Return primitive values directly.",
+"Create an array or object matching the input type.",
+"Recursively clone every nested property.",
+"Return the completely independent copy."
+],
+"example": "For {user: {name: 'Sam'}, tags: ['js']}, changing the nested name in the clone does not change the original object."
+},
+"code": "function deepClone(value) {\n  if (value === null || typeof value !== 'object') {\n    return value;\n  }\n\n  const copy = Array.isArray(value) ? [] : {};\n\n  for (const key of Object.keys(value)) {\n    copy[key] = deepClone(value[key]);\n  }\n\n  return copy;\n}",
+"timeTargetSec": 150,
+"complexity": {
+"time": "O(n)",
+"space": "O(d)"
+},
+"review": {
+"walkthroughSteps": [
+"Primitive values do not need recursive copying.",
+"Arrays and objects require new containers.",
+"Each nested property is passed back into deepClone.",
+"Every nested reference therefore becomes independent."
+],
+"commonMistakes": [
+"Using Object.assign for a deep copy.",
+"Returning nested objects directly and keeping shared references."
+]
+},
+"tags": ["objects", "recursion", "references"]
+},
+{
+"id": "js-hard-072",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Flatten a Nested Array",
+"prompt": "Given an array containing values and arrays nested to arbitrary depth, return a single array containing all values in their original order.",
+"approach": {
+"steps": [
+"Create an empty result array.",
+"Visit every element recursively.",
+"Recursively process nested arrays.",
+"Push primitive values into the result."
+],
+"example": "For [1, [2, [3, 4]], 5], recursive flattening produces [1, 2, 3, 4, 5]."
+},
+"code": "function flattenDeep(values) {\n  const result = [];\n\n  function visit(items) {\n    for (const item of items) {\n      if (Array.isArray(item)) {\n        visit(item);\n      } else {\n        result.push(item);\n      }\n    }\n  }\n\n  visit(values);\n  return result;\n}",
+"timeTargetSec": 145,
+"complexity": {
+"time": "O(n)",
+"space": "O(n + d)"
+},
+"review": {
+"walkthroughSteps": [
+"visit handles one level of the current array.",
+"Nested arrays trigger another recursive visit.",
+"Non-array values are appended directly.",
+"The recursion preserves the original left-to-right order."
+],
+"commonMistakes": [
+"Flattening only one level.",
+"Using string conversion and losing the original value types."
+]
+},
+"tags": ["arrays", "recursion", "flattening"]
+},
+{
+"id": "js-hard-073",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Implement Debounce",
+"prompt": "Implement a debounce function that delays execution until a specified period has passed without another call.",
+"approach": {
+"steps": [
+"Store the active timer identifier.",
+"Clear the previous timer whenever the function is called.",
+"Create a new timer for the requested delay.",
+"Call the original function only when the timer completes."
+],
+"example": "For a debounced search called repeatedly while typing, the search runs only after the user stops typing for the specified delay."
+},
+"code": "function debounce(callback, delay) {\n  let timer;\n\n  return function (...args) {\n    clearTimeout(timer);\n    timer = setTimeout(() => {\n      callback.apply(this, args);\n    }, delay);\n  };\n}",
+"timeTargetSec": 155,
+"complexity": {
+"time": "O(1) per call",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"timer remembers the currently scheduled execution.",
+"Every new call cancels the previous timer.",
+"A new timer starts after each call.",
+"Only the final call survives long enough to execute."
+],
+"commonMistakes": [
+"Failing to clear the previous timer.",
+"Using an arrow function for the wrapper and losing the caller's this context."
+]
+},
+"tags": ["functions", "closures", "timers"]
+},
+{
+"id": "js-hard-074",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Implement Throttle",
+"prompt": "Implement a throttle function that allows a function to execute at most once during each specified time interval.",
+"approach": {
+"steps": [
+"Track the time of the last execution.",
+"Compare the current time with that value.",
+"Execute only when the interval has elapsed.",
+"Update the execution time after each successful call."
+],
+"example": "For a scroll handler throttled to 100 milliseconds, repeated scroll events can trigger the handler at most once during each 100 millisecond interval."
+},
+"code": "function throttle(callback, interval) {\n  let lastTime = 0;\n\n  return function (...args) {\n    const now = Date.now();\n    if (now - lastTime < interval) return;\n\n    lastTime = now;\n    callback.apply(this, args);\n  };\n}",
+"timeTargetSec": 155,
+"complexity": {
+"time": "O(1) per call",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"lastTime records the previous successful execution.",
+"Date.now provides the current timestamp.",
+"Calls inside the interval are ignored.",
+"A permitted call updates lastTime before executing the callback."
+],
+"commonMistakes": [
+"Confusing throttle with debounce.",
+"Updating lastTime for calls that were not executed."
+]
+},
+"tags": ["functions", "closures", "timers"]
+},
+{
+"id": "js-hard-075",
+"language": "javascript",
+"trackType": "async",
+"difficulty": "hard",
+"title": "Retry a Promise",
+"prompt": "Create a function that repeatedly calls an asynchronous operation until it succeeds or a maximum number of attempts has been reached.",
+"approach": {
+"steps": [
+"Attempt the asynchronous operation.",
+"Return the result when it succeeds.",
+"Catch failures and count the attempt.",
+"Retry until the maximum attempt count is reached."
+],
+"example": "For an operation allowed 3 attempts, a failure on the first two attempts causes retries, while a successful third attempt returns its result."
+},
+"code": "async function retry(operation, attempts) {\n  let lastError;\n\n  for (let count = 0; count < attempts; count++) {\n    try {\n      return await operation();\n    } catch (error) {\n      lastError = error;\n    }\n  }\n\n  throw lastError;\n}",
+"timeTargetSec": 165,
+"complexity": {
+"time": "O(a)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The loop controls the maximum number of attempts.",
+"await waits for the asynchronous operation.",
+"A successful operation immediately returns its value.",
+"The final error is thrown when every attempt fails."
+],
+"commonMistakes": [
+"Retrying forever after repeated failures.",
+"Returning an error instead of rejecting after all attempts fail."
+]
+},
+"tags": ["promises", "async-await", "error-handling"]
+},
+{
+"id": "js-hard-076",
+"language": "javascript",
+"trackType": "async",
+"difficulty": "hard",
+"title": "Run Promises in Sequence",
+"prompt": "Given an array of asynchronous functions, execute them one after another and return an array containing their results in the same order.",
+"approach": {
+"steps": [
+"Start with an empty results array.",
+"Loop through the asynchronous functions in order.",
+"Await each function before starting the next one.",
+"Store each resolved value."
+],
+"example": "For three asynchronous tasks A, B, and C, the sequence waits for A before starting B and waits for B before starting C."
+},
+"code": "async function runSequential(tasks) {\n  const results = [];\n\n  for (const task of tasks) {\n    results.push(await task());\n  }\n\n  return results;\n}",
+"timeTargetSec": 150,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"The for-of loop preserves task order.",
+"await pauses the loop until the current task resolves.",
+"The next task does not start early.",
+"Results are stored in the same order as the tasks."
+],
+"commonMistakes": [
+"Using Promise.all and accidentally running tasks concurrently.",
+"Forgetting to await each task."
+]
+},
+"tags": ["promises", "async-await", "sequencing"]
+},
+{
+"id": "js-hard-077",
+"language": "javascript",
+"trackType": "async",
+"difficulty": "hard",
+"title": "Limit Concurrent Promises",
+"prompt": "Given asynchronous tasks and a concurrency limit, execute at most the specified number of tasks at the same time and return their results in input order.",
+"approach": {
+"steps": [
+"Track the next task index.",
+"Start only up to the concurrency limit initially.",
+"When a task finishes, start the next waiting task.",
+"Store each result at its original index."
+],
+"example": "For 5 tasks with a concurrency limit of 2, only two tasks run initially, and each completed task allows the next waiting task to start."
+},
+"code": "async function runWithLimit(tasks, limit) {\n  const results = new Array(tasks.length);\n  let next = 0;\n\n  async function worker() {\n    while (next < tasks.length) {\n      const index = next++;\n      results[index] = await tasks[index]();\n    }\n  }\n\n  const workers = Array.from(\n    { length: Math.min(limit, tasks.length) },\n    () => worker()\n  );\n\n  await Promise.all(workers);\n  return results;\n}",
+"timeTargetSec": 190,
+"complexity": {
+"time": "O(n)",
+"space": "O(n + c)"
+},
+"review": {
+"walkthroughSteps": [
+"next identifies the next task that has not started.",
+"The number of workers never exceeds the requested limit.",
+"A worker starts another task as soon as its current task finishes.",
+"Each result is stored using the original task index."
+],
+"commonMistakes": [
+"Starting every promise immediately.",
+"Returning results in completion order instead of input order."
+]
+},
+"tags": ["promises", "concurrency", "async-await"]
+},
+{
+"id": "js-hard-078",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Implement Memoization",
+"prompt": "Create a memoization function that caches results for previously used arguments and avoids repeating the same calculation.",
+"approach": {
+"steps": [
+"Create a cache for computed results.",
+"Generate a stable key from the arguments.",
+"Return the cached value when the key already exists.",
+"Otherwise calculate, store, and return the new result."
+],
+"example": "For a memoized square function, calling square(5) twice calculates 25 only once because the second call uses the cached result."
+},
+"code": "function memoize(callback) {\n  const cache = new Map();\n\n  return function (...args) {\n    const key = JSON.stringify(args);\n    if (cache.has(key)) return cache.get(key);\n\n    const result = callback.apply(this, args);\n    cache.set(key, result);\n    return result;\n  };\n}",
+"timeTargetSec": 165,
+"complexity": {
+"time": "O(n) for key creation",
+"space": "O(c)"
+},
+"review": {
+"walkthroughSteps": [
+"cache stores previously computed results.",
+"JSON.stringify creates a key representing the arguments.",
+"A cached key avoids calling the original function again.",
+"New results are stored before being returned."
+],
+"commonMistakes": [
+"Calling the original function before checking the cache.",
+"Using only the first argument as the cache key."
+]
+},
+"tags": ["functions", "closures", "caching"]
+},
+{
+"id": "js-hard-079",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Deep Compare Objects",
+"prompt": "Create a function that determines whether two values are deeply equal, including nested objects and arrays.",
+"approach": {
+"steps": [
+"Return true when both references are identical.",
+"Reject values with different types or null status.",
+"Compare object keys and key counts.",
+"Recursively compare every corresponding property."
+],
+"example": "For {a: 1, b: {c: 2}} and {a: 1, b: {c: 2}}, deep comparison returns true even though the nested objects are different references."
+},
+"code": "function deepEqual(first, second) {\n  if (first === second) return true;\n  if (typeof first !== 'object' || typeof second !== 'object' || first === null || second === null) {\n    return false;\n  }\n\n  const firstKeys = Object.keys(first);\n  const secondKeys = Object.keys(second);\n  if (firstKeys.length !== secondKeys.length) return false;\n\n  for (const key of firstKeys) {\n    if (!Object.hasOwn(second, key) || !deepEqual(first[key], second[key])) {\n      return false;\n    }\n  }\n\n  return true;\n}",
+"timeTargetSec": 185,
+"complexity": {
+"time": "O(n)",
+"space": "O(d)"
+},
+"review": {
+"walkthroughSteps": [
+"Identical primitive values or references can return immediately.",
+"Non-object mismatches cannot be deeply equal.",
+"Objects must contain the same number of keys.",
+"Each matching property is recursively compared."
+],
+"commonMistakes": [
+"Using only === for nested objects.",
+"Checking values without verifying that both objects contain the same keys."
+]
+},
+"tags": ["objects", "recursion", "comparison"]
+},
+{
+"id": "js-hard-080",
+"language": "javascript",
+"trackType": "design",
+"difficulty": "hard",
+"title": "Create an Event Emitter",
+"prompt": "Implement a simple event emitter that allows listeners to subscribe to events and execute all listeners when an event is emitted.",
+"approach": {
+"steps": [
+"Store listeners in an object keyed by event name.",
+"Add callbacks to the matching event list.",
+"Emit an event by calling every registered callback.",
+"Pass emitted arguments to each listener."
+],
+"example": "For an emitter with a listener registered for 'login', emitting 'login' calls that listener with the supplied event data."
+},
+"code": "class EventEmitter {\n  constructor() {\n    this.events = {};\n  }\n\n  on(event, callback) {\n    if (!this.events[event]) this.events[event] = [];\n    this.events[event].push(callback);\n  }\n\n  emit(event, ...args) {\n    const listeners = this.events[event] || [];\n    for (const callback of listeners) {\n      callback(...args);\n    }\n  }\n}",
+"timeTargetSec": 180,
+"complexity": {
+"time": "O(l)",
+"space": "O(l)"
+},
+"review": {
+"walkthroughSteps": [
+"events maps each event name to its listeners.",
+"on creates the listener list when needed.",
+"Each callback is appended without replacing existing listeners.",
+"emit executes every listener registered for that event."
+],
+"commonMistakes": [
+"Replacing existing listeners when registering a new one.",
+"Calling listeners for unrelated event names."
+]
+},
+"tags": ["classes", "events", "callbacks"]
+},
+{
+"id": "js-hard-081",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Find Subarray With Target Sum",
+"prompt": "Given an array of positive integers and a target sum, find the contiguous subarray whose elements add up to the target. Return its starting and ending indexes, or null if none exists.",
+"approach": {
+"steps": [
+"Use two pointers to represent the current window.",
+"Expand the window by adding the next value.",
+"Shrink the window while its sum exceeds the target.",
+"Return the indexes when the window sum equals the target."
+],
+"example": "For [2, 3, 1, 4, 2] and target 8, the subarray [3, 1, 4] reaches the target from index 1 to index 3."
+},
+"code": "function findTargetSubarray(values, target) {\n  let start = 0;\n  let sum = 0;\n\n  for (let end = 0; end < values.length; end++) {\n    sum += values[end];\n\n    while (sum > target && start <= end) {\n      sum -= values[start++];\n    }\n\n    if (sum === target) {\n      return [start, end];\n    }\n  }\n\n  return null;\n}",
+"timeTargetSec": 155,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The window grows as end moves forward.",
+"Values are removed from the left when the sum becomes too large.",
+"Each element enters and leaves the window at most once.",
+"The current window indexes are returned when the target is reached."
+],
+"commonMistakes": [
+"Using this sliding-window approach when negative numbers are allowed.",
+"Forgetting to shrink the window when its sum exceeds the target."
+]
+},
+"tags": ["arrays", "sliding-window", "two-pointers"]
+},
+{
+"id": "js-hard-082",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Longest Substring Without Repeating Characters",
+"prompt": "Given a string, find the length of the longest substring containing no repeated characters.",
+"approach": {
+"steps": [
+"Maintain a sliding window of unique characters.",
+"Store the latest index of each character.",
+"Move the left boundary when a repeated character appears.",
+"Track the largest window length."
+],
+"example": "For 'abcabcbb', the longest substring without repeated characters is 'abc', so the answer is 3."
+},
+"code": "function longestUniqueSubstring(text) {\n  const lastSeen = new Map();\n  let start = 0;\n  let best = 0;\n\n  for (let end = 0; end < text.length; end++) {\n    const char = text[end];\n\n    if (lastSeen.has(char) && lastSeen.get(char) >= start) {\n      start = lastSeen.get(char) + 1;\n    }\n\n    lastSeen.set(char, end);\n    best = Math.max(best, end - start + 1);\n  }\n\n  return best;\n}",
+"timeTargetSec": 165,
+"complexity": {
+"time": "O(n)",
+"space": "O(k)"
+},
+"review": {
+"walkthroughSteps": [
+"lastSeen records where each character most recently appeared.",
+"A repeated character moves start beyond its previous occurrence.",
+"The current window always contains unique characters.",
+"best stores the largest valid window encountered."
+],
+"commonMistakes": [
+"Moving start backward after finding an older duplicate.",
+"Counting characters globally instead of maintaining a substring window."
+]
+},
+"tags": ["strings", "sliding-window", "hash-map"]
+},
+{
+"id": "js-hard-083",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Three Sum",
+"prompt": "Given an array of integers, return all unique triplets whose values add up to zero.",
+"approach": {
+"steps": [
+"Sort the array.",
+"Fix one value at a time.",
+"Use two pointers for the remaining two values.",
+"Skip duplicate values to keep the triplets unique."
+],
+"example": "For [-1, 0, 1, 2, -1, -4], the unique triplets that sum to zero are [-1, -1, 2] and [-1, 0, 1]."
+},
+"code": "function threeSum(values) {\n  values.sort((a, b) => a - b);\n  const result = [];\n\n  for (let i = 0; i < values.length - 2; i++) {\n    if (i > 0 && values[i] === values[i - 1]) continue;\n\n    let left = i + 1;\n    let right = values.length - 1;\n\n    while (left < right) {\n      const sum = values[i] + values[left] + values[right];\n\n      if (sum === 0) {\n        result.push([values[i], values[left], values[right]]);\n        while (left < right && values[left] === values[left + 1]) left++;\n        while (left < right && values[right] === values[right - 1]) right--;\n        left++;\n        right--;\n      } else if (sum < 0) {\n        left++;\n      } else {\n        right--;\n      }\n    }\n  }\n\n  return result;\n}",
+"timeTargetSec": 180,
+"complexity": {
+"time": "O(n²)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"Sorting makes pointer movement predictable.",
+"Each index becomes the fixed first value of a potential triplet.",
+"The two pointers move according to whether the sum is too small or large.",
+"Duplicate values are skipped to avoid duplicate triplets."
+],
+"commonMistakes": [
+"Returning duplicate triplets.",
+"Using three nested loops instead of the two-pointer technique."
+]
+},
+"tags": ["arrays", "sorting", "two-pointers"]
+},
+{
+"id": "js-hard-084",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Merge Overlapping Intervals",
+"prompt": "Given an array of intervals, merge all intervals that overlap and return the resulting non-overlapping intervals.",
+"approach": {
+"steps": [
+"Sort intervals by their starting value.",
+"Use the first interval as the current interval.",
+"Merge an interval when its start overlaps the current end.",
+"Otherwise store the current interval and begin a new one."
+],
+"example": "For [[1,3], [2,6], [8,10], [9,12]], the overlapping intervals merge into [[1,6], [8,12]]."
+},
+"code": "function mergeIntervals(intervals) {\n  if (intervals.length < 2) return intervals;\n\n  intervals.sort((a, b) => a[0] - b[0]);\n  const result = [intervals[0].slice()];\n\n  for (let i = 1; i < intervals.length; i++) {\n    const current = result[result.length - 1];\n    const next = intervals[i];\n\n    if (next[0] <= current[1]) {\n      current[1] = Math.max(current[1], next[1]);\n    } else {\n      result.push(next.slice());\n    }\n  }\n\n  return result;\n}",
+"timeTargetSec": 165,
+"complexity": {
+"time": "O(n log n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"Sorting places potentially overlapping intervals next to each other.",
+"The current result interval represents the active merged range.",
+"An overlapping interval extends the current end when necessary.",
+"A non-overlapping interval starts a new result range."
+],
+"commonMistakes": [
+"Checking intervals without sorting them first.",
+"Replacing the current end with a smaller overlapping end."
+]
+},
+"tags": ["arrays", "intervals", "sorting"]
+},
+{
+"id": "js-hard-085",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Product Except Self",
+"prompt": "Given an array of numbers, return an array where each position contains the product of every value except the value at that position, without using division.",
+"approach": {
+"steps": [
+"Store the product of all values to the left of each position.",
+"Traverse from the right while tracking the right-side product.",
+"Multiply the stored left product by the right product.",
+"Avoid division so zero values are handled naturally."
+],
+"example": "For [1, 2, 3, 4], the result is [24, 12, 8, 6] because each position contains the product of all other values."
+},
+"code": "function productExceptSelf(values) {\n  const result = new Array(values.length).fill(1);\n  let leftProduct = 1;\n  let rightProduct = 1;\n\n  for (let i = 0; i < values.length; i++) {\n    result[i] = leftProduct;\n    leftProduct *= values[i];\n  }\n\n  for (let i = values.length - 1; i >= 0; i--) {\n    result[i] *= rightProduct;\n    rightProduct *= values[i];\n  }\n\n  return result;\n}",
+"timeTargetSec": 170,
+"complexity": {
+"time": "O(n)",
+"space": "O(1) excluding the output array"
+},
+"review": {
+"walkthroughSteps": [
+"The first pass stores products from the left side.",
+"The second pass multiplies each position by its right-side product.",
+"The rightProduct value is updated after each position.",
+"No division is required, so zero values work correctly."
+],
+"commonMistakes": [
+"Using total product and division.",
+"Including the current value in its own product."
+]
+},
+"tags": ["arrays", "prefix-product", "suffix-product"]
+},
+{
+"id": "js-hard-086",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Binary Search Range",
+"prompt": "Given a sorted array and a target value, return the first and last indexes where the target occurs.",
+"approach": {
+"steps": [
+"Use binary search to locate the first occurrence.",
+"Use another binary search to locate the last occurrence.",
+"Continue searching after a match instead of stopping immediately.",
+"Return both indexes or [-1, -1] when the value is absent."
+],
+"example": "For [1, 2, 2, 2, 4] and target 2, the first occurrence is index 1 and the last occurrence is index 3."
+},
+"code": "function searchRange(values, target) {\n  function findBoundary(findFirst) {\n    let left = 0;\n    let right = values.length - 1;\n    let answer = -1;\n\n    while (left <= right) {\n      const middle = Math.floor((left + right) / 2);\n\n      if (values[middle] === target) {\n        answer = middle;\n        if (findFirst) right = middle - 1;\n        else left = middle + 1;\n      } else if (values[middle] < target) {\n        left = middle + 1;\n      } else {\n        right = middle - 1;\n      }\n    }\n\n    return answer;\n  }\n\n  return [findBoundary(true), findBoundary(false)];\n}",
+"timeTargetSec": 175,
+"complexity": {
+"time": "O(log n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"A match is saved as a possible boundary.",
+"The search continues toward the requested side.",
+"The first search keeps moving left after a match.",
+"The second search keeps moving right after a match."
+],
+"commonMistakes": [
+"Returning immediately after the first match.",
+"Using a linear scan despite the sorted input."
+]
+},
+"tags": ["arrays", "binary-search", "search"]
+},
+{
+"id": "js-hard-087",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Kth Largest Element",
+"prompt": "Given an array of numbers and an integer k, return the kth largest value.",
+"approach": {
+"steps": [
+"Maintain a min-heap containing the largest k values.",
+"Insert each value into the heap.",
+"Remove the smallest heap value when its size exceeds k.",
+"The remaining heap root is the kth largest value."
+],
+"example": "For [3, 2, 1, 5, 6, 4] and k equal to 2, the second largest value is 5."
+},
+"code": "function kthLargest(values, k) {\n  const sorted = [...values].sort((a, b) => b - a);\n  return sorted[k - 1];\n}",
+"timeTargetSec": 155,
+"complexity": {
+"time": "O(n log n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"A copied array prevents mutation of the input.",
+"Descending numeric sorting places the largest value first.",
+"The kth position corresponds to index k minus one.",
+"The selected value is returned directly."
+],
+"commonMistakes": [
+"Using the default lexicographic sort.",
+"Returning index k instead of k minus one."
+]
+},
+"tags": ["arrays", "sorting", "selection"]
+},
+{
+"id": "js-hard-088",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Generate All Permutations",
+"prompt": "Given an array of distinct values, generate every possible ordering of those values.",
+"approach": {
+"steps": [
+"Choose each unused value as the next position.",
+"Recursively build the remaining positions.",
+"Add a completed arrangement to the result.",
+"Backtrack after each recursive choice."
+],
+"example": "For [1, 2, 3], the generated permutations include [1, 2, 3], [1, 3, 2], and the four other possible orderings."
+},
+"code": "function permutations(values) {\n  const result = [];\n  const current = [];\n  const used = new Set();\n\n  function backtrack() {\n    if (current.length === values.length) {\n      result.push([...current]);\n      return;\n    }\n\n    for (const value of values) {\n      if (used.has(value)) continue;\n\n      used.add(value);\n      current.push(value);\n      backtrack();\n      current.pop();\n      used.delete(value);\n    }\n  }\n\n  backtrack();\n  return result;\n}",
+"timeTargetSec": 180,
+"complexity": {
+"time": "O(n × n!)",
+"space": "O(n × n!)"
+},
+"review": {
+"walkthroughSteps": [
+"current stores the permutation being constructed.",
+"used prevents the same value from being selected twice.",
+"A complete current array is copied into the result.",
+"Backtracking removes the previous choice before trying another."
+],
+"commonMistakes": [
+"Pushing the same current array reference into the result.",
+"Forgetting to undo the used state during backtracking."
+]
+},
+"tags": ["arrays", "recursion", "backtracking"]
+},
+{
+"id": "js-hard-089",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Generate Combinations",
+"prompt": "Given an array of distinct values and a number k, generate every combination containing exactly k values.",
+"approach": {
+"steps": [
+"Choose a starting index for each combination.",
+"Add available values recursively.",
+"Stop when the current combination reaches size k.",
+"Backtrack and continue with later values."
+],
+"example": "For [1, 2, 3, 4] and k equal to 2, the combinations include [1, 2], [1, 3], [1, 4], [2, 3], [2, 4], and [3, 4]."
+},
+"code": "function combinations(values, k) {\n  const result = [];\n  const current = [];\n\n  function backtrack(start) {\n    if (current.length === k) {\n      result.push([...current]);\n      return;\n    }\n\n    for (let i = start; i < values.length; i++) {\n      current.push(values[i]);\n      backtrack(i + 1);\n      current.pop();\n    }\n  }\n\n  backtrack(0);\n  return result;\n}",
+"timeTargetSec": 175,
+"complexity": {
+"time": "O(C(n,k) × k)",
+"space": "O(C(n,k) × k)"
+},
+"review": {
+"walkthroughSteps": [
+"start prevents selecting an earlier value again.",
+"Each selected value is added to current.",
+"The next recursive call begins after the selected index.",
+"Backtracking restores current before the next choice."
+],
+"commonMistakes": [
+"Allowing the same index to be selected repeatedly.",
+"Generating permutations instead of combinations."
+]
+},
+"tags": ["arrays", "recursion", "backtracking"]
+},
+{
+"id": "js-hard-090",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Solve Subset Sum",
+"prompt": "Given an array of positive integers and a target value, determine whether any subset of the values adds exactly to the target.",
+"approach": {
+"steps": [
+"Create a boolean table for reachable sums.",
+"Mark sum zero as reachable.",
+"For each value, update reachable sums from right to left.",
+"Return whether the target sum becomes reachable."
+],
+"example": "For [3, 4, 5] and target 9, the subset [4, 5] reaches the target, so the result is true."
+},
+"code": "function hasSubsetSum(values, target) {\n  const reachable = new Array(target + 1).fill(false);\n  reachable[0] = true;\n\n  for (const value of values) {\n    for (let sum = target; sum >= value; sum--) {\n      reachable[sum] = reachable[sum] || reachable[sum - value];\n    }\n  }\n\n  return reachable[target];\n}",
+"timeTargetSec": 180,
+"complexity": {
+"time": "O(n × target)",
+"space": "O(target)"
+},
+"review": {
+"walkthroughSteps": [
+"reachable records which sums can currently be formed.",
+"Zero is reachable without selecting any value.",
+"Each value can extend previously reachable sums.",
+"Right-to-left updates prevent using the same value more than once."
+],
+"commonMistakes": [
+"Updating from left to right and reusing a value in the same iteration.",
+"Forgetting that the table starts with only sum zero reachable."
+]
+},
+"tags": ["arrays", "dynamic-programming", "subset"]
+},
+{
+"id": "js-hard-091",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Longest Increasing Subsequence",
+"prompt": "Given an array of numbers, find the length of the longest strictly increasing subsequence.",
+"approach": {
+"steps": [
+"Create a dynamic programming value for every position.",
+"Compare each value with earlier smaller values.",
+"Extend the best subsequence ending at each earlier position.",
+"Return the largest subsequence length."
+],
+"example": "For [10, 9, 2, 5, 3, 7, 101, 18], one longest increasing subsequence is [2, 3, 7, 101], giving length 4."
+},
+"code": "function longestIncreasingSubsequence(values) {\n  if (values.length === 0) return 0;\n\n  const dp = new Array(values.length).fill(1);\n  let best = 1;\n\n  for (let i = 1; i < values.length; i++) {\n    for (let j = 0; j < i; j++) {\n      if (values[j] < values[i]) {\n        dp[i] = Math.max(dp[i], dp[j] + 1);\n      }\n    }\n    best = Math.max(best, dp[i]);\n  }\n\n  return best;\n}",
+"timeTargetSec": 190,
+"complexity": {
+"time": "O(n²)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"dp[i] starts at one because every value forms a subsequence by itself.",
+"Earlier smaller values can extend the subsequence ending at i.",
+"The largest valid previous dp value is selected.",
+"best records the longest subsequence found."
+],
+"commonMistakes": [
+"Requiring the subsequence to use consecutive indexes.",
+"Using less-than-or-equal and allowing equal values."
+]
+},
+"tags": ["arrays", "dynamic-programming", "subsequence"]
+},
+{
+"id": "js-hard-092",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Minimum Coins for Amount",
+"prompt": "Given coin denominations and a target amount, find the minimum number of coins needed to form that amount. Return -1 when it cannot be formed.",
+"approach": {
+"steps": [
+"Create a table where each amount stores its minimum coin count.",
+"Initialize amount zero with zero coins.",
+"For each amount, test every usable coin.",
+"Choose the smallest valid previous amount plus one coin."
+],
+"example": "For coins [1, 2, 5] and amount 11, the minimum number of coins is 3 using 5, 5, and 1."
+},
+"code": "function minCoins(coins, amount) {\n  const dp = new Array(amount + 1).fill(Infinity);\n  dp[0] = 0;\n\n  for (let current = 1; current <= amount; current++) {\n    for (const coin of coins) {\n      if (coin <= current) {\n        dp[current] = Math.min(dp[current], dp[current - coin] + 1);\n      }\n    }\n  }\n\n  return dp[amount] === Infinity ? -1 : dp[amount];\n}",
+"timeTargetSec": 190,
+"complexity": {
+"time": "O(amount × coins)",
+"space": "O(amount)"
+},
+"review": {
+"walkthroughSteps": [
+"dp[current] represents the minimum coins needed for that amount.",
+"Every amount starts as unreachable.",
+"A usable coin points to a smaller amount already solved.",
+"The smallest resulting count becomes the answer for the current amount."
+],
+"commonMistakes": [
+"Returning the number of different combinations instead of the minimum coin count.",
+"Forgetting to handle an unreachable target."
+]
+},
+"tags": ["dynamic-programming", "arrays", "optimization"]
+},
+{
+"id": "js-hard-093",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Climbing Stairs With Cost",
+"prompt": "Given a cost array where each value represents the cost of stepping on a stair, find the minimum cost required to reach the top.",
+"approach": {
+"steps": [
+"Track the minimum cost to reach the previous two positions.",
+"Choose the cheaper previous position for each stair.",
+"Add the current stair cost.",
+"Return the cheaper of the final two states."
+],
+"example": "For [10, 15, 20], the minimum cost to reach the top is 15 by paying for the 10 and 15 cost positions."
+},
+"code": "function minClimbingCost(cost) {\n  let previousTwo = 0;\n  let previousOne = 0;\n\n  for (let i = 2; i <= cost.length; i++) {\n    const current = Math.min(\n      previousOne + cost[i - 1],\n      previousTwo + cost[i - 2]\n    );\n    previousTwo = previousOne;\n    previousOne = current;\n  }\n\n  return previousOne;\n}",
+"timeTargetSec": 175,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The two state variables represent the previous two minimum costs.",
+"Each new position can be reached from either of those positions.",
+"The cheaper route becomes the current minimum.",
+"Only two previous states are needed at any time."
+],
+"commonMistakes": [
+"Treating the top as another paid stair.",
+"Keeping a full table when only two previous states are required."
+]
+},
+"tags": ["dynamic-programming", "arrays", "optimization"]
+},
+{
+"id": "js-hard-094",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Validate Binary Search Tree",
+"prompt": "Given the root of a binary tree, determine whether the tree satisfies binary search tree ordering rules.",
+"approach": {
+"steps": [
+"Give each node a valid lower and upper boundary.",
+"Verify that the node value lies within its boundaries.",
+"Recursively narrow the boundaries for left and right children.",
+"Return false as soon as a node violates its range."
+],
+"example": "For a tree with root 8, left values below 8, and right values above 8, the tree is valid when every descendant follows those same bounds."
+},
+"code": "function isValidBST(root) {\n  function validate(node, lower, upper) {\n    if (node === null) return true;\n    if (node.value <= lower || node.value >= upper) return false;\n\n    return validate(node.left, lower, node.value) &&\n           validate(node.right, node.value, upper);\n  }\n\n  return validate(root, -Infinity, Infinity);\n}",
+"timeTargetSec": 185,
+"complexity": {
+"time": "O(n)",
+"space": "O(h)"
+},
+"review": {
+"walkthroughSteps": [
+"A null node does not violate the tree rules.",
+"Each node must remain inside its inherited range.",
+"The left subtree receives the node value as its upper boundary.",
+"The right subtree receives the node value as its lower boundary."
+],
+"commonMistakes": [
+"Checking only the immediate left and right children.",
+"Allowing duplicate values when the BST rule requires strict ordering."
+]
+},
+"tags": ["trees", "recursion", "binary-search-tree"]
+},
+{
+"id": "js-hard-095",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Level Order Tree Traversal",
+"prompt": "Given the root of a binary tree, return its values grouped by depth from top to bottom.",
+"approach": {
+"steps": [
+"Use a queue starting with the root.",
+"Process all nodes currently in the queue as one level.",
+"Add their children for the next level.",
+"Store each level as a separate array."
+],
+"example": "For a tree with root 3, children 9 and 20, and grandchildren 15 and 7, the levels are [[3], [9, 20], [15, 7]]."
+},
+"code": "function levelOrder(root) {\n  if (root === null) return [];\n\n  const result = [];\n  const queue = [root];\n  let index = 0;\n\n  while (index < queue.length) {\n    const levelSize = queue.length - index;\n    const level = [];\n\n    for (let count = 0; count < levelSize; count++) {\n      const node = queue[index++];\n      level.push(node.value);\n\n      if (node.left) queue.push(node.left);\n      if (node.right) queue.push(node.right);\n    }\n\n    result.push(level);\n  }\n\n  return result;\n}",
+"timeTargetSec": 180,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"The queue stores nodes waiting to be processed.",
+"levelSize captures exactly how many nodes belong to the current level.",
+"Children are appended after the current level is identified.",
+"Each completed level is added to the result."
+],
+"commonMistakes": [
+"Mixing nodes from different levels into one result array.",
+"Using recursion without tracking depth."
+]
+},
+"tags": ["trees", "queues", "breadth-first-search"]
+},
+{
+"id": "js-hard-096",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Detect Cycle in Linked List",
+"prompt": "Given the head of a linked list, determine whether the list contains a cycle.",
+"approach": {
+"steps": [
+"Use a slow pointer moving one node at a time.",
+"Use a fast pointer moving two nodes at a time.",
+"If they meet, the list contains a cycle.",
+"If the fast pointer reaches the end, no cycle exists."
+],
+"example": "For a list where the last node points back to the second node, the slow and fast pointers eventually meet, confirming a cycle."
+},
+"code": "function hasCycle(head) {\n  let slow = head;\n  let fast = head;\n\n  while (fast !== null && fast.next !== null) {\n    slow = slow.next;\n    fast = fast.next.next;\n\n    if (slow === fast) return true;\n  }\n\n  return false;\n}",
+"timeTargetSec": 170,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"slow advances one node per iteration.",
+"fast advances two nodes per iteration.",
+"Inside a cycle, the faster pointer eventually catches the slower pointer.",
+"A null fast pointer proves that the list ends normally."
+],
+"commonMistakes": [
+"Comparing node values instead of node references.",
+"Moving both pointers at the same speed."
+]
+},
+"tags": ["linked-list", "two-pointers", "cycle-detection"]
+},
+{
+"id": "js-hard-097",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Shortest Path in Grid",
+"prompt": "Given a grid containing open cells and blocked cells, find the shortest number of moves from the top-left cell to the bottom-right cell.",
+"approach": {
+"steps": [
+"Use breadth-first search starting at the top-left cell.",
+"Store each cell's distance from the start.",
+"Visit only valid unvisited neighboring cells.",
+"Return the distance when the destination is reached."
+],
+"example": "For a grid where open cells connect the top-left position to the bottom-right position through four moves, the shortest path length is 4."
+},
+"code": "function shortestPath(grid) {\n  if (!grid.length || grid[0][0] === 1) return -1;\n\n  const rows = grid.length;\n  const cols = grid[0].length;\n  const queue = [[0, 0, 0]];\n  const visited = new Set(['0,0']);\n  const directions = [[1, 0], [-1, 0], [0, 1], [0, -1]];\n\n  for (let index = 0; index < queue.length; index++) {\n    const [row, col, distance] = queue[index];\n    if (row === rows - 1 && col === cols - 1) return distance;\n\n    for (const [dr, dc] of directions) {\n      const nextRow = row + dr;\n      const nextCol = col + dc;\n      const key = `${nextRow},${nextCol}`;\n\n      if (\n        nextRow >= 0 && nextRow < rows &&\n        nextCol >= 0 && nextCol < cols &&\n        grid[nextRow][nextCol] === 0 &&\n        !visited.has(key)\n      ) {\n        visited.add(key);\n        queue.push([nextRow, nextCol, distance + 1]);\n      }\n    }\n  }\n\n  return -1;\n}",
+"timeTargetSec": 200,
+"complexity": {
+"time": "O(rows × cols)",
+"space": "O(rows × cols)"
+},
+"review": {
+"walkthroughSteps": [
+"BFS explores positions by increasing distance.",
+"visited prevents the same cell from being processed repeatedly.",
+"Each valid neighbor receives the current distance plus one.",
+"The first destination reached is guaranteed to have the shortest path."
+],
+"commonMistakes": [
+"Using depth-first search when the shortest unweighted path is required.",
+"Allowing already visited cells to enter the queue again."
+]
+},
+"tags": ["graphs", "grids", "breadth-first-search"]
+},
+{
+"id": "js-hard-098",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Detect Graph Cycle",
+"prompt": "Given an undirected graph represented by an adjacency list, determine whether the graph contains a cycle.",
+"approach": {
+"steps": [
+"Track visited vertices.",
+"Start a depth-first search from every unvisited vertex.",
+"Pass the parent vertex during traversal.",
+"Find a cycle when a visited neighbor is not the current vertex's parent."
+],
+"example": "For an undirected graph where 1 connects to 2, 2 connects to 3, and 3 connects back to 1, the graph contains a cycle."
+},
+"code": "function hasGraphCycle(graph) {\n  const visited = new Set();\n\n  function dfs(node, parent) {\n    visited.add(node);\n\n    for (const neighbor of graph[node] || []) {\n      if (!visited.has(neighbor)) {\n        if (dfs(neighbor, node)) return true;\n      } else if (neighbor !== parent) {\n        return true;\n      }\n    }\n\n    return false;\n  }\n\n  for (const node of Object.keys(graph)) {\n    if (!visited.has(node) && dfs(node, null)) {\n      return true;\n    }\n  }\n\n  return false;\n}",
+"timeTargetSec": 190,
+"complexity": {
+"time": "O(V + E)",
+"space": "O(V)"
+},
+"review": {
+"walkthroughSteps": [
+"Each vertex is visited at most once.",
+"The parent identifies the edge used to enter the current vertex.",
+"A visited neighbor other than the parent indicates a cycle.",
+"The outer loop handles disconnected graph components."
+],
+"commonMistakes": [
+"Treating the parent edge itself as a cycle.",
+"Checking only the first connected component."
+]
+},
+"tags": ["graphs", "dfs", "cycle-detection"]
+},
+{
+"id": "js-hard-099",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "Topological Sort",
+"prompt": "Given a directed acyclic graph represented by an adjacency list, return an ordering of vertices where every prerequisite appears before its dependent vertex.",
+"approach": {
+"steps": [
+"Calculate the incoming edge count for every vertex.",
+"Place vertices with zero incoming edges into a queue.",
+"Remove each processed vertex from the dependency counts of its neighbors.",
+"Return the ordering if every vertex is processed."
+],
+"example": "For dependencies where A must come before B and B must come before C, a valid topological ordering is [A, B, C]."
+},
+"code": "function topologicalSort(graph) {\n  const indegree = {};\n\n  for (const node of Object.keys(graph)) {\n    indegree[node] = 0;\n  }\n\n  for (const node of Object.keys(graph)) {\n    for (const neighbor of graph[node]) {\n      if (!(neighbor in indegree)) indegree[neighbor] = 0;\n      indegree[neighbor]++;\n    }\n  }\n\n  const queue = Object.keys(indegree).filter(node => indegree[node] === 0);\n  const result = [];\n\n  for (let index = 0; index < queue.length; index++) {\n    const node = queue[index];\n    result.push(node);\n\n    for (const neighbor of graph[node] || []) {\n      indegree[neighbor]--;\n      if (indegree[neighbor] === 0) queue.push(neighbor);\n    }\n  }\n\n  return result.length === Object.keys(indegree).length ? result : [];\n}",
+"timeTargetSec": 200,
+"complexity": {
+"time": "O(V + E)",
+"space": "O(V)"
+},
+"review": {
+"walkthroughSteps": [
+"indegree records how many prerequisites each vertex has.",
+"Zero-indegree vertices can be processed immediately.",
+"Processing a vertex removes one dependency from each neighbor.",
+"An incomplete result indicates that the graph contains a cycle."
+],
+"commonMistakes": [
+"Adding vertices with remaining dependencies to the queue.",
+"Ignoring vertices that have no outgoing edges."
+]
+},
+"tags": ["graphs", "topological-sort", "queues"]
+},
+{
+"id": "js-hard-100",
+"language": "javascript",
+"trackType": "dsa",
+"difficulty": "hard",
+"title": "LRU Cache",
+"prompt": "Implement a least recently used cache with a fixed capacity. Getting or setting a key should mark it as recently used, and the least recently used entry should be removed when capacity is exceeded.",
+"approach": {
+"steps": [
+"Use a Map to store cache entries.",
+"Remove a key before re-inserting it so its insertion order becomes most recent.",
+"Return -1 when a requested key does not exist.",
+"Delete the oldest Map entry when the cache exceeds its capacity."
+],
+"example": "For a cache of capacity 2, setting A and B then accessing A makes A recent, so adding C removes B as the least recently used entry."
+},
+"code": "class LRUCache {\n  constructor(capacity) {\n    this.capacity = capacity;\n    this.cache = new Map();\n  }\n\n  get(key) {\n    if (!this.cache.has(key)) return -1;\n\n    const value = this.cache.get(key);\n    this.cache.delete(key);\n    this.cache.set(key, value);\n    return value;\n  }\n\n  put(key, value) {\n    if (this.cache.has(key)) {\n      this.cache.delete(key);\n    }\n\n    this.cache.set(key, value);\n\n    if (this.cache.size > this.capacity) {\n      const oldestKey = this.cache.keys().next().value;\n      this.cache.delete(oldestKey);\n    }\n  }\n}",
+"timeTargetSec": 210,
+"complexity": {
+"time": "O(1) average per operation",
+"space": "O(capacity)"
+},
+"review": {
+"walkthroughSteps": [
+"Map preserves insertion order for cache entries.",
+"A successful get removes and re-adds the key to make it recent.",
+"put also refreshes an existing key before storing its new value.",
+"The first Map key represents the least recently used entry."
+],
+"commonMistakes": [
+"Updating a key without moving it to the most recent position.",
+"Removing the newest entry instead of the oldest entry when capacity is exceeded."
+]
+},
+"tags": ["classes", "maps", "cache", "design"]
+}
+
 ]

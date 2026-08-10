@@ -9,7 +9,7 @@ export default function Home({ onSelectLanguage }) {
           className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono mb-4"
           style={{ backgroundColor: 'color-mix(in srgb, var(--color-js) 18%, transparent)', color: 'var(--color-text)' }}
         >
-          <Code2 size={14} /> typing club
+          <Code2 size={14} /> Pro Coder club
         </div>
         <h1 className="font-display font-bold text-3xl sm:text-4xl text-text mb-3">
           Type real code. Learn real DSA.
