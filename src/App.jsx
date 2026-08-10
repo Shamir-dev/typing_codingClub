@@ -10,9 +10,24 @@ import { useProgress } from './hooks/useProgress'
 import { useSettings } from './hooks/useSettings'
 import { useAttemptsLog } from './hooks/useAttemptsLog'
 import javascriptLessons from './content/javascript/lessons.json'
+import pythonLessons from './content/python/lessons.json'
+import cppLessons from './content/cpp/lessons.json'
+import cLessons from './content/c/lessons.json'
+import reactLessons from './content/react/lessons.json'
+import htmlLessons from './content/html/lessons.json'
+import javaLessons from './content/java/lessons.json'
+import cssLessons from './content/css/lessons.json'
 
 const LESSONS_BY_LANGUAGE = {
   javascript: javascriptLessons,
+  python: pythonLessons,
+  cpp:cppLessons,
+  css:cssLessons,
+  java: javaLessons,
+  html: htmlLessons,
+  c:    cLessons,
+  react: reactLessons,
+
 }
 
 // Flat id -> lesson lookup across every language, for pages (like the

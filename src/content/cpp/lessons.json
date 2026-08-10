@@ -1,0 +1,1442 @@
+[
+{
+"id": "cpp-easy-001",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Sum Array Values",
+"prompt": "Given an integer array, calculate the sum of all its elements. Return the total sum.",
+"approach": {
+"steps": [
+"Start the total at zero.",
+"Visit each element in the array.",
+"Add the current element to the total.",
+"Return the final total."
+],
+"example": "For [2, 4, 3], total changes from 0 to 2, then 6, then 9."
+},
+"code": "int sumArray(vector<int>& nums) {\n  int total = 0;\n  for (int i = 0; i < nums.size(); i++) {\n    total += nums[i];\n  }\n  return total;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"sumArray receives the array by reference.",
+"total begins at zero before processing any values.",
+"The loop adds each nums[i] to total.",
+"The completed total is returned."
+],
+"commonMistakes": [
+"Initializing total with an unrelated array value.",
+"Using i <= nums.size(), which accesses beyond the array."
+]
+},
+"tags": ["arrays", "loops", "math"]
+},
+{
+"id": "cpp-easy-002",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Count Even Numbers",
+"prompt": "Given an integer array, count how many elements are even.",
+"approach": {
+"steps": [
+"Start an even counter at zero.",
+"Check each array element.",
+"Test whether the value is divisible by two.",
+"Increase the counter for every even value."
+],
+"example": "For [3, 8, 6, 5], the counter changes 0 to 1 at 8 and 1 to 2 at 6."
+},
+"code": "int countEven(vector<int>& nums) {\n  int count = 0;\n  for (int i = 0; i < nums.size(); i++) {\n    if (nums[i] % 2 == 0) {\n      count++;\n    }\n  }\n  return count;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"count starts at zero because no values have been checked.",
+"The loop visits every element exactly once.",
+"The modulo operation checks whether nums[i] has remainder zero.",
+"count is returned after all elements are processed."
+],
+"commonMistakes": [
+"Checking nums[i] % 2 == 1 instead of checking for even values.",
+"Incrementing count outside the if statement."
+]
+},
+"tags": ["arrays", "loops", "math"]
+},
+{
+"id": "cpp-easy-003",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Find Minimum Value",
+"prompt": "Given a non-empty integer array, find and return its smallest element.",
+"approach": {
+"steps": [
+"Use the first element as the initial minimum.",
+"Compare each remaining element with the minimum.",
+"Replace the minimum when a smaller value appears.",
+"Return the final minimum."
+],
+"example": "For [7, 3, 9, 2], minVal changes from 7 to 3 and then from 3 to 2."
+},
+"code": "int findMinimum(vector<int>& nums) {\n  int minVal = nums[0];\n  for (int i = 1; i < nums.size(); i++) {\n    if (nums[i] < minVal) {\n      minVal = nums[i];\n    }\n  }\n  return minVal;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"minVal starts with nums[0] as the current smallest value.",
+"The loop begins at index one because index zero is already stored.",
+"Each smaller nums[i] replaces minVal.",
+"The smallest value remains in minVal when the loop ends."
+],
+"commonMistakes": [
+"Starting minVal at zero when all array values may be positive or negative.",
+"Starting the loop at zero and comparing the first value unnecessarily."
+]
+},
+"tags": ["arrays", "loops", "comparison"]
+},
+{
+"id": "cpp-easy-004",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Find Maximum Value",
+"prompt": "Given a non-empty integer array, find and return its largest element.",
+"approach": {
+"steps": [
+"Use the first element as the initial maximum.",
+"Inspect each remaining element.",
+"Replace the maximum when a larger value appears.",
+"Return the final maximum."
+],
+"example": "For [4, 9, 2, 7], maxVal changes from 4 to 9 and remains 9 afterward."
+},
+"code": "int findMaximum(vector<int>& nums) {\n  int maxVal = nums[0];\n  for (int i = 1; i < nums.size(); i++) {\n    if (nums[i] > maxVal) {\n      maxVal = nums[i];\n    }\n  }\n  return maxVal;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"maxVal stores the largest value seen so far.",
+"The loop checks every element after the first.",
+"A larger nums[i] replaces maxVal.",
+"The final maxVal is returned."
+],
+"commonMistakes": [
+"Initializing maxVal to zero when negative values are possible.",
+"Using the less-than comparison instead of greater-than."
+]
+},
+"tags": ["arrays", "loops", "comparison"]
+},
+{
+"id": "cpp-easy-005",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Reverse Array",
+"prompt": "Given an integer array, reverse its elements in place and return the modified array.",
+"approach": {
+"steps": [
+"Set one index at the beginning and one at the end.",
+"Swap the values at both indices.",
+"Move both indices toward the center.",
+"Stop when the indices meet or cross."
+],
+"example": "For [1, 2, 3, 4], swap 1 and 4, then 2 and 3 to produce [4, 3, 2, 1]."
+},
+"code": "vector<int>& reverseArray(vector<int>& nums) {\n  int left = 0;\n  int right = nums.size() - 1;\n  while (left < right) {\n    swap(nums[left], nums[right]);\n    left++;\n    right--;\n  }\n  return nums;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"left and right identify the two ends of the array.",
+"swap exchanges the values at those positions.",
+"The indices move inward after every swap.",
+"The process ends after all mirrored pairs are exchanged."
+],
+"commonMistakes": [
+"Using left <= right and performing an unnecessary middle swap.",
+"Moving only one index after a swap."
+]
+},
+"tags": ["arrays", "two-pointers", "swapping"]
+},
+{
+"id": "cpp-easy-006",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Count Positive Values",
+"prompt": "Given an integer array, count how many elements are greater than zero.",
+"approach": {
+"steps": [
+"Initialize a counter to zero.",
+"Visit every array element.",
+"Check whether the current value is positive.",
+"Increase the counter when it is positive."
+],
+"example": "For [-2, 4, 0, 7], the counter increases for 4 and 7, producing 2."
+},
+"code": "int countPositive(vector<int>& nums) {\n  int count = 0;\n  for (int i = 0; i < nums.size(); i++) {\n    if (nums[i] > 0) {\n      count++;\n    }\n  }\n  return count;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"count records the number of positive values found.",
+"The loop examines every element once.",
+"Only values greater than zero satisfy the condition.",
+"The final count is returned."
+],
+"commonMistakes": [
+"Using >= 0 and incorrectly counting zero.",
+"Forgetting to increment count inside the condition."
+]
+},
+"tags": ["arrays", "loops", "comparison"]
+},
+{
+"id": "cpp-easy-007",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Count Negative Values",
+"prompt": "Given an integer array, count how many elements are less than zero.",
+"approach": {
+"steps": [
+"Start the counter at zero.",
+"Inspect each array element.",
+"Check whether the value is below zero.",
+"Increase the counter for each negative value."
+],
+"example": "For [4, -3, -1, 5], the counter reaches 2 after processing -3 and -1."
+},
+"code": "int countNegative(vector<int>& nums) {\n  int count = 0;\n  for (int i = 0; i < nums.size(); i++) {\n    if (nums[i] < 0) {\n      count++;\n    }\n  }\n  return count;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"count begins at zero.",
+"The loop checks every nums[i].",
+"The condition accepts only values below zero.",
+"count gives the total number of negative elements."
+],
+"commonMistakes": [
+"Using <= 0 and counting zero as negative.",
+"Checking the counter instead of nums[i] in the condition."
+]
+},
+"tags": ["arrays", "loops", "comparison"]
+},
+{
+"id": "cpp-easy-008",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Calculate Average",
+"prompt": "Given an integer array, calculate its average as a double value.",
+"approach": {
+"steps": [
+"Add all array values into a total.",
+"Convert the total to double.",
+"Divide the total by the number of elements.",
+"Return the calculated average."
+],
+"example": "For [2, 4, 6], the sum is 12 and 12 divided by 3 gives an average of 4."
+},
+"code": "double arrayAverage(vector<int>& nums) {\n  int total = 0;\n  for (int i = 0; i < nums.size(); i++) {\n    total += nums[i];\n  }\n  return static_cast<double>(total) / nums.size();\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"total accumulates every array value.",
+"The loop finishes with the complete sum.",
+"static_cast<double> prevents integer division.",
+"The sum is divided by nums.size() to obtain the average."
+],
+"commonMistakes": [
+"Returning total / nums.size() as integers.",
+"Dividing inside the loop before the full sum is available."
+]
+},
+"tags": ["arrays", "loops", "math"]
+},
+{
+"id": "cpp-easy-009",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Search Array Value",
+"prompt": "Given an integer array and a target value, return true if the target occurs in the array.",
+"approach": {
+"steps": [
+"Visit each array element from left to right.",
+"Compare the current value with the target.",
+"Return true when a match is found.",
+"Return false if the loop finishes without a match."
+],
+"example": "For [4, 7, 2] and target 7, the comparisons fail at 4 and succeed at 7."
+},
+"code": "bool containsValue(vector<int>& nums, int target) {\n  for (int i = 0; i < nums.size(); i++) {\n    if (nums[i] == target) {\n      return true;\n    }\n  }\n  return false;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"containsValue receives the target to search for.",
+"The loop checks each array position.",
+"A matching nums[i] immediately returns true.",
+"If no match exists, false is returned after the loop."
+],
+"commonMistakes": [
+"Using assignment = instead of comparison ==.",
+"Returning false immediately after the first non-matching element."
+]
+},
+"tags": ["arrays", "search", "loops"]
+},
+{
+"id": "cpp-easy-010",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Reverse String",
+"prompt": "Given a string, reverse its characters in place and return the modified string.",
+"approach": {
+"steps": [
+"Place one index at each end of the string.",
+"Swap the characters at those positions.",
+"Move both indices toward the center.",
+"Stop after all mirrored characters are swapped."
+],
+"example": "For 'code', swap c and e, then o and d, producing 'edoc'."
+},
+"code": "string reverseString(string text) {\n  int left = 0;\n  int right = text.size() - 1;\n  while (left < right) {\n    swap(text[left], text[right]);\n    left++;\n    right--;\n  }\n  return text;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"reverseString stores the input in text.",
+"left and right identify mirrored characters.",
+"swap exchanges the characters while the indices move inward.",
+"The modified text is returned."
+],
+"commonMistakes": [
+"Using left <= right when a strict inward comparison is enough.",
+"Forgetting that text is a local copy and returning the modified string."
+]
+},
+"tags": ["strings", "two-pointers", "swapping"]
+},
+{
+"id": "cpp-easy-011",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Count Vowels",
+"prompt": "Given a lowercase English string, count how many characters are vowels.",
+"approach": {
+"steps": [
+"Start a vowel counter at zero.",
+"Inspect each character in the string.",
+"Check whether the character is one of the five vowels.",
+"Increase the counter for every vowel."
+],
+"example": "For 'apple', the vowels a and e increase the counter from 0 to 2."
+},
+"code": "int countVowels(string text) {\n  int count = 0;\n  for (int i = 0; i < text.size(); i++) {\n    if (text[i] == 'a' || text[i] == 'e' || text[i] == 'i' || text[i] == 'o' || text[i] == 'u') {\n      count++;\n    }\n  }\n  return count;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"count records the number of vowels found.",
+"The loop visits every character in text.",
+"The condition checks all five lowercase vowel characters.",
+"The completed count is returned."
+],
+"commonMistakes": [
+"Forgetting one of the five vowel checks.",
+"Comparing text[i] with a string such as 'a' instead of the character 'a'."
+]
+},
+"tags": ["strings", "loops", "characters"]
+},
+{
+"id": "cpp-easy-012",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Check Palindrome",
+"prompt": "Given a string, determine whether it reads the same from both ends.",
+"approach": {
+"steps": [
+"Set indices at both ends of the string.",
+"Compare the characters at both indices.",
+"Return false when a pair differs.",
+"Move inward until the indices meet."
+],
+"example": "For level, l matches l, e matches e, and the middle v needs no comparison, so the result is true."
+},
+"code": "bool isPalindrome(string text) {\n  int left = 0;\n  int right = text.size() - 1;\n  while (left < right) {\n    if (text[left] != text[right]) {\n      return false;\n    }\n    left++;\n    right--;\n  }\n  return true;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"left and right point to the first and last characters.",
+"Each pair is compared for equality.",
+"A mismatch immediately proves the string is not a palindrome.",
+"If every pair matches, true is returned."
+],
+"commonMistakes": [
+"Comparing adjacent characters instead of mirrored characters.",
+"Moving the indices in the wrong direction after each comparison."
+]
+},
+"tags": ["strings", "two-pointers", "comparison"]
+},
+{
+"id": "cpp-easy-013",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Count Digits",
+"prompt": "Given a non-negative integer, return the number of digits it contains.",
+"approach": {
+"steps": [
+"Handle zero as a one-digit number.",
+"Repeatedly divide the number by ten.",
+"Increase the digit counter after each division.",
+"Return the counter."
+],
+"example": "For 583, divide to 58, then 5, then 0, increasing the count from 0 to 3."
+},
+"code": "int countDigits(int number) {\n  if (number == 0) {\n    return 1;\n  }\n  int count = 0;\n  while (number > 0) {\n    number /= 10;\n    count++;\n  }\n  return count;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(log n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The zero case returns one because zero has one digit.",
+"Each division by ten removes the last digit.",
+"count increases once for every removed digit.",
+"The counter equals the original number's digit count."
+],
+"commonMistakes": [
+"Returning zero for input zero.",
+"Using number >= 0 in the while loop, which never terminates after reaching zero."
+]
+},
+"tags": ["math", "loops", "digits"]
+},
+{
+"id": "cpp-easy-014",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Sum Digits",
+"prompt": "Given a non-negative integer, calculate the sum of all its digits.",
+"approach": {
+"steps": [
+"Start the digit sum at zero.",
+"Take the last digit using modulo ten.",
+"Add that digit to the sum.",
+"Remove the last digit by dividing by ten."
+],
+"example": "For 472, extract 2, then 7, then 4, producing a sum of 13."
+},
+"code": "int sumDigits(int number) {\n  int total = 0;\n  while (number > 0) {\n    total += number % 10;\n    number /= 10;\n  }\n  return total;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(log n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"total stores the sum of extracted digits.",
+"number % 10 obtains the current last digit.",
+"number /= 10 removes that digit from the working number.",
+"The loop ends when all digits have been processed."
+],
+"commonMistakes": [
+"Using division instead of modulo to extract the last digit.",
+"Forgetting to divide number inside the loop."
+]
+},
+"tags": ["math", "digits", "loops"]
+},
+{
+"id": "cpp-easy-015",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Check Even Number",
+"prompt": "Given an integer, determine whether it is even.",
+"approach": {
+"steps": [
+"Divide the number by two using modulo.",
+"Check whether the remainder is zero.",
+"Return true for a zero remainder.",
+"Return false otherwise."
+],
+"example": "For 18, 18 % 2 is 0, so the function returns true."
+},
+"code": "bool isEven(int number) {\n  return number % 2 == 0;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(1)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"isEven receives the integer to test.",
+"The modulo operator finds the remainder after division by two.",
+"An even number has remainder zero.",
+"The comparison directly produces the boolean result."
+],
+"commonMistakes": [
+"Using number % 2 == 1 without considering the requested even condition.",
+"Using division instead of modulo to test divisibility."
+]
+},
+"tags": ["math", "conditions", "modulo"]
+},
+{
+"id": "cpp-easy-016",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Factorial Value",
+"prompt": "Given a non-negative integer, calculate its factorial.",
+"approach": {
+"steps": [
+"Start the result at one.",
+"Multiply the result by each integer from one through the input.",
+"Continue until the input value is reached.",
+"Return the factorial."
+],
+"example": "For 4, result changes from 1 to 1, then 2, then 6, then 24."
+},
+"code": "int factorial(int number) {\n  int result = 1;\n  for (int value = 2; value <= number; value++) {\n    result *= value;\n  }\n  return result;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"result begins at one because it is the multiplicative identity.",
+"The loop starts at two since multiplying by one changes nothing.",
+"Each value is multiplied into result.",
+"The final result is the factorial."
+],
+"commonMistakes": [
+"Starting result at zero, which makes every factorial zero.",
+"Using value < number and skipping the final multiplication."
+]
+},
+"tags": ["math", "loops", "factorial"]
+},
+{
+"id": "cpp-easy-017",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Power Of Two",
+"prompt": "Given a positive integer, determine whether it is a power of two.",
+"approach": {
+"steps": [
+"Reject values below one.",
+"Repeatedly divide even values by two.",
+"Stop when the value becomes odd.",
+"Return true only when the remaining value is one."
+],
+"example": "For 16, the value changes 16 to 8, then 4, then 2, then 1, so the result is true."
+},
+"code": "bool isPowerOfTwo(int number) {\n  if (number < 1) {\n    return false;\n  }\n  while (number % 2 == 0) {\n    number /= 2;\n  }\n  return number == 1;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(log n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Values below one cannot be powers of two.",
+"Every power of two can be repeatedly divided by two without a remainder.",
+"The loop removes factors of two from number.",
+"Only a final value of one indicates a valid power of two."
+],
+"commonMistakes": [
+"Accepting zero as a power of two.",
+"Dividing without checking that number is divisible by two."
+]
+},
+"tags": ["math", "loops", "powers"]
+},
+{
+"id": "cpp-easy-018",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Greatest Common Divisor",
+"prompt": "Given two positive integers, find their greatest common divisor.",
+"approach": {
+"steps": [
+"Keep the two numbers as the current pair.",
+"Find the remainder of the first by the second.",
+"Replace the pair with the second number and remainder.",
+"Continue until the remainder becomes zero."
+],
+"example": "For 18 and 12, the pairs become (12, 6), then (6, 0), so the GCD is 6."
+},
+"code": "int greatestCommonDivisor(int first, int second) {\n  while (second != 0) {\n    int remainder = first % second;\n    first = second;\n    second = remainder;\n  }\n  return first;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(log(min(a, b)))",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The loop continues while second contains a nonzero remainder.",
+"remainder stores first modulo second.",
+"The pair shifts so second becomes the new first value.",
+"When second reaches zero, first is the greatest common divisor."
+],
+"commonMistakes": [
+"Updating first before calculating the remainder.",
+"Continuing while first is nonzero instead of checking second."
+]
+},
+"tags": ["math", "gcd", "loops"]
+},
+{
+"id": "cpp-easy-019",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Find Second Largest",
+"prompt": "Given an integer array with at least two distinct values, return the second largest distinct value.",
+"approach": {
+"steps": [
+"Track the largest and second largest values.",
+"Update both when a new largest value appears.",
+"Update only the second largest for values between them.",
+"Return the second largest value."
+],
+"example": "For [8, 3, 6, 9], the largest becomes 8 then 9, while second largest becomes 6."
+},
+"code": "int secondLargest(vector<int>& nums) {\n  int largest = nums[0];\n  int second = INT_MIN;\n  for (int i = 1; i < nums.size(); i++) {\n    if (nums[i] > largest) {\n      second = largest;\n      largest = nums[i];\n    } else if (nums[i] > second && nums[i] != largest) {\n      second = nums[i];\n    }\n  }\n  return second;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"largest stores the biggest value seen so far.",
+"second stores the best distinct value below largest.",
+"A new largest pushes the previous largest into second.",
+"The final second value is returned."
+],
+"commonMistakes": [
+"Allowing a duplicate of largest to become the second largest.",
+"Updating second before saving the previous largest."
+]
+},
+"tags": ["arrays", "loops", "comparison"]
+},
+{
+"id": "cpp-easy-020",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Move Zeros Right",
+"prompt": "Given an integer array, move all zeros to the end while keeping the relative order of nonzero values.",
+"approach": {
+"steps": [
+"Track the position where the next nonzero value belongs.",
+"Scan the array from left to right.",
+"Swap each nonzero value into that position.",
+"Leave the remaining positions as zeros."
+],
+"example": "For [0, 4, 0, 2], nonzero values move forward to produce [4, 2, 0, 0]."
+},
+"code": "void moveZeros(vector<int>& nums) {\n  int write = 0;\n  for (int i = 0; i < nums.size(); i++) {\n    if (nums[i] != 0) {\n      swap(nums[write], nums[i]);\n      write++;\n    }\n  }\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"write marks the next position for a nonzero value.",
+"The loop examines every array element.",
+"Each nonzero value is swapped into the write position.",
+"After all nonzero values are placed, remaining positions contain zeros."
+],
+"commonMistakes": [
+"Incrementing write when a zero is encountered.",
+"Creating a second array when the operation can be done in place."
+]
+},
+"tags": ["arrays", "two-pointers", "swapping"]
+},
+
+
+
+{
+"id": "cpp-easy-021",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Find Array Index",
+"prompt": "Given an integer array and a target value, return the index of its first occurrence. Return -1 if the target is absent.",
+"approach": {
+"steps": [
+"Scan the array from the first position.",
+"Compare each value with the target.",
+"Return the current index when a match appears.",
+"Return -1 if the scan finishes without a match."
+],
+"example": "For [5, 8, 3, 8] and target 8, the first match occurs at index 1, so the result is 1."
+},
+"code": "int findIndex(vector<int>& nums, int target) {\n  for (int i = 0; i < nums.size(); i++) {\n    if (nums[i] == target) {\n      return i;\n    }\n  }\n  return -1;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"findIndex checks positions from left to right.",
+"The first matching nums[i] immediately determines the answer.",
+"Returning inside the loop prevents later duplicate matches from replacing the first one.",
+"A complete unsuccessful scan returns -1."
+],
+"commonMistakes": [
+"Returning the value nums[i] instead of its index i.",
+"Continuing after the first match and accidentally returning a later occurrence."
+]
+},
+"tags": ["arrays", "search", "loops"]
+},
+{
+"id": "cpp-easy-022",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Copy Array",
+"prompt": "Given an integer array, create and return a new array containing the same elements in the same order.",
+"approach": {
+"steps": [
+"Create an empty result array.",
+"Visit each value in the input array.",
+"Append each value to the result.",
+"Return the completed copy."
+],
+"example": "For [2, 5, 7], values 2, 5, and 7 are appended in order to produce [2, 5, 7]."
+},
+"code": "vector<int> copyArray(vector<int>& nums) {\n  vector<int> result;\n  for (int i = 0; i < nums.size(); i++) {\n    result.push_back(nums[i]);\n  }\n  return result;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"result starts as an empty vector.",
+"The loop visits every element of nums.",
+"push_back adds each element to the end of result.",
+"The new vector is returned without changing nums."
+],
+"commonMistakes": [
+"Returning nums directly instead of constructing a separate result.",
+"Using the wrong loop bound and skipping the final element."
+]
+},
+"tags": ["arrays", "vectors", "loops"]
+},
+{
+"id": "cpp-easy-023",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Double Array Values",
+"prompt": "Given an integer array, return a new array where every element is multiplied by two.",
+"approach": {
+"steps": [
+"Create an empty result array.",
+"Visit each input value.",
+"Multiply the current value by two.",
+"Store the doubled value in the result."
+],
+"example": "For [2, 4, 5], the values become 4, 8, and 10, producing [4, 8, 10]."
+},
+"code": "vector<int> doubleValues(vector<int>& nums) {\n  vector<int> result;\n  for (int i = 0; i < nums.size(); i++) {\n    result.push_back(nums[i] * 2);\n  }\n  return result;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"result provides storage for the transformed values.",
+"Each nums[i] is processed exactly once.",
+"Multiplication by two creates the required transformed value.",
+"The new vector preserves the original order."
+],
+"commonMistakes": [
+"Changing nums when the function should create a new array.",
+"Multiplying the entire result by two instead of each element."
+]
+},
+"tags": ["arrays", "loops", "math"]
+},
+{
+"id": "cpp-easy-024",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Replace Negatives",
+"prompt": "Given an integer array, replace every negative value with zero and return the modified array.",
+"approach": {
+"steps": [
+"Scan every array element.",
+"Check whether the current value is negative.",
+"Replace negative values with zero.",
+"Leave non-negative values unchanged."
+],
+"example": "For [4, -2, 7, -5], the negative values become zero, producing [4, 0, 7, 0]."
+},
+"code": "vector<int>& replaceNegatives(vector<int>& nums) {\n  for (int i = 0; i < nums.size(); i++) {\n    if (nums[i] < 0) {\n      nums[i] = 0;\n    }\n  }\n  return nums;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The loop examines each element directly.",
+"The condition identifies values below zero.",
+"A negative nums[i] is overwritten with zero.",
+"All non-negative values remain unchanged."
+],
+"commonMistakes": [
+"Using <= 0 and replacing existing zeros unnecessarily.",
+"Writing nums[i] == 0 instead of assigning nums[i] = 0."
+]
+},
+"tags": ["arrays", "loops", "conditions"]
+},
+{
+"id": "cpp-easy-025",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Count Target Values",
+"prompt": "Given an integer array and a target value, count how many times the target appears.",
+"approach": {
+"steps": [
+"Initialize an occurrence counter.",
+"Scan every element in the array.",
+"Compare each element with the target.",
+"Increase the counter for every match."
+],
+"example": "For [3, 2, 3, 4, 3] with target 3, the counter reaches 3 after finding the three matching values."
+},
+"code": "int countTarget(vector<int>& nums, int target) {\n  int count = 0;\n  for (int i = 0; i < nums.size(); i++) {\n    if (nums[i] == target) {\n      count++;\n    }\n  }\n  return count;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"count begins at zero because no matches have been seen.",
+"Every array position is checked.",
+"Each equality with target represents one occurrence.",
+"The accumulated count is returned."
+],
+"commonMistakes": [
+"Returning after the first match instead of counting all matches.",
+"Comparing target with the array size instead of nums[i]."
+]
+},
+"tags": ["arrays", "search", "counting"]
+},
+{
+"id": "cpp-easy-026",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Sum Odd Values",
+"prompt": "Given an integer array, calculate the sum of all odd elements.",
+"approach": {
+"steps": [
+"Start the sum at zero.",
+"Visit each array element.",
+"Check whether the value is odd.",
+"Add every odd value to the sum."
+],
+"example": "For [2, 5, 4, 7], the odd values 5 and 7 produce a total of 12."
+},
+"code": "int sumOddValues(vector<int>& nums) {\n  int total = 0;\n  for (int i = 0; i < nums.size(); i++) {\n    if (nums[i] % 2 != 0) {\n      total += nums[i];\n    }\n  }\n  return total;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"total stores the sum of qualifying elements.",
+"The loop examines each value once.",
+"Modulo two identifies odd values through a nonzero remainder.",
+"Only odd values are added to total."
+],
+"commonMistakes": [
+"Using % 2 == 0 and summing even values instead.",
+"Adding every element regardless of the condition."
+]
+},
+"tags": ["arrays", "math", "loops"]
+},
+{
+"id": "cpp-easy-027",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Product Array Values",
+"prompt": "Given an integer array, calculate the product of all its elements.",
+"approach": {
+"steps": [
+"Start the product at one.",
+"Visit each array element.",
+"Multiply the product by the current value.",
+"Return the accumulated product."
+],
+"example": "For [2, 3, 4], product changes from 1 to 2, then 6, then 24."
+},
+"code": "int productArray(vector<int>& nums) {\n  int product = 1;\n  for (int i = 0; i < nums.size(); i++) {\n    product *= nums[i];\n  }\n  return product;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"product starts at one so the first multiplication preserves the value.",
+"The loop visits every element.",
+"Each nums[i] is multiplied into product.",
+"The final product is returned."
+],
+"commonMistakes": [
+"Starting product at zero, which makes the result zero.",
+"Forgetting to multiply product on every iteration."
+]
+},
+"tags": ["arrays", "math", "loops"]
+},
+{
+"id": "cpp-easy-028",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Find First Even",
+"prompt": "Given an integer array, return the first even value. Return -1 if no even value exists.",
+"approach": {
+"steps": [
+"Scan the array from left to right.",
+"Test each value for evenness.",
+"Return the first value with remainder zero.",
+"Return -1 if no value qualifies."
+],
+"example": "For [3, 7, 10, 4], the first even value encountered is 10, so the result is 10."
+},
+"code": "int firstEven(vector<int>& nums) {\n  for (int i = 0; i < nums.size(); i++) {\n    if (nums[i] % 2 == 0) {\n      return nums[i];\n    }\n  }\n  return -1;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The loop preserves the original left-to-right order.",
+"Modulo two identifies even values.",
+"Returning immediately ensures the first even value is selected.",
+"If the loop ends, -1 indicates that no even value was found."
+],
+"commonMistakes": [
+"Returning the index instead of the value.",
+"Continuing through the array and returning the last even value."
+]
+},
+"tags": ["arrays", "search", "math"]
+},
+{
+"id": "cpp-easy-029",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Compare Array Sums",
+"prompt": "Given two integer arrays, return the larger of their two element sums.",
+"approach": {
+"steps": [
+"Calculate the sum of the first array.",
+"Calculate the sum of the second array.",
+"Compare the two totals.",
+"Return the larger total."
+],
+"example": "For [2, 3] and [4, 5], the sums are 5 and 9, so the result is 9."
+},
+"code": "int largerArraySum(vector<int>& first, vector<int>& second) {\n  int firstSum = 0;\n  int secondSum = 0;\n  for (int value : first) {\n    firstSum += value;\n  }\n  for (int value : second) {\n    secondSum += value;\n  }\n  return max(firstSum, secondSum);\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n + m)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"firstSum accumulates all values from first.",
+"secondSum independently accumulates values from second.",
+"Both totals are complete after their respective loops.",
+"max returns whichever total is larger."
+],
+"commonMistakes": [
+"Combining both arrays into one sum.",
+"Comparing individual elements instead of the final sums."
+]
+},
+"tags": ["arrays", "loops", "math"]
+},
+{
+"id": "cpp-easy-030",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Count Spaces",
+"prompt": "Given a string, count how many space characters it contains.",
+"approach": {
+"steps": [
+"Start a space counter at zero.",
+"Inspect every character.",
+"Check whether the character is a space.",
+"Increase the counter for each space."
+],
+"example": "For hello world cpp', the spaces after hello and world produce a count of 2."
+},
+"code": "int countSpaces(string text) {\n  int count = 0;\n  for (int i = 0; i < text.size(); i++) {\n    if (text[i] == ' ') {\n      count++;\n    }\n  }\n  return count;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"count records how many spaces have been found.",
+"The loop visits each character in text.",
+"The character comparison identifies actual space characters.",
+"The completed count is returned."
+],
+"commonMistakes": [
+"Checking for an empty character instead of ' '.",
+"Counting every non-letter character instead of spaces only."
+]
+},
+"tags": ["strings", "characters", "counting"]
+},
+{
+"id": "cpp-easy-031",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Count Digits In String",
+"prompt": "Given a string containing arbitrary characters, count how many characters are numeric digits.",
+"approach": {
+"steps": [
+"Start a digit counter at zero.",
+"Inspect each character in the string.",
+"Check whether it falls between '0' and '9'.",
+"Increase the counter for every digit."
+],
+"example": "For 'a7b20', the characters 7, 2, and 0 are digits, giving a count of 3."
+},
+"code": "int countStringDigits(string text) {\n  int count = 0;\n  for (int i = 0; i < text.size(); i++) {\n    if (text[i] >= '0' && text[i] <= '9') {\n      count++;\n    }\n  }\n  return count;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"count begins at zero.",
+"Each character is examined once.",
+"The character range check identifies ASCII digit characters.",
+"count is returned after the complete scan."
+],
+"commonMistakes": [
+"Comparing characters with numeric values such as 0 and 9 instead of '0' and '9'.",
+"Counting multi-digit numbers as one instead of counting their characters."
+]
+},
+"tags": ["strings", "characters", "loops"]
+},
+{
+"id": "cpp-easy-032",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Count Uppercase",
+"prompt": "Given a string, count how many characters are uppercase English letters.",
+"approach": {
+"steps": [
+"Initialize an uppercase counter.",
+"Scan every character.",
+"Check whether it lies between 'A' and 'Z'.",
+"Increase the counter for every uppercase letter."
+],
+"example": "For 'Hi Cpp', H and C are uppercase, so the result is 2."
+},
+"code": "int countUppercase(string text) {\n  int count = 0;\n  for (int i = 0; i < text.size(); i++) {\n    if (text[i] >= 'A' && text[i] <= 'Z') {\n      count++;\n    }\n  }\n  return count;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"count stores the number of uppercase characters found.",
+"The loop examines every character.",
+"The ASCII range A through Z identifies uppercase English letters.",
+"The final count is returned."
+],
+"commonMistakes": [
+"Checking lowercase ranges instead of uppercase ranges.",
+"Counting spaces or punctuation as uppercase characters."
+]
+},
+"tags": ["strings", "characters", "counting"]
+},
+{
+"id": "cpp-easy-033",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Convert To Uppercase",
+"prompt": "Given a lowercase English string, convert every character to uppercase and return the result.",
+"approach": {
+"steps": [
+"Visit each character in the string.",
+"Check whether it is a lowercase letter.",
+"Convert lowercase letters using character arithmetic.",
+"Return the modified string."
+],
+"example": "For 'hello', each lowercase character is shifted to produce 'HELLO."
+},
+"code": "string toUppercase(string text) {\n  for (int i = 0; i < text.size(); i++) {\n    if (text[i] >= 'a' && text[i] <= 'z') {\n      text[i] = text[i] - 'a' + 'A';\n    }\n  }\n  return text;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The loop processes each character in text.",
+"Only lowercase letters enter the conversion condition.",
+"Subtracting 'a' gives the lowercase offset and adding 'A' maps it to uppercase.",
+"The modified text is returned."
+],
+"commonMistakes": [
+"Applying the conversion to punctuation or spaces.",
+"Using 'a' + 'A' instead of preserving the character's alphabet offset."
+]
+},
+"tags": ["strings", "characters", "conversion"]
+},
+{
+"id": "cpp-easy-034",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Convert To Lowercase",
+"prompt": "Given an uppercase English string, convert every character to lowercase and return the result.",
+"approach": {
+"steps": [
+"Scan each character in the string.",
+"Check whether it is an uppercase letter.",
+"Convert uppercase letters using character arithmetic.",
+"Return the modified string."
+],
+"example": "For 'HELLO', each character is converted to produce 'hello'."
+},
+"code": "string toLowercase(string text) {\n  for (int i = 0; i < text.size(); i++) {\n    if (text[i] >= 'A' && text[i] <= 'Z') {\n      text[i] = text[i] - 'A' + 'a';\n    }\n  }\n  return text;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The loop visits every character.",
+"Only uppercase letters are selected for conversion.",
+"The alphabet offset is preserved while mapping from A-Z to a-z.",
+"The modified string is returned."
+],
+"commonMistakes": [
+"Converting characters without checking their case.",
+"Using the wrong uppercase or lowercase character offset."
+]
+},
+"tags": ["strings", "characters", "conversion"]
+},
+{
+"id": "cpp-easy-035",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Compare Strings",
+"prompt": "Given two strings, determine whether they contain exactly the same characters in the same order.",
+"approach": {
+"steps": [
+"Compare the lengths of the two strings.",
+"Return false if their lengths differ.",
+"Compare corresponding characters.",
+"Return true only when every character matches."
+],
+"example": "For 'code' and 'code', both lengths match and every position matches, so the result is true."
+},
+"code": "bool sameString(string first, string second) {\n  if (first.size() != second.size()) {\n    return false;\n  }\n  for (int i = 0; i < first.size(); i++) {\n    if (first[i] != second[i]) {\n      return false;\n    }\n  }\n  return true;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"sameString first checks whether the strings can have equal contents by comparing sizes.",
+"The loop compares corresponding characters.",
+"Any mismatch immediately makes the strings different.",
+"If no mismatch occurs, true is returned."
+],
+"commonMistakes": [
+"Comparing only the first character.",
+"Skipping the length check and indexing beyond the shorter string."
+]
+},
+"tags": ["strings", "comparison", "loops"]
+},
+{
+"id": "cpp-easy-036",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "First Character",
+"prompt": "Given a non-empty string, return its first character.",
+"approach": {
+"steps": [
+"Access the character at index zero.",
+"Return that character.",
+"Do not modify the string."
+],
+"example": "For 'apple', index 0 contains 'a', so the function returns 'a'."
+},
+"code": "char firstCharacter(string text) {\n  return text[0];\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(1)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The function receives a non-empty string.",
+"Index zero always identifies its first character.",
+"The character at that position is returned directly."
+],
+"commonMistakes": [
+"Using text[1], which skips the first character.",
+"Returning the entire string when the function returns char."
+]
+},
+"tags": ["strings", "indexing"]
+},
+{
+"id": "cpp-easy-037",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Last Character",
+"prompt": "Given a non-empty string, return its last character.",
+"approach": {
+"steps": [
+"Find the final valid string index.",
+"Access the character at that index.",
+"Return the character without modifying the string."
+],
+"example": "For 'apple', the last index is 4 and text[4] is 'e', so the result is 'e'."
+},
+"code": "char lastCharacter(string text) {\n  return text[text.size() - 1];\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(1)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The string is guaranteed to contain at least one character.",
+"text.size() gives the number of characters.",
+"Subtracting one gives the final valid index.",
+"That character is returned."
+],
+"commonMistakes": [
+"Using text[text.size()] and accessing one position beyond the string.",
+"Forgetting that indexing starts at zero."
+]
+},
+"tags": ["strings", "indexing"]
+},
+{
+"id": "cpp-easy-038",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Number Sign",
+"prompt": "Given an integer, return 1 for positive, -1 for negative, and 0 when the number is zero.",
+"approach": {
+"steps": [
+"Check whether the number is positive.",
+"Check whether the number is negative.",
+"Return zero for the remaining zero case."
+],
+"example": "For -8 the first condition fails, the negative condition succeeds, and the function returns -1."
+},
+"code": "int numberSign(int number) {\n  if (number > 0) {\n    return 1;\n  }\n  if (number < 0) {\n    return -1;\n  }\n  return 0;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(1)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"The first condition identifies positive numbers.",
+"The second condition handles negative numbers.",
+"If both conditions fail, number must be zero.",
+"The matching sign value is returned."
+],
+"commonMistakes": [
+"Using else logic that accidentally classifies zero as negative.",
+"Returning the original number instead of the required sign value."
+]
+},
+"tags": ["math", "conditions"]
+},
+{
+"id": "cpp-easy-039",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Absolute Value",
+"prompt": "Given an integer, return its non-negative absolute value.",
+"approach": {
+"steps": [
+"Check whether the number is negative.",
+"Negate it when it is negative.",
+"Return the resulting non-negative value."
+],
+"example": "For -12, the negative check succeeds and the value changes to 12."
+},
+"code": "int absoluteValue(int number) {\n  if (number < 0) {\n    number = -number;\n  }\n  return number;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(1)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"absoluteValue receives the integer to normalize.",
+"Only negative values need modification.",
+"Negating a negative value makes it positive.",
+"The resulting value is returned."
+],
+"commonMistakes": [
+"Negating positive values instead of negative values.",
+"Returning the negative input before applying the conversion."
+]
+},
+"tags": ["math", "conditions"]
+},
+{
+"id": "cpp-easy-040",
+"language": "cpp",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Swap Array Ends",
+"prompt": "Given a non-empty integer array, swap its first and last elements and return the modified array.",
+"approach": {
+"steps": [
+"Identify the first element at index zero.",
+"Identify the last element using the array size.",
+"Swap the two elements.",
+"Return the modified array."
+],
+"example": "For [4, 7, 9], swapping the first and last values produces [9, 7, 4]."
+},
+"code": "vector<int>& swapEnds(vector<int>& nums) {\n  swap(nums[0], nums[nums.size() - 1]);\n  return nums;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(1)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Index zero identifies the first element.",
+"nums.size() - 1 identifies the last valid index.",
+"swap exchanges the two endpoint values.",
+"The modified array is returned by reference."
+],
+"commonMistakes": [
+"Using nums.size() as the last index.",
+"Forgetting the reference return when the function is intended to modify the original array."
+]
+},
+"tags": ["arrays", "indexing", "swapping"]
+}
+]
+
+

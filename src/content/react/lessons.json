@@ -1,0 +1,1448 @@
+[
+{
+"id": "react-easy-001",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Static Greeting",
+"prompt": "Build a functional component that renders a heading with a short greeting message.",
+"approach": {
+"steps": [
+"Create a functional component.",
+"Return a heading element.",
+"Place a greeting inside the heading.",
+"Export the component as default."
+],
+"example": "The component renders a heading containing 'Hello, React!' when displayed."
+},
+"code": "export default function Greeting() {\n  return (\n    <h1>Hello, React!</h1>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"Greeting defines a functional React component.",
+"The return statement provides the JSX to render.",
+"The h1 element displays the greeting text.",
+"The default export makes Greeting available to other files."
+],
+"commonMistakes": [
+"Returning plain text without wrapping it in JSX.",
+"Forgetting to export the component as default."
+]
+},
+"tags": ["jsx", "component"]
+},
+{
+"id": "react-easy-002",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Button Component",
+"prompt": "Build a functional component that renders a button with a visible label.",
+"approach": {
+"steps": [
+"Create a functional component.",
+"Return a button element.",
+"Place a short label inside the button.",
+"Export the component."
+],
+"example": "The component displays a button labeled 'Click Me' on the page."
+},
+"code": "export default function ActionButton() {\n  return (\n    <button>Click Me</button>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"ActionButton defines the component.",
+"The returned JSX contains one button element.",
+"The text between the button tags becomes its visible label.",
+"The default export allows the component to be imported elsewhere."
+],
+"commonMistakes": [
+"Using a self-closing button without its label.",
+"Writing the component without a return statement."
+]
+},
+"tags": ["jsx", "components"]
+},
+{
+"id": "react-easy-003",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Text Paragraph",
+"prompt": "Build a functional component that displays a short paragraph below a heading.",
+"approach": {
+"steps": [
+"Create the component.",
+"Return a heading and paragraph.",
+"Place text inside both elements.",
+"Export the component."
+],
+"example": "The component displays 'About' as a heading followed by 'Learn React step by step.'"
+},
+"code": "export default function About() {\n  return (\n    <section>\n      <h2>About</h2>\n      <p>Learn React step by step.</p>\n    </section>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"About defines the functional component.",
+"section provides one parent element for the returned JSX.",
+"The h2 and p elements display the requested text.",
+"The component is exported as the default export."
+],
+"commonMistakes": [
+"Returning sibling JSX elements without a parent.",
+"Using plain text outside JSX elements."
+]
+},
+"tags": ["jsx", "components"]
+},
+{
+"id": "react-easy-004",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Display Props",
+"prompt": "Build a functional component that receives a name prop and displays it in a heading.",
+"approach": {
+"steps": [
+"Accept props in the component parameter.",
+"Read the name value from props.",
+"Render the name inside a heading.",
+"Export the component."
+],
+"example": "When name is 'Samir, the heading displays 'Hello, Samir'."
+},
+"code": "export default function Welcome({ name }) {\n  return (\n    <h1>Hello, {name}</h1>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"Welcome destructures the name prop from its parameter.",
+"JSX braces insert the JavaScript value into the heading.",
+"React renders the supplied name dynamically.",
+"The component is exported as default."
+],
+"commonMistakes": [
+"Writing {name} as plain text instead of using JSX braces.",
+"Reading props.name after destructuring name."
+]
+},
+"tags": ["props", "jsx", "components"]
+},
+{
+"id": "react-easy-005",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "User Card",
+"prompt": "Build a functional component that receives a name and role through props and displays them in a small card.",
+"approach": {
+"steps": [
+"Accept name and role props.",
+"Create a parent card element.",
+"Render both prop values.",
+"Export the component."
+],
+"example": "With name 'Alex' and role 'Developer', the card displays both values."
+},
+"code": "export default function UserCard({ name, role }) {\n  return (\n    <div>\n      <h2>{name}</h2>\n      <p>{role}</p>\n    </div>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"UserCard receives name and role through destructured props.",
+"The div groups the card content.",
+"The h2 displays name and the p displays role.",
+"Both values change when different props are supplied."
+],
+"commonMistakes": [
+"Using quoted text such as '{name}' instead of JSX expressions.",
+"Using props.role after already destructuring role."
+]
+},
+"tags": ["props", "jsx", "components"]
+},
+{
+"id": "react-easy-006",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Click Counter",
+"prompt": "Build a functional component with a button that increases a displayed count whenever it is clicked.",
+"approach": {
+"steps": [
+"Use useState to store the count.",
+"Display the current count.",
+"Add a button with a click handler.",
+"Increase the count when clicked."
+],
+"example": "The count starts at 0 and changes to 1, then 2 after two button clicks."
+},
+"code": "import { useState } from 'react';\n\nexport default function Counter() {\n  const [count, setCount] = useState(0);\n\n  return (\n    <button onClick={() => setCount(count + 1)}>\n      Count: {count}\n    </button>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"useState creates count with an initial value of zero.",
+"setCount provides the function for changing count.",
+"The button displays the current count through JSX.",
+"Each click calls setCount with the current count plus one."
+],
+"commonMistakes": [
+"Changing count directly instead of using setCount.",
+"Calling setCount during rendering instead of inside the click handler."
+]
+},
+"tags": ["useState", "events", "jsx"]
+},
+{
+"id": "react-easy-007",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Toggle Message",
+"prompt": "Build a functional component with a button that toggles a message between visible and hidden.",
+"approach": {
+"steps": [
+"Use state to track visibility.",
+"Start visibility as true.",
+"Toggle the state when the button is clicked.",
+"Render the message only when visible."
+],
+"example": "The message is visible initially, disappears after one click, and returns after the next click."
+},
+"code": "import { useState } from 'react';\n\nexport default function ToggleMessage() {\n  const [visible, setVisible] = useState(true);\n\n  return (\n    <div>\n      <button onClick={() => setVisible(!visible)}>Toggle</button>\n      {visible && <p>Hello there!</p>}\n    </div>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"visible stores whether the message should appear.",
+"The button reverses visible using setVisible.",
+"The && expression renders the paragraph only when visible is true.",
+"React updates the displayed JSX after the state changes."
+],
+"commonMistakes": [
+"Using visible = !visible instead of the state setter.",
+"Using a string comparison instead of a boolean state."
+]
+},
+"tags": ["useState", "conditional-rendering", "events"]
+},
+{
+"id": "react-easy-008",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Controlled Input",
+"prompt": "Build a functional component with a controlled text input and display the current input value below it.",
+"approach": {
+"steps": [
+"Create state for the input value.",
+"Connect the input value to state.",
+"Update state from onChange.",
+"Display the current value below the input."
+],
+"example": "Typing 'React' changes the displayed value from an empty string to 'React'."
+},
+"code": "import { useState } from 'react';\n\nexport default function NameInput() {\n  const [name, setName] = useState('');\n\n  return (\n    <div>\n      <input value={name} onChange={(event) => setName(event.target.value)} />\n      <p>{name}</p>\n    </div>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"name stores the current input value.",
+"The input receives name through its value prop.",
+"onChange reads event.target.value and updates name.",
+"The paragraph immediately reflects the updated state."
+],
+"commonMistakes": [
+"Using defaultValue when a controlled input is required.",
+"Reading event.value instead of event.target.value."
+]
+},
+"tags": ["useState", "forms", "events"]
+},
+{
+"id": "react-easy-009",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Submit Form",
+"prompt": "Build a small controlled form with an input and submit button that prevents the browser's default form submission.",
+"approach": {
+"steps": [
+"Create state for the input.",
+"Connect the input to state.",
+"Create a submit handler.",
+"Prevent the default submission behavior."
+],
+"example": "Typing 'React' and pressing Submit keeps the page in place because the default submission is prevented.'"
+},
+"code": "import { useState } from 'react';\n\nexport default function SimpleForm() {\n  const [value, setValue] = useState('');\n  const handleSubmit = (event) => {\n    event.preventDefault();\n  };\n\n  return (\n    <form onSubmit={handleSubmit}>\n      <input value={value} onChange={(event) => setValue(event.target.value)} />\n      <button type='submit'>Submit</button>\n    </form>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"value stores the current input text.",
+"The input updates value whenever the user types.",
+"handleSubmit receives the form submission event.",
+"preventDefault stops the browser from performing its normal submission."
+],
+"commonMistakes": [
+"Forgetting event.preventDefault in the submit handler.",
+"Attaching onSubmit to the button instead of the form."
+]
+},
+"tags": ["forms", "useState", "events"]
+},
+{
+"id": "react-easy-010",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Render A List",
+"prompt": "Build a functional component that renders a short array of names as an unordered list using map.",
+"approach": {
+"steps": [
+"Create an array of names.",
+"Map over the array.",
+"Return one list item for each name.",
+"Provide a key for each item."
+],
+"example": "The array ['Sam', 'Alex'] produces two list items displaying Sam and Alex."
+},
+"code": "export default function NameList() {\n  const names = ['Sam', 'Alex', 'Maya'];\n\n  return (\n    <ul>\n      {names.map((name) => (\n        <li key={name}>{name}</li>\n      ))}\n    </ul>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"names contains the values to display.",
+"map creates one JSX list item for each name.",
+"The name is rendered inside each li element.",
+"key gives React a stable identifier for each list item."
+],
+"commonMistakes": [
+"Forgetting the key prop on mapped list items.",
+"Using braces around map without returning the list item."
+]
+},
+"tags": ["map", "lists", "jsx"]
+},
+{
+"id": "react-easy-011",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Conditional Greeting",
+"prompt": "Build a component that displays a different message depending on whether a loggedIn prop is true or false.",
+"approach": {
+"steps": [
+"Accept the loggedIn prop.",
+"Choose a message from its boolean value.",
+"Render the selected message.",
+"Export the component."
+],
+"example": "With loggedIn true the component displays 'Welcome back', while false displays 'Please log in'."
+},
+"code": "export default function Greeting({ loggedIn }) {\n  return (\n    <h2>{loggedIn ? 'Welcome back' : 'Please log in'}</h2>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"Greeting receives loggedIn as a boolean prop.",
+"The ternary checks the value of loggedIn.",
+"The first string is selected when it is true.",
+"The second string is selected when it is false."
+],
+"commonMistakes": [
+"Using assignment instead of checking the boolean value.",
+"Reversing the true and false messages."
+]
+},
+"tags": ["props", "conditional-rendering", "jsx"]
+},
+{
+"id": "react-easy-012",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Show Error",
+"prompt": "Build a component that displays an error message only when an error prop contains a truthy value.",
+"approach": {
+"steps": [
+"Accept the error prop.",
+"Use conditional rendering.",
+"Render the message when error is truthy.",
+"Render nothing when error is absent."
+],
+"example": "With error set to 'Invalid password', the component displays that message; with an empty value, it displays nothing."
+},
+"code": "export default function ErrorMessage({ error }) {\n  return (\n    <div>\n      {error && <p>{error}</p>}\n    </div>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"ErrorMessage receives error through props.",
+"The && expression checks whether error is truthy.",
+"A truthy error produces the paragraph.",
+"A falsy error produces no paragraph."
+],
+"commonMistakes": [
+"Always rendering the paragraph regardless of error.",
+"Using the text 'error' instead of the error prop value."
+]
+},
+"tags": ["props", "conditional-rendering", "jsx"]
+},
+{
+"id": "react-easy-013",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Toggle Theme",
+"prompt": "Build a component with a button that toggles between Light and Dark text states.",
+"approach": {
+"steps": [
+"Create state for the theme.",
+"Start with Light.",
+"Toggle the theme on button click.",
+"Display the current theme."
+],
+"example": "The component starts with Light, changes to Dark after one click, and returns to Light after another."
+},
+"code": "import { useState } from 'react';\n\nexport default function ThemeToggle() {\n  const [dark, setDark] = useState(false);\n\n  return (\n    <button onClick={() => setDark(!dark)}>\n      Theme: {dark ? 'Dark' : 'Light'}\n    </button>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"dark stores whether the dark state is active.",
+"The click handler reverses the dark boolean.",
+"The ternary selects Dark or Light based on that state.",
+"React re-renders the button text after each state update."
+],
+"commonMistakes": [
+"Storing the strings Dark and Light when a boolean is enough.",
+"Changing dark directly instead of using setDark."
+]
+},
+"tags": ["useState", "conditional-rendering", "events"]
+},
+{
+"id": "react-easy-014",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Increment By Two",
+"prompt": "Build a component with a counter button that increases the count by two each time it is clicked.",
+"approach": {
+"steps": [
+"Create count state starting at zero.",
+"Display the current count.",
+"Add a click handler to the button.",
+"Increase count by two."
+],
+"example": "The counter starts at 0 and changes to 2, then 4 after two clicks."
+},
+"code": "import { useState } from 'react';\n\nexport default function DoubleCounter() {\n  const [count, setCount] = useState(0);\n\n  return (\n    <button onClick={() => setCount(count + 2)}>\n      Count: {count}\n    </button>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"count stores the current numeric value.",
+"The initial state is zero.",
+"The click handler adds two to count.",
+"The button displays the updated count after each click."
+],
+"commonMistakes": [
+"Adding one instead of two.",
+"Calling setCount twice when one update is sufficient."
+]
+},
+"tags": ["useState", "events", "state"]
+},
+{
+"id": "react-easy-015",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Reset Counter",
+"prompt": "Build a component with a counter and a button that resets the counter to zero.",
+"approach": {
+"steps": [
+"Create count state.",
+"Display the current count.",
+"Add a reset button.",
+"Set count back to zero when clicked."
+],
+"example": "If the count is 5, clicking Reset changes it immediately to 0."
+},
+"code": "import { useState } from 'react';\n\nexport default function ResetCounter() {\n  const [count, setCount] = useState(0);\n\n  return (\n    <div>\n      <p>Count: {count}</p>\n      <button onClick={() => setCount(0)}>Reset</button>\n    </div>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"count stores the current counter value.",
+"The paragraph renders the current count.",
+"The reset button runs setCount with zero.",
+"React re-renders the paragraph with the reset value."
+],
+"commonMistakes": [
+"Setting count to the current count instead of zero.",
+"Calling setCount(0) while rendering rather than inside the click handler."
+]
+},
+"tags": ["useState", "events", "state"]
+},
+{
+"id": "react-easy-016",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Character Counter",
+"prompt": "Build a controlled input that displays the number of characters currently typed.",
+"approach": {
+"steps": [
+"Create state for the input text.",
+"Update the state when typing.",
+"Read the text length.",
+"Display the character count."
+],
+"example": "Typing 'React' produces a displayed character count of 5."
+},
+"code": "import { useState } from 'react';\n\nexport default function CharacterCounter() {\n  const [text, setText] = useState('');\n\n  return (\n    <div>\n      <input value={text} onChange={(event) => setText(event.target.value)} />\n      <p>Characters: {text.length}</p>\n    </div>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"text stores the current input content.",
+"onChange updates text with the latest value.",
+"text.length calculates the number of characters.",
+"The paragraph displays the calculated length."
+],
+"commonMistakes": [
+"Counting the input event object instead of the text value.",
+"Using text.length() even though length is a property."
+]
+},
+"tags": ["useState", "forms", "events"]
+},
+{
+"id": "react-easy-017",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Checkbox State",
+"prompt": "Build a controlled checkbox that displays whether it is currently checked.",
+"approach": {
+"steps": [
+"Create boolean state for checked.",
+"Connect checked to the checkbox.",
+"Update state when the checkbox changes.",
+"Display the current status."
+],
+"example": "The status displays 'Unchecked' initially and changes to 'Checked' after selecting the box."
+},
+"code": "import { useState } from 'react';\n\nexport default function CheckStatus() {\n  const [checked, setChecked] = useState(false);\n\n  return (\n    <label>\n      <input type='checkbox' checked={checked} onChange={(event) => setChecked(event.target.checked)} />\n      {checked ? 'Checked' : 'Unchecked'}\n    </label>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"checked stores the checkbox boolean state.",
+"The checked prop makes the input controlled.",
+"onChange reads event.target.checked.",
+"The ternary displays the matching status text."
+],
+"commonMistakes": [
+"Reading event.target.value instead of event.target.checked.",
+"Using value to control a checkbox."
+]
+},
+"tags": ["useState", "forms", "events"]
+},
+{
+"id": "react-easy-018",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Select Value",
+"prompt": "Build a controlled select element that displays the currently selected option.",
+"approach": {
+"steps": [
+"Create state for the selected value.",
+"Connect value to the select element.",
+"Update state through onChange.",
+"Display the selected value."
+],
+"example": "Selecting 'JavaScript' changes the displayed value from 'React' to 'JavaScript'."
+},
+"code": "import { useState } from 'react';\n\nexport default function LanguageSelect() {\n  const [language, setLanguage] = useState('React');\n\n  return (\n    <div>\n      <select value={language} onChange={(event) => setLanguage(event.target.value)}>\n        <option>React</option>\n        <option>JavaScript</option>\n        <option>Python</option>\n      </select>\n      <p>Selected: {language}</p>\n    </div>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"language stores the selected option.",
+"The select value is controlled by language.",
+"onChange reads the newly selected option.",
+"The paragraph renders the current language."
+],
+"commonMistakes": [
+"Reading event.target.checked instead of event.target.value.",
+"Leaving the select uncontrolled while expecting state to update it."
+]
+},
+"tags": ["useState", "forms", "events"]
+},
+{
+"id": "react-easy-019",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Show List Count",
+"prompt": "Build a component that renders an array of items and displays how many items are in the array.",
+"approach": {
+"steps": [
+"Create an array of items.",
+"Render the items with map.",
+"Read the array length.",
+"Display the total item count."
+],
+"example": "An array containing three tasks produces three list items and displays Total: 3."
+},
+"code": "export default function TaskList() {\n  const tasks = ['Learn JSX', 'Practice props', 'Build a component'];\n\n  return (\n    <div>\n      <p>Total: {tasks.length}</p>\n      <ul>\n        {tasks.map((task) => <li key={task}>{task}</li>)}\n      </ul>\n    </div>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"tasks stores the items that will be rendered.",
+"tasks.length provides the total number of items.",
+"map creates one list item for each task.",
+"Each list item uses task as its key."
+],
+"commonMistakes": [
+"Using the rendered list to calculate the count.",
+"Forgetting a key when mapping the tasks."
+]
+},
+"tags": ["map", "lists", "jsx"]
+},
+{
+"id": "react-easy-020",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Disable Button",
+"prompt": "Build a component with a button that is disabled when a disabled prop is true.",
+"approach": {
+"steps": [
+"Accept the disabled prop.",
+"Create a button element.",
+"Pass disabled to the button's disabled attribute.",
+"Render a clear button label."
+],
+"example": "With disabled set to true the button cannot be clicked, while false keeps it enabled."
+},
+"code": "export default function SubmitButton({ disabled }) {\n  return (\n    <button disabled={disabled}>Submit</button>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"SubmitButton receives disabled through props.",
+"The disabled prop is passed directly to the button.",
+"React applies the native disabled behavior when the value is true.",
+"The button remains enabled when disabled is false."
+],
+"commonMistakes": [
+"Writing disabled as a string instead of using the prop value.",
+"Using disabled() as though it were a function."
+]
+},
+"tags": ["props", "jsx", "components"]
+},
+
+
+{
+"id": "react-easy-021",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Button Click Message",
+"prompt": "Build a functional component with a button that displays a message after the button is clicked.",
+"approach": {
+"steps": [
+"Create state for the message.",
+"Start with an empty message.",
+"Update the message inside the click handler.",
+"Render the message below the button."
+],
+"example": "The component initially shows no message. Clicking the button displays Button clicked!."
+},
+"code": "import { useState } from 'react';\n\nexport default function ClickMessage() {\n  const [message, setMessage] = useState('');\n\n  return (\n    <div>\n      <button onClick={() => setMessage('Button clicked!')}>Click</button>\n      <p>{message}</p>\n    </div>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"message stores the text displayed below the button.",
+"The initial value is an empty string.",
+"Clicking the button calls setMessage with the new text.",
+"React re-renders the paragraph with the updated message."
+],
+"commonMistakes": [
+"Changing the message variable directly.",
+"Calling the state setter while rendering instead of inside the click handler."
+]
+},
+"tags": ["useState", "events", "state"]
+},
+{
+"id": "react-easy-022",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Clear Input",
+"prompt": "Build a controlled text input with a button that clears the input value when clicked.",
+"approach": {
+"steps": [
+"Create state for the input.",
+"Connect the input to the state.",
+"Update state when typing.",
+"Set the state to an empty string when Clear is clicked."
+],
+"example": "If the input contains React, clicking Clear changes it back to an empty input."
+},
+"code": "import { useState } from 'react';\n\nexport default function ClearInput() {\n  const [text, setText] = useState('');\n\n  return (\n    <div>\n      <input value={text} onChange={(event) => setText(event.target.value)} />\n      <button onClick={() => setText('')}>Clear</button>\n    </div>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"text stores the current input value.",
+"The input is controlled through the value prop.",
+"onChange updates text as the user types.",
+"The Clear button resets text to an empty string."
+],
+"commonMistakes": [
+"Using defaultValue instead of a controlled value.",
+"Trying to clear the input with document.getElementById instead of React state."
+]
+},
+"tags": ["useState", "forms", "events"]
+},
+{
+"id": "react-easy-023",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Add List Item",
+"prompt": "Build a component with a controlled input and button that adds the typed item to a displayed list.",
+"approach": {
+"steps": [
+"Create state for the input text.",
+"Create state for the list.",
+"Update the input state while typing.",
+"Add the input value to the list when the button is clicked."
+],
+"example": "Typing Learn React and clicking Add adds Learn React as a new list item."
+},
+"code": "import { useState } from 'react';\n\nexport default function ItemList() {\n  const [text, setText] = useState('');\n  const [items, setItems] = useState([]);\n\n  const addItem = () => {\n    if (text.trim() === '') return;\n    setItems([...items, text]);\n    setText('');\n  };\n\n  return (\n    <div>\n      <input value={text} onChange={(event) => setText(event.target.value)} />\n      <button onClick={addItem}>Add</button>\n      <ul>\n        {items.map((item, index) => <li key={index}>{item}</li>)}\n      </ul>\n    </div>\n  );\n}",
+"timeTargetSec": 90,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"text stores the current input.",
+"items stores the displayed list.",
+"addItem ignores blank input and appends valid text.",
+"setText clears the input after a successful addition."
+],
+"commonMistakes": [
+"Using items.push() directly and expecting React to re-render.",
+"Adding empty strings to the list."
+]
+},
+"tags": ["useState", "arrays", "forms"]
+},
+{
+"id": "react-easy-024",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Remove List Item",
+"prompt": "Build a component that displays a list of items and provides a button beside each item to remove it.",
+"approach": {
+"steps": [
+"Store the items in state.",
+"Map the items into list elements.",
+"Add a remove button for each item.",
+"Filter out the selected item when its button is clicked."
+],
+"example": "For [HTML, CSS, React], clicking Remove beside CSS leaves HTML and React."
+},
+"code": "import { useState } from 'react';\n\nexport default function RemovableList() {\n  const [items, setItems] = useState(['HTML', 'CSS', 'React']);\n\n  const removeItem = (indexToRemove) => {\n    setItems(items.filter((_, index) => index !== indexToRemove));\n  };\n\n  return (\n    <ul>\n      {items.map((item, index) => (\n        <li key={index}>\n          {item}\n          <button onClick={() => removeItem(index)}>Remove</button>\n        </li>\n      ))}\n    </ul>\n  );\n}",
+"timeTargetSec": 90,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"items contains the current list.",
+"map creates one list item and button for every element.",
+"The clicked item's index is passed to removeItem.",
+"filter creates a new array without the selected item."
+],
+"commonMistakes": [
+"Using splice directly on the state array.",
+"Removing every item instead of only the selected index."
+]
+},
+"tags": ["useState", "arrays", "events"]
+},
+{
+"id": "react-easy-025",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Update Input Text",
+"prompt": "Build a controlled input that displays a live greeting using the text entered by the user.",
+"approach": {
+"steps": [
+"Create state for the name.",
+"Update it through onChange.",
+"Insert the value into a greeting.",
+"Render the greeting below the input."
+],
+"example": "Typing 'May' produces the message 'Hello, Maya!'."
+},
+"code": "import { useState } from 'react';\n\nexport default function LiveGreeting() {\n  const [name, setName] = useState('');\n\n  return (\n    <div>\n      <input value={name} onChange={(event) => setName(event.target.value)} />\n      <p>Hello, {name}!</p>\n    </div>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"name contains the latest input value.",
+"onChange updates name on every keystroke.",
+"The JSX expression inserts name into the greeting.",
+"The greeting therefore changes without a separate submit action."
+],
+"commonMistakes": [
+"Reading the input only after a button click.",
+"Using literal text instead of the name expression."
+]
+},
+"tags": ["useState", "forms", "jsx"]
+},
+{
+"id": "react-easy-026",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Boolean Prop",
+"prompt": "Build a component that receives an active boolean prop and displays Active or Inactive.",
+"approach": {
+"steps": [
+"Accept the active prop.",
+"Use conditional rendering.",
+"Display Active when true.",
+"Display Inactive when false."
+],
+"example": "Passing active={true} displays 'Active' and active={false} displays 'Inactive'."
+},
+"code": "export default function Status({ active }) {\n  return (\n    <p>{active ? 'Active' : 'Inactive'}</p>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"Status receives active from props.",
+"The ternary checks the boolean value.",
+"The first string is rendered for true.",
+"The second string is rendered for false."
+],
+"commonMistakes": [
+"Comparing active to the string 'true'.",
+"Reversing the Active and Inactive branches."
+]
+},
+"tags": ["props", "conditional-rendering", "jsx"]
+},
+{
+"id": "react-easy-027",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Default Prop Value",
+"prompt": "Build a component that displays a name prop and uses Guest when no name is provided.",
+"approach": {
+"steps": [
+"Destructure the name prop.",
+"Provide Guest as its default value.",
+"Render the resulting name.",
+"Export the component."
+],
+"example": "Without a name prop the component displays 'Welcome, Guest'; with name='Sam' it displays 'Welcome, Sam'."
+},
+"code": "export default function Welcome({ name = 'Guest' }) {\n  return (\n    <h2>Welcome, {name}</h2>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"The component destructures name from props.",
+"The assignment gives name a fallback value when it is undefined.",
+"JSX inserts the resulting name.",
+"A supplied name overrides the default."
+],
+"commonMistakes": [
+"Using a default value outside the destructuring incorrectly.",
+"Replacing every falsy value when only an undefined prop needs a default."
+]
+},
+"tags": ["props", "jsx", "components"]
+},
+{
+"id": "react-easy-028",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Render Numbers",
+"prompt": "Build a component that renders the numbers from an array as an unordered list.",
+"approach": {
+"steps": [
+"Create an array of numbers.",
+"Map over the numbers.",
+"Render each number inside a list item.",
+"Use a stable key for each item."
+],
+"example": "The array [1, 2, 3] produces three list items showing 1, 2, and 3."
+},
+"code": "export default function NumberList() {\n  const numbers = [1, 2, 3];\n\n  return (\n    <ul>\n      {numbers.map((number) => (\n        <li key={number}>{number}</li>\n      ))}\n    </ul>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"numbers contains the values to render.",
+"map transforms each number into a list item.",
+"The number is inserted into JSX with braces.",
+"The number itself is used as the key because the sample values are unique."
+],
+"commonMistakes": [
+"Rendering the entire array directly without mapping it.",
+"Forgetting the key prop."
+]
+},
+"tags": ["map", "lists", "jsx"]
+},
+{
+"id": "react-easy-029",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Filter Numbers",
+"prompt": "Build a component that displays only the even numbers from a small number array.",
+"approach": {
+"steps": [
+"Create an array of numbers.",
+"Filter the array for even values.",
+"Map the filtered values into list items.",
+"Render the resulting list."
+],
+"example": "For [1, 2, 3, 4], the component displays only 2 and 4."
+},
+"code": "export default function EvenNumbers() {\n  const numbers = [1, 2, 3, 4, 5, 6];\n  const evens = numbers.filter((number) => number % 2 === 0);\n\n  return (\n    <ul>\n      {evens.map((number) => <li key={number}>{number}</li>)}\n    </ul>\n  );\n}",
+"timeTargetSec": 75,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"numbers contains all source values.",
+"filter keeps values whose remainder after division by two is zero.",
+"evens contains only the qualifying numbers.",
+"map converts those values into JSX list items."
+],
+"commonMistakes": [
+"Using filter with an assignment instead of a condition.",
+"Mapping the original numbers instead of the filtered array."
+]
+},
+"tags": ["filter", "map", "arrays"]
+},
+{
+"id": "react-easy-030",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Component Composition",
+"prompt": "Build a parent component that renders a separate child component inside it.",
+"approach": {
+"steps": [
+"Create a small child component.",
+"Create a parent component.",
+"Render the child inside the parent.",
+"Export the parent component."
+],
+"example": "The parent renders a heading and a reusable Message child that displays Welcome!."
+},
+"code": "function Message() {\n  return <p>Welcome!</p>;\n}\n\nexport default function App() {\n  return (\n    <section>\n      <h1>Home</h1>\n      <Message />\n    </section>\n  );\n}",
+"timeTargetSec": 75,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"Message is a reusable child component.",
+"App is the parent component.",
+"The Message component is rendered with JSX syntax.",
+"App is exported as the default component."
+],
+"commonMistakes": [
+"Calling Message() directly instead of rendering <Message />.",
+"Forgetting that component names should begin with an uppercase letter."
+]
+},
+"tags": ["components", "composition", "jsx"]
+},
+{
+"id": "react-easy-031",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Pass Prop To Child",
+"prompt": "Build a parent component that passes a name prop to a child component, which displays the name.",
+"approach": {
+"steps": [
+"Create a child component that accepts name.",
+"Create a parent component.",
+"Pass a name value through JSX.",
+"Render the child inside the parent."
+],
+"example": "The parent passes name='Sam', and the child displays Hello, Sam."
+},
+"code": "function Greeting({ name }) {\n  return <p>Hello, {name}</p>;\n}\n\nexport default function App() {\n  return <Greeting name=Sam/>;\n}",
+"timeTargetSec": 75,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"Greeting receives name from its props.",
+"App creates the child with name=Sam.",
+"React passes that value into Greeting.",
+"Greeting renders the value inside the paragraph."
+],
+"commonMistakes": [
+"Using name without declaring it as a prop.",
+"Passing the prop as plain text outside JSX."
+]
+},
+"tags": ["props", "components", "composition"]
+},
+{
+"id": "react-easy-032",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Reusable Card",
+"prompt": "Build a reusable Card component that receives title and description props and renders both values.",
+"approach": {
+"steps": [
+"Create a Card component.",
+"Accept title and description props.",
+"Render both values in the card.",
+"Export the component."
+],
+"example": "Passing title='React' and description='UI library' renders both pieces of content."
+},
+"code": "export default function Card({ title, description }) {\n  return (\n    <article>\n      <h2>{title}</h2>\n      <p>{description}</p>\n    </article>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"Card receives two reusable pieces of data.",
+"title is displayed as the heading.",
+"description is displayed as paragraph content.",
+"The same component can be reused with different props."
+],
+"commonMistakes": [
+"Hardcoding the title and description instead of using props.",
+"Mixing up the two prop names."
+]
+},
+"tags": ["props", "components", "jsx"]
+},
+{
+"id": "react-easy-033",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Incremental Input",
+"prompt": "Build a component where a button increases a numeric value entered in a controlled input by one.",
+"approach": {
+"steps": [
+"Create numeric state.",
+"Connect it to an input.",
+"Convert the input value to a number when updating state.",
+"Increase the value by one when the button is clicked."
+],
+"example": "If the input contains 5, clicking Increase changes it to 6."
+},
+"code": "import { useState } from 'react';\n\nexport default function NumberControl() {\n  const [number, setNumber] = useState(0);\n\n  return (\n    <div>\n      <input\n        type='number'\n        value={number}\n        onChange={(event) => setNumber(Number(event.target.value))}\n      />\n      <button onClick={() => setNumber(number + 1)}>Increase</button>\n    </div>\n  );\n}",
+"timeTargetSec": 90,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"number stores the numeric input value.",
+"Number converts the input string into a number.",
+"The button adds one to the current state.",
+"The controlled input reflects the updated number."
+],
+"commonMistakes": [
+"Concatenating strings such as 5 + 1 into 51.",
+"Forgetting to convert event.target.value from a string."
+]
+},
+"tags": ["useState", "forms", "events"]
+},
+{
+"id": "react-easy-034",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Reset Form",
+"prompt": "Build a small controlled form with a text input and a Reset button that returns the input to its initial value.",
+"approach": {
+"steps": [
+"Create state with an initial value.",
+"Bind the input to that state.",
+"Update the state through onChange.",
+"Reset the state when the button is clicked."
+],
+"example": "If the initial value is 'React' and the user changes it to 'Vue', Reset returns it to 'React'."
+},
+"code": "import { useState } from 'react';\n\nexport default function ResetForm() {\n  const [value, setValue] = useState('React');\n\n  return (\n    <div>\n      <input value={value} onChange={(event) => setValue(event.target.value)} />\n      <button onClick={() => setValue('React')}>Reset</button>\n    </div>\n  );\n}",
+"timeTargetSec": 75,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"value begins with React.",
+"Typing updates value through the change handler.",
+"The Reset button sets value back to React.",
+"Because the input is controlled, the visible value also resets."
+],
+"commonMistakes": [
+"Clearing the value instead of restoring the initial value.",
+"Using defaultValue when the reset must update the current controlled value."
+]
+},
+"tags": ["useState", "forms", "events"]
+},
+{
+"id": "react-easy-035",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Character Limit",
+"prompt": "Build a controlled input that prevents the user from entering more than ten characters.",
+"approach": {
+"steps": [
+"Create state for the input text.",
+"Set the input maxLength to ten.",
+"Update state through onChange.",
+"Display the current character count."
+],
+"example": "Typing more than ten characters does not allow the input to exceed ten characters."
+},
+"code": "import { useState } from 'react';\n\nexport default function LimitedInput() {\n  const [text, setText] = useState('');\n\n  return (\n    <div>\n      <input\n        value={text}\n        maxLength={10}\n        onChange={(event) => setText(event.target.value)}\n      />\n      <p>{text.length}/10</p>\n    </div>\n  );\n}",
+"timeTargetSec": 75,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"text stores the controlled input value.",
+"maxLength={10} limits the input to ten characters.",
+"onChange keeps React state synchronized with the input.",
+"text.length displays the current number of characters."
+],
+"commonMistakes": [
+"Writing maxLength='10' as an unnecessary string value.",
+"Counting characters from the DOM instead of React state."
+]
+},
+"tags": ["forms", "useState", "jsx"]
+},
+{
+"id": "react-easy-036",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Show Or Hide Password",
+"prompt": "Build a password input with a button that toggles between password and text input types.",
+"approach": {
+"steps": [
+"Create state for visibility.",
+"Use password as the initial input type.",
+"Toggle visibility when the button is clicked.",
+"Switch the input type based on the state."
+],
+"example": "The input initially hides the password; clicking Show changes it to visible text, and clicking again hides it."
+},
+"code": "import { useState } from 'react';\n\nexport default function PasswordInput() {\n  const [visible, setVisible] = useState(false);\n\n  return (\n    <div>\n      <input type={visible ? 'text' : 'password'} />\n      <button onClick={() => setVisible(!visible)}>\n        {visible ? 'Hide' : 'Show'}\n      </button>\n    </div>\n  );\n}",
+"timeTargetSec": 90,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"visible tracks whether the password should be shown.",
+"The ternary changes the input type between text and password.",
+"The button reverses the visible state.",
+"The button label also changes to match the current state."
+],
+"commonMistakes": [
+"Toggling the label but not the input type.",
+"Using text as the initial type when the password should start hidden."
+]
+},
+"tags": ["useState", "forms", "conditional-rendering"]
+},
+{
+"id": "react-easy-037",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Select Greeting",
+"prompt": "Build a controlled select with several names and display a greeting for the selected name.",
+"approach": {
+"steps": [
+"Create state for the selected name.",
+"Add name options to the select.",
+"Update state when the selection changes.",
+"Display a greeting using the selected value."
+],
+"example": "Selecting Maya displays 'Hello, Maya!' below the select."
+},
+"code": "import { useState } from 'react';\n\nexport default function NameSelect() {\n  const [name, setName] = useState('Sam');\n\n  return (\n    <div>\n      <select value={name} onChange={(event) => setName(event.target.value)}>\n        <option>Sam</option>\n        <option>Maya</option>\n        <option>Alex</option>\n      </select>\n      <p>Hello, {name}!</p>\n    </div>\n  );\n}",
+"timeTargetSec": 75,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"name stores the selected option.",
+"The select is controlled by the name state.",
+"onChange updates name from the selected option.",
+"The paragraph uses the current name to build the greeting."
+],
+"commonMistakes": [
+"Using the option index instead of its value.",
+"Forgetting to connect the select value to state."
+]
+},
+"tags": ["useState", "forms", "events"]
+},
+{
+"id": "react-easy-038",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Conditional Button",
+"prompt": "Build a component that displays one button for a logged-in user and another button for a logged-out user.",
+"approach": {
+"steps": [
+"Accept a loggedIn boolean prop.",
+"Use a conditional expression.",
+"Render Logout when logged in.",
+"Render Login when logged out."
+],
+"example": "loggedIn=true displays 'Logout', while loggedIn=false displays 'Login."
+},
+"code": "export default function AuthButton({ loggedIn }) {\n  return (\n    <button>{loggedIn ? 'Logout' : 'Login'}</button>\n  );\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"AuthButton receives the loggedIn state as a prop.",
+"The ternary evaluates the boolean.",
+"Logout is selected when loggedIn is true.",
+"Login is selected when loggedIn is false."
+],
+"commonMistakes": [
+"Writing two buttons instead of conditionally selecting one.",
+"Reversing the login and logout conditions."
+]
+},
+"tags": ["props", "conditional-rendering", "jsx"]
+},
+{
+"id": "react-easy-039",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Empty List Message",
+"prompt": "Build a component that displays a list when items exist and an empty message when the list has no items.",
+"approach": {
+"steps": [
+"Create an items array.",
+"Check whether the array contains items.",
+"Render the list when items exist.",
+"Render an empty message otherwise."
+],
+"example": "For an empty array the component displays 'No items'; for a non-empty array it displays the items."
+},
+"code": "export default function ItemStatus() {\n  const items = [];\n\n  return (\n    <div>\n      {items.length > 0 ? (\n        <ul>{items.map((item) => <li key={item}>{item}</li>)}</ul>\n      ) : (\n        <p>No items</p>\n      )}\n    </div>\n  );\n}",
+"timeTargetSec": 90,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"items contains the data to display.",
+"items.length determines whether the array has elements.",
+"A non-empty array is mapped into list items.",
+"An empty array produces the No items message."
+],
+"commonMistakes": [
+"Checking items instead of items.length.",
+"Trying to map an empty list and expecting an empty-state message automatically."
+]
+},
+"tags": ["conditional-rendering", "lists", "map"]
+},
+{
+"id": "react-easy-040",
+"language": "react",
+"trackType": "practice",
+"difficulty": "easy",
+"title": "Simple Todo",
+"prompt": "Build a small todo component where a user can type a task, add it to a list, and see the added tasks displayed.",
+"approach": {
+"steps": [
+"Create state for the input value.",
+"Create state for the todo list.",
+"Update the input while typing.",
+"Add non-empty tasks to the list and clear the input."
+],
+"example": "Typing 'Practice React' and clicking Add displays 'Practice React' as a new todo item."
+},
+"code": "import { useState } from 'react';\n\nexport default function TodoList() {\n  const [task, setTask] = useState('');\n  const [todos, setTodos] = useState([]);\n\n  const addTodo = () => {\n    if (task.trim() === '') return;\n    setTodos([...todos, task]);\n    setTask('');\n  };\n\n  return (\n    <div>\n      <input value={task} onChange={(event) => setTask(event.target.value)} />\n      <button onClick={addTodo}>Add</button>\n      <ul>\n        {todos.map((todo, index) => (\n          <li key={index}>{todo}</li>\n        ))}\n      </ul>\n    </div>\n  );\n}",
+"timeTargetSec": 90,
+"complexity": {
+"time": "N/A",
+"space": "N/A"
+},
+"review": {
+"walkthroughSteps": [
+"task stores the current text input.",
+"todos stores all added tasks.",
+"addTodo ignores blank input and creates a new array with the task.",
+"The input is cleared after the task is added.",
+"map renders each todo as a list item."
+],
+"commonMistakes": [
+"Mutating todos directly with push.",
+"Allowing blank tasks to be added.",
+"Forgetting to clear the input after adding a task."
+]
+},
+"tags": ["useState", "forms", "arrays", "map"]
+}
+]
+
+

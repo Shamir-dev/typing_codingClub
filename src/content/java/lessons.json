@@ -1,0 +1,1551 @@
+[
+{
+"id": "java-easy-001",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Find Minimum Element",
+"prompt": "Given an array of integers, find and return the smallest value in the array.",
+"approach": {
+"steps": [
+"Initialize minVal with the first element of the array.",
+"Iterate through the array starting from the second element.",
+"Compare each element with minVal and update minVal if smaller.",
+"Return minVal after checking all elements."
+],
+"example": "For input [5, 2, 8, 1], minVal updates from 5 to 2, then stays 2, then updates to 1, returning 1."
+},
+"code": "public static int findMinimum(int[] nums) {\n  int minVal = nums[0];\n  for (int i = 1; i < nums.length; i++) {\n    if (nums[i] < minVal) {\n      minVal = nums[i];\n    }\n  }\n  return minVal;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Initialize minVal with nums[0] assuming array is non-empty.",
+"Loop index i from 1 to nums.length - 1 to check remaining elements.",
+"Update minVal whenever nums[i] is smaller than current minVal.",
+"Return minVal after completing array traversal."
+],
+"commonMistakes": [
+"Initializing minVal to 0 instead of the first array element nums[0].",
+"Starting loop at index 0 which does a redundant first comparison."
+]
+},
+"tags": [
+"arrays",
+"loops"
+]
+},
+{
+"id": "java-easy-002",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Count Even Numbers",
+"prompt": "Given an array of integers, count and return how many numbers are even.",
+"approach": {
+"steps": [
+"Initialize a counter variable to zero.",
+"Loop through every number in the array.",
+"Check if the number is divisible by two using modulo.",
+"Increment counter if divisible and return total count."
+],
+"example": "For input [1, 2, 3, 4], count becomes 1 at element 2, then 2 at element 4, returning 2."
+},
+"code": "public static int countEvens(int[] nums) {\n  int count = 0;\n  for (int num : nums) {\n    if (num % 2 == 0) {\n      count++;\n    }\n  }\n  return count;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Initialize count variable to 0 to keep track of even numbers.",
+"Use an enhanced for loop to inspect each integer num in nums.",
+"Apply the modulo operator num % 2 to test for evenness.",
+"Increment count on even numbers and return count at the end."
+],
+"commonMistakes": [
+"Using num % 2 == 1 which fails to catch negative even numbers.",
+"Forgetting to increment count inside the conditional block."
+]
+},
+"tags": [
+"arrays",
+"math"
+]
+},
+{
+"id": "java-easy-003",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Sum Array Elements",
+"prompt": "Given an array of integers, calculate and return the sum of all elements.",
+"approach": {
+"steps": [
+"Initialize accumulator variable total to zero.",
+"Traverse through each integer in the array.",
+"Add the current integer to total.",
+"Return total after visiting all elements."
+],
+"example": "For input [3, 1, 4], total changes from 0 to 3, then 4, then 8, returning 8."
+},
+"code": "public static int sumArray(int[] nums) {\n  int total = 0;\n  for (int num : nums) {\n    total += num;\n  }\n  return total;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Declare and initialize total variable with zero.",
+"Iterate over nums array using enhanced for-loop syntax.",
+"Add each num value directly to total accumulator.",
+"Return the aggregated total value."
+],
+"commonMistakes": [
+"Initializing total inside the loop body which resets it every step.",
+"Potential integer overflow if array contains extremely large values."
+]
+},
+"tags": [
+"arrays",
+"math"
+]
+},
+{
+"id": "java-easy-004",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Reverse a String",
+"prompt": "Given a string, return a new string with its characters in reverse order.",
+"approach": {
+"steps": [
+"Initialize a StringBuilder object for efficient string construction.",
+"Loop backwards from the last character index down to zero.",
+"Append each character to the StringBuilder.",
+"Convert StringBuilder to String and return it."
+],
+"example": "For input 'cat', loop appends 't', then 'a', then 'c', returning 'tac'."
+},
+"code": "public static String reverseString(String text) {\n  StringBuilder reversed = new StringBuilder();\n  for (int i = text.length() - 1; i >= 0; i--) {\n    reversed.append(text.charAt(i));\n  }\n  return reversed.toString();\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"Create a StringBuilder instance named reversed to avoid String immutability overhead.",
+"Set starting loop counter i to text.length() - 1 for zero-indexed end position.",
+"Append text.charAt(i) to reversed on each decrementing iteration.",
+"Return the finalized string using reversed.toString()."
+],
+"commonMistakes": [
+"Using String concatenation inside loop causing O(n^2) performance.",
+"Setting initial index to text.length() resulting in StringIndexOutOfBoundsException."
+]
+},
+"tags": [
+"strings",
+"loops"
+]
+},
+{
+"id": "java-easy-005",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Check String Palindrome",
+"prompt": "Determine whether a given string reads the same forwards and backwards.",
+"approach": {
+"steps": [
+"Initialize left pointer at zero and right pointer at string length minus one.",
+"Loop while left pointer is less than right pointer.",
+"Compare characters at left and right indices.",
+"Return false on mismatch, or true if pointers meet without mismatch."
+],
+"example": "For input 'racecar', left at 'r' and right at 'r' match, moving inward until meeting at 'e', returning true."
+},
+"code": "public static boolean isPalindrome(String text) {\n  int left = 0;\n  int right = text.length() - 1;\n  while (left < right) {\n    if (text.charAt(left) != text.charAt(right)) {\n      return false;\n    }\n    left++;\n    right--;\n  }\n  return true;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Set left pointer to 0 and right pointer to last character index.",
+"Execute while loop as long as left index is less than right index.",
+"Check equality of characters at current pointers using text.charAt().",
+"Advance left pointer rightward and right pointer leftward after each match."
+],
+"commonMistakes": [
+"Comparing characters using == on String objects instead of primitive char comparison.",
+"Forgetting to increment left or decrement right, creating an infinite loop."
+]
+},
+"tags": [
+"strings",
+"two-pointers"
+]
+},
+{
+"id": "java-easy-006",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Count Vowels in String",
+"prompt": "Given a string, count and return the total number of vowels it contains.",
+"approach": {
+"steps": [
+"Initialize count variable to zero and define reference string of vowels.",
+"Loop through each character of the target string.",
+"Check if current character exists within the vowels reference string.",
+"Increment count for matches and return total count."
+],
+"example": "For input 'Hello', 'e' matches (+1), 'o' matches (+1), returning total 2."
+},
+"code": "public static int countVowels(String text) {\n  int count = 0;\n  String vowels = 'aeiouAEIOU';\n  for (int i = 0; i < text.length(); i++) {\n    if (vowels.indexOf(text.charAt(i)) != -1) {\n      count++;\n    }\n  }\n  return count;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Initialize count to track total matched vowels.",
+"Define vowels string containing both uppercase and lowercase vowel chars.",
+"Iterate through text indices using standard for loop.",
+"Use vowels.indexOf() to check if current char is present in vowels set."
+],
+"commonMistakes": [
+"Checking only lowercase vowels and ignoring uppercase vowels.",
+"Using text.length instead of text.length() for String length access."
+]
+},
+"tags": [
+"strings",
+"loops"
+]
+},
+{
+"id": "java-easy-007",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Find Maximum Element",
+"prompt": "Given an array of integers, find and return the largest value in the array.",
+"approach": {
+"steps": [
+"Initialize maxVal with the first element of the array.",
+"Iterate through array elements starting from index one.",
+"Compare each element with maxVal and update maxVal if larger.",
+"Return maxVal after evaluating all elements."
+],
+"example": "For input [3, 9, 2], maxVal starts at 3, updates to 9 at element 9, then stays 9, returning 9."
+},
+"code": "public static int findMaximum(int[] nums) {\n  int maxVal = nums[0];\n  for (int i = 1; i < nums.length; i++) {\n    if (nums[i] > maxVal) {\n      maxVal = nums[i];\n    }\n  }\n  return maxVal;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Assign first element nums[0] to maxVal as baseline comparison.",
+"Traverse array elements from index 1 to length - 1.",
+"Update maxVal whenever nums[i] exceeds current maxVal.",
+"Return maxVal after checking every index."
+],
+"commonMistakes": [
+"Initializing maxVal to 0 which fails when all array numbers are negative.",
+"Off-by-one error using i <= nums.length in the loop condition."
+]
+},
+"tags": [
+"arrays",
+"loops"
+]
+},
+{
+"id": "java-easy-008",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Calculate Factorial",
+"prompt": "Given a non-negative integer, calculate and return its factorial value.",
+"approach": {
+"steps": [
+"Initialize product result variable to long integer one.",
+"Loop integer i from two up to n inclusive.",
+"Multiply result by current multiplier i.",
+"Return result after loop completion."
+],
+"example": "For input 4, result multiplies 1 * 2 = 2, then * 3 = 6, then * 4 = 24, returning 24."
+},
+"code": "public static long calculateFactorial(int n) {\n  long result = 1;\n  for (int i = 2; i <= n; i++) {\n    result *= i;\n  }\n  return result;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Use long data type for result to reduce integer overflow risk.",
+"Initialize result to 1 to handle n equal to 0 or 1 correctly.",
+"Iterate from 2 up to n inclusive, accumulating products.",
+"Return computed result."
+],
+"commonMistakes": [
+"Initializing result to 0 which causes all multiplications to yield 0.",
+"Using int instead of long causing early overflow for n greater than 12."
+]
+},
+"tags": [
+"math",
+"loops"
+]
+},
+{
+"id": "java-easy-009",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Check Prime Number",
+"prompt": "Given a positive integer greater than one, determine whether it is a prime number.",
+"approach": {
+"steps": [
+"Return false immediately if n is less than or equal to one.",
+"Iterate divisor i starting from two while i squared is less than or equal to n.",
+"Return false if n is evenly divisible by i.",
+"Return true if no divisors are found."
+],
+"example": "For input 7, tests divisor 2 (2*2 <= 7), 7%2 != 0, loop ends and returns true."
+},
+"code": "public static boolean isPrime(int n) {\n  if (n <= 1) {\n    return false;\n  }\n  for (int i = 2; i * i <= n; i++) {\n    if (n % i == 0) {\n      return false;\n    }\n  }\n  return true;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(sqrt(n))",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Filter out numbers less than or equal to 1 which are non-prime.",
+"Check potential divisors up to square root of n using i * i <= n.",
+"Return false immediately upon finding any divisor where n % i == 0.",
+"Return true after verifying no factors exist up to square root."
+],
+"commonMistakes": [
+"Checking factors up to n instead of sqrt(n), causing O(n) performance.",
+"Treating 1 as a prime number."
+]
+},
+"tags": [
+"math",
+"loops"
+]
+},
+{
+"id": "java-easy-010",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Linear Search",
+"prompt": "Given an array of integers and a target value, return the index of target or negative one if absent.",
+"approach": {
+"steps": [
+"Loop through the array elements using index counter i.",
+"Compare value at index i with target.",
+"Return index i immediately if value matches target.",
+"Return negative one if loop completes without finding target."
+],
+"example": "For input [10, 20, 30] and target 20, index 0 is 10, index 1 matches 20, returning 1."
+},
+"code": "public static int linearSearch(int[] nums, int target) {\n  for (int i = 0; i < nums.length; i++) {\n    if (nums[i] == target) {\n      return i;\n    }\n  }\n  return -1;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Iterate through nums array index by index from 0 to nums.length - 1.",
+"Check equality between nums[i] and target value.",
+"Return current index i on first matching value found.",
+"Return -1 outside loop signaling target was not present in array."
+],
+"commonMistakes": [
+"Returning -1 inside the loop after the first non-matching element.",
+"Returning target value instead of element index i."
+]
+},
+"tags": [
+"arrays",
+"searching"
+]
+},
+{
+"id": "java-easy-011",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Find Array Average",
+"prompt": "Given an array of integers, calculate and return the average value as a double.",
+"approach": {
+"steps": [
+"Initialize double precision variable sum to zero point zero.",
+"Traverse through all elements in the array and add them to sum.",
+"Divide sum by array length.",
+"Return calculated average double value."
+],
+"example": "For input [2, 4, 6], sum accumulates to 12.0, divided by length 3 yields 4.0."
+},
+"code": "public static double findAverage(int[] nums) {\n  double sum = 0;\n  for (int num : nums) {\n    sum += num;\n  }\n  return sum / nums.length;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Declare sum variable as type double to enforce floating-point division.",
+"Accumulate each array element into double precision sum variable.",
+"Divide sum by nums.length to compute mean value.",
+"Return double floating-point result."
+],
+"commonMistakes": [
+"Using int for sum variable causing integer truncation during division.",
+"Dividing by zero without checking for empty array input."
+]
+},
+"tags": [
+"arrays",
+"math"
+]
+},
+{
+"id": "java-easy-012",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Check Contains Duplicate",
+"prompt": "Given an array of integers, determine if any value appears at least twice.",
+"approach": {
+"steps": [
+"Initialize empty HashSet to track unique elements visited.",
+"Iterate through each number in array.",
+"Check if HashSet already contains current number.",
+"Return true if duplicate found, else add to set and return false at end."
+],
+"example": "For input [1, 2, 3, 1], set stores {1, 2, 3}, at second 1 set.contains(1) is true, returning true."
+},
+"code": "public static boolean containsDuplicate(int[] nums) {\n  HashSet seen = new HashSet<>();\n  for (int num : nums) {\n    if (seen.contains(num)) {\n      return true;\n    }\n    seen.add(num);\n  }\n  return false;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"Instantiate HashSet named seen for O(1) average lookup time.",
+"Iterate over nums array using enhanced for loop.",
+"Call seen.contains(num) to inspect prior element encounters.",
+"Add unseen element to set via seen.add(num) or return true on match."
+],
+"commonMistakes": [
+"Nested loop approach giving O(n^2) runtime instead of using HashSet.",
+"Adding num to set before checking if it already exists."
+]
+},
+"tags": [
+"arrays",
+"hash-set"
+]
+},
+{
+"id": "java-easy-013",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Fizz Buzz Single Number",
+"prompt": "Given an integer, return Fizz if divisible by three, Buzz if by five, FizzBuzz if both, or string representation.",
+"approach": {
+"steps": [
+"Check if number is divisible by fifteen first.",
+"Check if number is divisible by three next.",
+"Check if number is divisible by five next.",
+"Return number converted to string if none of above match."
+],
+"example": "For input 15, modulo 15 check matches first, returning string FizzBuzz."
+},
+"code": "public static String fizzBuzzVal(int n) {\n  if (n % 15 == 0) {\n    return 'FizzBuzz';\n  }\n  if (n % 3 == 0) {\n    return 'Fizz';\n  }\n  if (n % 5 == 0) {\n    return Buzz;\n  }\n  return String.valueOf(n);\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(1)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Test n % 15 == 0 first to catch numbers divisible by both 3 and 5.",
+"Test n % 3 == 0 conditional for numbers only divisible by 3.",
+"Test n % 5 == 0 conditional for numbers only divisible by 5.",
+"Convert integer n to String via String.valueOf(n) as fallback."
+],
+"commonMistakes": [
+"Checking n % 3 before n % 15 causing multiples of 15 to incorrectly return 'Fizz'.",
+"Using string concatenation without returning or chaining conditionals correctly."
+]
+},
+"tags": [
+"math",
+"strings"
+]
+},
+{
+"id": "java-easy-014",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Find Nth Fibonacci Number",
+"prompt": "Given a non-negative integer n, calculate and return the nth Fibonacci number.",
+"approach": {
+"steps": [
+"Return n directly if n is zero or one base case.",
+"Initialize prev to zero and curr to one.",
+"Loop from two up to n updating prev and curr.",
+"Return curr after loop completes."
+],
+"example": "For input 3, loop running for i=2 gives next=1 (prev=1, curr=1), for i=3 gives next=2 (prev=1, curr=2), returning 2."
+},
+"code": "public static int fibonacci(int n) {\n  if (n <= 1) {\n    return n;\n  }\n  int prev = 0;\n  int curr = 1;\n  for (int i = 2; i <= n; i++) {\n    int next = prev + curr;\n    prev = curr;\n    curr = next;\n  }\n  return curr;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Handle base cases n = 0 and n = 1 by returning n directly.",
+"Maintain state of previous two numbers using prev and curr variables.",
+"Compute sum next = prev + curr and shift pointers forward inside loop.",
+"Return final curr value representing F(n)."
+],
+"commonMistakes": [
+"Using naive recursion causing exponential O(2^n) execution time.",
+"Incorrect variable swapping order resulting in corrupted terms."
+]
+},
+"tags": [
+"math",
+"loops"
+]
+},
+{
+"id": "java-easy-015",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Count Target Occurrences",
+"prompt": "Given an array of integers and a target value, return how many times target appears in the array.",
+"approach": {
+"steps": [
+"Initialize match count variable to zero.",
+"Iterate over each integer element in the array.",
+"Compare element with target and increment count on match.",
+"Return total count after iteration."
+],
+"example": "For input [1, 2, 2, 3] and target 2, match found twice, returning count 2."
+},
+"code": "public static int countOccurrences(int[] nums, int target) {\n  int count = 0;\n  for (int num : nums) {\n    if (num == target) {\n      count++;\n    }\n  }\n  return count;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Declare count variable initialized to zero.",
+"Loop through nums array using enhanced for loop.",
+"Check primitive equality num == target for each element.",
+"Return accumulated count upon visiting all elements."
+],
+"commonMistakes": [
+"Returning count prematurely inside loop on first target match.",
+"Using .equals() on primitive int values instead of == operator."
+]
+},
+"tags": [
+"arrays",
+"loops"
+]
+},
+
+{
+"id": "java-easy-016",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Count Words in String",
+"prompt": "Given a string of space-separated words, count and return the total number of non-empty words.",
+"approach": {
+"steps": [
+"Check if the string is null or empty after trimming whitespace.",
+"Split the trimmed string on one or more whitespace characters.",
+"Return the length of the resulting array of words."
+],
+"example": "For input   hello   world  , trim gives 'hello   world', split gives ['hello', 'world'], returning length 2."
+},
+"code": "public static int countWords(String text) {\n  if (text == null || text.trim().isEmpty()) {\n    return 0;\n  }\n  String[] words = text.trim().split('\\s+');\n  return words.length;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"Check boundary conditions using text.trim().isEmpty().",
+"Use regular expression split('\\s+) to split across multiple spaces.",
+"Return array length representing word count."
+],
+"commonMistakes": [
+"Splitting by single space ", " which creates empty array entries for multiple spaces.",
+"Forgetting to handle null or empty string input, causing NullPointerException."
+]
+},
+"tags": [
+"strings",
+"regex"
+]
+},
+{
+"id": "java-easy-017",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Check Valid Anagram",
+"prompt": "Given two strings s and t, determine if t is an anagram of s containing the exact same character frequencies.",
+"approach": {
+"steps": [
+"Return false immediately if string lengths are unequal.",
+"Create an array of size 26 to store character frequency counts.",
+"Iterate through strings, incrementing count for s and decrementing for t.",
+"Return true if all array counts are zero, else false."
+],
+"example": "For s = 'listen' and t = 'silent', character counts balance to zero for every character, returning true."
+},
+"code": "public static boolean isAnagram(String s, String t) {\n  if (s.length() != t.length()) {\n    return false;\n  }\n  int[] counts = new int[26];\n  for (int i = 0; i < s.length(); i++) {\n    counts[s.charAt(i) - 'a']++;\n    counts[t.charAt(i) - 'a']--;\n  }\n  for (int count : counts) {\n    if (count != 0) {\n      return false;\n    }\n  }\n  return true;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Verify s and t have matching lengths as initial check.",
+"Maintain fixed-size frequency array for lowercase alphabet chars.",
+"Simultaneously add s characters and subtract t characters.",
+"Validate that every frequency value returns back to zero."
+],
+"commonMistakes": [
+"Sorting both strings which increases time complexity to O(n log n).",
+"Not accounting for length mismatch before starting iteration."
+]
+},
+"tags": [
+"strings",
+"hash-map"
+]
+},
+{
+"id": "java-easy-018",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Find Missing Number",
+"prompt": "Given an array containing n distinct numbers in the range zero to n, find the single missing number.",
+"approach": {
+"steps": [
+"Calculate expected sum of numbers from 0 to n using arithmetic sum formula.",
+"Iterate through the input array to sum actual elements present.",
+"Subtract actual sum from expected sum.",
+"Return the resulting difference as the missing number."
+],
+"example": "For [3, 0, 1] (n=3), expected sum is 3*4/2 = 6, actual sum is 4, missing number is 6 - 4 = 2."
+},
+"code": "public static int findMissingNumber(int[] nums) {\n  int n = nums.length;\n  int expectedSum = n * (n + 1) / 2;\n  int actualSum = 0;\n  for (int num : nums) {\n    actualSum += num;\n  }\n  return expectedSum - actualSum;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Compute expected sum formula n * (n + 1) / 2 using array length n.",
+"Sum array items using single loop traversal.",
+"Compute missing value by calculating expectedSum - actualSum."
+],
+"commonMistakes": [
+"Sorting array first, introducing unnecessary O(n log n) overhead.",
+"Off-by-one errors in formula multiplier using length instead of n + 1."
+]
+},
+"tags": [
+"math",
+"arrays"
+]
+},
+{
+"id": "java-easy-019",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Move Zeroes to End",
+"prompt": "Given an array of integers, modify it in-place so all zeroes are moved to the end while maintaining relative element order.",
+"approach": {
+"steps": [
+"Maintain insertPos pointer tracking position for non-zero values.",
+"Iterate array, placing non-zero values at insertPos and incrementing pointer.",
+"Fill remaining indices from insertPos to array length with zeroes."
+],
+"example": "For [0, 1, 0, 3], array becomes [1, 3, 0, 3] after non-zero copy, then second loop sets remaining indices to [1, 3, 0, 0]."
+},
+"code": "public static void moveZeroes(int[] nums) {\n  int insertPos = 0;\n  for (int num : nums) {\n    if (num != 0) {\n      nums[insertPos++] = num;\n    }\n  }\n  while (insertPos < nums.length) {\n    nums[insertPos++] = 0;\n  }\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Use insertPos index pointer starting at 0.",
+"Overwrite initial elements with non-zero values while advancing pointer.",
+"Zero out all array indices from final insertPos up to nums.length."
+],
+"commonMistakes": [
+"Creating auxiliary array which breaks O(1) space constraint.",
+"Swapping elements without preserving relative order of non-zero elements."
+]
+},
+"tags": [
+"arrays",
+"two-pointers"
+]
+},
+{
+"id": "java-easy-020",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Remove Target Element",
+"prompt": "Given an integer array and a target value, remove all instances of target in-place and return the new length.",
+"approach": {
+"steps": [
+"Initialize pointer index to zero for tracking write position.",
+"Iterate through array checking elements against target.",
+"Write element to write index if not equal to target and increment index.",
+"Return final index value as new valid length."
+],
+"example": "For [3, 2, 2, 3] and target 3, index increments at elements 2 and 2, writing [2, 2] and returning length 2."
+},
+"code": "public static int removeElement(int[] nums, int target) {\n  int index = 0;\n  for (int num : nums) {\n    if (num != target) {\n      nums[index] = num;\n      index++;\n    }\n  }\n  return index;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Use index as write pointer tracking non-target placement.",
+"Loop through elements, skipping values matching target.",
+"Copy retained values forward and return modified length."
+],
+"commonMistakes": [
+"Trying to resize Java primitive array directly which is impossible.",
+"Decrementing index improperly while modifying array during iteration."
+]
+},
+"tags": [
+"arrays",
+"two-pointers"
+]
+},
+{
+"id": "java-easy-021",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Check Power of Two",
+"prompt": "Given an integer n, determine whether it is a power of two.",
+"approach": {
+"steps": [
+"Return false if integer n is less than or equal to zero.",
+"Repeatedly divide n by two while n is even.",
+"Check if final value of n equals one.",
+"Return boolean comparison result."
+],
+"example": "For input 16, divides 16->8->4->2->1, n becomes 1, returning true."
+},
+"code": "public static boolean isPowerOfTwo(int n) {\n  if (n <= 0) {\n    return false;\n  }\n  while (n % 2 == 0) {\n    n /= 2;\n  }\n  return n == 1;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(log n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Exclude numbers non-positive as valid power of two candidates.",
+"Divide by 2 iteratively until odd number reached.",
+"Verify remaining factor equals exactly 1."
+],
+"commonMistakes": [
+"Handling negative numbers or zero incorrectly.",
+"Infinite loop if n /= 2 division condition is misconfigured."
+]
+},
+"tags": [
+"math",
+"loops"
+]
+},
+{
+"id": "java-easy-022",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Binary Search Sorted Array",
+"prompt": "Given a sorted integer array and target, find index of target using binary search or return negative one.",
+"approach": {
+"steps": [
+"Initialize left pointer to zero and right pointer to array length minus one.",
+"Calculate middle index while left is less than or equal to right.",
+"Adjust search bounds based on comparison between middle element and target.",
+"Return mid index on match, or negative one if left exceeds right."
+],
+"example": "For [-1, 0, 3, 5, 9, 12] and target 9, mid visits 3 (val 5), shifts right, mid visits index 4 (val 9), returning 4."
+},
+"code": "public static int binarySearch(int[] nums, int target) {\n  int left = 0;\n  int right = nums.length - 1;\n  while (left <= right) {\n    int mid = left + (right - left) / 2;\n    if (nums[mid] == target) {\n      return mid;\n    } else if (nums[mid] < target) {\n      left = mid + 1;\n    } else {\n      right = mid - 1;\n    }\n  }\n  return -1;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(log n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Initialize boundary pointers left = 0 and right = length - 1.",
+"Calculate mid using left + (right - left) / 2 to prevent integer overflow.",
+"Shrink search interval by updating left or right boundaries.",
+"Return target mid index or -1 if target not found."
+],
+"commonMistakes": [
+"Using (left + right) / 2 which risks potential integer overflow.",
+"Using left < right condition missing single element match checking."
+]
+},
+"tags": [
+"searching",
+"two-pointers"
+]
+},
+{
+"id": "java-easy-023",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "First Unique Character",
+"prompt": "Given a string, find the index of its first non-repeating character, or return negative one if none exists.",
+"approach": {
+"steps": [
+"Populate character frequency map using fixed-size array.",
+"Iterate through string characters a second time.",
+"Return index of first character with frequency count of one.",
+"Return negative one if all characters repeat."
+],
+"example": "For input 'leetcode', character 'l' has frequency 1 at index 0, returning 0."
+},
+"code": "public static int firstUniqChar(String s) {\n  int[] counts = new int[26];\n  for (int i = 0; i < s.length(); i++) {\n    counts[s.charAt(i) - 'a']++;\n  }\n  for (int i = 0; i < s.length(); i++) {\n    if (counts[s.charAt(i) - 'a'] == 1) {\n      return i;\n    }\n  }\n  return -1;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Build count frequencies using array indexing s.charAt(i) - 'a'.",
+"Traverse string second time preserving original character sequence.",
+"Identify first index matching frequency count == 1."
+],
+"commonMistakes": [
+"Nested loop scan leading to O(n^2) time complexity.",
+"Searching frequency array directly which loses character order info."
+]
+},
+"tags": [
+"strings",
+"hash-map"
+]
+},
+{
+"id": "java-easy-024",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Sum of Digits",
+"prompt": "Given a non-negative integer n, calculate and return the sum of its individual digits.",
+"approach": {
+"steps": [
+"Initialize total variable to zero.",
+"Extract last digit using modulo ten operation.",
+"Add digit to total and remove last digit using integer division by ten.",
+"Repeat until n becomes zero and return total."
+],
+"example": "For input 123, extracts 3 (sum=3, n=12), then 2 (sum=5, n=1), then 1 (sum=6, n=0), returning 6."
+},
+"code": "public static int sumDigits(int n) {\n  int sum = 0;\n  while (n > 0) {\n    sum += n % 10;\n    n /= 10;\n  }\n  return sum;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(log n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Use while loop condition n > 0 to process each digit.",
+"Extract rightmost digit with n % 10 operator.",
+"Truncate rightmost digit using integer division n /= 10."
+],
+"commonMistakes": [
+"Converting integer to string causing extra memory overhead.",
+"Infinite loop by omitting n /= 10 step."
+]
+},
+"tags": [
+"math",
+"loops"
+]
+},
+{
+"id": "java-easy-025",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Find Second Largest Element",
+"prompt": "Given an array of integers, find and return the second largest distinct value in the array.",
+"approach": {
+"steps": [
+"Initialize variables largest and second to minimum integer value.",
+"Iterate through array elements updating largest and shifting old largest to second.",
+"Update second if current element is smaller than largest but strictly greater than second.",
+"Return final value of second."
+],
+"example": "For [12, 35, 1, 10, 34, 1], largest becomes 35, second becomes 34, returning 34."
+},
+"code": "public static int findSecondLargest(int[] nums) {\n  int largest = Integer.MIN_VALUE;\n  int second = Integer.MIN_VALUE;\n  for (int num : nums) {\n    if (num > largest) {\n      second = largest;\n      largest = num;\n    } else if (num > second && num != largest) {\n      second = num;\n    }\n  }\n  return second;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Track two state variables largest and second initialized to Integer.MIN_VALUE.",
+"Shift values when encountering new absolute maximum num > largest.",
+"Update second for values between largest and previous second.",
+"Enforce strict inequality num != largest to ignore duplicate maximums."
+],
+"commonMistakes": [
+"Sorting array and taking nums[nums.length - 2] which fails on duplicate max values.",
+"Initializing variables to 0 which fails when input numbers are negative."
+]
+},
+"tags": [
+"arrays",
+"loops"
+]
+},
+{
+"id": "java-easy-026",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Merge Two Sorted Arrays",
+"prompt": "Given two sorted integer arrays, merge them into a single new sorted array and return it.",
+"approach": {
+"steps": [
+"Allocate result array with combined length of input arrays.",
+"Use pointers i, j, k to traverse input arrays and destination array.",
+"Compare elements from both arrays, copying smaller element into result array.",
+"Copy remaining elements from whichever array has remaining values."
+],
+"example": "For [1, 3] and [2, 4], compares and copies 1, then 2, then 3, then 4 into [1, 2, 3, 4]."
+},
+"code": "public static int[] mergeSorted(int[] a, int[] b) {\n  int[] result = new int[a.length + b.length];\n  int i = 0;\n  int j = 0;\n  int k = 0;\n  while (i < a.length && j < b.length) {\n    if (a[i] <= b[j]) {\n      result[k++] = a[i++];\n    } else {\n      result[k++] = b[j++];\n    }\n  }\n  while (i < a.length) {\n    result[k++] = a[i++];\n  }\n  while (j < b.length) {\n    result[k++] = b[j++];\n  }\n  return result;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n + m)",
+"space": "O(n + m)"
+},
+"review": {
+"walkthroughSteps": [
+"Allocate new result array sized to a.length + b.length.",
+"Iterate simultaneously over both arrays inserting smallest available item.",
+"Append leftover items using individual while loops."
+],
+"commonMistakes": [
+"Concatenating and then sorting, wasting time with O((n+m) log(n+m)).",
+"IndexOutOfBoundsException by accessing indices beyond individual array bounds."
+]
+},
+"tags": [
+"arrays",
+"two-pointers"
+]
+},
+{
+"id": "java-easy-027",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Find Array Intersection",
+"prompt": "Given two integer arrays, return an array containing their unique common elements.",
+"approach": {
+"steps": [
+"Add all elements of first array to a HashSet.",
+"Iterate second array, adding matching elements from set into second result set.",
+"Convert result set into primitive integer array and return."
+],
+"example": "For [1, 2, 2, 1] and [2, 2], set1 contains {1, 2}, matched elements added to resultSet yield [2]."
+},
+"code": "public static int[] intersection(int[] nums1, int[] nums2) {\n  HashSet set1 = new HashSet<>();\n  for (int num : nums1) {\n    set1.add(num);\n  }\n  HashSet resultSet = new HashSet<>();\n  for (int num : nums2) {\n    if (set1.contains(num)) {\n      resultSet.add(num);\n    }\n  }\n  int[] result = new int[resultSet.size()];\n  int i = 0;\n  for (int num : resultSet) {\n    result[i++] = num;\n  }\n  return result;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n + m)",
+"space": "O(n + m)"
+},
+"review": {
+"walkthroughSteps": [
+"Store unique values of nums1 into set1 for fast lookup.",
+"Collect intersecting values into resultSet to ensure result uniqueness.",
+"Populate final primitive integer array from resultSet."
+],
+"commonMistakes": [
+"Including duplicate common elements in output array.",
+"Using nested loops giving O(n * m) runtime."
+]
+},
+"tags": [
+"arrays",
+"hash-set"
+]
+},
+{
+"id": "java-easy-028",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Check Armstrong Number",
+"prompt": "Given a non-negative integer, determine if sum of its digits raised to power of digit count equals original number.",
+"approach": {
+"steps": [
+"Store original number copy and calculate total digit count.",
+"Extract each digit using modulo ten operator.",
+"Raise digit to total digit count power and accumulate sum.",
+"Return whether accumulated sum equals original number."
+],
+"example": "For 153 (3 digits), 1^3 + 5^3 + 3^3 = 1 + 125 + 27 = 153, returning true."
+},
+"code": "public static boolean isArmstrong(int n) {\n  int original = n;\n  int digits = String.valueOf(n).length();\n  int sum = 0;\n  while (n > 0) {\n    int digit = n % 10;\n    sum += Math.pow(digit, digits);\n    n /= 10;\n  }\n  return sum == original;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(log n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Save initial input value into original variable.",
+"Determine digit length using String.valueOf(n).length().",
+"Accumulate pow(digit, digits) into sum variable.",
+"Verify sum == original comparison."
+],
+"commonMistakes": [
+"Hardcoding digit exponent as 3 instead of dynamically computing length.",
+"Comparing sum with modified variable n instead of saved original value."
+]
+},
+"tags": [
+"math",
+"loops"
+]
+},
+{
+"id": "java-easy-029",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Valid Parentheses",
+"prompt": "Given a string containing only bracket characters, check if every opening bracket has matching closing bracket in order.",
+"approach": {
+"steps": [
+"Initialize a Character stack for storing open bracket symbols.",
+"Push opening brackets onto stack as encountered.",
+"Pop and compare top bracket on seeing matching closing bracket.",
+"Return true if stack ends completely empty."
+],
+"example": "For '()[]', pushes '(', pops and matches ')', pushes '[', pops and matches ']', returning true."
+},
+"code": "public static boolean isValidParentheses(String s) {\n  Stack stack = new Stack<>();\n  for (char ch : s.toCharArray()) {\n    if (ch == '(' || ch == '{' || ch == '[') {\n      stack.push(ch);\n    } else {\n      if (stack.isEmpty()) {\n        return false;\n      }\n      char top = stack.pop();\n      if ((ch == ')' && top != '(') || (ch == '}' && top != '{') || (ch == ']' && top != '[')) {\n        return false;\n      }\n    }\n  }\n  return stack.isEmpty();\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(n)"
+},
+"review": {
+"walkthroughSteps": [
+"Use Stack data structure to track bracket nesting order.",
+"Push opening brackets '(', '{', '[' directly onto stack.",
+"Validate closing brackets against pop element from non-empty stack.",
+"Confirm stack is empty at end to handle unmatched opening brackets."
+],
+"commonMistakes": [
+"Calling stack.pop() without checking stack.isEmpty() causing EmptyStackException.",
+"Assuming string is valid without checking final stack empty status."
+]
+},
+"tags": [
+"stack",
+"strings"
+]
+},
+{
+"id": "java-easy-030",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Longest Common Prefix",
+"prompt": "Given an array of strings, find and return the longest common prefix shared among all strings.",
+"approach": {
+"steps": [
+"Initialize prefix variable with first string in array.",
+"Iterate through remaining strings in array.",
+"Shorten prefix string until current string starts with prefix.",
+"Return prefix string or empty string if prefix shrinks to empty."
+],
+"example": "For [flower, flow, flight], prefix starts as flower, shortens to flow, then shortens to fl, returning fl."
+},
+"code": "public static String longestCommonPrefix(String[] strs) {\n  if (strs == null || strs.length == 0) {\n    return '';\n  }\n  String prefix = strs[0];\n  for (int i = 1; i < strs.length; i++) {\n    while (strs[i].indexOf(prefix) != 0) {\n      prefix = prefix.substring(0, prefix.length() - 1);\n      if (prefix.isEmpty()) {\n        return '';\n      }\n    }\n  }\n  return prefix;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n * m)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Set prefix candidate to initial element strs[0].",
+"Test prefix against each string using strs[i].indexOf(prefix) == 0.",
+"Trim candidate prefix character by character until match occurs.",
+"Return remaining common prefix."
+],
+"commonMistakes": [
+"Not handling empty input array, leading to IndexOutOfBoundsException.",
+"Using character-by-character comparison loops without boundary checking."
+]
+},
+"tags": [
+"strings",
+"loops"
+]
+},
+
+{
+"id": "java-easy-031",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Max Consecutive Ones",
+"prompt": "Given a binary array of zeroes and ones, find and return the maximum number of consecutive ones.",
+"approach": {
+"steps": [
+"Initialize maxCount and currentCount variables to zero.",
+"Traverse through each binary digit in the array.",
+"Increment currentCount on one, or reset currentCount to zero on zero.",
+"Update maxCount whenever currentCount exceeds maxCount."
+],
+"example": "For input [1, 1, 0, 1, 1, 1], currentCount reaches 2, resets to 0 at 0, then reaches 3, returning maxCount 3."
+},
+"code": "public static int findMaxConsecutiveOnes(int[] nums) {\n  int maxCount = 0;\n  int currentCount = 0;\n  for (int num : nums) {\n    if (num == 1) {\n      currentCount++;\n      maxCount = Math.max(maxCount, currentCount);\n    } else {\n      currentCount = 0;\n    }\n  }\n  return maxCount;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Track active streak length using currentCount variable.",
+"Update maxCount using Math.max whenever currentCount grows.",
+"Reset currentCount back to zero when encountering a zero element.",
+"Return highest recorded consecutive streak stored in maxCount."
+],
+"commonMistakes": [
+"Forgetting to reset currentCount upon encountering zero.",
+"Updating maxCount only at the end of loop which misses streaks ending mid-array."
+]
+},
+"tags": [
+"arrays",
+"loops"
+]
+},
+{
+"id": "java-easy-032",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Check Leap Year",
+"prompt": "Given an integer year, determine whether it is a leap year based on calendar division rules.",
+"approach": {
+"steps": [
+"Check if year is divisible by 400, returning true if so.",
+"Check if year is divisible by 100, returning false if so.",
+"Check if year is divisible by 4, returning true if so.",
+"Return false for all other cases."
+],
+"example": "For input 2000, divisible by 400 returns true. For 1900, divisible by 100 returns false."
+},
+"code": "public static boolean isLeapYear(int year) {\n  if (year % 400 == 0) {\n    return true;\n  }\n  if (year % 100 == 0) {\n    return false;\n  }\n  return year % 4 == 0;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(1)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Evaluate century leap rule year % 400 == 0 first.",
+"Evaluate century non-leap rule year % 100 == 0 second.",
+"Evaluate standard leap rule year % 4 == 0 third.",
+"Return false for years failing all leap conditions."
+],
+"commonMistakes": [
+"Checking year % 4 == 0 first, incorrectly identifying century years like 1900 as leap years.",
+"Combining conditionals incorrectly leading to reversed logic."
+]
+},
+"tags": [
+"math"
+]
+},
+{
+"id": "java-easy-033",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Reverse Integer Digits",
+"prompt": "Given an integer, reverse its digits and return the newly formed integer value.",
+"approach": {
+"steps": [
+"Initialize reversed accumulator variable to zero.",
+"Extract last digit using modulo ten operator.",
+"Multiply reversed by ten and add extracted digit.",
+"Divide integer by ten until input becomes zero."
+],
+"example": "For input 123, extracts 3 (reversed=3), then 2 (reversed=32), then 1 (reversed=321), returning 321."
+},
+"code": "public static int reverseDigits(int n) {\n  int reversed = 0;\n  while (n != 0) {\n    int digit = n % 10;\n    reversed = reversed * 10 + digit;\n    n /= 10;\n  }\n  return reversed;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(log n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Iterate while n != 0 to properly handle negative integer inputs.",
+"Isolate current last digit with n % 10.",
+"Shift existing digits left by multiplying reversed by 10 and adding digit.",
+"Remove processed digit via n /= 10."
+],
+"commonMistakes": [
+"Using n > 0 condition which fails for negative integer inputs.",
+"Forgetting to multiply existing reversed value by 10 before adding new digit."
+]
+},
+"tags": [
+"math",
+"loops"
+]
+},
+{
+"id": "java-easy-034",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Find Majority Element",
+"prompt": "Given an array of integers, find the majority element that appears more than n / 2 times.",
+"approach": {
+"steps": [
+"Initialize candidate variable and count counter to zero.",
+"Iterate through array updating candidate when count is zero.",
+"Increment count if element matches candidate, else decrement count.",
+"Return final candidate as majority element."
+],
+"example": "For input [2, 2, 1, 1, 1, 2, 2], Boyer-Moore voting process keeps candidate 2, returning 2."
+},
+"code": "public static int findMajorityElement(int[] nums) {\n  int candidate = 0;\n  int count = 0;\n  for (int num : nums) {\n    if (count == 0) {\n      candidate = num;\n    }\n    count += (num == candidate) ? 1 : -1;\n  }\n  return candidate;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Apply Boyer-Moore Voting Algorithm logic.",
+"Assign new candidate whenever current count drops to 0.",
+"Adjust balance score count based on matching candidate value.",
+"Return candidate which survives majority cancellation."
+],
+"commonMistakes": [
+"Using HashMap or sorting which increases space to O(n) or time to O(n log n).",
+"Resetting count to 1 instead of continuing voting logic."
+]
+},
+"tags": [
+"arrays",
+"math"
+]
+},
+{
+"id": "java-easy-035",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Find Single Number",
+"prompt": "Given a non-empty array of integers where every element appears twice except for one, find that single element.",
+"approach": {
+"steps": [
+"Initialize result variable to zero.",
+"Iterate through every integer in the array.",
+"Apply bitwise XOR operation between result and current integer.",
+"Return result after loop completion."
+],
+"example": "For input [4, 1, 2, 1, 2], XOR accumulation cancels paired 1s and 2s leaving 4, returning 4."
+},
+"code": "public static int singleNumber(int[] nums) {\n  int result = 0;\n  for (int num : nums) {\n    result ^= num;\n  }\n  return result;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Leverage XOR property: x ^ x = 0 and x ^ 0 = x.",
+"Traverse nums array applying cumulative XOR result ^= num.",
+"Duplicate numbers cancel each other out to zero.",
+"Return remaining non-canceled single number value."
+],
+"commonMistakes": [
+"Using nested loops resulting in O(n^2) runtime.",
+"Using extra HashSet memory when bit manipulation achieves O(1) space."
+]
+},
+"tags": [
+"arrays",
+"bit-manipulation"
+]
+},
+{
+"id": "java-easy-036",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Rotate Array Left",
+"prompt": "Given an integer array, shift all elements left by one position and move the original first element to the last position.",
+"approach": {
+"steps": [
+"Save the first element of the array into a temporary variable.",
+"Loop from index zero to array length minus two.",
+"Shift each element at index i + 1 leftward to index i.",
+"Place saved temporary element into the last index of the array."
+],
+"example": "For [1, 2, 3, 4], first val 1 saved, elements shifted to [2, 3, 4, 4], 1 placed at end yields [2, 3, 4, 1]."
+},
+"code": "public static void rotateLeftByOne(int[] nums) {\n  if (nums == null || nums.length <= 1) {\n    return;\n  }\n  int first = nums[0];\n  for (int i = 0; i < nums.length - 1; i++) {\n    nums[i] = nums[i + 1];\n  }\n  nums[nums.length - 1] = first;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Check base condition nums.length <= 1 to avoid unnecessary array operations.",
+"Preserve nums[0] value inside variable first.",
+"Overwrite each nums[i] with adjacent right element nums[i + 1].",
+"Assign original first element into final index nums[nums.length - 1]."
+],
+"commonMistakes": [
+"Overwriting nums[0] before storing it in a temporary variable.",
+"Looping up to length - 1 causing IndexOutOfBoundsException on i + 1."
+]
+},
+"tags": [
+"arrays",
+"loops"
+]
+},
+{
+"id": "java-easy-037",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Square Root Floor",
+"prompt": "Given a non-negative integer x, calculate and return its square root rounded down to the nearest integer.",
+"approach": {
+"steps": [
+"Handle base cases 0 and 1 by returning x directly.",
+"Initialize binary search bounds left to 1 and right to x / 2.",
+"Calculate mid and check if mid * mid is less than or equal to x.",
+"Adjust binary search bounds until floor integer root is found."
+],
+"example": "For input 8, binary search evaluates mid values 4, then 2, finding 2 * 2 = 4 <= 8 while 3 * 3 = 9 > 8, returning 2."
+},
+"code": "public static int mySqrt(int x) {\n  if (x < 2) {\n    return x;\n  }\n  int left = 1;\n  int right = x / 2;\n  int ans = 0;\n  while (left <= right) {\n    int mid = left + (right - left) / 2;\n    if ((long) mid * mid <= x) {\n      ans = mid;\n      left = mid + 1;\n    } else {\n      right = mid - 1;\n    }\n  }\n  return ans;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(log x)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Return x directly for 0 and 1 base cases.",
+"Set search range from 1 to x / 2.",
+"Cast mid * mid product to long to avoid integer overflow.",
+"Store candidate valid root in ans before advancing left bound."
+],
+"commonMistakes": [
+"Mid * mid calculation overflowing standard 32-bit signed integer limits.",
+"Using built-in Math.sqrt function instead of implementing integer arithmetic."
+]
+},
+"tags": [
+"math",
+"searching"
+]
+},
+{
+"id": "java-easy-038",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Check Array Sorted",
+"prompt": "Given an array of integers, determine whether it is sorted in non-decreasing order.",
+"approach": {
+"steps": [
+"Iterate through array from index zero to array length minus two.",
+"Compare current element with adjacent right element.",
+"Return false immediately if current element is strictly greater than right element.",
+"Return true if loop finishes without out-of-order pairs."
+],
+"example": "For [1, 2, 4, 3], comparing 4 and 3 detects 4 > 3, returning false."
+},
+"code": "public static boolean isSorted(int[] nums) {\n  for (int i = 0; i < nums.length - 1; i++) {\n    if (nums[i] > nums[i + 1]) {\n      return false;\n    }\n  }\n  return true;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(n)",
+"space": "O(1)"
+},
+"review": {
+"walkthroughSteps": [
+"Traverse consecutive adjacent pairs using index i and i + 1.",
+"Detect non-decreasing rule violations where nums[i] > nums[i + 1].",
+"Return false immediately upon encountering first inversion.",
+"Return true when all pairs satisfy non-decreasing property."
+],
+"commonMistakes": [
+"Off-by-one loop index bound causing IndexOutOfBoundsException on nums[i + 1].",
+"Using >= comparison which incorrectly flags array with duplicate elements as unsorted."
+]
+},
+"tags": [
+"arrays",
+"loops"
+]
+},
+{
+"id": "java-easy-039",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Transpose Matrix",
+"prompt": "Given a 2D integer matrix, compute and return a new 2D matrix representing its transpose.",
+"approach": {
+"steps": [
+"Determine row count r and column count c of input matrix.",
+"Create new destination matrix with swapped dimensions c by r.",
+"Iterate over each row i and column j.",
+"Assign value matrix[i][j] to transpose[j][i]."
+],
+"example": "For 2x3 matrix [[1,2,3],[4,5,6]], transpose assigns elements into 3x2 matrix [[1,4],[2,5],[3,6]]."
+},
+"code": "public static int[][] transpose(int[][] matrix) {\n  int rows = matrix.length;\n  int cols = matrix[0].length;\n  int[][] result = new int[cols][rows];\n  for (int i = 0; i < rows; i++) {\n    for (int j = 0; j < cols; j++) {\n      result[j][i] = matrix[i][j];\n    }\n  }\n  return result;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(r * c)",
+"space": "O(r * c)"
+},
+"review": {
+"walkthroughSteps": [
+"Read dimensions rows = matrix.length and cols = matrix[0].length.",
+"Allocate result matrix with swapped dimensions int[cols][rows].",
+"Traverse input cells assigning result[j][i] = matrix[i][j].",
+"Return constructed transposed matrix."
+],
+"commonMistakes": [
+"Allocating result with original dimensions int[rows][cols] causing index errors on non-square matrices.",
+"Swapping elements in-place on a non-square matrix."
+]
+},
+"tags": [
+"arrays",
+"matrix"
+]
+},
+{
+"id": "java-easy-040",
+"language": "java",
+"trackType": "dsa",
+"difficulty": "easy",
+"title": "Pascal Triangle Row",
+"prompt": "Given a zero-indexed row index, generate and return that specific row of Pascal's triangle as a list.",
+"approach": {
+"steps": [
+"Create an ArrayList initialized with the first element set to one.",
+"Loop for each row index from one up to rowIndex.",
+"Compute intermediate values backwards to update row elements in-place.",
+"Append one at the end of list and return finalized row."
+],
+"example": "For rowIndex = 3, generates row [1], then [1, 1], then [1, 2, 1], then [1, 3, 3, 1], returning [1, 3, 3, 1]."
+},
+"code": "public static List getPascalRow(int rowIndex) {\n  List row = new ArrayList<>();\n  row.add(1);\n  for (int i = 1; i <= rowIndex; i++) {\n    for (int j = row.size() - 1; j > 0; j--) {\n      row.set(j, row.get(j) + row.get(j - 1));\n    }\n    row.add(1);\n  }\n  return row;\n}",
+"timeTargetSec": 60,
+"complexity": {
+"time": "O(k^2)",
+"space": "O(k)"
+},
+"review": {
+"walkthroughSteps": [
+"Initialize row list with seed element 1.",
+"Outer loop iterates from row 1 up to target rowIndex.",
+"Inner loop computes row values backwards row.get(j) + row.get(j - 1) to avoid overwriting prior calculations.",
+"Append boundary value 1 and return completed row."
+],
+"commonMistakes": [
+"Iterating forward in inner loop which overwrites values needed for subsequent elements.",
+"Off-by-one errors in row index boundaries."
+]
+},
+"tags": [
+"math",
+"arrays"
+]
+}
+]

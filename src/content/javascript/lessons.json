@@ -17,7 +17,10 @@
     },
     "code": "function findLargest(numbers) {\n  let largest = numbers[0];\n\n  for (let i = 1; i < numbers.length; i++) {\n    if (numbers[i] > largest) {\n      largest = numbers[i];\n    }\n  }\n\n  return largest;\n}",
     "timeTargetSec": 60,
-    "complexity": { "time": "O(n)", "space": "O(1)" },
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
     "review": {
       "walkthroughSteps": [
         "largest starts as numbers[0], giving the loop a baseline to compare against.",
@@ -31,7 +34,10 @@
         "Starting the loop at i = 0, redundantly comparing the first element to itself"
       ]
     },
-    "tags": ["arrays", "loops"],
+    "tags": [
+      "arrays",
+      "loops"
+    ],
     "charCount": 196
   },
   {
@@ -51,7 +57,10 @@
     },
     "code": "function reverseString(str) {\n  let result = \"\";\n\n  for (let i = str.length - 1; i >= 0; i--) {\n    result += str[i];\n  }\n\n  return result;\n}",
     "timeTargetSec": 60,
-    "complexity": { "time": "O(n)", "space": "O(n)" },
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(n)"
+    },
     "review": {
       "walkthroughSteps": [
         "The loop starts at str.length - 1, the index of the last character.",
@@ -64,7 +73,10 @@
         "Using result = str[i] + result instead of += \u2014 works, but is slower on large strings"
       ]
     },
-    "tags": ["strings", "loops"],
+    "tags": [
+      "strings",
+      "loops"
+    ],
     "charCount": 141
   },
   {
@@ -85,7 +97,10 @@
     },
     "code": "function twoSum(nums, target) {\n  const seen = new Map();\n\n  for (let i = 0; i < nums.length; i++) {\n    const complement = target - nums[i];\n\n    if (seen.has(complement)) {\n      return [seen.get(complement), i];\n    }\n\n    seen.set(nums[i], i);\n  }\n\n  return [];\n}",
     "timeTargetSec": 120,
-    "complexity": { "time": "O(n)", "space": "O(n)" },
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(n)"
+    },
     "review": {
       "walkthroughSteps": [
         "seen maps a number to the index where it appeared.",
@@ -98,7 +113,10 @@
         "Using a plain object instead of a Map \u2014 works for integer keys but Map is the clearer, safer choice"
       ]
     },
-    "tags": ["arrays", "hash-map"],
+    "tags": [
+      "arrays",
+      "hash-map"
+    ],
     "charCount": 267
   },
   {
@@ -119,7 +137,10 @@
     },
     "code": "function reverseList(head) {\n  let prev = null;\n  let current = head;\n\n  while (current !== null) {\n    const next = current.next;\n    current.next = prev;\n    prev = current;\n    current = next;\n  }\n\n  return prev;\n}",
     "timeTargetSec": 120,
-    "complexity": { "time": "O(n)", "space": "O(1)" },
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
     "review": {
       "walkthroughSteps": [
         "next is saved first because current.next is about to be overwritten \u2014 without saving it, the rest of the list would be lost.",
@@ -132,7 +153,10 @@
         "Returning current instead of prev \u2014 current is null at the end of the loop"
       ]
     },
-    "tags": ["linked-list", "pointers"],
+    "tags": [
+      "linked-list",
+      "pointers"
+    ],
     "charCount": 217
   },
   {
@@ -153,7 +177,10 @@
     },
     "code": "function lengthOfLongestSubstring(s) {\n  const lastSeen = new Map();\n  let left = 0;\n  let maxLength = 0;\n\n  for (let right = 0; right < s.length; right++) {\n    const char = s[right];\n\n    if (lastSeen.has(char) && lastSeen.get(char) >= left) {\n      left = lastSeen.get(char) + 1;\n    }\n\n    lastSeen.set(char, right);\n    maxLength = Math.max(maxLength, right - left + 1);\n  }\n\n  return maxLength;\n}",
     "timeTargetSec": 150,
-    "complexity": { "time": "O(n)", "space": "O(min(n, alphabet size))" },
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(min(n, alphabet size))"
+    },
     "review": {
       "walkthroughSteps": [
         "lastSeen.get(char) >= left checks whether the repeat happened INSIDE the current window, not just anywhere earlier in the string.",
@@ -166,7 +193,10 @@
         "Recomputing the window length with a nested loop instead of tracking it with left and right directly"
       ]
     },
-    "tags": ["strings", "sliding-window"],
+    "tags": [
+      "strings",
+      "sliding-window"
+    ],
     "charCount": 402
   },
   {
@@ -187,7 +217,10 @@
     },
     "code": "function bfs(graph, start) {\n  const visited = new Set([start]);\n  const queue = [start];\n  const order = [];\n\n  while (queue.length > 0) {\n    const node = queue.shift();\n    order.push(node);\n\n    for (const neighbor of graph[node]) {\n      if (!visited.has(neighbor)) {\n        visited.add(neighbor);\n        queue.push(neighbor);\n      }\n    }\n  }\n\n  return order;\n}",
     "timeTargetSec": 150,
-    "complexity": { "time": "O(V + E)", "space": "O(V)" },
+    "complexity": {
+      "time": "O(V + E)",
+      "space": "O(V)"
+    },
     "review": {
       "walkthroughSteps": [
         "Marking a neighbor visited at queue-time, not dequeue-time, is the key detail \u2014 otherwise the same node could be queued multiple times before it's ever processed.",
@@ -200,7 +233,725 @@
         "Using queue.pop() instead of queue.shift() \u2014 that turns it into DFS, not BFS"
       ]
     },
-    "tags": ["graphs", "bfs"],
+    "tags": [
+      "graphs",
+      "bfs"
+    ],
     "charCount": 370
+  },
+  {
+    "id": "js-easy-003",
+    "language": "javascript",
+    "trackType": "dsa",
+    "difficulty": "easy",
+    "title": "Sum of Array Elements",
+    "prompt": "Given an array of numbers, return the sum of all elements.",
+    "approach": {
+      "steps": [
+        "Start a running total at 0.",
+        "Loop through the array once.",
+        "Add each element to the running total.",
+        "Return the total after the loop ends."
+      ],
+      "example": "For [4, 1, 3]: total=0 -> 4 -> 5 -> 8. Final answer: 8."
+    },
+    "code": "function sumArray(numbers) {\n  let total = 0;\n\n  for (let i = 0; i < numbers.length; i++) {\n    total += numbers[i];\n  }\n\n  return total;\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "total starts at 0 so an empty array correctly sums to 0.",
+        "Each loop pass adds the current element to total.",
+        "No index tracking beyond i is needed since nothing is compared.",
+        "After the last element, total holds the full sum."
+      ],
+      "commonMistakes": [
+        "Starting total at 1 instead of 0",
+        "Forgetting to return total"
+      ]
+    },
+    "tags": [
+      "arrays",
+      "loops"
+    ],
+    "charCount": 139
+  },
+  {
+    "id": "js-easy-004",
+    "language": "javascript",
+    "trackType": "dsa",
+    "difficulty": "easy",
+    "title": "Find the Smallest Number",
+    "prompt": "Given an array of numbers, return the smallest one.",
+    "approach": {
+      "steps": [
+        "Assume the first element is the smallest so far.",
+        "Loop through the rest of the array.",
+        "Whenever a smaller number appears, update your tracked value.",
+        "Return that value after the loop."
+      ],
+      "example": "For [5, 2, 9]: smallest=5 -> 2 (2<5) -> stays 2. Final answer: 2."
+    },
+    "code": "function findSmallest(numbers) {\n  let smallest = numbers[0];\n\n  for (let i = 1; i < numbers.length; i++) {\n    if (numbers[i] < smallest) {\n      smallest = numbers[i];\n    }\n  }\n\n  return smallest;\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "smallest starts at numbers[0], the same pattern as finding a maximum but flipped.",
+        "The loop starts at index 1 since index 0 is the starting baseline.",
+        "Each comparison checks for a strictly smaller value.",
+        "The final value of smallest is the minimum of the array."
+      ],
+      "commonMistakes": [
+        "Using > instead of < by habit from a max function",
+        "Looping from index 0, comparing the first element to itself"
+      ]
+    },
+    "tags": [
+      "arrays",
+      "loops"
+    ],
+    "charCount": 201
+  },
+  {
+    "id": "js-easy-005",
+    "language": "javascript",
+    "trackType": "dsa",
+    "difficulty": "easy",
+    "title": "Count Vowels in a String",
+    "prompt": "Given a string, count how many vowels (a, e, i, o, u) it contains.",
+    "approach": {
+      "steps": [
+        "Define a string of vowel characters to check against.",
+        "Start a counter at 0.",
+        "Loop through each character of the input string.",
+        "If the character is a vowel, increment the counter."
+      ],
+      "example": "For 'code': c-no, o-yes(1), d-no, e-yes(2). Final answer: 2."
+    },
+    "code": "function countVowels(str) {\n  const vowels = \"aeiou\";\n  let count = 0;\n\n  for (let i = 0; i < str.length; i++) {\n    if (vowels.includes(str[i])) {\n      count++;\n    }\n  }\n\n  return count;\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "vowels.includes(char) checks membership in a small fixed set.",
+        "The loop visits every character exactly once.",
+        "count only increments on a vowel match, nothing else changes it.",
+        "Uppercase vowels wouldn't match here since vowels is lowercase only."
+      ],
+      "commonMistakes": [
+        "Not handling uppercase letters if the input might have them",
+        "Using == instead of .includes for membership checking"
+      ]
+    },
+    "tags": [
+      "strings",
+      "loops"
+    ],
+    "charCount": 191
+  },
+  {
+    "id": "js-easy-006",
+    "language": "javascript",
+    "trackType": "dsa",
+    "difficulty": "easy",
+    "title": "Check Even or Odd",
+    "prompt": "Given a number, return either the word even or the word odd depending on its parity.",
+    "approach": {
+      "steps": [
+        "Use the modulo operator to find the remainder when dividing by 2.",
+        "A remainder of 0 means the number is even.",
+        "Any other remainder means the number is odd.",
+        "Return the matching string."
+      ],
+      "example": "For 7: 7 % 2 = 1, not 0, so return 'odd'. For 4: 4 % 2 = 0, return 'even'."
+    },
+    "code": "function checkParity(num) {\n  if (num % 2 === 0) {\n    return \"even\";\n  }\n\n  return \"odd\";\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "O(1)",
+      "space": "O(1)"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "% 2 gives the remainder after dividing by two.",
+        "Even numbers always leave a remainder of exactly 0.",
+        "The strict === avoids type-coercion surprises.",
+        "Any non-zero remainder falls through to the odd case."
+      ],
+      "commonMistakes": [
+        "Using = instead of === for comparison",
+        "Forgetting negative numbers still work correctly with %"
+      ]
+    },
+    "tags": [
+      "math",
+      "conditionals"
+    ],
+    "charCount": 92
+  },
+  {
+    "id": "js-easy-007",
+    "language": "javascript",
+    "trackType": "dsa",
+    "difficulty": "easy",
+    "title": "Average of an Array",
+    "prompt": "Given an array of numbers, return the average (mean) value.",
+    "approach": {
+      "steps": [
+        "Sum all the elements in the array using a loop.",
+        "Divide the total by the number of elements.",
+        "Return that result."
+      ],
+      "example": "For [2, 4, 6]: sum=12, count=3, average=12/3=4."
+    },
+    "code": "function average(numbers) {\n  let total = 0;\n\n  for (let i = 0; i < numbers.length; i++) {\n    total += numbers[i];\n  }\n\n  return total / numbers.length;\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "The sum is computed with the same running-total pattern as before.",
+        "Dividing by numbers.length converts the total into a mean.",
+        "This assumes the array isn't empty, which would divide by zero.",
+        "The result may be a decimal, which is expected for an average."
+      ],
+      "commonMistakes": [
+        "Dividing inside the loop instead of after it",
+        "Not guarding against an empty array in production code"
+      ]
+    },
+    "tags": [
+      "arrays",
+      "math"
+    ],
+    "charCount": 155
+  },
+  {
+    "id": "js-easy-008",
+    "language": "javascript",
+    "trackType": "dsa",
+    "difficulty": "easy",
+    "title": "Check Palindrome",
+    "prompt": "Given a string, return true if it reads the same forwards and backwards.",
+    "approach": {
+      "steps": [
+        "Use two pointers: one at the start, one at the end.",
+        "Compare the characters at both pointers.",
+        "If they ever differ, it's not a palindrome.",
+        "Move the pointers toward the middle until they meet."
+      ],
+      "example": "For 'noon': left=0 'n', right=3 'n', match. left=1 'o', right=2 'o', match. Pointers meet, return true."
+    },
+    "code": "function isPalindrome(str) {\n  let left = 0;\n  let right = str.length - 1;\n\n  while (left < right) {\n    if (str[left] !== str[right]) {\n      return false;\n    }\n    left++;\n    right--;\n  }\n\n  return true;\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "left and right start at opposite ends of the string.",
+        "Any mismatch immediately returns false, no need to keep checking.",
+        "left++ and right-- move both pointers toward the center each pass.",
+        "If the loop finishes with no mismatch, the string is a palindrome."
+      ],
+      "commonMistakes": [
+        "Using left <= right, which double-checks the middle character unnecessarily",
+        "Forgetting to move both pointers each iteration"
+      ]
+    },
+    "tags": [
+      "strings",
+      "two-pointers"
+    ],
+    "charCount": 209
+  },
+  {
+    "id": "js-easy-009",
+    "language": "javascript",
+    "trackType": "dsa",
+    "difficulty": "easy",
+    "title": "Count Character Occurrences",
+    "prompt": "Given a string and a target character, count how many times it appears.",
+    "approach": {
+      "steps": [
+        "Start a counter at 0.",
+        "Loop through every character in the string.",
+        "If the character matches the target, increment the counter.",
+        "Return the final count."
+      ],
+      "example": "For 'banana', target 'a': matches at index 1, 3, 5. Count = 3."
+    },
+    "code": "function countChar(str, target) {\n  let count = 0;\n\n  for (let i = 0; i < str.length; i++) {\n    if (str[i] === target) {\n      count++;\n    }\n  }\n\n  return count;\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "The loop checks each character against target one at a time.",
+        "count only changes on an exact match.",
+        "This is case-sensitive, since === compares characters directly.",
+        "The final count reflects every matching position in the string."
+      ],
+      "commonMistakes": [
+        "Case-sensitivity surprises when target case doesn't match the string",
+        "Off-by-one on the loop bound using <= instead of <"
+      ]
+    },
+    "tags": [
+      "strings",
+      "loops"
+    ],
+    "charCount": 165
+  },
+  {
+    "id": "js-easy-010",
+    "language": "javascript",
+    "trackType": "dsa",
+    "difficulty": "easy",
+    "title": "Find the Largest of Three",
+    "prompt": "Given three numbers, return the largest of them.",
+    "approach": {
+      "steps": [
+        "Compare the first two numbers and keep the bigger one.",
+        "Compare that result against the third number.",
+        "Return the final winner."
+      ],
+      "example": "For 4, 9, 2: max(4,9)=9, max(9,2)=9. Final answer: 9."
+    },
+    "code": "function largestOfThree(a, b, c) {\n  let largest = a;\n\n  if (b > largest) {\n    largest = b;\n  }\n  if (c > largest) {\n    largest = c;\n  }\n\n  return largest;\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "O(1)",
+      "space": "O(1)"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "largest starts as the first argument, a.",
+        "The first if checks b against the current largest, updating if bigger.",
+        "The second if repeats the same check against c.",
+        "By the end, largest has been compared against every candidate."
+      ],
+      "commonMistakes": [
+        "Using else if instead of two separate ifs, which skips a needed comparison",
+        "Assuming the largest input position without actually comparing"
+      ]
+    },
+    "tags": [
+      "conditionals",
+      "math"
+    ],
+    "charCount": 159
+  },
+  {
+    "id": "js-easy-011",
+    "language": "javascript",
+    "trackType": "dsa",
+    "difficulty": "easy",
+    "title": "Capitalize First Letter",
+    "prompt": "Given a lowercase word, return it with the first letter capitalized.",
+    "approach": {
+      "steps": [
+        "Take the first character of the string.",
+        "Convert just that character to uppercase.",
+        "Combine it with the rest of the string unchanged.",
+        "Return the combined result."
+      ],
+      "example": "For 'hello': first char 'h' -> 'H'. Rest is 'ello'. Result: 'Hello'."
+    },
+    "code": "function capitalize(word) {\n  const first = word[0].toUpperCase();\n  const rest = word.slice(1);\n\n  return first + rest;\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(n)"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "word[0] grabs only the first character of the string.",
+        "toUpperCase() converts that single character.",
+        "slice(1) returns everything from index 1 onward, unchanged.",
+        "Concatenating the two pieces rebuilds the full capitalized word."
+      ],
+      "commonMistakes": [
+        "Calling toUpperCase() on the whole word instead of just the first letter",
+        "Off-by-one in slice, using slice(0) which re-includes the first letter"
+      ]
+    },
+    "tags": [
+      "strings"
+    ],
+    "charCount": 122
+  },
+  {
+    "id": "js-easy-012",
+    "language": "javascript",
+    "trackType": "dsa",
+    "difficulty": "easy",
+    "title": "Sum of Digits",
+    "prompt": "Given a positive integer, return the sum of its digits.",
+    "approach": {
+      "steps": [
+        "Start a total at 0.",
+        "Repeatedly take the last digit using n % 10.",
+        "Add that digit to the total, then remove it using integer division.",
+        "Stop once the number reaches 0."
+      ],
+      "example": "For 123: digit=3, total=3, n=12. digit=2, total=5, n=1. digit=1, total=6, n=0. Stop."
+    },
+    "code": "function sumDigits(n) {\n  let total = 0;\n\n  while (n > 0) {\n    total += n % 10;\n    n = Math.floor(n / 10);\n  }\n\n  return total;\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "O(log n)",
+      "space": "O(1)"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "n % 10 always extracts the current last digit of n.",
+        "Math.floor(n / 10) removes that digit by shifting everything right.",
+        "The loop continues until n has no digits left to peel off.",
+        "total accumulates each digit as it's extracted."
+      ],
+      "commonMistakes": [
+        "Using n / 10 without Math.floor, leaving a decimal",
+        "Not handling n = 0 as an input, which correctly returns 0 here"
+      ]
+    },
+    "tags": [
+      "math",
+      "loops"
+    ],
+    "charCount": 131
+  },
+  {
+    "id": "js-easy-013",
+    "language": "javascript",
+    "trackType": "dsa",
+    "difficulty": "easy",
+    "title": "Factorial of a Number",
+    "prompt": "Given a non-negative integer n, return its factorial (n!).",
+    "approach": {
+      "steps": [
+        "Start a result at 1 (the identity for multiplication).",
+        "Loop from 1 up to and including n.",
+        "Multiply result by each number in that range.",
+        "Return the final product."
+      ],
+      "example": "For 4: result=1*1=1, *2=2, *3=6, *4=24. Final answer: 24."
+    },
+    "code": "function factorial(n) {\n  let result = 1;\n\n  for (let i = 1; i <= n; i++) {\n    result *= i;\n  }\n\n  return result;\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "result starts at 1, not 0, since multiplying by 0 would zero everything out.",
+        "The loop runs from 1 through n inclusive, using <=.",
+        "Each pass multiplies the running result by the current i.",
+        "When n is 0, the loop body never runs and result correctly stays 1."
+      ],
+      "commonMistakes": [
+        "Starting result at 0 instead of 1",
+        "Using < instead of <=, which skips multiplying by n itself"
+      ]
+    },
+    "tags": [
+      "math",
+      "loops"
+    ],
+    "charCount": 116
+  },
+  {
+    "id": "js-easy-014",
+    "language": "javascript",
+    "trackType": "dsa",
+    "difficulty": "easy",
+    "title": "Check for Prime Number",
+    "prompt": "Given a number greater than 1, return true if it is prime.",
+    "approach": {
+      "steps": [
+        "Loop from 2 up to (but not including) the number itself.",
+        "If any of those values evenly divides the number, it isn't prime.",
+        "If the loop finishes with no divisor found, the number is prime."
+      ],
+      "example": "For 7: check 2,3,4,5,6 \u2014 none divide evenly. Prime. For 8: 2 divides evenly. Not prime."
+    },
+    "code": "function isPrime(num) {\n  for (let i = 2; i < num; i++) {\n    if (num % i === 0) {\n      return false;\n    }\n  }\n\n  return true;\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "The loop starts at 2, since checking 1 or the number itself is pointless.",
+        "num % i === 0 means i divides num with no remainder.",
+        "Finding even one such divisor is enough to return false immediately.",
+        "Reaching the end of the loop with no divisor found means num is prime."
+      ],
+      "commonMistakes": [
+        "Starting the loop at 1, which always divides evenly and breaks the logic",
+        "Not handling num <= 1 as a special case in production code"
+      ]
+    },
+    "tags": [
+      "math",
+      "loops"
+    ],
+    "charCount": 130
+  },
+  {
+    "id": "js-easy-015",
+    "language": "javascript",
+    "trackType": "dsa",
+    "difficulty": "easy",
+    "title": "Remove Duplicates from Array",
+    "prompt": "Given an array, return a new array with duplicate values removed.",
+    "approach": {
+      "steps": [
+        "Create a Set from the array \u2014 Sets only keep unique values.",
+        "Spread the Set back into a new array.",
+        "Return that array."
+      ],
+      "example": "For [1, 2, 2, 3, 1]: Set becomes {1, 2, 3}. Result: [1, 2, 3]."
+    },
+    "code": "function removeDuplicates(arr) {\n  const unique = new Set(arr);\n\n  return [...unique];\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(n)"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "new Set(arr) builds a collection that automatically drops repeated values.",
+        "Sets preserve the original insertion order of first appearances.",
+        "The spread operator ... unpacks the Set's values into a plain array.",
+        "The result contains each original value exactly once."
+      ],
+      "commonMistakes": [
+        "Forgetting Sets aren't arrays, and need spreading or Array.from to convert back",
+        "Assuming order isn't preserved, when it actually is"
+      ]
+    },
+    "tags": [
+      "arrays",
+      "sets"
+    ],
+    "charCount": 88
+  },
+  {
+    "id": "js-easy-016",
+    "language": "javascript",
+    "trackType": "dsa",
+    "difficulty": "easy",
+    "title": "Find Index of a Value",
+    "prompt": "Given an array and a target value, return the index of its first occurrence, or -1 if not found.",
+    "approach": {
+      "steps": [
+        "Loop through the array with an index variable.",
+        "Compare each element to the target.",
+        "Return the index the moment a match is found.",
+        "If the loop finishes with no match, return -1."
+      ],
+      "example": "For [5, 8, 2], target 8: index 0 is 5 (no match), index 1 is 8 (match) -> return 1."
+    },
+    "code": "function findIndex(arr, target) {\n  for (let i = 0; i < arr.length; i++) {\n    if (arr[i] === target) {\n      return i;\n    }\n  }\n\n  return -1;\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "The loop checks each index in order, starting from 0.",
+        "Returning immediately on a match guarantees the FIRST occurrence is found.",
+        "If nothing matches by the end of the array, -1 signals that nothing was found.",
+        "This is the same idea behind the built-in Array.indexOf method."
+      ],
+      "commonMistakes": [
+        "Returning true/false instead of the index itself",
+        "Continuing the loop after finding a match instead of returning right away"
+      ]
+    },
+    "tags": [
+      "arrays",
+      "loops"
+    ],
+    "charCount": 145
+  },
+  {
+    "id": "js-easy-017",
+    "language": "javascript",
+    "trackType": "dsa",
+    "difficulty": "easy",
+    "title": "Count Even Numbers in Array",
+    "prompt": "Given an array of numbers, count how many of them are even.",
+    "approach": {
+      "steps": [
+        "Start a counter at 0.",
+        "Loop through the array.",
+        "Check each number's remainder when divided by 2.",
+        "Increment the counter for every even number found."
+      ],
+      "example": "For [1, 2, 3, 4]: 2 and 4 are even. Count = 2."
+    },
+    "code": "function countEvens(numbers) {\n  let count = 0;\n\n  for (let i = 0; i < numbers.length; i++) {\n    if (numbers[i] % 2 === 0) {\n      count++;\n    }\n  }\n\n  return count;\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "The loop visits every number in the array exactly once.",
+        "numbers[i] % 2 === 0 is the standard even-number check.",
+        "count only increases on a true even check, nothing else touches it.",
+        "The final count reflects the total even numbers found."
+      ],
+      "commonMistakes": [
+        "Checking % 2 === 1 for even by mistake, which actually tests odd",
+        "Incrementing count outside the if block, counting every element"
+      ]
+    },
+    "tags": [
+      "arrays",
+      "loops"
+    ],
+    "charCount": 169
+  },
+  {
+    "id": "js-easy-018",
+    "language": "javascript",
+    "trackType": "dsa",
+    "difficulty": "easy",
+    "title": "Reverse an Array",
+    "prompt": "Given an array, return a new array with the elements in reverse order, without using the built-in .reverse() method.",
+    "approach": {
+      "steps": [
+        "Create an empty result array.",
+        "Loop through the original array from the last index to the first.",
+        "Push each element into the result array as you go.",
+        "Return the result."
+      ],
+      "example": "For [1, 2, 3]: push 3, push 2, push 1. Result: [3, 2, 1]."
+    },
+    "code": "function reverseArray(arr) {\n  const result = [];\n\n  for (let i = arr.length - 1; i >= 0; i--) {\n    result.push(arr[i]);\n  }\n\n  return result;\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(n)"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "The loop starts at the last valid index, arr.length - 1.",
+        "Each pass pushes the current element onto result, then decrements i.",
+        "Reading arr back-to-front while pushing forward builds the reverse.",
+        "The loop stops once i drops below 0."
+      ],
+      "commonMistakes": [
+        "Starting at arr.length instead of arr.length - 1",
+        "Using unshift instead of push, which works but is much slower"
+      ]
+    },
+    "tags": [
+      "arrays",
+      "loops"
+    ],
+    "charCount": 145
+  },
+  {
+    "id": "js-easy-019",
+    "language": "javascript",
+    "trackType": "dsa",
+    "difficulty": "easy",
+    "title": "Check if Array Contains a Value",
+    "prompt": "Given an array and a target value, return true if the array contains it, without using .includes().",
+    "approach": {
+      "steps": [
+        "Loop through every element in the array.",
+        "Compare each element to the target.",
+        "Return true immediately on a match.",
+        "If the loop finishes with no match, return false."
+      ],
+      "example": "For [3, 7, 1], target 7: index 0 is 3 (no), index 1 is 7 (match) -> return true."
+    },
+    "code": "function containsValue(arr, target) {\n  for (let i = 0; i < arr.length; i++) {\n    if (arr[i] === target) {\n      return true;\n    }\n  }\n\n  return false;\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "This is the same scanning pattern as findIndex, just returning a boolean.",
+        "Returning true early avoids scanning the rest of the array unnecessarily.",
+        "false is only reached if every element has been checked with no match.",
+        "This is exactly what the built-in .includes() does internally."
+      ],
+      "commonMistakes": [
+        "Returning arr[i] instead of true, which returns the wrong type",
+        "Setting a flag variable instead of returning directly, adding unneeded complexity"
+      ]
+    },
+    "tags": [
+      "arrays",
+      "loops"
+    ],
+    "charCount": 155
+  },
+  {
+    "id": "js-easy-020",
+    "language": "javascript",
+    "trackType": "dsa",
+    "difficulty": "easy",
+    "title": "Find the Longest Word",
+    "prompt": "Given an array of words, return the longest one.",
+    "approach": {
+      "steps": [
+        "Assume the first word is the longest so far.",
+        "Loop through the rest of the words.",
+        "Compare each word's length to the current longest.",
+        "Update and return the longest word found."
+      ],
+      "example": "For ['cat', 'elephant', 'dog']: longest='cat'(3) -> 'elephant'(8, bigger) -> stays 'elephant'."
+    },
+    "code": "function longestWord(words) {\n  let longest = words[0];\n\n  for (let i = 1; i < words.length; i++) {\n    if (words[i].length > longest.length) {\n      longest = words[i];\n    }\n  }\n\n  return longest;\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "longest starts as the first word, giving a baseline to compare.",
+        "The loop compares .length, not the words themselves.",
+        "Whenever a longer word appears, longest is reassigned to it.",
+        "This is the same max-tracking pattern as finding the largest number."
+      ],
+      "commonMistakes": [
+        "Comparing words[i] > longest directly, which compares alphabetically not by length",
+        "Forgetting .length on one side of the comparison"
+      ]
+    },
+    "tags": [
+      "arrays",
+      "strings"
+    ],
+    "charCount": 200
   }
 ]

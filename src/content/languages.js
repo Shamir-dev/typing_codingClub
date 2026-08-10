@@ -21,13 +21,33 @@ export const LANGUAGES = [
     autoIndent: false,
     available: true,
   },
-  { id: 'python', name: 'Python', trackType: 'dsa', accent: 'var(--color-python)', extension: 'py', autoIndent: false, available: false },
-  { id: 'cpp', name: 'C++', trackType: 'dsa', accent: 'var(--color-cpp)', extension: 'cpp', autoIndent: true, available: false },
-  { id: 'java', name: 'Java', trackType: 'dsa', accent: 'var(--color-java)', extension: 'java', autoIndent: true, available: false },
-  { id: 'c', name: 'C', trackType: 'dsa', accent: 'var(--color-c)', extension: 'c', autoIndent: true, available: false },
-  { id: 'html', name: 'HTML', trackType: 'practice', accent: 'var(--color-html)', extension: 'html', autoIndent: true, available: false },
-  { id: 'css', name: 'CSS', trackType: 'practice', accent: 'var(--color-css)', extension: 'css', autoIndent: true, available: false },
-  { id: 'react', name: 'React', trackType: 'practice', accent: 'var(--color-react)', extension: 'jsx', autoIndent: false, available: false },
+  { id: 'python',
+     name: 'Python',
+    trackType: 'dsa', 
+    accent: 'var(--color-python)', 
+    extension: 'py', 
+    autoIndent: false, 
+    available: true 
+  },
+
+  { id: 'cpp',
+     name: 'C++', 
+     trackType: 'dsa',
+      accent: 'var(--color-cpp)', 
+      extension: 'cpp', 
+      autoIndent: true, 
+      available: true },
+
+  { id: 'java', name: 'Java', trackType: 'dsa', accent: 'var(--color-java)', extension: 'java', autoIndent: true, 
+    available: true },
+
+  { id: 'c', name: 'C', trackType: 'dsa', accent: 'var(--color-c)', extension: 'c', autoIndent: true, available:  true},
+
+  { id: 'html', name: 'HTML', trackType: 'practice', accent: 'var(--color-html)', extension: 'html', autoIndent: true, available: true },
+
+  { id: 'css', name: 'CSS', trackType: 'practice', accent: 'var(--color-css)', extension: 'css', autoIndent: true, available: true },
+  
+  { id: 'react', name: 'React', trackType: 'practice', accent: 'var(--color-react)', extension: 'jsx', autoIndent: false, available: true },
 ]
 
 export function getLanguage(id) {
