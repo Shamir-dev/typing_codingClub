@@ -12,7 +12,7 @@ function wpmFromChars(charCount, ms) {
 }
 
 // Drives a single typing session against one lesson's code string.
-export function useTypingEngine(targetCode) {
+export function useTypingEngine(targetCode, { autoIndent = false } = {}) {
   const [typed, setTyped] = useState('')
   const [startedAt, setStartedAt] = useState(null)
   const [finishedAt, setFinishedAt] = useState(null)
@@ -174,6 +174,39 @@ export function useTypingEngine(targetCode) {
         return
       }
 
+      // Enter gets its own branch (rather than falling into the generic
+      // character check below) so autoIndent can immediately follow it
+      // with the next line's leading spaces, in the same keystroke —
+      // the user sees properly indented code without pressing Tab.
+      if (key === '\n') {
+        setTyped((prev) => {
+          const nextIndex = prev.length
+          if (nextIndex >= targetCode.length) return prev
+
+          const isCorrect = targetCode[nextIndex] === '\n'
+          recordFirstAttempt(nextIndex, isCorrect)
+          recordKeystrokeTiming()
+          if (!isCorrect) {
+            mistakeLog.current.push({ index: nextIndex, expected: targetCode[nextIndex], got: key })
+          }
+
+          let next = prev + key
+
+          if (autoIndent && isCorrect) {
+            let idx = next.length
+            while (idx < targetCode.length && targetCode[idx] === ' ') {
+              recordFirstAttempt(idx, true)
+              next += ' '
+              idx++
+            }
+          }
+
+          liveTypedRef.current = next
+          return next
+        })
+        return
+      }
+
       setTyped((prev) => {
         const nextIndex = prev.length
         if (nextIndex >= targetCode.length) return prev
@@ -189,7 +222,7 @@ export function useTypingEngine(targetCode) {
         return next
       })
     },
-    [targetCode, startedAt, finishedAt, isPaused]
+    [targetCode, startedAt, finishedAt, isPaused, autoIndent]
   )
 
   const reset = useCallback(() => {

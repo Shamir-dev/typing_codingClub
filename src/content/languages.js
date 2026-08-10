@@ -1,6 +1,15 @@
 // Metadata for every language track. Adding a new language later means
 // adding an entry here + a content/<id>/lessons.json file — nothing else
 // in the app needs to change.
+//
+// autoIndent: when true, pressing Enter automatically inserts the next
+// line's leading whitespace — the user still SEES real, properly
+// indented code (same visual pattern as autoIndent: false languages),
+// but doesn't need to press Tab to produce it. This is a beginner-
+// friendly default for languages where indentation is purely cosmetic
+// (brace/semicolon-terminated) rather than syntactically meaningful.
+// JS/Python/React keep manual indentation since typing it is part of
+// the practice for those tracks.
 
 export const LANGUAGES = [
   {
@@ -9,15 +18,16 @@ export const LANGUAGES = [
     trackType: 'dsa',
     accent: 'var(--color-js)',
     extension: 'js',
+    autoIndent: false,
     available: true,
   },
-  { id: 'python', name: 'Python', trackType: 'dsa', accent: 'var(--color-python)', extension: 'py', available: false },
-  { id: 'cpp', name: 'C++', trackType: 'dsa', accent: 'var(--color-cpp)', extension: 'cpp', available: false },
-  { id: 'java', name: 'Java', trackType: 'dsa', accent: 'var(--color-java)', extension: 'java', available: false },
-  { id: 'c', name: 'C', trackType: 'dsa', accent: 'var(--color-c)', extension: 'c', available: false },
-  { id: 'html', name: 'HTML', trackType: 'practice', accent: 'var(--color-html)', extension: 'html', available: false },
-  { id: 'css', name: 'CSS', trackType: 'practice', accent: 'var(--color-css)', extension: 'css', available: false },
-  { id: 'react', name: 'React', trackType: 'practice', accent: 'var(--color-react)', extension: 'jsx', available: false },
+  { id: 'python', name: 'Python', trackType: 'dsa', accent: 'var(--color-python)', extension: 'py', autoIndent: false, available: false },
+  { id: 'cpp', name: 'C++', trackType: 'dsa', accent: 'var(--color-cpp)', extension: 'cpp', autoIndent: true, available: false },
+  { id: 'java', name: 'Java', trackType: 'dsa', accent: 'var(--color-java)', extension: 'java', autoIndent: true, available: false },
+  { id: 'c', name: 'C', trackType: 'dsa', accent: 'var(--color-c)', extension: 'c', autoIndent: true, available: false },
+  { id: 'html', name: 'HTML', trackType: 'practice', accent: 'var(--color-html)', extension: 'html', autoIndent: true, available: false },
+  { id: 'css', name: 'CSS', trackType: 'practice', accent: 'var(--color-css)', extension: 'css', autoIndent: true, available: false },
+  { id: 'react', name: 'React', trackType: 'practice', accent: 'var(--color-react)', extension: 'jsx', autoIndent: false, available: false },
 ]
 
 export function getLanguage(id) {

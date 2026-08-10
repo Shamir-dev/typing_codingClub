@@ -97,6 +97,7 @@ export default function App() {
           <LessonTyping
             lesson={view.lesson}
             accent={language.accent}
+            autoIndent={language.autoIndent}
             soundMode={soundMode}
             onComplete={(result) => handleComplete(view.lesson, result)}
             onBack={() => setView({ name: 'dashboard' })}

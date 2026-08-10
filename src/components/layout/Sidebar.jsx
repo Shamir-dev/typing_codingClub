@@ -46,10 +46,10 @@ export default function Sidebar({
         >
           <Home size={16} className="text-text-faint" />
           <div>
-            <h1 className="font-display font-semibold text-sm tracking-wide text-text">
-              typing<span className="text-text-faint">/</span>club
+            <h1 className="font-display font-semibold text-bg tracking-wide text-text">
+                 proCoder  <span className="text-[11] text-text-faint">    <h4></h4></span>
             </h1>
-            <p className="text-[11px] text-text-faint">code typing practice</p>
+            <p className="text-[12px] text-text-faint">Coding club</p>
           </div>
         </button>
         <button
@@ -103,7 +103,7 @@ export default function Sidebar({
           title="Toggle light / dark theme"
           className="w-full text-xs font-mono text-text-muted hover:text-text border border-line rounded-md py-1.5 transition-colors hover:border-text-faint"
         >
-          {theme === 'dark' ? '🌙 dark theme' : '☀️ light theme'}
+          {theme === 'dark' ? '☀️ light theme' : '🌙 dark theme'}
         </button>
 
         <div className="flex border border-line rounded-md overflow-hidden">

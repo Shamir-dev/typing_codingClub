@@ -10,8 +10,8 @@ const TIPS = [
   'Struggling with a specific symbol set (like brackets or operators)? Practice it directly with a custom typing test once that feature is available.',
 ]
 
-export default function LessonTyping({ lesson, accent, soundMode, onComplete, onBack }) {
-  const engine = useTypingEngine(lesson.code)
+export default function LessonTyping({ lesson, accent, autoIndent, soundMode, onComplete, onBack }) {
+  const engine = useTypingEngine(lesson.code, { autoIndent })
   const [showTips, setShowTips] = useState(false)
 
   useEffect(() => {

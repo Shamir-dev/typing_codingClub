@@ -10,7 +10,7 @@ export default function TestResults({ attempts, lessonsById }) {
         </p>
       </div>
 
-      <ResultsLog attempts={attempts} lessonsById={lessonsById} accent="var(--color-js)" limit={25} showLanguage />
+      <ResultsLog attempts={attempts} lessonsById={lessonsById} accent="var(--color-js)" showLanguage />
     </div>
   )
 }
