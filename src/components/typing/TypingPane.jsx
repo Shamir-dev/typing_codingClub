@@ -11,6 +11,38 @@ const STATUS_CLASS = {
   [CHAR_STATUS.PENDING]: 'text-text-muted',
 }
 
+// Three cursor styles, chosen in settings. Block uses mix-blend-mode so
+// the character glyph stays readable through the blinking background
+// without needing JS to swap text color on each blink frame.
+function CurrentCharCursor({ style, displayChar }) {
+  if (style === 'block') {
+    return (
+      <span className="relative">
+        <span className="typing-caret absolute inset-0 rounded-[1px]" style={{ backgroundColor: 'var(--color-cursor)' }} />
+        <span className="relative" style={{ color: 'var(--color-panel)', mixBlendMode: 'difference' }}>
+          {displayChar}
+        </span>
+      </span>
+    )
+  }
+
+  if (style === 'underline') {
+    return (
+      <span className="relative text-text">
+        <span className="typing-caret absolute left-0 right-0 bottom-0 h-[2px]" style={{ backgroundColor: 'var(--color-cursor)' }} />
+        {displayChar}
+      </span>
+    )
+  }
+
+  return (
+    <span className="relative text-text">
+      <span className="typing-caret absolute -left-px top-0 bottom-0 w-[2px] bg-cursor" />
+      {displayChar}
+    </span>
+  )
+}
+
 export default function TypingPane({
   targetCode,
   typed,
@@ -20,6 +52,8 @@ export default function TypingPane({
   onResume,
   accent,
   soundMode,
+  cursorStyle = 'line',
+  wrap = false,
 }) {
   const containerRef = useRef(null)
 
@@ -88,10 +122,16 @@ export default function TypingPane({
         </div>
       )}
 
-      <div className="py-4">
-        <Gutter lineCount={lines.length} currentLine={activeLine} />
-      </div>
-      <pre className="no-ligatures flex-1 py-4 pr-4 font-mono text-sm leading-6 overflow-x-auto whitespace-pre">
+      {!wrap && (
+        <div className="py-4">
+          <Gutter lineCount={lines.length} currentLine={activeLine} />
+        </div>
+      )}
+      <pre
+        className={`no-ligatures flex-1 py-4 pr-4 font-mono ${
+          wrap ? 'text-xl leading-10 px-2 whitespace-pre-wrap break-words' : 'text-sm leading-6 overflow-x-auto whitespace-pre'
+        }`}
+      >
         {(() => {
           let charOffset = 0
           return lines.map((line, li) => {
@@ -104,19 +144,21 @@ export default function TypingPane({
               typed.length < targetCode.length
 
             return (
-              <div key={li} className={li === activeLine ? 'bg-panel-raised/40 transition-colors' : ''}>
+              <div key={li} className={!wrap && li === activeLine ? 'bg-panel-raised/40 transition-colors' : ''}>
                 {line.chars.length === 0 && !trailingCaret ? (
                   '\u00A0'
                 ) : (
                   line.chars.map((char, ci) => {
                     const status = line.statuses[ci]
                     const isCurrent = status === CHAR_STATUS.CURRENT
+                    const displayChar = char === ' ' ? (wrap ? ' ' : '\u00A0') : char
+
+                    if (isCurrent) {
+                      return <CurrentCharCursor key={ci} style={cursorStyle} displayChar={displayChar} />
+                    }
                     return (
-                      <span key={ci} className={`relative ${isCurrent ? 'text-text' : STATUS_CLASS[status]}`}>
-                        {isCurrent && (
-                          <span className="typing-caret absolute -left-px top-0 bottom-0 w-[2px] bg-cursor" />
-                        )}
-                        {char === ' ' ? '\u00A0' : char}
+                      <span key={ci} className={STATUS_CLASS[status]}>
+                        {displayChar}
                       </span>
                     )
                   })

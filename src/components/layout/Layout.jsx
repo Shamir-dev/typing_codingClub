@@ -17,6 +17,7 @@ export default function Layout() {
   const firstSegment = location.pathname.split('/')[1]
   const activeLanguageId = AVAILABLE_LANGUAGE_IDS.includes(firstSegment) ? firstSegment : null
   const isResultsActive = location.pathname === '/results'
+  const isEnglishActive = location.pathname === '/english'
 
   return (
     <div className="h-screen w-screen flex bg-base text-text">
@@ -26,6 +27,8 @@ export default function Layout() {
         onGoHome={() => navigate('/')}
         onGoResults={() => navigate('/results')}
         isResultsActive={isResultsActive}
+        onGoEnglish={() => navigate('/english')}
+        isEnglishActive={isEnglishActive}
         theme={theme}
         onToggleTheme={toggleTheme}
         soundMode={soundMode}

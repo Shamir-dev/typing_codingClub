@@ -1,4 +1,4 @@
-import { Home, Keyboard, VolumeX, X, PanelLeftOpen, ListChecks } from 'lucide-react'
+import { Home, Keyboard, VolumeX, X, PanelLeftOpen, ListChecks, Type } from 'lucide-react'
 import { LANGUAGES } from '../../content/languages'
 import { AVAILABLE_LANGUAGE_IDS } from '../../content/allLessons'
 
@@ -14,6 +14,8 @@ export default function Sidebar({
   onGoHome,
   onGoResults,
   isResultsActive,
+  onGoEnglish,
+  isEnglishActive,
   theme,
   onToggleTheme,
   soundMode,
@@ -45,12 +47,12 @@ export default function Sidebar({
           onClick={onGoHome}
           className="flex-1 text-left hover:opacity-70 transition-opacity flex items-center gap-2"
         >
-          <Home size={16} className="text-text-faint" />
+          <Home size={18} className="text-text-faint" />
           <div>
             <h1 className="font-display font-semibold text-sm tracking-wide text-text">
-              typing<span className="text-text-faint">/</span>club
+              ProCoder<span className="text-text-faint">/</span>club
             </h1>
-            <p className="text-[11px] text-text-faint">code typing practice</p>
+            <p className="text-[13px] text-text-faint">practice/learn/improve</p>
           </div>
         </button>
         <button
@@ -87,7 +89,7 @@ export default function Sidebar({
           )
         })}
 
-        <div className="mt-2 pt-2 border-t border-line mx-2">
+        <div className="mt-2 pt-2 border-t border-line mx-2 space-y-1">
           <button
             onClick={onGoResults}
             className={`w-full flex items-center gap-2.5 px-2 py-2 text-sm text-left rounded-md transition-all duration-150
@@ -95,6 +97,14 @@ export default function Sidebar({
           >
             <ListChecks size={14} className="shrink-0" />
             <span className="font-mono">Test Results</span>
+          </button>
+          <button
+            onClick={onGoEnglish}
+            className={`w-full flex items-center gap-2.5 px-2 py-2 text-sm text-left rounded-md transition-all duration-150
+              ${isEnglishActive ? 'bg-panel-raised text-text' : 'text-text-muted hover:text-text hover:bg-panel-raised/50'}`}
+          >
+            <Type size={14} className="shrink-0" />
+            <span className="font-mono">English Practice</span>
           </button>
         </div>
       </nav>

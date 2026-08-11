@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { Code2, Lock, Sparkles } from 'lucide-react'
+import { Code2, Lock, Sparkles, Type } from 'lucide-react'
 import { LANGUAGES } from '../content/languages'
 import { AVAILABLE_LANGUAGE_IDS, LESSONS_BY_LANGUAGE } from '../content/allLessons'
 
@@ -30,9 +30,31 @@ export default function Home() {
             </span>
           </h1>
           <p className="text-text-muted max-w-lg mx-auto text-[15px]">
-            Pick a language to start practicing — short, focused lessons with a review
+            Pick a language to start practicing  short, focused lessons with a review
             section for every one, so you never leave confused about what you just typed.
           </p>
+        </div>
+
+        <div className="flex justify-center mb-8">
+          <button
+            onClick={() => navigate('/english')}
+            className="card-lift bg-panel border-2 rounded-2xl px-8 py-4 flex items-center gap-4 animate-pop-in"
+            style={{
+              borderColor: 'color-mix(in srgb, var(--color-js) 40%, transparent)',
+              boxShadow: '0 4px 16px -8px color-mix(in srgb, var(--color-js) 50%, transparent)',
+            }}
+          >
+            <div
+              className="w-12 h-12 rounded-xl flex items-center justify-center"
+              style={{ backgroundColor: 'color-mix(in srgb, var(--color-js) 20%, transparent)' }}
+            >
+              <Type size={22} style={{ color: 'var(--color-js)' }} />
+            </div>
+            <div className="text-left">
+              <div className="text-sm font-display font-semibold text-text">English Practice</div>
+              <div className="text-[11px] font-mono text-text-faint mt-0.5">plain-word typing test</div>
+            </div>
+          </button>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">

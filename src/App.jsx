@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard'
 import LessonTyping from './pages/LessonTyping'
 import Review from './pages/Review'
 import TestResults from './pages/TestResults'
+import EnglishTest from './pages/EnglishTest'
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/results" element={<TestResults />} />
+        <Route path="/english" element={<EnglishTest />} />
         <Route path="/:languageId" element={<Dashboard />} />
         <Route path="/:languageId/lesson/:lessonId" element={<LessonTyping />} />
         <Route path="/:languageId/lesson/:lessonId/review" element={<Review />} />

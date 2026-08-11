@@ -12,7 +12,7 @@ function wpmFromChars(charCount, ms) {
 }
 
 // Drives a single typing session against one lesson's code string.
-export function useTypingEngine(targetCode, { autoIndent = false } = {}) {
+export function useTypingEngine(targetCode, { autoIndent = false, timeLimitSec = null } = {}) {
   const [typed, setTyped] = useState('')
   const [startedAt, setStartedAt] = useState(null)
   const [finishedAt, setFinishedAt] = useState(null)
@@ -44,17 +44,25 @@ export function useTypingEngine(targetCode, { autoIndent = false } = {}) {
 
   const firstAttemptRef = useRef(new Map())
 
-  const isComplete = typed.length === targetCode.length
-  const isPerfect = isComplete && typed === targetCode
+  // For timed English tests: the session ends when the clock runs out,
+  // not when the (deliberately oversized) word pool is fully typed.
+  // isComplete becomes an OR of two conditions instead of just length.
+  const [timedOut, setTimedOut] = useState(false)
+  const isComplete = timedOut || typed.length === targetCode.length
+  const isPerfect = isComplete && !timedOut && typed === targetCode
 
   useEffect(() => {
     if (startedAt && !finishedAt && !isPaused) {
       tickRef.current = setInterval(() => {
-        setElapsedMs(Date.now() - startedAt)
+        const elapsed = Date.now() - startedAt
+        setElapsedMs(elapsed)
+        if (timeLimitSec && elapsed >= timeLimitSec * 1000) {
+          setTimedOut(true)
+        }
       }, 200)
       return () => clearInterval(tickRef.current)
     }
-  }, [startedAt, finishedAt, isPaused])
+  }, [startedAt, finishedAt, isPaused, timeLimitSec])
 
   useEffect(() => {
     if (startedAt && !finishedAt && !isPaused) {
@@ -231,6 +239,7 @@ export function useTypingEngine(targetCode, { autoIndent = false } = {}) {
     setFinishedAt(null)
     setElapsedMs(0)
     setIsPaused(false)
+    setTimedOut(false)
     mistakeLog.current = []
     firstAttemptRef.current = new Map()
     wpmHistoryRef.current = []

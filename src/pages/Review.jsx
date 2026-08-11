@@ -12,6 +12,13 @@ function getNextLesson(lessons, currentId) {
   return ordered[idx + 1]
 }
 
+function getPreviousLesson(lessons, currentId) {
+  const ordered = DIFFICULTY_ORDER.flatMap((tier) => lessons.filter((l) => l.difficulty === tier))
+  const idx = ordered.findIndex((l) => l.id === currentId)
+  if (idx <= 0) return null
+  return ordered[idx - 1]
+}
+
 export default function Review() {
   const { languageId, lessonId } = useParams()
   const navigate = useNavigate()
@@ -30,6 +37,7 @@ export default function Review() {
   }
 
   const nextLesson = getNextLesson(lessons, lesson.id)
+  const previousLesson = getPreviousLesson(lessons, lesson.id)
 
   return (
     <div className="flex-1 overflow-auto">
@@ -44,8 +52,10 @@ export default function Review() {
           keystrokeIntervals={result.keystrokeIntervals}
           accent={language.accent}
           nextLesson={nextLesson}
+          previousLesson={previousLesson}
           onRetry={() => navigate(`/${languageId}/lesson/${lesson.id}`)}
           onNext={() => nextLesson && navigate(`/${languageId}/lesson/${nextLesson.id}`)}
+          onPrevious={() => previousLesson && navigate(`/${languageId}/lesson/${previousLesson.id}`)}
           onBack={() => navigate(`/${languageId}`)}
         />
       </div>

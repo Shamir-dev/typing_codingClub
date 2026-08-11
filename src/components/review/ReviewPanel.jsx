@@ -1,26 +1,8 @@
 import { useState } from 'react'
 import { ArrowLeft, ChevronDown, ChevronRight } from 'lucide-react'
 import { formatTime } from '../../engine/timing'
+import { formatChar, summarizeMistakes } from '../../engine/mistakeSummary'
 import ConsistencyGraph from './ConsistencyGraph'
-
-function formatChar(char) {
-  if (char === ' ') return '␣'
-  if (char === '\n') return '⏎'
-  return char
-}
-
-// Groups the raw mistake log into a per-character frequency summary.
-function summarizeMistakes(mistakes) {
-  const byChar = new Map()
-  for (const m of mistakes) {
-    const key = m.expected
-    if (!byChar.has(key)) byChar.set(key, { expected: key, count: 0, gotChars: new Map() })
-    const entry = byChar.get(key)
-    entry.count += 1
-    entry.gotChars.set(m.got, (entry.gotChars.get(m.got) || 0) + 1)
-  }
-  return [...byChar.values()].sort((a, b) => b.count - a.count)
-}
 
 export default function ReviewPanel({
   lesson,
@@ -32,8 +14,10 @@ export default function ReviewPanel({
   keystrokeIntervals,
   accent,
   nextLesson,
+  previousLesson,
   onRetry,
   onNext,
+  onPrevious,
   onBack,
 }) {
   const mistakeSummary = summarizeMistakes(mistakes || [])
@@ -41,7 +25,7 @@ export default function ReviewPanel({
   const [showWalkthrough, setShowWalkthrough] = useState(false)
 
   return (
-    <div className="max-w-2xl animate-pop-in">
+    <div className="max-w-3xl animate-pop-in">
       <div className="flex items-center gap-2 mb-6">
         <button
           onClick={onBack}
@@ -179,13 +163,22 @@ export default function ReviewPanel({
         )}
       </section>
 
-      <div className="flex gap-3">
+      <div className="flex gap-3 flex-wrap">
+        {previousLesson && (
+          <button
+            onClick={onPrevious}
+            title={`Previous: ${previousLesson.title}`}
+            className="px-4 py-2 rounded-md text-sm font-medium bg-panel-raised text-text hover:opacity-80 transition-opacity border border-line hover:scale-[1.02] active:scale-[0.98] transition-transform"
+          >
+            ← Previous
+          </button>
+        )}
         {nextLesson ? (
           <button
             onClick={onNext}
             autoFocus
             title="Press Enter to continue"
-            className="px-4 py-2 rounded-md text-sm font-medium text-[var(--color-base)] hover:opacity-90 transition-opacity shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-transform"
+            className="px-4 py-2 rounded-md text-sm font-semibold text-[#14151a] hover:opacity-90 transition-opacity shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-transform"
             style={{ backgroundColor: accent }}
           >
             Next: {nextLesson.title} →
@@ -194,7 +187,7 @@ export default function ReviewPanel({
           <button
             onClick={onBack}
             autoFocus
-            className="px-4 py-2 rounded-md text-sm font-medium text-[var(--color-base)] hover:opacity-90 transition-opacity shadow-sm"
+            className="px-4 py-2 rounded-md text-sm font-semibold text-[#14151a] hover:opacity-90 transition-opacity shadow-sm"
             style={{ backgroundColor: accent }}
           >
             🎉 All lessons done — back to overview
