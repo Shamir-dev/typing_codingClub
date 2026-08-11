@@ -34,20 +34,27 @@
 [data-theme='light'] {
   --color-base: #eaf3fb;
   --color-panel: #ffffff;
-  --color-panel-raised: #f3f8fd;
-  --color-line: #d9e6f2;
-  --color-text: #23303f;
-  --color-text-muted: #5b7186;
-  --color-text-faint: #9db0c1;
+  --color-panel-raised: #eef7ff;
+  --color-line: #cfe3f5;
+  --color-text: #1c2b3a;
+  --color-text-muted: #4d6b85;
+  --color-text-faint: #93aec4;
 
-  --color-correct: #23a566;
-  --color-incorrect: #e0473d;
-  --color-cursor: #23303f;
+  --color-correct: #16a35e;
+  --color-incorrect: #e63e30;
+  --color-cursor: #1c2b3a;
 }
 
 [data-theme='light'] body {
-  background-image: linear-gradient(180deg, #cfe8fb 0%, #eaf3fb 40%, #eaf3fb 100%);
+  background-image: linear-gradient(180deg, #bfe0fb 0%, #dcefff 35%, #eaf3fb 100%);
   background-attachment: fixed;
+}
+
+html {
+  /* Base font size bumped from the browser default (16px) so text reads
+     comfortably without needing browser zoom — every rem-based Tailwind
+     size (text-xs, text-sm, etc.) scales up proportionally from this. */
+  font-size: 18px;
 }
 
 body {

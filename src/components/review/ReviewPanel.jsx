@@ -31,7 +31,9 @@ export default function ReviewPanel({
   wpmHistory,
   keystrokeIntervals,
   accent,
+  nextLesson,
   onRetry,
+  onNext,
   onBack,
 }) {
   const mistakeSummary = summarizeMistakes(mistakes || [])
@@ -178,6 +180,26 @@ export default function ReviewPanel({
       </section>
 
       <div className="flex gap-3">
+        {nextLesson ? (
+          <button
+            onClick={onNext}
+            autoFocus
+            title="Press Enter to continue"
+            className="px-4 py-2 rounded-md text-sm font-medium text-[var(--color-base)] hover:opacity-90 transition-opacity shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-transform"
+            style={{ backgroundColor: accent }}
+          >
+            Next: {nextLesson.title} →
+          </button>
+        ) : (
+          <button
+            onClick={onBack}
+            autoFocus
+            className="px-4 py-2 rounded-md text-sm font-medium text-[var(--color-base)] hover:opacity-90 transition-opacity shadow-sm"
+            style={{ backgroundColor: accent }}
+          >
+            🎉 All lessons done — back to overview
+          </button>
+        )}
         <button
           onClick={onRetry}
           className="px-4 py-2 rounded-md text-sm font-medium bg-panel-raised text-text hover:opacity-80 transition-opacity border border-line hover:scale-[1.02] active:scale-[0.98] transition-transform"
