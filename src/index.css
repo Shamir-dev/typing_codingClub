@@ -5,18 +5,29 @@
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
-  --color-home:#grey;
-  --color-base: #1c1d24;
-  --color-panel: #24262e;
-  --color-panel-raised: #2b2d37;
-  --color-line: #34363f;
-  --color-text: #e9e7e2;
-  --color-text-muted: #8b8d98;
-  --color-text-faint: #5c5e69;
+
+  /* Premium dark developer-dashboard palette — this is the base/default
+     token set, used whenever data-theme isn't "light" (see override
+     below). Near-black navy rather than flat black or the old warm
+     charcoal editor look. */
+  --color-base: #070b14;
+  --color-panel: #0d1320;
+  --color-panel-raised: #121a2a;
+  --color-line: #1c2536;
+  --color-text: #f5f7fb;
+  --color-text-muted: #8993a5;
+  --color-text-faint: #545e70;
 
   --color-correct: #7ec699;
   --color-incorrect: #e27878;
-  --color-cursor: #e9e7e2;
+  --color-cursor: #f5f7fb;
+
+  /* Brand accents — purple/blue gradient family used for the hero
+     emphasis line, primary CTAs, and active-nav glow. Deliberately
+     NOT tied to any single language's identity color, and available
+     the same in both themes. */
+  --color-accent-purple: #8b5cf6;
+  --color-accent-blue: #3b82f6;
 
   --color-js: #f0db4f;
   --color-python: #5b9bd5;
@@ -113,4 +124,28 @@ body {
 .card-lift:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.18);
+}
+
+/* Subtle technical hero backdrop — fine grid + soft purple/blue glow,
+   kept behind content (z-index handled by the consumer) and low
+   opacity so it reads as texture, not decoration competing for
+   attention. Grid uses currentColor via --color-line so it's already
+   theme-appropriate without a separate light/dark variant. */
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--color-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+  background-size: 42px 42px;
+  opacity: 0.35;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black 40%, transparent 90%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black 40%, transparent 90%);
+}
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 60% 50% at 50% -10%, color-mix(in srgb, var(--color-accent-purple) 20%, transparent), transparent 70%);
 }

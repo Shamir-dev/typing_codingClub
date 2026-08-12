@@ -128,7 +128,7 @@ export default function TypingPane({
       tabIndex={0}
       onKeyDown={handleKeyDown}
       className="relative flex outline-none bg-panel rounded-md border border-line overflow-hidden transition-colors focus:border-[var(--pane-accent)] focus:shadow-[0_0_0_3px_var(--pane-accent-glow)]"
-      style={{ '--pane-accent': accent, '--pane-accent-glow': `${accent}26` }}
+      style={{ '--pane-accent': accent, '--pane-accent-glow': `color-mix(in srgb, ${accent} 15%, transparent)` }}
     >
       {isPaused && (
         <div className="absolute inset-0 z-10 flex items-center justify-center bg-base/80 backdrop-blur-[2px] animate-pop-in">

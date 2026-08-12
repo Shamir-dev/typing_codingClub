@@ -2,22 +2,7 @@ import { useParams, useNavigate, useLocation, Navigate } from 'react-router-dom'
 import ReviewPanel from '../components/review/ReviewPanel'
 import { getLanguage } from '../content/languages'
 import { LESSONS_BY_LANGUAGE } from '../content/allLessons'
-
-const DIFFICULTY_ORDER = ['easy', 'medium', 'hard']
-
-function getNextLesson(lessons, currentId) {
-  const ordered = DIFFICULTY_ORDER.flatMap((tier) => lessons.filter((l) => l.difficulty === tier))
-  const idx = ordered.findIndex((l) => l.id === currentId)
-  if (idx === -1 || idx === ordered.length - 1) return null
-  return ordered[idx + 1]
-}
-
-function getPreviousLesson(lessons, currentId) {
-  const ordered = DIFFICULTY_ORDER.flatMap((tier) => lessons.filter((l) => l.difficulty === tier))
-  const idx = ordered.findIndex((l) => l.id === currentId)
-  if (idx <= 0) return null
-  return ordered[idx - 1]
-}
+import { getNextLesson, getPreviousLesson } from '../engine/lessonOrder'
 
 export default function Review() {
   const { languageId, lessonId } = useParams()
