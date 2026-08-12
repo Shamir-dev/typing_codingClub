@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useLayoutEffect, useState, useCallback } from 'react'
 import Gutter from './Gutter'
 import { CHAR_STATUS } from '../../engine/diff'
 import { splitIntoLines, currentLineIndex } from '../../engine/lines'
@@ -9,38 +9,7 @@ const STATUS_CLASS = {
   [CHAR_STATUS.INCORRECT]:
     'text-[var(--color-base)] bg-incorrect rounded-[2px] transition-colors duration-150',
   [CHAR_STATUS.PENDING]: 'text-text-muted',
-}
-
-// Three cursor styles, chosen in settings. Block uses mix-blend-mode so
-// the character glyph stays readable through the blinking background
-// without needing JS to swap text color on each blink frame.
-function CurrentCharCursor({ style, displayChar }) {
-  if (style === 'block') {
-    return (
-      <span className="relative">
-        <span className="typing-caret absolute inset-0 rounded-[1px]" style={{ backgroundColor: 'var(--color-cursor)' }} />
-        <span className="relative" style={{ color: 'var(--color-panel)', mixBlendMode: 'difference' }}>
-          {displayChar}
-        </span>
-      </span>
-    )
-  }
-
-  if (style === 'underline') {
-    return (
-      <span className="relative text-text">
-        <span className="typing-caret absolute left-0 right-0 bottom-0 h-[2px]" style={{ backgroundColor: 'var(--color-cursor)' }} />
-        {displayChar}
-      </span>
-    )
-  }
-
-  return (
-    <span className="relative text-text">
-      <span className="typing-caret absolute -left-px top-0 bottom-0 w-[2px] bg-cursor" />
-      {displayChar}
-    </span>
-  )
+  [CHAR_STATUS.CURRENT]: 'text-text',
 }
 
 export default function TypingPane({
@@ -56,9 +25,44 @@ export default function TypingPane({
   wrap = false,
 }) {
   const containerRef = useRef(null)
+  const currentElRef = useRef(null)
+  const [caret, setCaret] = useState(null)
 
   useEffect(() => {
     containerRef.current?.focus()
+  }, [])
+
+  // Single overlay caret, measured off whichever span is currently
+  // "current" via offsetLeft/offsetTop (relative to the position:relative
+  // <pre>, so it scrolls naturally with the content). Re-measuring on
+  // every typed-position change and letting CSS transition the resulting
+  // left/top/width/height is what makes movement slide instead of jump —
+  // the old approach mounted a brand new caret element per character,
+  // which can only ever teleport.
+  useLayoutEffect(() => {
+    if (currentElRef.current) {
+      const el = currentElRef.current
+      setCaret({ left: el.offsetLeft, top: el.offsetTop, width: el.offsetWidth || 2, height: el.offsetHeight })
+    } else {
+      setCaret(null)
+    }
+  }, [typed, targetCode, wrap])
+
+  // Re-measure on resize too — wrap mode reflows when the container
+  // width changes, which shifts where the current character sits.
+  useEffect(() => {
+    function remeasure() {
+      if (currentElRef.current) {
+        const el = currentElRef.current
+        setCaret({ left: el.offsetLeft, top: el.offsetTop, width: el.offsetWidth || 2, height: el.offsetHeight })
+      }
+    }
+    window.addEventListener('resize', remeasure)
+    return () => window.removeEventListener('resize', remeasure)
+  }, [])
+
+  const setCurrentRef = useCallback((el) => {
+    currentElRef.current = el
   }, [])
 
   function handleKeyDown(e) {
@@ -105,6 +109,19 @@ export default function TypingPane({
   const lines = splitIntoLines(targetCode, charStatuses)
   const activeLine = currentLineIndex(typed)
 
+  const caretStyle = caret && {
+    left: caret.left,
+    top: cursorStyle === 'underline' ? caret.top + caret.height - 2 : caret.top,
+    width: cursorStyle === 'underline' ? caret.width : cursorStyle === 'block' ? caret.width : 2,
+    height: cursorStyle === 'underline' ? 2 : caret.height,
+  }
+  const caretClass =
+    cursorStyle === 'block'
+      ? 'bg-cursor/35 rounded-[2px]'
+      : cursorStyle === 'underline'
+      ? 'bg-cursor rounded-full'
+      : 'bg-cursor'
+
   return (
     <div
       ref={containerRef}
@@ -128,10 +145,16 @@ export default function TypingPane({
         </div>
       )}
       <pre
-        className={`no-ligatures flex-1 py-4 pr-4 font-mono ${
+        className={`no-ligatures relative flex-1 py-4 pr-4 font-mono ${
           wrap ? 'text-xl leading-10 px-2 whitespace-pre-wrap break-words' : 'text-sm leading-6 overflow-x-auto whitespace-pre'
         }`}
       >
+        {caret && (
+          <div
+            className={`typing-caret pointer-events-none absolute transition-[left,top,width,height] duration-100 ease-out ${caretClass}`}
+            style={caretStyle}
+          />
+        )}
         {(() => {
           let charOffset = 0
           return lines.map((line, li) => {
@@ -152,19 +175,17 @@ export default function TypingPane({
                     const status = line.statuses[ci]
                     const isCurrent = status === CHAR_STATUS.CURRENT
                     const displayChar = char === ' ' ? (wrap ? ' ' : '\u00A0') : char
-
-                    if (isCurrent) {
-                      return <CurrentCharCursor key={ci} style={cursorStyle} displayChar={displayChar} />
-                    }
                     return (
-                      <span key={ci} className={STATUS_CLASS[status]}>
+                      <span key={ci} ref={isCurrent ? setCurrentRef : null} className={STATUS_CLASS[status]}>
                         {displayChar}
                       </span>
                     )
                   })
                 )}
                 {trailingCaret && (
-                  <span className="typing-caret inline-block w-[2px] h-4 bg-cursor align-middle" />
+                  <span ref={setCurrentRef} className="inline-block w-[1px]">
+                    {'\u00A0'}
+                  </span>
                 )}
               </div>
             )

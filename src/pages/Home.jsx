@@ -7,9 +7,9 @@ export default function Home() {
   const navigate = useNavigate()
 
   return (
-    <div className="flex-1 overflow-auto">
+    <div className="flex-1 overflow-auto "style={{}} >
       <div className="p-8 sm:p-14 max-w-5xl mx-auto">
-        <div className="mb-12 text-center animate-pop-in">
+        <div className="mb-12 text-center animate-pop-in ">
           <div
             className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono mb-5 border"
             style={{
@@ -30,7 +30,7 @@ export default function Home() {
             </span>
           </h1>
           <p className="text-text-muted max-w-lg mx-auto text-[15px]">
-            Pick a language to start practicing  short, focused lessons with a review
+            Pick a language to start practicing — short, focused lessons with a review
             section for every one, so you never leave confused about what you just typed.
           </p>
         </div>
@@ -80,10 +80,10 @@ export default function Home() {
                   </span>
                 )}
                 <div
-                  className="w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-display font-bold"
+                  className="w-16 h-16 rounded-2xl flex items-center justify-center text-xl font-display font-bold"
                   style={{ backgroundColor: `${lang.accent}22`, color: lang.accent }}
                 >
-                  {lang.name.slice(0, 2)}
+                  {lang.shortCode}
                 </div>
                 <div className="text-center">
                   <div className="text-sm font-display font-semibold text-text">{lang.name}</div>

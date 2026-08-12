@@ -1,7 +1,6 @@
 import { EASY_WORDS, MEDIUM_WORDS, HARD_WORDS } from '../content/englishWords'
 
 const POOLS = { easy: EASY_WORDS, medium: MEDIUM_WORDS, hard: HARD_WORDS }
-const WORDS_PER_LINE = 9
 const BUFFER_WPM = 90 // generous typing-speed assumption so a timed test never runs out of words before time's up
 
 // mode: 'time' — generates a deliberately oversized word pool; the
@@ -21,18 +20,14 @@ export function generateEnglishTest({ difficulty = 'easy', mode = 'time', timeSe
     words.push(pool[Math.floor(Math.random() * pool.length)])
   }
 
-  const lines = []
-  for (let i = 0; i < words.length; i += WORDS_PER_LINE) {
-    lines.push(words.slice(i, i + WORDS_PER_LINE).join(' '))
-  }
-
-  // 50 WPM reference ≈ 250 chars/min; ~6 chars per word (5 + space) is
-  // a reasonable average across the pools, used only as a soft display
-  // target in word-count mode — it doesn't cut the test off.
+  // No manual line breaks — a fixed words-per-line count fights against
+  // the container's actual width, leaving ragged empty space on wide
+  // screens. TypingPane's wrap mode uses CSS pre-wrap, which reflows
+  // naturally at whatever width the container actually has.
   const softTargetSec = Math.round((count * 6) / (250 / 60))
 
   return {
-    text: lines.join('\n'),
+    text: words.join(' '),
     mode,
     timeLimitSec: mode === 'time' ? timeSec : null,
     displayTargetSec: mode === 'time' ? timeSec : softTargetSec,
