@@ -290,7 +290,7 @@ export default function EnglishTest() {
                 autoFocus
                 title="Press Enter for a new test"
                 className="px-4 py-2 rounded-md text-sm font-semibold text-[#14151a] hover:opacity-90 transition-opacity shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-transform"
-                style={{ backgroundColor: accent }}
+                style={{ backgroundColor: "rgba(248, 252, 26, 0.99)"}}
               >
                 New Test →
               </button>
