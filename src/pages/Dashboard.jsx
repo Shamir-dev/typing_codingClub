@@ -9,8 +9,9 @@ import { LESSONS_BY_LANGUAGE, AVAILABLE_LANGUAGE_IDS } from '../content/allLesso
 export default function Dashboard() {
   const { languageId } = useParams()
   const navigate = useNavigate()
-  const { progress, attemptsForLanguage } = useOutletContext()
+  const { progress, attemptsForLanguage, blindAttemptsForLanguage } = useOutletContext()
   const [showResults, setShowResults] = useState(false)
+  const [showBlindResults, setShowBlindResults] = useState(false)
 
   if (!AVAILABLE_LANGUAGE_IDS.includes(languageId)) {
     return <Navigate to="/" replace />
@@ -19,6 +20,7 @@ export default function Dashboard() {
   const language = getLanguage(languageId)
   const lessons = LESSONS_BY_LANGUAGE[languageId] || []
   const attempts = attemptsForLanguage(languageId)
+  const blindAttempts = blindAttemptsForLanguage(languageId)
   const completedCount = lessons.filter((l) => progress?.[l.id]?.completed).length
   const lessonsById = Object.fromEntries(lessons.map((l) => [l.id, l]))
 
@@ -50,6 +52,24 @@ export default function Dashboard() {
             {showResults && (
               <div className="animate-pop-in">
                 <ResultsLog attempts={attempts} lessonsById={lessonsById} accent={language.accent} />
+              </div>
+            )}
+          </div>
+        )}
+
+        {blindAttempts.length > 0 && (
+          <div className="mb-8">
+            <button
+              onClick={() => setShowBlindResults((v) => !v)}
+              className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-text-muted font-display font-medium hover:text-text transition-colors mb-3"
+            >
+              {showBlindResults ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+              View Blind Test Results
+            </button>
+
+            {showBlindResults && (
+              <div className="animate-pop-in">
+                <ResultsLog attempts={blindAttempts} lessonsById={lessonsById} accent={language.accent} />
               </div>
             )}
           </div>

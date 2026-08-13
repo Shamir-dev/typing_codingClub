@@ -136,7 +136,7 @@ export default function Sidebar({
         </button>
       </nav>
 
-      <div className="border-t border-line px-4 py-4 space-y-2">
+      <div className="border-t border-line px-4 py-7 space-y-2">
         <button
           onClick={onToggleTheme}
           title="Toggle light / dark theme"

@@ -23,7 +23,7 @@ const LANGUAGE_ICONS = {
 export default function BlindTest() {
   const { languageId, lessonId, mode } = useParams()
   const navigate = useNavigate()
-  const { logAttempt } = useOutletContext()
+  const { logBlindAttempt } = useOutletContext()
   const lesson = (LESSONS_BY_LANGUAGE[languageId] || []).find((item) => item.id === lessonId)
   const language = getLanguage(languageId)
   const [typed, setTyped] = useState('')
@@ -158,7 +158,7 @@ export default function BlindTest() {
       const elapsed = Date.now() - startedAt.current
       setPassed(true)
       setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100)
-      logAttempt({ lessonId, language: languageId, difficulty: lesson.difficulty, mode: `blind-${mode}`, outcome: nextErrors === 0 && mode === 'pro' ? 'perfect-pro' : `${mode}-cleared`, wpm: Math.round((next.length / 5) / (elapsed / 60000)), accuracy: 100, formatting: nextStatus.formatting, mistakes: nextErrors, timeMs: elapsed, isPerfect: nextErrors === 0 })
+      logBlindAttempt({ lessonId, language: languageId, difficulty: lesson.difficulty, mode: `blind-${mode}`, outcome: nextErrors === 0 && mode === 'pro' ? 'perfect-pro' : `${mode}-cleared`, wpm: Math.round((next.length / 5) / (elapsed / 60000)), accuracy: 100, formatting: nextStatus.formatting, mistakes: nextErrors, timeMs: elapsed, isPerfect: nextErrors === 0 })
     }
   }
   
@@ -212,7 +212,7 @@ export default function BlindTest() {
         const elapsed = Date.now() - startedAt.current
         setPassed(true)
         setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100)
-        logAttempt({ lessonId, language: languageId, difficulty: lesson.difficulty, mode: `blind-${mode}`, outcome: nextErrors === 0 && mode === 'pro' ? 'perfect-pro' : `${mode}-cleared`, wpm: Math.round((newText.length / 5) / (elapsed / 60000)), accuracy: 100, formatting: nextStatus.formatting, mistakes: nextErrors, timeMs: elapsed, isPerfect: nextErrors === 0 })
+        logBlindAttempt({ lessonId, language: languageId, difficulty: lesson.difficulty, mode: `blind-${mode}`, outcome: nextErrors === 0 && mode === 'pro' ? 'perfect-pro' : `${mode}-cleared`, wpm: Math.round((newText.length / 5) / (elapsed / 60000)), accuracy: 100, formatting: nextStatus.formatting, mistakes: nextErrors, timeMs: elapsed, isPerfect: nextErrors === 0 })
       }
     }
   }

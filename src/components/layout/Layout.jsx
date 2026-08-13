@@ -13,7 +13,7 @@ export default function Layout() {
   const location = useLocation()
   const { theme, toggleTheme, soundMode, setSoundMode, cursorStyle, setCursorStyle } = useSettings()
   const { progress, recordCompletion } = useProgress()
-  const { attempts, attemptsForLanguage, logAttempt } = useAttemptsLog()
+  const { attempts, blindAttempts, attemptsForLanguage, blindAttemptsForLanguage, logAttempt, logBlindAttempt } = useAttemptsLog()
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const [showStreaks, setShowStreaks] = useState(false)
   const streaks = useMemo(() => getStreakSummary(attempts), [attempts])
@@ -72,7 +72,7 @@ export default function Layout() {
           </div>
 
           <div className="h-full overflow-hidden">
-            <Outlet context={{ progress, recordCompletion, attempts, attemptsForLanguage, logAttempt, soundMode, cursorStyle }} />
+            <Outlet context={{ progress, recordCompletion, attempts, blindAttempts, attemptsForLanguage, blindAttemptsForLanguage, logAttempt, logBlindAttempt, soundMode, cursorStyle }} />
           </div>
         </main>
       </div>
