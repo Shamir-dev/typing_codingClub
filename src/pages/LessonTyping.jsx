@@ -16,7 +16,7 @@ const TIPS = [
 export default function LessonTyping() {
   const { languageId, lessonId } = useParams()
   const navigate = useNavigate()
-  const { soundMode, recordCompletion, logAttempt } = useOutletContext()
+  const { soundMode, cursorStyle, recordCompletion, logAttempt } = useOutletContext()
 
   const lessons = LESSONS_BY_LANGUAGE[languageId] || []
   const lesson = lessons.find((l) => l.id === lessonId)
@@ -36,6 +36,7 @@ export default function LessonTyping() {
         accuracy: engine.accuracy,
         timeMs: engine.elapsedMs,
         mistakes: engine.mistakes,
+        typed: engine.typed,
         wpmHistory: engine.wpmHistory,
         keystrokeIntervals: engine.keystrokeIntervals,
         consistency: engine.consistency,
@@ -122,6 +123,7 @@ export default function LessonTyping() {
           onResume={engine.resume}
           accent={language.accent}
           soundMode={soundMode}
+          cursorStyle={cursorStyle}
         />
       </div>
 

@@ -1,9 +1,10 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { Type, ChevronDown, ChevronRight } from 'lucide-react'
 import TypingPane from '../components/typing/TypingPane'
 import StatusBar from '../components/layout/StatusBar'
 import ConsistencyGraph from '../components/review/ConsistencyGraph'
+import TypedTranscript from '../components/review/TypedTranscript'
 import ResultsLog from '../components/dashboard/ResultsLog'
 import { formatTime } from '../engine/timing'
 import { formatChar, summarizeMistakes } from '../engine/mistakeSummary'
@@ -31,7 +32,7 @@ const ENGLISH_LESSON_TITLES = {
 }
 
 export default function EnglishTest() {
-  const { soundMode, logAttempt, attemptsForLanguage } = useOutletContext()
+  const { soundMode, cursorStyle, logAttempt, attemptsForLanguage } = useOutletContext()
   const [settings, setSettings] = useState({ difficulty: 'easy', mode: 'time', timeSec: 60, wordCount: 50 })
   const [customTime, setCustomTime] = useState('')
   const [customWords, setCustomWords] = useState('')
@@ -67,22 +68,28 @@ export default function EnglishTest() {
   }
 
   // Logged once per completion, gated on the minimum-effort threshold.
-  if (engine.isComplete && !logged) {
-    const meetsThreshold = engine.elapsedMs >= MIN_LOG_TIME_MS || test.wordCount >= MIN_LOG_WORDS
-    if (meetsThreshold) {
-      logAttempt({
-        lessonId: `english-${settings.difficulty}`,
-        language: 'english',
-        difficulty: settings.difficulty,
-        wpm: engine.wpm,
-        accuracy: engine.accuracy,
-        consistency: engine.consistency,
-        timeMs: engine.elapsedMs,
-        isPerfect: engine.isPerfect,
-      })
+  // Must be an effect, not run during render — calling setState (and a
+  // context function) directly in the render body is invalid and was
+  // crashing this route entirely once a test completed.
+  useEffect(() => {
+    if (engine.isComplete && !logged) {
+      const meetsThreshold = engine.elapsedMs >= MIN_LOG_TIME_MS || test.wordCount >= MIN_LOG_WORDS
+      if (meetsThreshold) {
+        logAttempt({
+          lessonId: `english-${settings.difficulty}`,
+          language: 'english',
+          difficulty: settings.difficulty,
+          wpm: engine.wpm,
+          accuracy: engine.accuracy,
+          consistency: engine.consistency,
+          timeMs: engine.elapsedMs,
+          isPerfect: engine.isPerfect,
+        })
+      }
+      setLogged(true)
     }
-    setLogged(true)
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [engine.isComplete])
 
   const mistakeSummary = useMemo(() => summarizeMistakes(engine.mistakes), [engine.mistakes, engine.isComplete])
   const progressPct = (engine.typed.length / test.text.length) * 100
@@ -213,7 +220,7 @@ export default function EnglishTest() {
         </div>
 
         {!engine.isComplete ? (
-          <>
+          <div className="max-w-4xl mx-auto">
             <TypingPane
               key={resetKey}
               targetCode={test.text}
@@ -224,6 +231,7 @@ export default function EnglishTest() {
               onResume={engine.resume}
               accent={accent}
               soundMode={soundMode}
+              cursorStyle={cursorStyle}
               wrap
             />
             <div className="mt-3">
@@ -236,9 +244,9 @@ export default function EnglishTest() {
                 progressPct={progressPct}
               />
             </div>
-          </>
+          </div>
         ) : (
-          <div className="animate-pop-in">
+          <div className="animate-pop-in max-w-4xl mx-auto">
             <div className="flex gap-3 mb-6">
               <div className="flex-1 border border-line rounded-md px-5 py-4 bg-panel">
                 <div className="text-xs text-text-faint font-mono uppercase tracking-wide">WPM</div>
@@ -284,13 +292,15 @@ export default function EnglishTest() {
               </section>
             )}
 
+            <TypedTranscript targetCode={test.text} typed={engine.typed} mistakes={engine.mistakes} />
+
             <div className="flex gap-3">
               <button
                 onClick={newTest}
                 autoFocus
                 title="Press Enter for a new test"
                 className="px-4 py-2 rounded-md text-sm font-semibold text-[#14151a] hover:opacity-90 transition-opacity shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-transform"
-                style={{ backgroundColor: "rgba(248, 252, 26, 0.99)"}}
+                style={{ backgroundColor: accent }}
               >
                 New Test →
               </button>

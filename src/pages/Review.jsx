@@ -33,6 +33,8 @@ export default function Review() {
           accuracy={result.accuracy}
           timeMs={result.timeMs}
           mistakes={result.mistakes}
+          typed={result.typed}
+          targetCode={lesson.code}
           wpmHistory={result.wpmHistory}
           keystrokeIntervals={result.keystrokeIntervals}
           accent={language.accent}

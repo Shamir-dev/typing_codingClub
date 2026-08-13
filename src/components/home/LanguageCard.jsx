@@ -43,7 +43,10 @@ export default function LanguageCard({ lang, isAvailable, lessonCount, progressP
           </div>
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-mono text-text-faint">{progressPct}%</span>
-            <span className="text-xs font-mono text-text-muted flex items-center gap-1 group-hover:gap-1.5 group-hover:text-text transition-all">
+            <span
+              className="text-xs font-mono font-medium flex items-center gap-1 group-hover:gap-1.5 transition-all"
+              style={{ color: lang.accent }}
+            >
               Continue <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
             </span>
           </div>

@@ -6,6 +6,7 @@ import LanguageCard from '../components/home/LanguageCard'
 import ContinuePracticing from '../components/home/ContinuePracticing'
 import RecentTests from '../components/home/RecentTests'
 import WeeklyActivityChart from '../components/home/WeeklyActivityChart'
+import HeroWave from '../components/home/HeroWave'
 
 export default function Home() {
   const navigate = useNavigate()
@@ -21,6 +22,7 @@ export default function Home() {
         <div className="relative mb-14 text-center animate-pop-in">
           <div className="hero-grid-bg" />
           <div className="hero-glow" />
+          <HeroWave />
 
           <div className="relative">
             <div

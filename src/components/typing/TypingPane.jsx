@@ -25,6 +25,7 @@ export default function TypingPane({
   wrap = false,
 }) {
   const containerRef = useRef(null)
+  const preRef = useRef(null)
   const currentElRef = useRef(null)
   const [caret, setCaret] = useState(null)
 
@@ -43,6 +44,20 @@ export default function TypingPane({
     if (currentElRef.current) {
       const el = currentElRef.current
       setCaret({ left: el.offsetLeft, top: el.offsetTop, width: el.offsetWidth || 2, height: el.offsetHeight })
+
+      // English-test prose mode only: keep the active line within a
+      // fixed 3-line window, scrolling one line at a time as the caret
+      // advances — same rolling effect as MonkeyType. The active line
+      // sits at row 1 (the middle), not row 0, so the just-completed
+      // line stays visible above it until the next line completes.
+      // el.offsetHeight (this exact line's rendered height) is used
+      // directly rather than a parsed computed-style line-height,
+      // which was drifting slightly and clipping a line at the edge.
+      if (wrap && preRef.current) {
+        const lineHeight = el.offsetHeight
+        const lineIndex = Math.round(el.offsetTop / lineHeight)
+        preRef.current.scrollTop = Math.max(0, lineIndex - 1) * lineHeight
+      }
     } else {
       setCaret(null)
     }
@@ -109,17 +124,61 @@ export default function TypingPane({
   const lines = splitIntoLines(targetCode, charStatuses)
   const activeLine = currentLineIndex(typed)
 
+  function renderLines() {
+    let charOffset = 0
+    return lines.map((line, li) => {
+      const lineStart = charOffset
+      charOffset += line.chars.length + 1
+
+      const trailingCaret =
+        li === activeLine &&
+        typed.length === lineStart + line.chars.length &&
+        typed.length < targetCode.length
+
+      return (
+        <div key={li} className={!wrap && li === activeLine ? 'bg-panel-raised/40 transition-colors' : ''}>
+          {line.chars.length === 0 && !trailingCaret ? (
+            '\u00A0'
+          ) : (
+            line.chars.map((char, ci) => {
+              const status = line.statuses[ci]
+              const isCurrent = status === CHAR_STATUS.CURRENT
+              const displayChar = char === ' ' ? (wrap ? ' ' : '\u00A0') : char
+              return (
+                <span key={ci} ref={isCurrent ? setCurrentRef : null} className={STATUS_CLASS[status]}>
+                  {displayChar}
+                </span>
+              )
+            })
+          )}
+          {trailingCaret && (
+            <span ref={setCurrentRef} className="inline-block w-[1px]">
+              {'\u00A0'}
+            </span>
+          )}
+        </div>
+      )
+    })
+  }
+
   const caretStyle = caret && {
     left: caret.left,
     top: cursorStyle === 'underline' ? caret.top + caret.height - 2 : caret.top,
-    width: cursorStyle === 'underline' ? caret.width : cursorStyle === 'block' ? caret.width : 2,
+    width: cursorStyle === 'underline' ? caret.width : cursorStyle === 'block' ? caret.width : wrap ? 3 : 2,
     height: cursorStyle === 'underline' ? 2 : caret.height,
+    backgroundColor: wrap && cursorStyle !== 'block' ? '#ffd60a' : undefined,
   }
   const caretClass =
     cursorStyle === 'block'
-      ? 'bg-cursor/35 rounded-[2px]'
+      ? wrap
+        ? 'bg-[#ffd60a]/35 rounded-[2px]'
+        : 'bg-cursor/35 rounded-[2px]'
       : cursorStyle === 'underline'
-      ? 'bg-cursor rounded-full'
+      ? wrap
+        ? 'bg-[#ffd60a] rounded-full'
+        : 'bg-cursor rounded-full'
+      : wrap
+      ? 'rounded-full'
       : 'bg-cursor'
 
   return (
@@ -144,54 +203,35 @@ export default function TypingPane({
           <Gutter lineCount={lines.length} currentLine={activeLine} />
         </div>
       )}
-      <pre
-        className={`no-ligatures relative flex-1 py-4 pr-4 font-mono ${
-          wrap ? 'text-xl leading-10 px-2 whitespace-pre-wrap break-words' : 'text-sm leading-6 overflow-x-auto whitespace-pre'
-        }`}
-      >
-        {caret && (
-          <div
-            className={`typing-caret pointer-events-none absolute transition-[left,top,width,height] duration-100 ease-out ${caretClass}`}
-            style={caretStyle}
-          />
-        )}
-        {(() => {
-          let charOffset = 0
-          return lines.map((line, li) => {
-            const lineStart = charOffset
-            charOffset += line.chars.length + 1
-
-            const trailingCaret =
-              li === activeLine &&
-              typed.length === lineStart + line.chars.length &&
-              typed.length < targetCode.length
-
-            return (
-              <div key={li} className={!wrap && li === activeLine ? 'bg-panel-raised/40 transition-colors' : ''}>
-                {line.chars.length === 0 && !trailingCaret ? (
-                  '\u00A0'
-                ) : (
-                  line.chars.map((char, ci) => {
-                    const status = line.statuses[ci]
-                    const isCurrent = status === CHAR_STATUS.CURRENT
-                    const displayChar = char === ' ' ? (wrap ? ' ' : '\u00A0') : char
-                    return (
-                      <span key={ci} ref={isCurrent ? setCurrentRef : null} className={STATUS_CLASS[status]}>
-                        {displayChar}
-                      </span>
-                    )
-                  })
-                )}
-                {trailingCaret && (
-                  <span ref={setCurrentRef} className="inline-block w-[1px]">
-                    {'\u00A0'}
-                  </span>
-                )}
-              </div>
-            )
-          })
-        })()}
-      </pre>
+      {wrap ? (
+        <div className="flex-1 overflow-hidden h-[135px] my-4">
+          <pre
+            ref={preRef}
+            className="no-ligatures relative font-mono text-xl leading-10 px-2 whitespace-pre-wrap break-words h-full overflow-hidden"
+          >
+            {caret && (
+              <div
+                className={`pointer-events-none absolute transition-[left,top,width,height] duration-100 ease-out ${caretClass}`}
+                style={caretStyle}
+              />
+            )}
+            {renderLines()}
+          </pre>
+        </div>
+      ) : (
+        <pre
+          ref={preRef}
+          className="no-ligatures relative flex-1 py-4 pr-4 font-mono text-sm leading-6 overflow-x-auto whitespace-pre"
+        >
+          {caret && (
+            <div
+              className={`pointer-events-none absolute transition-[left,top,width,height] duration-100 ease-out ${caretClass}`}
+              style={caretStyle}
+            />
+          )}
+          {renderLines()}
+        </pre>
+      )}
     </div>
   )
 }

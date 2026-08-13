@@ -68,12 +68,23 @@ export default function Sidebar({
           onClick={onGoHome}
           className="flex-1 text-left hover:opacity-80 transition-opacity flex items-center gap-2.5"
         >
-          <div
+          {/* <div
             className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 font-display font-bold text-xs text-white"
             style={{ background: 'linear-gradient(135deg, var(--color-accent-blue), var(--color-accent-purple))' }}
           >
-            P
-          </div>
+            p
+          </div> */}
+           <div
+               className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 bg-white"
+                >
+                  <img
+                    src="/logo.png"
+                    alt="Logo"
+                    className="max-w-full max-h-full object-contain"
+                  />
+            </div>
+
+
           <div>
             <h1 className="font-display font-semibold text-sm tracking-tight text-text leading-none">
               ProCoder<span className="text-text-faint">/club</span>
