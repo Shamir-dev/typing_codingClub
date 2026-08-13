@@ -18,30 +18,27 @@ export default function Home() {
 
   return (
     <div className="flex-1 overflow-auto">
-      <div className="relative px-5 pb-8 sm:px-10 max-w-[1280px] mx-auto w-full">
+      <div className="relative px-4 pb-8 sm:px-6 lg:px-8 max-w-[1440px] mx-auto w-full">
         {/* Hero */}
         <div className="relative mb-8 min-h-[250px] flex items-center animate-pop-in">
           <div className="hero-grid-bg" />
           <div className="hero-glow" />
           <HeroWave />
 
-          <div className="relative max-w-xl">
+          <div className="relative max-w-xl pt-14">
             <div
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono mb-5 border"
+              className="inline-flex items-center gap-2 px-3.5 py-1.1 rounded-full text-14 font-mono mb-2 border"
               style={{
                 backgroundColor: 'color-mix(in srgb, var(--color-accent-purple) 15%, transparent)',
                 borderColor: 'color-mix(in srgb, var(--color-accent-purple) 40%, transparent)',
                 color: 'var(--color-text)',
               }}
             >
-              <Zap size={13} className="animate-soft-pulse" /> ProCoder
+              <Zap size={14} className="animate-soft-pulse" /> ProCoder
             </div>
-            <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-[3.25rem] leading-[1.05] text-text mb-4 tracking-tight">
-              Type real code.{' '}
-              <span
-                className="bg-clip-text text-transparent"
-                style={{ backgroundImage: 'linear-gradient(90deg, var(--color-accent-blue), var(--color-accent-purple))' }}
-              >
+            <h1 className="font-display font-bold text-[26px] sm:text-[30px] lg:text-[37px] leading-[1.08] text-text mb-2 tracking-tight">
+              Type real code.
+              <span className="block mt-1 bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, var(--color-accent-blue), var(--color-accent-purple))' }}>
                 Learn real DSA.
               </span>
             </h1>
@@ -58,7 +55,7 @@ export default function Home() {
               ].map((stat) => (
                 <div key={stat.label} className="flex items-center gap-2.5">
                   <stat.Icon size={19} className="text-accent-purple" />
-                  <div><div className="font-display font-semibold text-base text-text">{stat.value}</div><div className="text-[10px] uppercase tracking-wide text-text-faint">{stat.label}</div></div>
+                  <div><div className="font-display font-semibold text-[17px] text-text">{stat.value}</div><div className="text-[12px] uppercase tracking-wide text-text-faint">{stat.label}</div></div>
                 </div>
               ))}
             </div>

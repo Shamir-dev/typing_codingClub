@@ -44,6 +44,7 @@ export default function Review() {
           onNext={() => nextLesson && navigate(`/${languageId}/lesson/${nextLesson.id}`)}
           onPrevious={() => previousLesson && navigate(`/${languageId}/lesson/${previousLesson.id}`)}
           onBack={() => navigate(`/${languageId}`)}
+          onBlindTest={(mode) => navigate(`/${languageId}/lesson/${lessonId}/blind/${mode}`)}
         />
       </div>
     </div>

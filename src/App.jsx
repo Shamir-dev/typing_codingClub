@@ -6,6 +6,7 @@ import LessonTyping from './pages/LessonTyping'
 import Review from './pages/Review'
 import TestResults from './pages/TestResults'
 import EnglishTest from './pages/EnglishTest'
+import BlindTest from './pages/BlindTest'
 
 export default function App() {
   return (
@@ -17,6 +18,8 @@ export default function App() {
         <Route path="/:languageId" element={<Dashboard />} />
         <Route path="/:languageId/lesson/:lessonId" element={<LessonTyping />} />
         <Route path="/:languageId/lesson/:lessonId/review" element={<Review />} />
+        <Route path="/:languageId/lesson/:lessonId/blind" element={<BlindTest />} />
+        <Route path="/:languageId/lesson/:lessonId/blind/:mode" element={<BlindTest />} />
       </Route>
     </Routes>
   )

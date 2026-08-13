@@ -11,14 +11,14 @@
 // the practice for those tracks.
 
 export const LANGUAGES = [
-  { id: 'javascript', name: 'JavaScript', shortCode: 'JS', trackType: 'dsa', accent: 'var(--color-js)', extension: 'js', autoIndent: false },
-  { id: 'python', name: 'Python', shortCode: 'PY', trackType: 'dsa', accent: 'var(--color-python)', extension: 'py', autoIndent: false },
-  { id: 'cpp', name: 'C++', shortCode: 'C++', trackType: 'dsa', accent: 'var(--color-cpp)', extension: 'cpp', autoIndent: true },
-  { id: 'java', name: 'Java', shortCode: 'JV', trackType: 'dsa', accent: 'var(--color-java)', extension: 'java', autoIndent: true },
-  { id: 'c', name: 'C', shortCode: 'C', trackType: 'dsa', accent: 'var(--color-c)', extension: 'c', autoIndent: true },
-  { id: 'html', name: 'HTML', shortCode: 'HT', trackType: 'practice', accent: 'var(--color-html)', extension: 'html', autoIndent: true },
-  { id: 'css', name: 'CSS', shortCode: 'CS', trackType: 'practice', accent: 'var(--color-css)', extension: 'css', autoIndent: true },
-  { id: 'react', name: 'React', shortCode: 'JSX', trackType: 'practice', accent: 'var(--color-react)', extension: 'jsx', autoIndent: false },
+  { id: 'javascript', name: 'JavaScript', shortCode: 'JS', trackType: 'dsa', accent: 'var(--color-js)', extension: 'js', autoIndent: false, iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+  { id: 'python', name: 'Python', shortCode: 'PY', trackType: 'dsa', accent: 'var(--color-python)', extension: 'py', autoIndent: false, iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+  { id: 'cpp', name: 'C++', shortCode: 'C++', trackType: 'dsa', accent: 'var(--color-cpp)', extension: 'cpp', autoIndent: true, iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
+  { id: 'java', name: 'Java', shortCode: 'JV', trackType: 'dsa', accent: 'var(--color-java)', extension: 'java', autoIndent: true, iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
+  { id: 'c', name: 'C', shortCode: 'C', trackType: 'dsa', accent: 'var(--color-c)', extension: 'c', autoIndent: true, iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg' },
+  { id: 'html', name: 'HTML', shortCode: 'HT', trackType: 'practice', accent: 'var(--color-html)', extension: 'html', autoIndent: true, iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
+  { id: 'css', name: 'CSS', shortCode: 'CS', trackType: 'practice', accent: 'var(--color-css)', extension: 'css', autoIndent: true, iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
+  { id: 'react', name: 'React', shortCode: 'JSX', trackType: 'practice', accent: 'var(--color-react)', extension: 'jsx', autoIndent: false, iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
 ]
 
 export function getLanguage(id) {

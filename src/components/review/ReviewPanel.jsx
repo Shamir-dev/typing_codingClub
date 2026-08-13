@@ -22,6 +22,7 @@ export default function ReviewPanel({
   onNext,
   onPrevious,
   onBack,
+  onBlindTest,
 }) {
   const mistakeSummary = summarizeMistakes(mistakes || [])
   const [showApproach, setShowApproach] = useState(false)
@@ -60,8 +61,9 @@ export default function ReviewPanel({
 
       <ConsistencyGraph wpmHistory={wpmHistory} keystrokeIntervals={keystrokeIntervals} accent={accent} />
 
+      <div className="mb-6 grid gap-4 lg:grid-cols-2">
       {mistakeSummary.length > 0 && (
-        <section className="mb-6">
+        <section>
           <h3 className="text-xs uppercase tracking-wider text-text-muted font-display font-medium mb-3 text-center">
             Characters you mistyped
           </h3>
@@ -85,6 +87,16 @@ export default function ReviewPanel({
           </div>
         </section>
       )}
+      <section className="rounded-xl border border-line bg-panel p-4">
+        <p className="text-xs font-mono uppercase tracking-widest text-accent-purple">Blind Test</p>
+        <p className="mt-2 text-sm font-semibold text-text">Retype this lesson from memory.</p>
+        <p className="mt-1 text-xs leading-relaxed text-text-muted">Code tokens must match. Whitespace is flexible for this language.</p>
+        <div className="mt-4 grid gap-2 sm:grid-cols-2">
+          <button onClick={() => onBlindTest('pro')} className="rounded-lg border border-accent-purple/40 bg-accent-purple/10 px-3 py-2.5 text-left transition-colors hover:bg-accent-purple/20"><span className="block text-sm font-semibold text-text">Pro Mode</span><span className="mt-0.5 block text-[11px] text-text-muted">No hints · 1 error allowed</span></button>
+          <button onClick={() => onBlindTest('learner')} className="rounded-lg border border-line bg-panel-raised px-3 py-2.5 text-left transition-colors hover:border-text-faint"><span className="block text-sm font-semibold text-text">Learner Mode</span><span className="mt-0.5 block text-[11px] text-text-muted">Hints · 2 errors allowed</span></button>
+        </div>
+      </section>
+      </div>
 
       {typed && targetCode && <TypedTranscript targetCode={targetCode} typed={typed} mistakes={mistakes} />}
 

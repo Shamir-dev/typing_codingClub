@@ -84,24 +84,24 @@ export default function WeeklyActivityChart({ attempts }) {
   const progress = firstWpm ? Math.round(((latestWpm - firstWpm) / firstWpm) * 100) : 0
 
   return (
-    <div className="bg-panel border border-line rounded-xl p-5 shadow-[0_14px_34px_-26px_rgba(0,0,0,.9)]">
-      <div className="flex items-center justify-between mb-2">
-        <p className="text-[11px] font-mono uppercase tracking-widest text-text-faint">Your Progress</p>
-        <div className="flex items-center gap-2">
-          <span className={`rounded-full px-1.5 py-0.5 text-[10px] font-mono ${progress >= 0 ? 'bg-correct/15 text-correct' : 'bg-incorrect/15 text-incorrect'}`}>
+    <div className="bg-panel border border-line rounded-xl p-6 shadow-[0_14px_34px_-26px_rgba(0,0,0,.9)]">
+      <div className="mb-4 flex items-center justify-between">
+        <p className="text-xs font-mono uppercase tracking-widest text-text-faint">Your Progress</p>
+        <div className="flex items-center gap-3">
+          <span className={`rounded-full px-2.5 py-1 text-xs font-mono font-semibold ${progress >= 0 ? 'bg-correct/15 text-correct' : 'bg-incorrect/15 text-incorrect'}`}>
             {progress >= 0 ? '+' : ''}{progress}%
           </span>
           <select
             aria-label="Progress time range"
             value={rangeId}
             onChange={(event) => setRangeId(event.target.value)}
-            className="rounded-md border border-line bg-panel-raised px-2 py-1 text-[11px] font-mono text-text-muted outline-none hover:text-text focus:border-accent-purple"
+            className="rounded-md border border-line bg-panel-raised px-3 py-1.5 text-xs font-mono text-text-muted outline-none hover:text-text focus:border-accent-purple"
           >
             {RANGES.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}
           </select>
         </div>
       </div>
-      <div className="h-24 min-w-0">
+      <div className="h-32 min-w-0">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data} margin={{ top: 6, right: 4, left: 4, bottom: 0 }}>
             <defs>

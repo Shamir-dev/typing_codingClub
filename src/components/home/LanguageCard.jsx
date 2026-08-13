@@ -19,15 +19,13 @@ export default function LanguageCard({ lang, isAvailable, lessonCount, progressP
       )}
 
       <div className="flex items-center gap-3">
-        <div
-          className="w-12 h-12 rounded-xl flex items-center justify-center text-sm font-display font-bold shrink-0"
-          style={{ backgroundColor: `color-mix(in srgb, ${lang.accent} 18%, transparent)`, color: lang.accent }}
-        >
-          {lang.shortCode}
+        <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl border border-line bg-panel-raised p-2">
+          <img src={lang.iconUrl} alt={lang.name} className="h-full w-full object-contain" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-transparent" />
         </div>
-        <div>
-          <div className="text-sm font-display font-semibold text-text">{lang.name}</div>
-          <div className="text-[11px] font-mono text-text-faint">
+        <div className="min-w-0 flex-1">
+          <div className="text-[15px] font-display font-bold text-text">{lang.name}</div>
+          <div className="text-[12px] font-mono text-text-faint">
             {isAvailable ? `${lessonCount} lessons` : 'coming soon'}
           </div>
         </div>
@@ -42,9 +40,9 @@ export default function LanguageCard({ lang, isAvailable, lessonCount, progressP
             />
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-mono text-text-faint">{progressPct}%</span>
+            <span className="text-[12px] font-mono text-text-faint">{progressPct}%</span>
             <span
-              className="text-xs font-mono font-medium flex items-center gap-1 group-hover:gap-1.5 transition-all"
+              className="text-[13px] font-mono font-medium flex items-center gap-1 group-hover:gap-1.5 transition-all"
               style={{ color: lang.accent }}
             >
               Continue <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />

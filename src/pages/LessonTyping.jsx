@@ -85,6 +85,13 @@ export default function LessonTyping() {
             ↺ retry
           </button>
           <button
+            onClick={() => navigate(`/${languageId}/lesson/${lessonId}/blind`)}
+            title="Open Blind Test"
+            className="text-xs font-mono text-accent-purple hover:text-text border border-accent-purple/40 rounded-md px-2.5 py-1 transition-colors hover:border-accent-purple"
+          >
+            B blind test
+          </button>
+          <button
             onClick={() => setShowTips((v) => !v)}
             title="Tips"
             className="text-text-faint hover:text-text border border-line rounded-md p-1.5 transition-colors hover:border-text-faint"
