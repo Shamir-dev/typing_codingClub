@@ -143,7 +143,7 @@ export default function Sidebar({
           title="Toggle light / dark theme"
           className="w-full text-[11px] font-mono text-text-muted hover:text-text border border-line rounded-md py-1.5 transition-colors hover:border-text-faint"
         >
-          {theme === 'dark' ? '🌙 dark theme' : '☀️ light theme'}
+          {theme === 'dark' ? '☀️ light theme' : '🌙 dark theme'}
         </button>
 
         <div className="flex border border-line rounded-md overflow-hidden">

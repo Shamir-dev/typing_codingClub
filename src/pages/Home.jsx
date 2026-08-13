@@ -25,7 +25,7 @@ export default function Home() {
           <div className="hero-glow" />
           <HeroWave />
 
-          <div className="relative max-w-xl pt-14">
+          <div className="relative max-w-xl pt-11">
             <div
               className="inline-flex items-center gap-2 px-3.5 py-1.1 rounded-full text-14 font-mono mb-2 border"
               style={{
@@ -43,8 +43,8 @@ export default function Home() {
               </span>
             </h1>
             <p className="text-text-muted max-w-lg text-[15px] leading-relaxed mb-7">
-              Pick a language to start practicing — short, focused lessons with a review
-              section for every one, so you never leave confused about what you just typed.
+              Pick a language to start practicing  short, Focused lessons with a review
+              section for every one, So you never leave confused about what you just typed.
             </p>
 
             <div className="flex items-center gap-6 sm:gap-8 flex-wrap">
