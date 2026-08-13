@@ -6,7 +6,7 @@ export default function RecentTests({ attempts }) {
   const recent = attempts.slice(0, 5)
 
   return (
-    <div className="bg-panel border border-line rounded-2xl p-5">
+    <div className="bg-panel border border-line rounded-xl p-5 shadow-[0_14px_34px_-26px_rgba(0,0,0,.9)]">
       <p className="text-[11px] font-mono uppercase tracking-widest text-text-faint mb-3">Recent Tests</p>
       <div className="space-y-2.5">
         {recent.map((a) => {

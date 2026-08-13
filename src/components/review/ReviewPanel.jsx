@@ -28,7 +28,7 @@ export default function ReviewPanel({
   const [showWalkthrough, setShowWalkthrough] = useState(false)
 
   return (
-    <div className="max-w-3xl animate-pop-in">
+    <div className="max-w-5xl animate-pop-in">
       <div className="flex items-center gap-2 mb-6">
         <button
           onClick={onBack}
@@ -41,7 +41,7 @@ export default function ReviewPanel({
         <h2 className="font-display font-semibold text-lg text-text">{lesson.title}</h2>
       </div>
 
-      <div className="flex gap-3 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
         <div className="flex-1 border border-line rounded-md px-4 py-3 bg-panel">
           <div className="text-xs text-text-faint font-mono uppercase tracking-wide">WPM</div>
           <div className="text-xl font-display font-semibold text-correct mt-0.5">{wpm}</div>
@@ -181,7 +181,6 @@ export default function ReviewPanel({
         {nextLesson ? (
           <button
             onClick={onNext}
-            autoFocus
             title="Press Enter to continue"
             className="px-4 py-2 rounded-md text-sm font-semibold text-[#14151a] hover:opacity-90 transition-opacity shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-transform"
             style={{ backgroundColor: accent }}

@@ -24,10 +24,10 @@ export default function Dashboard() {
 
   return (
     <div className="flex-1 overflow-auto">
-      <div className="p-8">
+      <div className="px-5 py-6 sm:px-8 max-w-6xl mx-auto">
         <div className="mb-6">
           <div className="flex items-baseline gap-3">
-            <h2 className="font-display font-semibold text-2xl text-text">{language.name}</h2>
+          <h2 className="font-display font-semibold text-3xl text-text">{language.name}</h2>
             <span className="text-xs font-mono text-text-faint uppercase">
               {language.trackType === 'dsa' ? 'DSA track' : 'Practice track'}
             </span>

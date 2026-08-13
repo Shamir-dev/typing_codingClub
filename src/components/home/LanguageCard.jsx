@@ -9,7 +9,7 @@ export default function LanguageCard({ lang, isAvailable, lessonCount, progressP
         animationDelay: `${delayMs}ms`,
         borderColor: isAvailable ? `color-mix(in srgb, ${lang.accent} 35%, var(--color-line))` : undefined,
       }}
-      className={`card-lift group relative bg-panel border rounded-2xl p-5 flex flex-col gap-3 text-left animate-pop-in
+      className={`card-lift group relative bg-panel border rounded-xl p-4 flex flex-col gap-3 text-left animate-pop-in
         ${!isAvailable ? 'opacity-50 cursor-not-allowed border-line' : 'cursor-pointer'}`}
     >
       {!isAvailable && (
@@ -20,7 +20,7 @@ export default function LanguageCard({ lang, isAvailable, lessonCount, progressP
 
       <div className="flex items-center gap-3">
         <div
-          className="w-11 h-11 rounded-xl flex items-center justify-center text-sm font-display font-bold shrink-0"
+          className="w-12 h-12 rounded-xl flex items-center justify-center text-sm font-display font-bold shrink-0"
           style={{ backgroundColor: `color-mix(in srgb, ${lang.accent} 18%, transparent)`, color: lang.accent }}
         >
           {lang.shortCode}

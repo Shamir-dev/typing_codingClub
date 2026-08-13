@@ -62,8 +62,8 @@ export default function Sidebar({
   }
 
   return (
-    <aside className="w-60 shrink-0 border-r border-line bg-panel h-full flex flex-col">
-      <div className="px-4 py-4 border-b border-line flex items-center gap-2">
+    <aside className="app-sidebar w-72 shrink-0 border-r border-line bg-panel h-full flex flex-col">
+      <div className="px-5 py-6 border-b border-line flex items-center gap-2">
         <button
           onClick={onGoHome}
           className="flex-1 text-left hover:opacity-80 transition-opacity flex items-center gap-2.5"
@@ -74,9 +74,7 @@ export default function Sidebar({
           >
             p
           </div> */}
-           <div
-               className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 bg-white"
-                >
+            <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 overflow-hidden">
                   <img
                     src="/logo.png"
                     alt="Logo"
@@ -102,7 +100,7 @@ export default function Sidebar({
       </div>
 
       <nav className="flex-1 overflow-y-auto py-3">
-        <p className="px-4 text-[10px] font-mono uppercase tracking-widest text-text-faint mb-1.5">Learn</p>
+        <p className="px-5 text-[10px] font-semibold uppercase tracking-widest text-text-faint mb-2">Learn</p>
         {LANGUAGES.map((lang) => {
           const isAvailable = AVAILABLE_LANGUAGE_IDS.includes(lang.id)
           const isActive = lang.id === activeLanguageId
@@ -116,8 +114,8 @@ export default function Sidebar({
                 borderColor: `color-mix(in srgb, ${lang.accent} 45%, transparent)`,
                 backgroundColor: `color-mix(in srgb, ${lang.accent} 10%, transparent)`,
               } : undefined}
-              className={`w-full flex items-center gap-2.5 px-4 py-2 text-sm text-left border-l-2 transition-all duration-200
-                ${isActive ? 'text-text font-medium' : 'border-transparent text-text-muted hover:text-text hover:bg-panel-raised/60'}
+              className={`mx-3 w-[calc(100%-1.5rem)] flex items-center gap-3 px-3 py-2.5 text-sm text-left border rounded-lg transition-all duration-200
+                ${isActive ? 'text-text font-medium shadow-[0_6px_18px_-10px_rgba(139,92,246,.7)]' : 'border-transparent text-text-muted hover:text-text hover:bg-panel-raised/60'}
                 ${!isAvailable ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
             >
               <Icon size={14} style={{ color: isActive ? lang.accent : undefined }} className="shrink-0" />
@@ -127,11 +125,11 @@ export default function Sidebar({
           )
         })}
 
-        <p className="px-4 text-[10px] font-mono uppercase tracking-widest text-text-faint mb-1.5 mt-5">Track</p>
+        <p className="mx-5 pt-5 border-t border-line px-0 text-[10px] font-semibold uppercase tracking-widest text-text-faint mb-2 mt-5">Track</p>
         <button
           onClick={onGoResults}
           style={isResultsActive ? { borderColor: 'color-mix(in srgb, var(--color-accent-blue) 45%, transparent)', backgroundColor: 'color-mix(in srgb, var(--color-accent-blue) 10%, transparent)' } : undefined}
-          className={`w-full flex items-center gap-2.5 px-4 py-2 text-sm text-left border-l-2 transition-all duration-200
+          className={`mx-3 w-[calc(100%-1.5rem)] flex items-center gap-3 px-3 py-2.5 text-sm text-left border rounded-lg transition-all duration-200
             ${isResultsActive ? 'text-text font-medium' : 'border-transparent text-text-muted hover:text-text hover:bg-panel-raised/60'}`}
         >
           <ListChecks size={14} className="shrink-0" style={isResultsActive ? { color: 'var(--color-accent-blue)' } : undefined} />
@@ -140,7 +138,7 @@ export default function Sidebar({
         <button
           onClick={onGoEnglish}
           style={isEnglishActive ? { borderColor: 'color-mix(in srgb, var(--color-accent-purple) 45%, transparent)', backgroundColor: 'color-mix(in srgb, var(--color-accent-purple) 10%, transparent)' } : undefined}
-          className={`w-full flex items-center gap-2.5 px-4 py-2 text-sm text-left border-l-2 transition-all duration-200
+          className={`mx-3 w-[calc(100%-1.5rem)] flex items-center gap-3 px-3 py-2.5 text-sm text-left border rounded-lg transition-all duration-200
             ${isEnglishActive ? 'text-text font-medium' : 'border-transparent text-text-muted hover:text-text hover:bg-panel-raised/60'}`}
         >
           <Type size={14} className="shrink-0" style={isEnglishActive ? { color: 'var(--color-accent-purple)' } : undefined} />
@@ -148,7 +146,7 @@ export default function Sidebar({
         </button>
       </nav>
 
-      <div className="border-t border-line px-4 py-3 space-y-2">
+      <div className="border-t border-line px-4 py-4 space-y-2">
         <button
           onClick={onToggleTheme}
           title="Toggle light / dark theme"

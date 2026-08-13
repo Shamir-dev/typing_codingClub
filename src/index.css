@@ -66,7 +66,7 @@ html {
   /* Base font size bumped from the browser default (16px) so text reads
      comfortably without needing browser zoom — every rem-based Tailwind
      size (text-xs, text-sm, etc.) scales up proportionally from this. */
-  font-size: 18px;
+  font-size: 16px;
 }
 
 body {
@@ -74,6 +74,16 @@ body {
   color: var(--color-text);
   font-family: var(--font-sans);
   transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#root { min-height: 100vh; }
+
+@media (max-width: 900px) {
+  html { font-size: 15px; }
+}
+
+@media (max-width: 1120px) {
+  .app-sidebar { width: 15rem; }
 }
 
 ::selection {

@@ -5,7 +5,7 @@ const SOUND_KEY = 'typing-club-sound-mode' // 'off' | 'mechanical' | 'typewriter
 const CURSOR_KEY = 'typing-club-cursor-style' // 'line' | 'block' | 'underline'
 
 export function useSettings() {
-  const [theme, setThemeState] = useState(() => localStorage.getItem(THEME_KEY) || 'light')
+  const [theme, setThemeState] = useState(() => localStorage.getItem(THEME_KEY) || 'dark')
   const [soundMode, setSoundModeState] = useState(
     () => localStorage.getItem(SOUND_KEY) || 'mechanical'
   )

@@ -7,9 +7,9 @@ export default function TestResults() {
 
   return (
     <div className="flex-1 overflow-auto">
-      <div className="p-8 max-w-4xl mx-auto">
+      <div className="px-5 py-6 sm:px-8 max-w-5xl mx-auto">
         <div className="mb-6">
-          <h2 className="font-display font-semibold text-2xl text-text">Test Results</h2>
+          <h2 className="font-display font-semibold text-3xl text-text">Test Results</h2>
           <p className="text-sm text-text-muted mt-1">
             Every completed lesson across all languages, most recent first.
           </p>

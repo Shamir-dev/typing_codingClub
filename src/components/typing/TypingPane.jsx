@@ -186,7 +186,7 @@ export default function TypingPane({
       ref={containerRef}
       tabIndex={0}
       onKeyDown={handleKeyDown}
-      className="relative flex outline-none bg-panel rounded-md border border-line overflow-hidden transition-colors focus:border-[var(--pane-accent)] focus:shadow-[0_0_0_3px_var(--pane-accent-glow)]"
+      className="relative flex outline-none bg-panel rounded-xl border border-line overflow-hidden shadow-[0_16px_45px_-28px_rgba(0,0,0,.9)] transition-colors focus:border-[var(--pane-accent)] focus:shadow-[0_0_0_3px_var(--pane-accent-glow)]"
       style={{ '--pane-accent': accent, '--pane-accent-glow': `color-mix(in srgb, ${accent} 15%, transparent)` }}
     >
       {isPaused && (
@@ -221,7 +221,7 @@ export default function TypingPane({
       ) : (
         <pre
           ref={preRef}
-          className="no-ligatures relative flex-1 py-4 pr-4 font-mono text-sm leading-6 overflow-x-auto whitespace-pre"
+          className="no-ligatures relative flex-1 py-5 pr-5 font-mono text-base leading-7 overflow-x-auto whitespace-pre"
         >
           {caret && (
             <div

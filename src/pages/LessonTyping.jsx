@@ -71,7 +71,7 @@ export default function LessonTyping() {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="px-8 pt-6 pb-4 flex items-center gap-3">
+      <div className="w-full max-w-5xl mx-auto px-5 sm:px-8 pt-3 pb-4 flex items-center gap-3">
         <button onClick={() => navigate(`/${languageId}`)} className="text-text-faint hover:text-text text-sm transition-colors">
           ← back
         </button>
@@ -108,11 +108,11 @@ export default function LessonTyping() {
         </div>
       </div>
 
-      <div className="px-8 pb-3 max-w-2xl">
-        <p className="text-sm text-text-muted leading-relaxed">{lesson.prompt}</p>
+      <div className="w-full max-w-5xl mx-auto px-5 sm:px-8 pb-4">
+        <p className="text-base text-text-muted leading-relaxed">{lesson.prompt}</p>
       </div>
 
-      <div className="flex-1 px-8 overflow-auto">
+      <div className="flex-1 w-full max-w-5xl mx-auto px-5 sm:px-8 overflow-auto">
         <TypingPane
           key={resetKey}
           targetCode={lesson.code}

@@ -96,10 +96,10 @@ export default function EnglishTest() {
 
   return (
     <div className="flex-1 overflow-auto">
-      <div className="p-8 max-w-6xl mx-auto">
+      <div className="px-5 py-6 sm:px-8 max-w-6xl mx-auto">
         <div className="flex items-center gap-2 mb-1">
           <Type size={22} className="text-text-faint" />
-          <h2 className="font-display font-semibold text-3xl text-text">English Practice</h2>
+          <h2 className="font-display font-semibold text-3xl sm:text-4xl text-text">English Practice</h2>
         </div>
         <p className="text-base text-text-muted mb-6">
           Plain-word typing test — random words, no code, no indentation.
@@ -123,7 +123,7 @@ export default function EnglishTest() {
         )}
 
         {/* Settings row */}
-        <div className="flex flex-wrap items-center gap-3 mb-6">
+        <div className="flex flex-wrap items-center gap-3 mb-7 rounded-xl border border-line bg-panel/55 p-3">
           <div className="flex border border-line rounded-lg overflow-hidden">
             {TIERS.map((tier) => (
               <button
@@ -247,7 +247,7 @@ export default function EnglishTest() {
           </div>
         ) : (
           <div className="animate-pop-in max-w-4xl mx-auto">
-            <div className="flex gap-3 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
               <div className="flex-1 border border-line rounded-md px-5 py-4 bg-panel">
                 <div className="text-xs text-text-faint font-mono uppercase tracking-wide">WPM</div>
                 <div className="text-3xl font-display font-semibold text-correct mt-0.5">{engine.wpm}</div>
