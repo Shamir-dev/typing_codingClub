@@ -150,7 +150,19 @@ export function useTypingEngine(targetCode, { autoIndent = false, timeLimitSec =
 
       if (!startedAt) setStartedAt(Date.now())
       lastActivityRef.current = Date.now()
+          if (key === 'CtrlBackspace') {
+            setTyped((prev) => {
+              if (!prev.length) return prev
 
+              // First remove trailing spaces, then remove the previous word.
+              const withoutTrailingSpaces = prev.replace(/\s+$/, '')
+              const next = withoutTrailingSpaces.replace(/\S+$/, '')
+
+              liveTypedRef.current = next
+              return next
+            })
+            return
+          }
       if (key === 'Backspace') {
         setTyped((prev) => {
           const next = prev.slice(0, -1)

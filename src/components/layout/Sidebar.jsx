@@ -7,8 +7,9 @@ import { AVAILABLE_LANGUAGE_IDS } from '../../content/allLessons'
 
 const SOUND_MODES = [
   { id: 'off', label: 'off', icon: VolumeX },
-  { id: 'mechanical', label: 'key', icon: Keyboard },
-  { id: 'typewriter', label: 'type', icon: Keyboard },
+  { id: 'mechanical', label: 'P.Corn', icon: Keyboard },
+  { id: 'typewriter', label: 'T.Wr', icon: Keyboard },
+  { id: 'recorded-mechanical', label: 'real', icon: Keyboard },
 ]
 
 const CURSOR_STYLES = [

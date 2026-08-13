@@ -6,7 +6,21 @@
 // noise + tone rather than a single beep, which reads as far more
 // physical than a plain oscillator blip.
 let ctx = null
+let recordedMechanical = null
 
+function getRecordedMechanical() {
+  if (!recordedMechanical) {
+    recordedMechanical = new Audio('/sounds/mechanical-key-01.wav')
+    recordedMechanical.preload = 'auto'
+  }
+  return recordedMechanical
+}
+
+export function playRecordedMechanical() {
+  const audio = getRecordedMechanical()
+  audio.currentTime = 0
+  audio.play().catch(() => {})
+}
 function getContext() {
   if (!ctx) {
     const AudioCtx = window.AudioContext || window.webkitAudioContext
@@ -100,10 +114,19 @@ export function playTypewriterReturn() {
 
 export function playKeySound(mode, key) {
   if (mode === 'off') return
+
   if (mode === 'typewriter') {
     if (key === '\n') playTypewriterReturn()
     else playTypewriterClick()
     return
   }
-  if (mode === 'mechanical') playMechanicalClick()
+
+  if (mode === 'mechanical') {
+    playMechanicalClick()
+    return
+  }
+
+  if (mode === 'recorded-mechanical') {
+    playRecordedMechanical()
+  }
 }

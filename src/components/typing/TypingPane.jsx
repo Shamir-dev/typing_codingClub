@@ -87,12 +87,29 @@ export default function TypingPane({
     // a *real* Ctrl-only or Alt-only shortcut — otherwise AltGr-typed
     // characters get silently dropped and a lesson can never be
     // completed because that character position never matches.
-    const isAltGr = e.ctrlKey && e.altKey
-    if (!isAltGr && (e.ctrlKey || e.altKey)) return
+      const isAltGr = e.ctrlKey && e.altKey
 
+    if (e.ctrlKey && e.key === 'Backspace') {
+      e.preventDefault()
+      onKeystroke('CtrlBackspace')
+      playKeySound(soundMode, 'Backspace')
+      return
+    }
+
+if (!isAltGr && (e.ctrlKey || e.altKey)) return
     if (isPaused) {
       e.preventDefault()
       onResume()
+      return
+    }
+     if (typed.length >= targetCode.length) {
+      if (e.key === 'Enter') {
+        e.preventDefault()
+        onKeystroke('\n')
+        playKeySound(soundMode, '\n')
+      } else {
+        e.preventDefault()
+      }
       return
     }
 

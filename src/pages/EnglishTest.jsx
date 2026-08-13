@@ -640,8 +640,16 @@ export default function EnglishTest() {
             <TypedTranscript targetCode={test.text} typed={engine.typed} mistakes={engine.mistakes} />
 
             <div className="flex gap-3">
-              <button
+             <button
                 onClick={newTest}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault()
+                    newTest()
+                  } else {
+                    e.preventDefault()
+                  }
+                }}
                 autoFocus
                 title="Press Enter for a new test"
                 className="px-4 py-2 rounded-md text-sm font-semibold text-[#14151a] hover:opacity-90 transition-opacity shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-transform"
