@@ -26,7 +26,7 @@ export default function LessonList({ lessons, accent, progress, onSelectLesson }
               <span className="text-text-faint text-xs font-mono">{tierLessons.length}</span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 items-start">
               {tierLessons.map((lesson) => {
                 globalNumber += 1
                 return (
@@ -35,7 +35,7 @@ export default function LessonList({ lessons, accent, progress, onSelectLesson }
                     lesson={lesson}
                     number={globalNumber}
                     accent={accent}
-                    progress={progress?.[lesson.id]}
+                    progressEntry={progress?.[lesson.id]}
                     onClick={() => onSelectLesson(lesson)}
                   />
                 )

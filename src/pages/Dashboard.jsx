@@ -26,7 +26,7 @@ export default function Dashboard() {
 
   return (
     <div className="flex-1 overflow-auto">
-      <div className="px-5 py-6 sm:px-8 max-w-6xl mx-auto">
+     <div className="w-full px-5 py-6 sm:px-10">
         <div className="mb-6">
           <div className="flex items-baseline gap-3">
           <h2 className="font-display font-semibold text-3xl text-text">{language.name}</h2>

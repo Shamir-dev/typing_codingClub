@@ -12,7 +12,7 @@ export default function Layout() {
   const navigate = useNavigate()
   const location = useLocation()
   const { theme, toggleTheme, soundMode, setSoundMode, cursorStyle, setCursorStyle } = useSettings()
-  const { progress, recordCompletion } = useProgress()
+  const { progress, recordCompletion, recordBlindAttempt } = useProgress()
   const { attempts, blindAttempts, attemptsForLanguage, blindAttemptsForLanguage, logAttempt, logBlindAttempt } = useAttemptsLog()
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const [showStreaks, setShowStreaks] = useState(false)
@@ -72,7 +72,7 @@ export default function Layout() {
           </div>
 
           <div className="h-full overflow-y-auto">
-            <Outlet context={{ progress, recordCompletion, attempts, blindAttempts, attemptsForLanguage, blindAttemptsForLanguage, logAttempt, logBlindAttempt, soundMode, cursorStyle }} />
+            <Outlet context={{ progress, recordCompletion, recordBlindAttempt, attempts, blindAttempts, attemptsForLanguage, blindAttemptsForLanguage, logAttempt, logBlindAttempt, soundMode, cursorStyle }} />
           </div>
         </main>
       </div>

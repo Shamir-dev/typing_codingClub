@@ -1,57 +1,133 @@
-import { Sparkles, Flame, Trophy, Check } from 'lucide-react'
+import { Trophy, BookOpen, Check, Sparkles, Zap, Flame, Lock } from 'lucide-react'
+import StarRating from '../shared/StarRating'
+import { getBlindModeDisplay, getLessonStarDisplay } from '../../hooks/useProgress'
 
-const DIFFICULTY_META = {
-  easy: { icon: Sparkles, color: 'var(--color-correct)' },
-  medium: { icon: Flame, color: '#e0983d' },
-  hard: { icon: Trophy, color: 'var(--color-incorrect)' },
+// Save to: src/components/dashboard/LessonCard.jsx
+
+const DIFFICULTY_STYLE = {
+  easy: { Icon: Sparkles, color: 'text-emerald-500', border: 'border-emerald-500/60' },
+  medium: { Icon: Zap, color: 'text-amber-500', border: 'border-amber-500/60' },
+  hard: { Icon: Flame, color: 'text-red-500', border: 'border-red-500/60' },
 }
 
-const COMPLETE_GOLD = '#f0b429'
+function BlindModeRow({ label, icon: Icon, display }) {
+  if (!display.unlocked) {
+    return (
+      <div className="flex items-center justify-between py-1">
+        <span className="flex items-center gap-1.5 text-[12px] text-text-faint">
+          <Icon size={14} className="text-text-faint" />
+          {label}
+        </span>
+        <span className="flex items-center gap-1 text-[12px] text-text-faint">
+          <Lock size={11} /> Not Unlocked
+        </span>
+      </div>
+    )
+  }
 
-export default function LessonCard({ lesson, number, accent, progress, onClick }) {
-  const meta = DIFFICULTY_META[lesson.difficulty] || DIFFICULTY_META.easy
-  const Icon = meta.icon
-  const done = progress?.completed
+  if (!display.attempted) {
+    return (
+      <div className="flex items-center justify-between py-1">
+        <span className="flex items-center gap-1.5 text-[12px] text-text-muted">
+          <Icon size={14} className="text-text-muted" />
+          {label}
+        </span>
+        <span className="text-[12px] text-text-faint">Available</span>
+      </div>
+    )
+  }
+
+  return (
+    <div className="flex items-center justify-between py-1">
+      <span className="flex items-center gap-1.5 text-[12px] text-text-muted">
+        <Icon size={14} className={display.passed ? 'text-accent-purple' : 'text-red-400'} />
+        {label}
+      </span>
+      <span className="flex items-center gap-2">
+        <span className={`text-[12px] font-mono font-semibold ${display.passed ? 'text-emerald-500' : 'text-red-400'}`}>
+          {display.accuracy.toFixed(0)}%
+        </span>
+        <StarRating stars={display.stars} passed={display.passed} size={12} />
+      </span>
+    </div>
+  )
+}
+
+export default function LessonCard({ lesson, index, number, progressEntry, onClick }) {
+  const isCompleted = !!progressEntry?.completed
+  const lessonStars = getLessonStarDisplay(progressEntry)
+  const proDisplay = getBlindModeDisplay(progressEntry, 'pro')
+  const learnerDisplay = getBlindModeDisplay(progressEntry, 'learner')
+
+  // Defensive numbering: accept `number` directly, fall back to a valid
+  // numeric `index`, then to lesson.number/lesson.order if the caller
+  // supplies neither, then finally a plain dash rather than "NaN".
+  const diffStyle = DIFFICULTY_STYLE[lesson?.difficulty] ?? DIFFICULTY_STYLE.easy
+  const DiffIcon = diffStyle.Icon
+
+  const rawNumber = number ?? (typeof index === 'number' ? index + 1 : undefined) ?? lesson?.number ?? lesson?.order
+  const displayNumber = typeof rawNumber === 'number' && !Number.isNaN(rawNumber)
+    ? String(rawNumber).padStart(2, '0')
+    : '—'
 
   return (
     <button
       onClick={onClick}
-      className="card-lift relative bg-panel border border-line rounded-2xl p-4 text-left flex flex-col items-center gap-2 w-full"
-      style={{ boxShadow: '0 2px 8px -4px rgba(0,0,0,0.12)' }}
+      className="w-full self-start text-left rounded-xl border border-line bg-panel hover:border-accent-purple/40 transition-colors p-3.5 flex flex-col min-h-70"
     >
-      <span className="absolute top-3 left-3.5 text-lg font-display font-bold text-text-faint">
-        {number}
-      </span>
-
-      {done ? (
-        // Completion is the primary signal on this card once earned —
-        // a large, unmistakable gold badge at center reads at a glance
-        // across a full grid, rather than a small corner tick a user
-        // has to look for.
-        <div
-          className="w-20 h-20 rounded-full flex items-center justify-center mt-4 shadow-md ring-4"
-          style={{ backgroundColor: COMPLETE_GOLD, '--tw-ring-color': `${COMPLETE_GOLD}30` }}
+      <div className="flex items-start justify-between mb-2">
+        <span className="text-[13px] font-mono font-bold text-text-faint">
+          {displayNumber}
+        </span>
+        <span
+          className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${
+            isCompleted
+              ? 'bg-emerald-500/15 text-emerald-500'
+              : 'bg-panel-raised text-text-faint'
+          }`}
         >
-          <Check size={38} color="#ffffff" strokeWidth={3.5} />
-        </div>
-      ) : (
+          {isCompleted ? 'Completed' : 'Available'}
+        </span>
+      </div>
+
+      <div className="flex flex-col items-center text-center mb-2">
         <div
-          className="w-20 h-20 rounded-full flex items-center justify-center mt-4 border-2 shadow-sm"
-          style={{ backgroundColor: `${meta.color}22`, borderColor: `${meta.color}55` }}
+          className={`h-13 w-13 rounded-full flex items-center justify-center mb-2 ${
+            isCompleted ? 'bg-amber-400' : `border-2 ${diffStyle.border} bg-panel-raised`
+          }`}
         >
-          <Icon size={36} color={meta.color} strokeWidth={2.25} />
+          {isCompleted ? (
+            <Check size={35} className="text-white" strokeWidth={3} />
+          ) : (
+            <DiffIcon size={65} className={diffStyle.color} />
+          )}
         </div>
-      )}
+        <h3 className="font-semibold text-text text-[14px] leading-snug">{lesson.title}</h3>
 
-      <span className="text-xs font-medium text-text text-center leading-snug mt-1">
-        {lesson.title}
-      </span>
+        {lessonStars.attempted && (
+          <>
+            <p className="text-[21px] text-text-faint mt-0.5 flex items-center gap-1.5">
+              <span className="text-emerald-500 font-mono">{lessonStars.wpm} WPM</span>
+              <span className="text-line">|</span>
+              <span>{lessonStars.accuracy?.toFixed(0)}% </span>
+            </p>
+            <div className="mt-1">
+              <StarRating stars={lessonStars.stars} passed={lessonStars.passed} size={17} />
+            </div>
+          </>
+        )}
+        {!lessonStars.attempted && (
+          <p className="text-[12px] text-text-faint mt-0.5">{lesson.timeTargetSec}s</p>
+        )}
+      </div>
 
-      {done ? (
-        <span className="text-[11px] font-mono text-correct">{progress.bestWpm} wpm</span>
-      ) : (
-        <span className="text-[11px] font-mono text-text-faint">{lesson.timeTargetSec}s</span>
-      )}
+      <div className=" border-t border-line pt-2 mt-4">
+        <p className="text-[10px] font-semibold uppercase tracking-wide text-text-faint mb-0.5">
+          Blind Test 
+        </p>
+        <BlindModeRow label="Pro " icon={Trophy} display={proDisplay} />
+        <BlindModeRow label="Learner " icon={BookOpen} display={learnerDisplay} />
+      </div>
     </button>
   )
 }
