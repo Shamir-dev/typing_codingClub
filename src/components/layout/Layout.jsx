@@ -45,14 +45,14 @@ export default function Layout() {
         />
 
         <main className="relative flex-1 h-full min-w-0 overflow-hidden rounded-[24px] border border-line bg-panel/30 backdrop-blur-sm">
-          <div className="absolute right-5 top-4 z-20 flex items-center gap-3">
+          <div className="absolute right-5 top-3 z-20 flex items-center gap-3">
             <button
               onClick={() => setShowStreaks((value) => !value)}
               aria-expanded={showStreaks}
-              className="hidden sm:flex items-center gap-2 rounded-xl border border-line bg-panel-raised/80 px-3 py-2 text-left shadow-sm hover:border-accent-purple/60 transition-colors"
+              className="hidden sm:flex items-center gap-2 rounded-xl border border-line bg-panel-raised/50 px-3 py-2 text-left shadow-sm hover:border-accent-purple/60 transition-colors"
             >
               <Flame size={22} className="text-orange-400 fill-orange-400/20" />
-              <div className="leading-tight"><div className="text-sm font-semibold text-text">{streaks.current}</div><div className="text-[10px] text-text-faint">Day streak</div></div>
+              <div className="leading-tight"><div className="text-md font-semibold text-text">{streaks.current}</div><div className="text-[12px] text-text-faint">Day streak</div></div>
             </button>
             {showStreaks && (
               <div className="absolute right-0 top-[52px] z-30 w-72 rounded-xl border border-line bg-panel p-4 shadow-2xl animate-pop-in">

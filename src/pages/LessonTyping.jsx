@@ -70,17 +70,17 @@ export default function LessonTyping() {
   }
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full py-15">
       <div className="w-full max-w-5xl mx-auto px-5 sm:px-8 pt-3 pb-4 flex items-center gap-3">
-        <button onClick={() => navigate(`/${languageId}`)} className="text-text-faint hover:text-text text-sm transition-colors">
+        <button onClick={() => navigate(`/${languageId}`)} className="text-text-faint hover:text-text text-md transition-colors">
           ← back
         </button>
-        <h2 className="font-display font-medium text-text text-sm">{lesson.title}</h2>
+        <h2 className="font-display font-medium text-text text-md">{lesson.title}</h2>
 
         <div className="ml-auto relative flex items-center gap-2">
           <button
             onClick={handleRetry}
-            className="text-xs font-mono text-text-faint hover:text-text border border-line rounded-md px-2.5 py-1 transition-colors hover:border-text-faint"
+            className="text-md font-mono text-text-faint hover:text-text border border-line rounded-md px-2.5 py-1 transition-colors hover:border-text-faint"
           >
             ↺ retry
           </button>

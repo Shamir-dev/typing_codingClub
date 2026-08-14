@@ -1,7 +1,9 @@
 import {
   Home, Keyboard, VolumeX, X, PanelLeftOpen, ListChecks, Type,
-  Braces, FileCode2, Hash, Coffee, Cpu, Palette, Atom,
+  Braces, FileCode2, Hash, Coffee, Cpu, Palette, Atom, User,
 } from 'lucide-react'
+import { Link, useLocation } from 'react-router-dom'
+
 import { LANGUAGES } from '../../content/languages'
 import { AVAILABLE_LANGUAGE_IDS } from '../../content/allLessons'
 
@@ -48,6 +50,9 @@ export default function Sidebar({
   collapsed,
   onToggleCollapsed,
 }) {
+  const location = useLocation()
+  const isAboutActive = location.pathname === '/about-creator'
+
   if (collapsed) {
     return (
       <div className="w-10 shrink-0 border-r border-line bg-panel h-full flex flex-col items-center pt-4">
@@ -135,6 +140,15 @@ export default function Sidebar({
           <Type size={15} className="shrink-0" style={isEnglishActive ? { color: 'var(--color-accent-purple)' } : undefined} />
           <span className="font-mono font-bold">English Practice</span>
         </button>
+        <Link
+          to="/about-creator"
+          style={isAboutActive ? { borderColor: 'color-mix(in srgb, var(--color-accent-purple) 45%, transparent)', backgroundColor: 'color-mix(in srgb, var(--color-accent-purple) 10%, transparent)' } : undefined}
+          className={`mx-3 w-[calc(100%-1.5rem)] flex items-center gap-3 px-3 py-2.5 text-[15px] text-left border rounded-lg transition-all duration-200
+            ${isAboutActive ? 'text-text font-bold' : 'border-transparent text-text-muted hover:text-text hover:bg-panel-raised/60'}`}
+        >
+          <User size={15} className="shrink-0" style={isAboutActive ? { color: 'var(--color-accent-purple)' } : undefined} />
+          <span className="font-mono font-bold">About Creator</span>
+        </Link>
       </nav>
 
       <div className="border-t border-line px-4 py-7 space-y-2">

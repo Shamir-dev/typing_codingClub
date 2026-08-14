@@ -738,5 +738,2890 @@
 "head",
 "meta"
 ]
-}
+},
+  {
+    "id": "html-easy-021",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Basic Paragraph",
+    "prompt": "Type a simple HTML paragraph element.",
+    "approach": {
+      "steps": [
+        "Open a <p> tag",
+        "Write the text content",
+        "Close the tag with </p>"
+      ],
+      "example": "<p>This is a paragraph.</p>"
+    },
+    "code": "<p>\n  Learning to type HTML tags builds muscle memory.\n</p>",
+    "timeTargetSec": 25,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "The <p> tag defines a paragraph",
+        "Content sits between opening and closing tags",
+        "Indentation improves readability but isn't required"
+      ],
+      "commonMistakes": [
+        "Forgetting the closing </p> tag",
+        "Mismatched indentation"
+      ]
+    },
+    "tags": [
+      "html",
+      "basics",
+      "paragraph"
+    ]
+  },
+  {
+    "id": "html-easy-022",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Unordered List",
+    "prompt": "Type an unordered list with three items.",
+    "approach": {
+      "steps": [
+        "Open a <ul> tag",
+        "Add three <li> items",
+        "Close the <ul> tag"
+      ],
+      "example": "<ul><li>One</li></ul>"
+    },
+    "code": "<ul>\n  <li>HTML</li>\n  <li>CSS</li>\n  <li>JavaScript</li>\n</ul>",
+    "timeTargetSec": 30,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "<ul> creates an unordered (bulleted) list",
+        "Each <li> is a list item",
+        "Lists must be properly nested"
+      ],
+      "commonMistakes": [
+        "Placing text outside <li> tags",
+        "Forgetting to close <ul>"
+      ]
+    },
+    "tags": [
+      "html",
+      "basics",
+      "lists"
+    ]
+  },
+  {
+    "id": "html-easy-023",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Ordered List",
+    "prompt": "Type an ordered list with three steps.",
+    "approach": {
+      "steps": [
+        "Open <ol>",
+        "Add <li> items",
+        "Close </ol>"
+      ],
+      "example": "<ol><li>Step</li></ol>"
+    },
+    "code": "<ol>\n  <li>Open the editor</li>\n  <li>Write the code</li>\n  <li>Save the file</li>\n</ol>",
+    "timeTargetSec": 30,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "<ol> creates a numbered list",
+        "Browsers auto-number each <li>"
+      ],
+      "commonMistakes": [
+        "Using <ul> instead of <ol>",
+        "Missing closing tags"
+      ]
+    },
+    "tags": [
+      "html",
+      "lists"
+    ]
+  },
+  {
+    "id": "html-easy-024",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Anchor Link",
+    "prompt": "Type a hyperlink to an external site.",
+    "approach": {
+      "steps": [
+        "Open <a> with href",
+        "Add link text",
+        "Close </a>"
+      ],
+      "example": "<a href=\"#\">Link</a>"
+    },
+    "code": "<a href=\"https://developer.mozilla.org\">MDN Web Docs</a>",
+    "timeTargetSec": 22,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "href attribute defines the destination",
+        "Text between tags is clickable"
+      ],
+      "commonMistakes": [
+        "Forgetting the href attribute",
+        "Unquoted attribute values"
+      ]
+    },
+    "tags": [
+      "html",
+      "links"
+    ]
+  },
+  {
+    "id": "html-easy-025",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Image Tag",
+    "prompt": "Type an image element with alt text.",
+    "approach": {
+      "steps": [
+        "Open <img> tag",
+        "Add src and alt attributes",
+        "Self-close the tag"
+      ],
+      "example": "<img src=\"a.png\" alt=\"A\">"
+    },
+    "code": "<img src=\"logo.png\" alt=\"Company logo\" width=\"120\">",
+    "timeTargetSec": 25,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "<img> is a self-closing (void) element",
+        "alt text aids accessibility"
+      ],
+      "commonMistakes": [
+        "Missing alt attribute",
+        "Adding a closing tag by mistake"
+      ]
+    },
+    "tags": [
+      "html",
+      "media"
+    ]
+  },
+  {
+    "id": "html-easy-026",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Div Container",
+    "prompt": "Type a div wrapping a heading and paragraph.",
+    "approach": {
+      "steps": [
+        "Open <div>",
+        "Add heading and paragraph inside",
+        "Close </div>"
+      ],
+      "example": "<div><h2>Title</h2></div>"
+    },
+    "code": "<div class=\"card\">\n  <h2>Welcome</h2>\n  <p>Glad you are here.</p>\n</div>",
+    "timeTargetSec": 35,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "<div> is a generic block container",
+        "class attribute enables styling"
+      ],
+      "commonMistakes": [
+        "Forgetting to close nested tags",
+        "Wrong indentation of children"
+      ]
+    },
+    "tags": [
+      "html",
+      "layout"
+    ]
+  },
+  {
+    "id": "html-easy-027",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Simple Table",
+    "prompt": "Type a table with a header row and one data row.",
+    "approach": {
+      "steps": [
+        "Open <table>",
+        "Add <tr> with <th> cells",
+        "Add <tr> with <td> cells",
+        "Close </table>"
+      ],
+      "example": "<table><tr><th>H</th></tr></table>"
+    },
+    "code": "<table>\n  <tr>\n    <th>Name</th>\n    <th>Score</th>\n  </tr>\n  <tr>\n    <td>Alex</td>\n    <td>90</td>\n  </tr>\n</table>",
+    "timeTargetSec": 45,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "<th> marks header cells, <td> marks data cells",
+        "<tr> groups a row"
+      ],
+      "commonMistakes": [
+        "Mixing up th and td",
+        "Unclosed tr tags"
+      ]
+    },
+    "tags": [
+      "html",
+      "tables"
+    ]
+  },
+  {
+    "id": "html-easy-028",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Form Input",
+    "prompt": "Type a basic text input with a label.",
+    "approach": {
+      "steps": [
+        "Add <label> linked with for/id",
+        "Add <input> with matching id"
+      ],
+      "example": "<label for=\"n\">Name</label><input id=\"n\">"
+    },
+    "code": "<label for=\"email\">Email</label>\n<input type=\"email\" id=\"email\" name=\"email\">",
+    "timeTargetSec": 30,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "for/id pairing links label to input",
+        "type attribute defines input behavior"
+      ],
+      "commonMistakes": [
+        "Mismatched for and id values",
+        "Missing type attribute"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-easy-029",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Button Element",
+    "prompt": "Type a clickable button.",
+    "approach": {
+      "steps": [
+        "Open <button>",
+        "Add label text",
+        "Close </button>"
+      ],
+      "example": "<button>Click</button>"
+    },
+    "code": "<button type=\"button\">Submit</button>",
+    "timeTargetSec": 18,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "type=\"button\" prevents accidental form submits",
+        "Button text sits between tags"
+      ],
+      "commonMistakes": [
+        "Omitting the type attribute",
+        "Using <div> instead of <button>"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-easy-030",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Semantic Header",
+    "prompt": "Type a page header with a nav inside.",
+    "approach": {
+      "steps": [
+        "Open <header>",
+        "Add <nav> with a link",
+        "Close </header>"
+      ],
+      "example": "<header><nav></nav></header>"
+    },
+    "code": "<header>\n  <nav>\n    <a href=\"/\">Home</a>\n  </nav>\n</header>",
+    "timeTargetSec": 35,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "<header> and <nav> are semantic landmarks",
+        "Improves accessibility and SEO"
+      ],
+      "commonMistakes": [
+        "Using <div> instead of semantic tags",
+        "Missing closing tags"
+      ]
+    },
+    "tags": [
+      "html",
+      "semantics"
+    ]
+  },
+  {
+    "id": "html-easy-031",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Section with Heading",
+    "prompt": "Type a section element with a heading.",
+    "approach": {
+      "steps": [
+        "Open <section>",
+        "Add <h2> heading",
+        "Close </section>"
+      ],
+      "example": "<section><h2>Title</h2></section>"
+    },
+    "code": "<section>\n  <h2>About Us</h2>\n  <p>We build things.</p>\n</section>",
+    "timeTargetSec": 32,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "<section> groups related content",
+        "Should usually have a heading"
+      ],
+      "commonMistakes": [
+        "Using section without a heading",
+        "Nesting errors"
+      ]
+    },
+    "tags": [
+      "html",
+      "semantics"
+    ]
+  },
+  {
+    "id": "html-easy-032",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Footer Element",
+    "prompt": "Type a page footer with copyright text.",
+    "approach": {
+      "steps": [
+        "Open <footer>",
+        "Add paragraph text",
+        "Close </footer>"
+      ],
+      "example": "<footer><p>\u00a9 2026</p></footer>"
+    },
+    "code": "<footer>\n  <p>&copy; 2026 ProCoder. All rights reserved.</p>\n</footer>",
+    "timeTargetSec": 25,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "<footer> marks the bottom section of a page",
+        "&copy; is an HTML entity"
+      ],
+      "commonMistakes": [
+        "Forgetting the semicolon in entities",
+        "Missing closing tag"
+      ]
+    },
+    "tags": [
+      "html",
+      "semantics"
+    ]
+  },
+  {
+    "id": "html-easy-033",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Line Break and HR",
+    "prompt": "Type text with a line break and horizontal rule.",
+    "approach": {
+      "steps": [
+        "Add text",
+        "Insert <br>",
+        "Add <hr>"
+      ],
+      "example": "Line1<br>Line2<hr>"
+    },
+    "code": "First line of text.<br>\nSecond line of text.\n<hr>",
+    "timeTargetSec": 20,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "<br> is a void line break element",
+        "<hr> renders a horizontal divider"
+      ],
+      "commonMistakes": [
+        "Adding a closing slash incorrectly",
+        "Overusing <br> for layout"
+      ]
+    },
+    "tags": [
+      "html",
+      "basics"
+    ]
+  },
+  {
+    "id": "html-easy-034",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Strong and Emphasis",
+    "prompt": "Type text using bold and italic semantic tags.",
+    "approach": {
+      "steps": [
+        "Wrap important text in <strong>",
+        "Wrap stressed text in <em>"
+      ],
+      "example": "<strong>Bold</strong> <em>Italic</em>"
+    },
+    "code": "<p><strong>Warning:</strong> <em>read carefully</em> before proceeding.</p>",
+    "timeTargetSec": 22,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "<strong> implies importance, <em> implies emphasis",
+        "Different from <b>/<i> semantically"
+      ],
+      "commonMistakes": [
+        "Using <b>/<i> when semantic meaning intended",
+        "Unclosed tags"
+      ]
+    },
+    "tags": [
+      "html",
+      "text"
+    ]
+  },
+  {
+    "id": "html-easy-035",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Blockquote",
+    "prompt": "Type a blockquote with a citation.",
+    "approach": {
+      "steps": [
+        "Open <blockquote>",
+        "Add quoted text",
+        "Close </blockquote>"
+      ],
+      "example": "<blockquote>Quote</blockquote>"
+    },
+    "code": "<blockquote cite=\"https://example.com\">\n  Code is read more often than it is written.\n</blockquote>",
+    "timeTargetSec": 30,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "<blockquote> marks an extended quotation",
+        "cite attribute references the source"
+      ],
+      "commonMistakes": [
+        "Using <q> for long quotes instead",
+        "Missing cite attribute"
+      ]
+    },
+    "tags": [
+      "html",
+      "text"
+    ]
+  },
+  {
+    "id": "html-easy-036",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Select Dropdown",
+    "prompt": "Type a select element with three options.",
+    "approach": {
+      "steps": [
+        "Open <select>",
+        "Add <option> elements",
+        "Close </select>"
+      ],
+      "example": "<select><option>A</option></select>"
+    },
+    "code": "<select name=\"lang\">\n  <option value=\"js\">JavaScript</option>\n  <option value=\"py\">Python</option>\n  <option value=\"cpp\">C++</option>\n</select>",
+    "timeTargetSec": 40,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "<select> creates a dropdown",
+        "value attribute sets submitted data"
+      ],
+      "commonMistakes": [
+        "Missing value attribute",
+        "Forgetting closing </select>"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-easy-037",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Checkbox Input",
+    "prompt": "Type a labeled checkbox.",
+    "approach": {
+      "steps": [
+        "Add <input type=checkbox>",
+        "Add matching <label>"
+      ],
+      "example": "<input type=\"checkbox\" id=\"c\"><label for=\"c\">Agree</label>"
+    },
+    "code": "<input type=\"checkbox\" id=\"terms\" name=\"terms\">\n<label for=\"terms\">I agree to the terms</label>",
+    "timeTargetSec": 28,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "checkbox inputs toggle a boolean value",
+        "Label improves click target and a11y"
+      ],
+      "commonMistakes": [
+        "Missing id/for linkage",
+        "Wrong input type"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-easy-038",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Radio Buttons",
+    "prompt": "Type two radio buttons in the same group.",
+    "approach": {
+      "steps": [
+        "Add two <input type=radio> with same name",
+        "Add labels for each"
+      ],
+      "example": "<input type=\"radio\" name=\"g\">"
+    },
+    "code": "<input type=\"radio\" id=\"yes\" name=\"answer\" value=\"yes\">\n<label for=\"yes\">Yes</label>\n<input type=\"radio\" id=\"no\" name=\"answer\" value=\"no\">\n<label for=\"no\">No</label>",
+    "timeTargetSec": 38,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Same name groups radio buttons",
+        "Only one in a group can be selected"
+      ],
+      "commonMistakes": [
+        "Different name values breaking grouping",
+        "Missing labels"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-easy-039",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Textarea",
+    "prompt": "Type a multi-line text input.",
+    "approach": {
+      "steps": [
+        "Open <textarea>",
+        "Set rows/cols",
+        "Close </textarea>"
+      ],
+      "example": "<textarea rows=\"2\"></textarea>"
+    },
+    "code": "<textarea id=\"msg\" rows=\"4\" cols=\"30\" placeholder=\"Type your message\"></textarea>",
+    "timeTargetSec": 30,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "<textarea> is not self-closing",
+        "placeholder shows hint text"
+      ],
+      "commonMistakes": [
+        "Self-closing the tag incorrectly",
+        "Confusing rows/cols with width/height"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-easy-040",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Meta Viewport",
+    "prompt": "Type a responsive viewport meta tag.",
+    "approach": {
+      "steps": [
+        "Open <meta>",
+        "Set name=viewport",
+        "Set content attribute"
+      ],
+      "example": "<meta name=\"viewport\" content=\"width=device-width\">"
+    },
+    "code": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+    "timeTargetSec": 28,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Viewport meta tag controls mobile scaling",
+        "Goes inside <head>"
+      ],
+      "commonMistakes": [
+        "Misspelling 'viewport'",
+        "Missing initial-scale"
+      ]
+    },
+    "tags": [
+      "html",
+      "head"
+    ]
+  },
+  {
+    "id": "html-easy-041",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Title and Charset",
+    "prompt": "Type the head section basics.",
+    "approach": {
+      "steps": [
+        "Add <meta charset>",
+        "Add <title>"
+      ],
+      "example": "<meta charset=\"UTF-8\"><title>Page</title>"
+    },
+    "code": "<meta charset=\"UTF-8\">\n<title>ProCoder Club</title>",
+    "timeTargetSec": 25,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "charset defines text encoding",
+        "<title> sets the browser tab text"
+      ],
+      "commonMistakes": [
+        "Missing charset meta tag",
+        "Forgetting closing </title>"
+      ]
+    },
+    "tags": [
+      "html",
+      "head"
+    ]
+  },
+  {
+    "id": "html-easy-042",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Ordered Nested List",
+    "prompt": "Type a nested list structure.",
+    "approach": {
+      "steps": [
+        "Open outer <ul>",
+        "Nest an inner <ul> inside an <li>",
+        "Close both lists"
+      ],
+      "example": "<ul><li>A<ul><li>B</li></ul></li></ul>"
+    },
+    "code": "<ul>\n  <li>Frontend\n    <ul>\n      <li>HTML</li>\n      <li>CSS</li>\n    </ul>\n  </li>\n</ul>",
+    "timeTargetSec": 40,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Nested lists go inside a parent <li>",
+        "Indentation clarifies structure"
+      ],
+      "commonMistakes": [
+        "Nesting <ul> outside of <li>",
+        "Broken indentation"
+      ]
+    },
+    "tags": [
+      "html",
+      "lists"
+    ]
+  },
+  {
+    "id": "html-easy-043",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Video Element",
+    "prompt": "Type a video element with controls.",
+    "approach": {
+      "steps": [
+        "Open <video>",
+        "Add src and controls attribute",
+        "Close </video>"
+      ],
+      "example": "<video src=\"a.mp4\" controls></video>"
+    },
+    "code": "<video src=\"demo.mp4\" controls width=\"320\">\n  Your browser does not support video.\n</video>",
+    "timeTargetSec": 32,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "controls attribute shows playback UI",
+        "Fallback text shown if unsupported"
+      ],
+      "commonMistakes": [
+        "Missing controls attribute",
+        "Forgetting fallback text"
+      ]
+    },
+    "tags": [
+      "html",
+      "media"
+    ]
+  },
+  {
+    "id": "html-easy-044",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Audio Element",
+    "prompt": "Type an audio element with controls.",
+    "approach": {
+      "steps": [
+        "Open <audio>",
+        "Add src and controls",
+        "Close </audio>"
+      ],
+      "example": "<audio src=\"a.mp3\" controls></audio>"
+    },
+    "code": "<audio src=\"track.mp3\" controls>\n  Your browser does not support audio.\n</audio>",
+    "timeTargetSec": 28,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "<audio> mirrors <video> API",
+        "controls exposes play/pause UI"
+      ],
+      "commonMistakes": [
+        "Missing src attribute",
+        "Wrong file reference"
+      ]
+    },
+    "tags": [
+      "html",
+      "media"
+    ]
+  },
+  {
+    "id": "html-easy-045",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Article Element",
+    "prompt": "Type a self-contained article block.",
+    "approach": {
+      "steps": [
+        "Open <article>",
+        "Add heading and paragraph",
+        "Close </article>"
+      ],
+      "example": "<article><h2>T</h2><p>P</p></article>"
+    },
+    "code": "<article>\n  <h2>Learning HTML</h2>\n  <p>HTML structures content on the web.</p>\n</article>",
+    "timeTargetSec": 35,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "<article> represents independent, reusable content",
+        "Should make sense standalone"
+      ],
+      "commonMistakes": [
+        "Using article for non-standalone content",
+        "Missing heading"
+      ]
+    },
+    "tags": [
+      "html",
+      "semantics"
+    ]
+  },
+  {
+    "id": "html-easy-046",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Aside Element",
+    "prompt": "Type a sidebar note using aside.",
+    "approach": {
+      "steps": [
+        "Open <aside>",
+        "Add related content",
+        "Close </aside>"
+      ],
+      "example": "<aside><p>Note</p></aside>"
+    },
+    "code": "<aside>\n  <p>Tip: practice daily for best results.</p>\n</aside>",
+    "timeTargetSec": 25,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "<aside> marks tangential content",
+        "Often styled as a sidebar"
+      ],
+      "commonMistakes": [
+        "Using aside for main content",
+        "Missing closing tag"
+      ]
+    },
+    "tags": [
+      "html",
+      "semantics"
+    ]
+  },
+  {
+    "id": "html-easy-047",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Figure and Figcaption",
+    "prompt": "Type an image with a caption.",
+    "approach": {
+      "steps": [
+        "Open <figure>",
+        "Add <img> and <figcaption>",
+        "Close </figure>"
+      ],
+      "example": "<figure><img><figcaption>C</figcaption></figure>"
+    },
+    "code": "<figure>\n  <img src=\"chart.png\" alt=\"Growth chart\">\n  <figcaption>Monthly growth chart</figcaption>\n</figure>",
+    "timeTargetSec": 38,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "<figure> groups media with a caption",
+        "figcaption can appear before or after"
+      ],
+      "commonMistakes": [
+        "Missing alt text",
+        "figcaption outside figure"
+      ]
+    },
+    "tags": [
+      "html",
+      "media"
+    ]
+  },
+  {
+    "id": "html-easy-048",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Details and Summary",
+    "prompt": "Type a collapsible details element.",
+    "approach": {
+      "steps": [
+        "Open <details>",
+        "Add <summary>",
+        "Add hidden content",
+        "Close </details>"
+      ],
+      "example": "<details><summary>S</summary>Text</details>"
+    },
+    "code": "<details>\n  <summary>Click to expand</summary>\n  <p>Hidden content revealed here.</p>\n</details>",
+    "timeTargetSec": 35,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "<details> is natively collapsible, no JS needed",
+        "<summary> is the always-visible label"
+      ],
+      "commonMistakes": [
+        "Missing summary element",
+        "Assuming JS is required"
+      ]
+    },
+    "tags": [
+      "html",
+      "interactive"
+    ]
+  },
+  {
+    "id": "html-easy-049",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Iframe Embed",
+    "prompt": "Type an iframe embedding another page.",
+    "approach": {
+      "steps": [
+        "Open <iframe>",
+        "Add src, width, height",
+        "Close </iframe>"
+      ],
+      "example": "<iframe src=\"a.html\"></iframe>"
+    },
+    "code": "<iframe src=\"https://example.com\" width=\"300\" height=\"200\" title=\"Example\"></iframe>",
+    "timeTargetSec": 32,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "iframe embeds another document",
+        "title attribute aids accessibility"
+      ],
+      "commonMistakes": [
+        "Missing title attribute",
+        "Forgetting closing tag"
+      ]
+    },
+    "tags": [
+      "html",
+      "embedding"
+    ]
+  },
+  {
+    "id": "html-easy-050",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Comment Syntax",
+    "prompt": "Type an HTML comment around a block.",
+    "approach": {
+      "steps": [
+        "Open <!--",
+        "Add comment text",
+        "Close with -->"
+      ],
+      "example": "<!-- comment -->"
+    },
+    "code": "<!-- TODO: replace this placeholder heading -->\n<h1>Placeholder</h1>",
+    "timeTargetSec": 20,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Comments are not rendered by the browser",
+        "Useful for notes and disabling code"
+      ],
+      "commonMistakes": [
+        "Forgetting the closing -->",
+        "Nesting comments"
+      ]
+    },
+    "tags": [
+      "html",
+      "basics"
+    ]
+  },
+  {
+    "id": "html-easy-051",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Data Attributes",
+    "prompt": "Type an element with a custom data attribute.",
+    "approach": {
+      "steps": [
+        "Add data-* attribute to an element",
+        "Use it to store custom info"
+      ],
+      "example": "<div data-id=\"1\"></div>"
+    },
+    "code": "<li data-status=\"completed\" data-id=\"42\">Task item</li>",
+    "timeTargetSec": 30,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "data-* attributes store custom data",
+        "Accessible via JS dataset API"
+      ],
+      "commonMistakes": [
+        "Using non-data-prefixed custom attributes",
+        "Typos in attribute names"
+      ]
+    },
+    "tags": [
+      "html",
+      "attributes"
+    ]
+  },
+  {
+    "id": "html-easy-052",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "easy",
+    "title": "Progress Bar",
+    "prompt": "Type a native progress element.",
+    "approach": {
+      "steps": [
+        "Open <progress>",
+        "Set value and max",
+        "Close </progress>"
+      ],
+      "example": "<progress value=\"50\" max=\"100\"></progress>"
+    },
+    "code": "<progress value=\"70\" max=\"100\">70%</progress>",
+    "timeTargetSec": 25,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "<progress> shows completion of a task",
+        "Fallback text shown if unsupported"
+      ],
+      "commonMistakes": [
+        "Missing max attribute",
+        "Value exceeding max"
+      ]
+    },
+    "tags": [
+      "html",
+      "interactive"
+    ]
+  },
+  {
+    "id": "html-medium-053",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Registration Form Skeleton",
+    "prompt": "Type a form with name, email, and submit button.",
+    "approach": {
+      "steps": [
+        "Open <form>",
+        "Add labeled text and email inputs",
+        "Add submit button",
+        "Close </form>"
+      ],
+      "example": "<form><input type=\"text\"></form>"
+    },
+    "code": "<form action=\"/register\" method=\"post\">\n  <label for=\"name\">Name</label>\n  <input type=\"text\" id=\"name\" name=\"name\" required>\n\n  <label for=\"email\">Email</label>\n  <input type=\"email\" id=\"email\" name=\"email\" required>\n\n  <button type=\"submit\">Register</button>\n</form>",
+    "timeTargetSec": 55,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "action/method define where and how data is sent",
+        "required enforces client-side validation"
+      ],
+      "commonMistakes": [
+        "Missing action/method attributes",
+        "Forgetting required on mandatory fields"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-medium-054",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Navigation Bar with Multiple Links",
+    "prompt": "Type a nav bar with an unordered list of links.",
+    "approach": {
+      "steps": [
+        "Open <nav>",
+        "Add <ul> with several <li><a> links",
+        "Close </nav>"
+      ],
+      "example": "<nav><ul><li><a href=\"#\">Home</a></li></ul></nav>"
+    },
+    "code": "<nav>\n  <ul>\n    <li><a href=\"/\">Home</a></li>\n    <li><a href=\"/about\">About</a></li>\n    <li><a href=\"/contact\">Contact</a></li>\n  </ul>\n</nav>",
+    "timeTargetSec": 50,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Lists inside nav are a common accessible pattern",
+        "Each link should describe its destination"
+      ],
+      "commonMistakes": [
+        "Skipping the list structure",
+        "Vague link text like 'click here'"
+      ]
+    },
+    "tags": [
+      "html",
+      "navigation"
+    ]
+  },
+  {
+    "id": "html-medium-055",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Definition List",
+    "prompt": "Type a definition list of terms and descriptions.",
+    "approach": {
+      "steps": [
+        "Open <dl>",
+        "Add <dt>/<dd> pairs",
+        "Close </dl>"
+      ],
+      "example": "<dl><dt>Term</dt><dd>Def</dd></dl>"
+    },
+    "code": "<dl>\n  <dt>HTML</dt>\n  <dd>Markup language for structuring web content.</dd>\n  <dt>CSS</dt>\n  <dd>Stylesheet language for presentation.</dd>\n</dl>",
+    "timeTargetSec": 45,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "<dt> is the term, <dd> is its description",
+        "Multiple dd can follow one dt"
+      ],
+      "commonMistakes": [
+        "Mismatched dt/dd pairs",
+        "Using ul instead for term-definition data"
+      ]
+    },
+    "tags": [
+      "html",
+      "lists"
+    ]
+  },
+  {
+    "id": "html-medium-056",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Table with Header, Body, Footer",
+    "prompt": "Type a table using thead/tbody/tfoot.",
+    "approach": {
+      "steps": [
+        "Open <table>",
+        "Add <thead> with header row",
+        "Add <tbody> with data rows",
+        "Add <tfoot> with totals",
+        "Close </table>"
+      ],
+      "example": "<table><thead></thead><tbody></tbody></table>"
+    },
+    "code": "<table>\n  <thead>\n    <tr><th>Item</th><th>Price</th></tr>\n  </thead>\n  <tbody>\n    <tr><td>Book</td><td>$10</td></tr>\n    <tr><td>Pen</td><td>$2</td></tr>\n  </tbody>\n  <tfoot>\n    <tr><td>Total</td><td>$12</td></tr>\n  </tfoot>\n</table>",
+    "timeTargetSec": 70,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "thead/tbody/tfoot group table sections semantically",
+        "Improves styling and accessibility hooks"
+      ],
+      "commonMistakes": [
+        "Omitting tbody",
+        "Wrong nesting order of sections"
+      ]
+    },
+    "tags": [
+      "html",
+      "tables"
+    ]
+  },
+  {
+    "id": "html-medium-057",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Form with Fieldset and Legend",
+    "prompt": "Type a grouped form section using fieldset.",
+    "approach": {
+      "steps": [
+        "Open <fieldset>",
+        "Add <legend>",
+        "Add grouped inputs",
+        "Close </fieldset>"
+      ],
+      "example": "<fieldset><legend>G</legend></fieldset>"
+    },
+    "code": "<fieldset>\n  <legend>Contact Preferences</legend>\n  <input type=\"checkbox\" id=\"email-opt\" name=\"email-opt\">\n  <label for=\"email-opt\">Email me updates</label>\n</fieldset>",
+    "timeTargetSec": 50,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "fieldset groups related form controls",
+        "legend labels the group for screen readers"
+      ],
+      "commonMistakes": [
+        "Missing legend",
+        "Using div instead of fieldset for grouping"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-medium-058",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Responsive Picture Element",
+    "prompt": "Type a picture element with multiple sources.",
+    "approach": {
+      "steps": [
+        "Open <picture>",
+        "Add <source> variants",
+        "Add fallback <img>",
+        "Close </picture>"
+      ],
+      "example": "<picture><source><img></picture>"
+    },
+    "code": "<picture>\n  <source media=\"(min-width: 600px)\" srcset=\"large.jpg\">\n  <source media=\"(max-width: 599px)\" srcset=\"small.jpg\">\n  <img src=\"small.jpg\" alt=\"Responsive banner\">\n</picture>",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Browser picks the first matching source",
+        "img is required as fallback"
+      ],
+      "commonMistakes": [
+        "Missing fallback img",
+        "Wrong media query order"
+      ]
+    },
+    "tags": [
+      "html",
+      "media"
+    ]
+  },
+  {
+    "id": "html-medium-059",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Table with Colspan/Rowspan",
+    "prompt": "Type a table using merged cells.",
+    "approach": {
+      "steps": [
+        "Open <table>",
+        "Add a header cell with colspan",
+        "Add a data cell with rowspan",
+        "Close </table>"
+      ],
+      "example": "<table><tr><th colspan=\"2\">H</th></tr></table>"
+    },
+    "code": "<table>\n  <tr>\n    <th colspan=\"2\">Quarter Summary</th>\n  </tr>\n  <tr>\n    <td rowspan=\"2\">Q1</td>\n    <td>Jan</td>\n  </tr>\n  <tr>\n    <td>Feb</td>\n  </tr>\n</table>",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "colspan merges columns, rowspan merges rows",
+        "Cell counts per row must still stay consistent"
+      ],
+      "commonMistakes": [
+        "Miscounting resulting cells per row",
+        "Using colspan/rowspan without a numeric value"
+      ]
+    },
+    "tags": [
+      "html",
+      "tables"
+    ]
+  },
+  {
+    "id": "html-medium-060",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Accessible Modal Skeleton",
+    "prompt": "Type a basic accessible dialog structure.",
+    "approach": {
+      "steps": [
+        "Open <div role=\"dialog\">",
+        "Add aria-labelledby and aria-modal",
+        "Add heading and close button"
+      ],
+      "example": "<div role=\"dialog\" aria-modal=\"true\"></div>"
+    },
+    "code": "<div role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"dialog-title\">\n  <h2 id=\"dialog-title\">Confirm Action</h2>\n  <p>Are you sure you want to continue?</p>\n  <button type=\"button\">Close</button>\n</div>",
+    "timeTargetSec": 65,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "role=dialog and aria-modal signal a modal to assistive tech",
+        "aria-labelledby links the heading as the accessible name"
+      ],
+      "commonMistakes": [
+        "Missing aria-modal",
+        "Heading id not referenced by aria-labelledby"
+      ]
+    },
+    "tags": [
+      "html",
+      "accessibility"
+    ]
+  },
+  {
+    "id": "html-medium-061",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Form Validation Attributes",
+    "prompt": "Type inputs demonstrating min, max, and pattern.",
+    "approach": {
+      "steps": [
+        "Add number input with min/max",
+        "Add text input with pattern"
+      ],
+      "example": "<input type=\"number\" min=\"1\" max=\"10\">"
+    },
+    "code": "<input type=\"number\" id=\"qty\" min=\"1\" max=\"10\" required>\n<input type=\"text\" id=\"zip\" pattern=\"[0-9]{5}\" title=\"Five digit zip code\">",
+    "timeTargetSec": 55,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "min/max constrain numeric ranges",
+        "pattern applies a regex constraint to text input"
+      ],
+      "commonMistakes": [
+        "Invalid regex in pattern",
+        "Forgetting the title attribute for pattern hints"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-medium-062",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Datalist Autocomplete",
+    "prompt": "Type a text input with datalist suggestions.",
+    "approach": {
+      "steps": [
+        "Add <input list=\"...\">",
+        "Add matching <datalist> with <option> items"
+      ],
+      "example": "<input list=\"l\"><datalist id=\"l\"><option>A</option></datalist>"
+    },
+    "code": "<input list=\"browsers\" name=\"browser\">\n<datalist id=\"browsers\">\n  <option value=\"Chrome\"></option>\n  <option value=\"Firefox\"></option>\n  <option value=\"Safari\"></option>\n</datalist>",
+    "timeTargetSec": 55,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "list attribute links input to a datalist",
+        "datalist provides optional autocomplete suggestions"
+      ],
+      "commonMistakes": [
+        "Mismatched list id and datalist id",
+        "Using select when free text entry is wanted"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-medium-063",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Semantic Article with Time",
+    "prompt": "Type a blog article using the time element.",
+    "approach": {
+      "steps": [
+        "Open <article>",
+        "Add heading and <time datetime>",
+        "Add paragraph",
+        "Close </article>"
+      ],
+      "example": "<article><time datetime=\"2026-01-01\">Jan 1</time></article>"
+    },
+    "code": "<article>\n  <h2>Learning HTML Semantics</h2>\n  <time datetime=\"2026-08-01\">August 1, 2026</time>\n  <p>Semantic tags improve accessibility and SEO.</p>\n</article>",
+    "timeTargetSec": 55,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "datetime attribute gives machine-readable date",
+        "time element wraps human-readable dates or durations"
+      ],
+      "commonMistakes": [
+        "Missing datetime attribute",
+        "Using span instead of time for dates"
+      ]
+    },
+    "tags": [
+      "html",
+      "semantics"
+    ]
+  },
+  {
+    "id": "html-medium-064",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Multi-column Form Layout",
+    "prompt": "Type a form using a grid-friendly wrapper structure.",
+    "approach": {
+      "steps": [
+        "Open <form>",
+        "Wrap fields in divs with classes",
+        "Add submit button",
+        "Close </form>"
+      ],
+      "example": "<form><div class=\"row\"></div></form>"
+    },
+    "code": "<form class=\"grid-form\">\n  <div class=\"field\">\n    <label for=\"fn\">First Name</label>\n    <input type=\"text\" id=\"fn\" name=\"fn\">\n  </div>\n  <div class=\"field\">\n    <label for=\"ln\">Last Name</label>\n    <input type=\"text\" id=\"ln\" name=\"ln\">\n  </div>\n  <button type=\"submit\">Save</button>\n</form>",
+    "timeTargetSec": 65,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Wrapper divs let CSS grid/flex control layout",
+        "Class names should describe purpose, not appearance"
+      ],
+      "commonMistakes": [
+        "Overly generic class names",
+        "Inconsistent wrapper structure between fields"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-medium-065",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Accessible Image Gallery",
+    "prompt": "Type a gallery of figures with captions.",
+    "approach": {
+      "steps": [
+        "Open a container <section>",
+        "Add multiple <figure>/<figcaption> pairs",
+        "Close </section>"
+      ],
+      "example": "<section><figure><img><figcaption>C</figcaption></figure></section>"
+    },
+    "code": "<section aria-label=\"Photo gallery\">\n  <figure>\n    <img src=\"1.jpg\" alt=\"Mountain sunrise\">\n    <figcaption>Sunrise over the mountains</figcaption>\n  </figure>\n  <figure>\n    <img src=\"2.jpg\" alt=\"City skyline\">\n    <figcaption>Downtown skyline at dusk</figcaption>\n  </figure>\n</section>",
+    "timeTargetSec": 70,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "aria-label describes the section's purpose",
+        "Each figure pairs an image with meaningful alt and caption text"
+      ],
+      "commonMistakes": [
+        "Duplicate or missing alt text",
+        "Captions that just repeat the alt text verbatim"
+      ]
+    },
+    "tags": [
+      "html",
+      "media"
+    ]
+  },
+  {
+    "id": "html-medium-066",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Skip Navigation Link",
+    "prompt": "Type an accessible skip-to-content link.",
+    "approach": {
+      "steps": [
+        "Add a hidden-until-focus <a> at the top of the page",
+        "Point it to the main content id",
+        "Add matching id on <main>"
+      ],
+      "example": "<a href=\"#main\" class=\"skip-link\">Skip</a>"
+    },
+    "code": "<a href=\"#main-content\" class=\"skip-link\">Skip to main content</a>\n<main id=\"main-content\">\n  <h1>Page Content</h1>\n</main>",
+    "timeTargetSec": 50,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Skip links help keyboard users bypass repeated navigation",
+        "Target id must exactly match the href fragment"
+      ],
+      "commonMistakes": [
+        "Mismatched href and id",
+        "Missing this pattern entirely on content-heavy pages"
+      ]
+    },
+    "tags": [
+      "html",
+      "accessibility"
+    ]
+  },
+  {
+    "id": "html-medium-067",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Responsive Meta and Preload",
+    "prompt": "Type head tags for responsive setup and font preload.",
+    "approach": {
+      "steps": [
+        "Add viewport meta tag",
+        "Add <link rel=preload> for a font",
+        "Add <link rel=stylesheet>"
+      ],
+      "example": "<link rel=\"preload\" href=\"font.woff2\" as=\"font\">"
+    },
+    "code": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<link rel=\"preload\" href=\"/fonts/main.woff2\" as=\"font\" type=\"font/woff2\" crossorigin>\n<link rel=\"stylesheet\" href=\"/styles/main.css\">",
+    "timeTargetSec": 55,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "preload hints the browser to fetch critical resources early",
+        "crossorigin is required for font preloading"
+      ],
+      "commonMistakes": [
+        "Missing crossorigin on font preload",
+        "Wrong 'as' value"
+      ]
+    },
+    "tags": [
+      "html",
+      "performance"
+    ]
+  },
+  {
+    "id": "html-medium-068",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Form with Output Element",
+    "prompt": "Type a form that displays a calculated output.",
+    "approach": {
+      "steps": [
+        "Add two number inputs",
+        "Add <output> element",
+        "Wrap in a <form>"
+      ],
+      "example": "<output name=\"result\">0</output>"
+    },
+    "code": "<form oninput=\"result.value = parseInt(a.value) + parseInt(b.value)\">\n  <input type=\"number\" id=\"a\" value=\"0\"> +\n  <input type=\"number\" id=\"b\" value=\"0\"> =\n  <output name=\"result\" for=\"a b\">0</output>\n</form>",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "output displays the result of a calculation",
+        "for attribute lists which inputs contributed"
+      ],
+      "commonMistakes": [
+        "Missing for attribute on output",
+        "Forgetting initial output value"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-medium-069",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Table with Scope Attributes",
+    "prompt": "Type an accessible table using scope on headers.",
+    "approach": {
+      "steps": [
+        "Open <table>",
+        "Add <th scope=\"col\"> headers",
+        "Add <th scope=\"row\"> for row labels",
+        "Close </table>"
+      ],
+      "example": "<th scope=\"col\">Name</th>"
+    },
+    "code": "<table>\n  <tr>\n    <th scope=\"col\">Day</th>\n    <th scope=\"col\">Task</th>\n  </tr>\n  <tr>\n    <th scope=\"row\">Mon</th>\n    <td>Practice typing</td>\n  </tr>\n</table>",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "scope clarifies whether a header applies to a column or row",
+        "Improves screen reader table navigation"
+      ],
+      "commonMistakes": [
+        "Omitting scope on header cells",
+        "Using td for row labels instead of th"
+      ]
+    },
+    "tags": [
+      "html",
+      "tables"
+    ]
+  },
+  {
+    "id": "html-medium-070",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Custom Data List Widget",
+    "prompt": "Type a labelled progress widget combining aria attributes.",
+    "approach": {
+      "steps": [
+        "Add a <div role=\"progressbar\">",
+        "Add aria-valuenow/min/max",
+        "Add visible label"
+      ],
+      "example": "<div role=\"progressbar\" aria-valuenow=\"50\"></div>"
+    },
+    "code": "<label id=\"upload-label\">Upload progress</label>\n<div role=\"progressbar\" aria-labelledby=\"upload-label\" aria-valuenow=\"65\" aria-valuemin=\"0\" aria-valuemax=\"100\">\n  65%\n</div>",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "role=progressbar with aria-value* exposes custom widgets to assistive tech",
+        "Native <progress> is simpler when styling flexibility isn't needed"
+      ],
+      "commonMistakes": [
+        "Missing aria-valuemin/max",
+        "Not keeping visible text in sync with aria-valuenow"
+      ]
+    },
+    "tags": [
+      "html",
+      "accessibility"
+    ]
+  },
+  {
+    "id": "html-medium-071",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Search Form with Landmark",
+    "prompt": "Type an accessible search form using the search role.",
+    "approach": {
+      "steps": [
+        "Wrap in <form role=\"search\">",
+        "Add label and text input",
+        "Add submit button"
+      ],
+      "example": "<form role=\"search\"><input type=\"search\"></form>"
+    },
+    "code": "<form role=\"search\" action=\"/search\" method=\"get\">\n  <label for=\"q\">Search</label>\n  <input type=\"search\" id=\"q\" name=\"q\">\n  <button type=\"submit\">Go</button>\n</form>",
+    "timeTargetSec": 50,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "role=search marks the form as a search landmark",
+        "type=search enables browser-native search UX"
+      ],
+      "commonMistakes": [
+        "Missing role attribute",
+        "Using type=text instead of type=search"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-medium-072",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Responsive Table Wrapper",
+    "prompt": "Type a table wrapped for horizontal scroll on small screens.",
+    "approach": {
+      "steps": [
+        "Wrap <table> in a scrollable <div>",
+        "Add table content"
+      ],
+      "example": "<div class=\"table-scroll\"><table></table></div>"
+    },
+    "code": "<div class=\"table-scroll\">\n  <table>\n    <tr><th>Metric</th><th>Value</th></tr>\n    <tr><td>WPM</td><td>72</td></tr>\n  </table>\n</div>",
+    "timeTargetSec": 45,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Wrapper div lets CSS apply overflow-x without changing table semantics",
+        "Table itself stays untouched"
+      ],
+      "commonMistakes": [
+        "Applying overflow directly to table breaking layout",
+        "Forgetting the wrapper entirely"
+      ]
+    },
+    "tags": [
+      "html",
+      "tables"
+    ]
+  },
+  {
+    "id": "html-medium-073",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Form with Autocomplete Hints",
+    "prompt": "Type inputs using autocomplete attributes.",
+    "approach": {
+      "steps": [
+        "Add text input with autocomplete=\"name\"",
+        "Add email input with autocomplete=\"email\""
+      ],
+      "example": "<input autocomplete=\"name\">"
+    },
+    "code": "<input type=\"text\" name=\"fullname\" autocomplete=\"name\">\n<input type=\"email\" name=\"email\" autocomplete=\"email\">",
+    "timeTargetSec": 40,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "autocomplete hints browsers for form-filling",
+        "Standard token values improve fill accuracy"
+      ],
+      "commonMistakes": [
+        "Using non-standard autocomplete values",
+        "Omitting autocomplete on common fields"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-medium-074",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Noscript Fallback",
+    "prompt": "Type a noscript fallback message.",
+    "approach": {
+      "steps": [
+        "Add <script> tag",
+        "Add <noscript> with fallback content"
+      ],
+      "example": "<noscript>Enable JS</noscript>"
+    },
+    "code": "<script src=\"app.js\"></script>\n<noscript>\n  <p>This app requires JavaScript to be enabled.</p>\n</noscript>",
+    "timeTargetSec": 30,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "noscript content renders only when JS is disabled",
+        "Useful for critical fallback messaging"
+      ],
+      "commonMistakes": [
+        "Putting noscript before the script tag it relates to",
+        "Leaving it empty"
+      ]
+    },
+    "tags": [
+      "html",
+      "scripting"
+    ]
+  },
+  {
+    "id": "html-medium-075",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Base Element",
+    "prompt": "Type a base tag setting the default link target.",
+    "approach": {
+      "steps": [
+        "Open <base>",
+        "Set href and target attributes"
+      ],
+      "example": "<base href=\"/\" target=\"_blank\">"
+    },
+    "code": "<base href=\"https://procoder-po1s.onrender.com/\" target=\"_self\">",
+    "timeTargetSec": 25,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "base sets a default base URL and target for all links",
+        "Only one base element allowed per document"
+      ],
+      "commonMistakes": [
+        "Adding multiple base tags",
+        "Placing base outside <head>"
+      ]
+    },
+    "tags": [
+      "html",
+      "head"
+    ]
+  },
+  {
+    "id": "html-medium-076",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Address Element",
+    "prompt": "Type contact info using the address tag.",
+    "approach": {
+      "steps": [
+        "Open <address>",
+        "Add contact details",
+        "Close </address>"
+      ],
+      "example": "<address>Contact</address>"
+    },
+    "code": "<address>\n  Written by <a href=\"mailto:team@procoder.dev\">the ProCoder team</a>.\n</address>",
+    "timeTargetSec": 30,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "address is for contact info of the document/article author",
+        "Not meant for arbitrary postal addresses"
+      ],
+      "commonMistakes": [
+        "Using address for unrelated content",
+        "Forgetting it implies italics by default in browsers"
+      ]
+    },
+    "tags": [
+      "html",
+      "semantics"
+    ]
+  },
+  {
+    "id": "html-medium-077",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Multiple File Upload",
+    "prompt": "Type a file input accepting multiple images.",
+    "approach": {
+      "steps": [
+        "Add <input type=\"file\">",
+        "Set accept and multiple attributes"
+      ],
+      "example": "<input type=\"file\" multiple>"
+    },
+    "code": "<input type=\"file\" id=\"photos\" name=\"photos\" accept=\"image/*\" multiple>",
+    "timeTargetSec": 35,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "multiple allows selecting several files at once",
+        "accept restricts the file picker by type"
+      ],
+      "commonMistakes": [
+        "Forgetting multiple attribute",
+        "Wrong MIME pattern in accept"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-medium-078",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Range Slider Input",
+    "prompt": "Type a range slider with a visible value label.",
+    "approach": {
+      "steps": [
+        "Add <input type=\"range\">",
+        "Add min/max/step",
+        "Pair with <output>"
+      ],
+      "example": "<input type=\"range\" min=\"0\" max=\"100\">"
+    },
+    "code": "<input type=\"range\" id=\"vol\" min=\"0\" max=\"100\" step=\"5\" value=\"50\">\n<output for=\"vol\">50</output>",
+    "timeTargetSec": 40,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "range provides a slider UI",
+        "step controls the increment granularity"
+      ],
+      "commonMistakes": [
+        "Missing step for fine control",
+        "Output value not synced with input"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-medium-079",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Table Caption",
+    "prompt": "Type a table with a descriptive caption.",
+    "approach": {
+      "steps": [
+        "Open <table>",
+        "Add <caption> right after the opening tag",
+        "Add rows"
+      ],
+      "example": "<table><caption>C</caption></table>"
+    },
+    "code": "<table>\n  <caption>Weekly Typing Scores</caption>\n  <tr><th>Day</th><th>WPM</th></tr>\n  <tr><td>Mon</td><td>68</td></tr>\n</table>",
+    "timeTargetSec": 40,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "caption must be the first child of table",
+        "Gives the table an accessible name"
+      ],
+      "commonMistakes": [
+        "Placing caption after rows",
+        "Using a heading outside the table instead"
+      ]
+    },
+    "tags": [
+      "html",
+      "tables"
+    ]
+  },
+  {
+    "id": "html-medium-080",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Mark Element",
+    "prompt": "Type highlighted text using mark.",
+    "approach": {
+      "steps": [
+        "Wrap relevant text in <mark>",
+        "Keep surrounding text normal"
+      ],
+      "example": "<mark>highlighted</mark>"
+    },
+    "code": "<p>Search results for <mark>typing practice</mark> returned 12 matches.</p>",
+    "timeTargetSec": 22,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "mark highlights text for reference/relevance",
+        "Renders with a yellow background by default"
+      ],
+      "commonMistakes": [
+        "Overusing mark for styling rather than relevance",
+        "Confusing with strong/em"
+      ]
+    },
+    "tags": [
+      "html",
+      "text"
+    ]
+  },
+  {
+    "id": "html-medium-081",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Abbreviation Element",
+    "prompt": "Type an abbreviation with a title tooltip.",
+    "approach": {
+      "steps": [
+        "Wrap short form in <abbr>",
+        "Add title attribute with full text"
+      ],
+      "example": "<abbr title=\"HyperText Markup Language\">HTML</abbr>"
+    },
+    "code": "<p><abbr title=\"Words Per Minute\">WPM</abbr> measures typing speed.</p>",
+    "timeTargetSec": 25,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "title attribute shows a tooltip on hover",
+        "Improves clarity for unfamiliar acronyms"
+      ],
+      "commonMistakes": [
+        "Missing title attribute",
+        "Expanding acronym in visible text instead"
+      ]
+    },
+    "tags": [
+      "html",
+      "text"
+    ]
+  },
+  {
+    "id": "html-medium-082",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Sub and Sup Elements",
+    "prompt": "Type text using subscript and superscript.",
+    "approach": {
+      "steps": [
+        "Wrap subscript text in <sub>",
+        "Wrap superscript text in <sup>"
+      ],
+      "example": "H<sub>2</sub>O"
+    },
+    "code": "<p>E = mc<sup>2</sup> and H<sub>2</sub>O are famous formulas.</p>",
+    "timeTargetSec": 22,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "sub lowers text, sup raises text",
+        "Common in chemical and math notation"
+      ],
+      "commonMistakes": [
+        "Using CSS vertical-align instead when semantic meaning intended",
+        "Unclosed tags"
+      ]
+    },
+    "tags": [
+      "html",
+      "text"
+    ]
+  },
+  {
+    "id": "html-medium-083",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Accessible Tab Panel Skeleton",
+    "prompt": "Type a tab list structure using ARIA roles.",
+    "approach": {
+      "steps": [
+        "Add <div role=\"tablist\">",
+        "Add buttons with role=\"tab\"",
+        "Add a role=\"tabpanel\" div"
+      ],
+      "example": "<div role=\"tablist\"><button role=\"tab\">Tab</button></div>"
+    },
+    "code": "<div role=\"tablist\" aria-label=\"Settings sections\">\n  <button role=\"tab\" aria-selected=\"true\">General</button>\n  <button role=\"tab\" aria-selected=\"false\">Advanced</button>\n</div>\n<div role=\"tabpanel\">\n  <p>General settings content.</p>\n</div>",
+    "timeTargetSec": 65,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "role=tablist/tab/tabpanel expose custom tabs to assistive tech",
+        "aria-selected marks the active tab"
+      ],
+      "commonMistakes": [
+        "Missing aria-selected state",
+        "Tabpanel not linked via aria-controls"
+      ]
+    },
+    "tags": [
+      "html",
+      "accessibility"
+    ]
+  },
+  {
+    "id": "html-medium-084",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Form with Hidden Input",
+    "prompt": "Type a form including a hidden token field.",
+    "approach": {
+      "steps": [
+        "Open <form>",
+        "Add hidden input for a token",
+        "Add visible fields"
+      ],
+      "example": "<input type=\"hidden\" name=\"token\">"
+    },
+    "code": "<form action=\"/submit\" method=\"post\">\n  <input type=\"hidden\" name=\"csrf_token\" value=\"abc123\">\n  <input type=\"text\" name=\"username\">\n  <button type=\"submit\">Send</button>\n</form>",
+    "timeTargetSec": 40,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "hidden inputs submit data without displaying it",
+        "Commonly used for tokens or IDs"
+      ],
+      "commonMistakes": [
+        "Forgetting the value attribute",
+        "Using display:none on a visible field instead"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-medium-085",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Meter Element",
+    "prompt": "Type a meter element showing a gauge value.",
+    "approach": {
+      "steps": [
+        "Open <meter>",
+        "Set value, min, max",
+        "Close </meter>"
+      ],
+      "example": "<meter value=\"6\" min=\"0\" max=\"10\"></meter>"
+    },
+    "code": "<meter value=\"80\" min=\"0\" max=\"100\" low=\"30\" high=\"70\" optimum=\"90\">80/100</meter>",
+    "timeTargetSec": 35,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "meter represents a scalar measurement within a range",
+        "Different from progress, which shows task completion"
+      ],
+      "commonMistakes": [
+        "Confusing meter with progress semantics",
+        "Missing min/max bounds"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-hard-086",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Full Accessible Modal Dialog",
+    "prompt": "Type a complete accessible modal with focus trap markers and ARIA.",
+    "approach": {
+      "steps": [
+        "Add overlay div",
+        "Add role=dialog container with aria-modal, aria-labelledby, aria-describedby",
+        "Add heading, description, and two action buttons",
+        "Add a visually-hidden close button first for focus order"
+      ],
+      "example": "<div role=\"dialog\" aria-modal=\"true\"></div>"
+    },
+    "code": "<div class=\"overlay\">\n  <div role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"d-title\" aria-describedby=\"d-desc\">\n    <button class=\"close\" aria-label=\"Close dialog\">&times;</button>\n    <h2 id=\"d-title\">Delete Item</h2>\n    <p id=\"d-desc\">This action cannot be undone.</p>\n    <button type=\"button\">Cancel</button>\n    <button type=\"button\">Delete</button>\n  </div>\n</div>",
+    "timeTargetSec": 90,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "aria-describedby links supporting text as part of the accessible description",
+        "Close button first in DOM order supports predictable focus trapping"
+      ],
+      "commonMistakes": [
+        "Missing aria-describedby",
+        "Focus order not starting at the close control"
+      ]
+    },
+    "tags": [
+      "html",
+      "accessibility"
+    ]
+  },
+  {
+    "id": "html-hard-087",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Complex Nested Data Table",
+    "prompt": "Type a table combining colspan, rowspan, and scope together.",
+    "approach": {
+      "steps": [
+        "Open <table> with <caption>",
+        "Add a colspan header row and scope=col cells",
+        "Add rows using scope=row and a rowspan cell"
+      ],
+      "example": "<th colspan=\"2\" scope=\"colgroup\">G</th>"
+    },
+    "code": "<table>\n  <caption>Quarterly Sales by Region</caption>\n  <tr>\n    <th scope=\"col\">Region</th>\n    <th colspan=\"2\" scope=\"colgroup\">Q1</th>\n  </tr>\n  <tr>\n    <th scope=\"row\" rowspan=\"2\">North</th>\n    <td>Jan</td><td>120</td>\n  </tr>\n  <tr>\n    <td>Feb</td><td>140</td>\n  </tr>\n</table>",
+    "timeTargetSec": 100,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "scope=colgroup applies a header to a spanned group of columns",
+        "Combining rowspan with scope=row keeps grouped rows accessible"
+      ],
+      "commonMistakes": [
+        "Cell count per row not accounting for spans",
+        "Missing scope=colgroup on spanned headers"
+      ]
+    },
+    "tags": [
+      "html",
+      "tables"
+    ]
+  },
+  {
+    "id": "html-hard-088",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Custom Combobox with ARIA",
+    "prompt": "Type an accessible combobox pattern combining input and listbox.",
+    "approach": {
+      "steps": [
+        "Add labeled text input with role=combobox",
+        "Set aria-expanded and aria-controls",
+        "Add a role=listbox with role=option children"
+      ],
+      "example": "<input role=\"combobox\" aria-expanded=\"false\">"
+    },
+    "code": "<label id=\"cb-label\" for=\"cb-input\">Language</label>\n<input id=\"cb-input\" role=\"combobox\" aria-expanded=\"true\" aria-controls=\"cb-list\" aria-labelledby=\"cb-label\">\n<ul id=\"cb-list\" role=\"listbox\">\n  <li role=\"option\" aria-selected=\"false\">Python</li>\n  <li role=\"option\" aria-selected=\"true\">JavaScript</li>\n</ul>",
+    "timeTargetSec": 95,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "aria-controls links the input to its listbox",
+        "aria-expanded reflects whether the listbox is open"
+      ],
+      "commonMistakes": [
+        "aria-controls pointing to a nonexistent id",
+        "aria-selected not updated on selection"
+      ]
+    },
+    "tags": [
+      "html",
+      "accessibility"
+    ]
+  },
+  {
+    "id": "html-hard-089",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Multi-step Form with Fieldsets",
+    "prompt": "Type a two-step form using fieldsets and a progress indicator.",
+    "approach": {
+      "steps": [
+        "Open <form>",
+        "Add a progress element",
+        "Add first fieldset with legend",
+        "Add second fieldset with legend",
+        "Add navigation buttons"
+      ],
+      "example": "<fieldset><legend>Step 1</legend></fieldset>"
+    },
+    "code": "<form>\n  <progress value=\"1\" max=\"2\">Step 1 of 2</progress>\n  <fieldset>\n    <legend>Step 1: Account</legend>\n    <input type=\"email\" name=\"email\" required>\n  </fieldset>\n  <fieldset disabled>\n    <legend>Step 2: Profile</legend>\n    <input type=\"text\" name=\"username\">\n  </fieldset>\n  <button type=\"button\">Next</button>\n</form>",
+    "timeTargetSec": 100,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "disabled fieldset prevents interaction with a future step",
+        "progress communicates step position to all users"
+      ],
+      "commonMistakes": [
+        "Forgetting to enable/disable fieldsets on step change",
+        "Progress value not kept in sync"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-hard-090",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Responsive Image Set with Art Direction",
+    "prompt": "Type a picture element with different crops per breakpoint plus dimensions.",
+    "approach": {
+      "steps": [
+        "Open <picture>",
+        "Add source for wide viewport with widescreen crop",
+        "Add source for narrow viewport with portrait crop",
+        "Add fallback img with width/height"
+      ],
+      "example": "<picture><source media=\"(min-width:800px)\"><img></picture>"
+    },
+    "code": "<picture>\n  <source media=\"(min-width: 800px)\" srcset=\"hero-wide.jpg\" width=\"1600\" height=\"600\">\n  <source media=\"(max-width: 799px)\" srcset=\"hero-tall.jpg\" width=\"800\" height=\"1000\">\n  <img src=\"hero-tall.jpg\" alt=\"Team collaborating\" width=\"800\" height=\"1000\">\n</picture>",
+    "timeTargetSec": 90,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Different crops per breakpoint is 'art direction', not just resolution switching",
+        "width/height on img prevents layout shift"
+      ],
+      "commonMistakes": [
+        "Missing explicit width/height causing CLS",
+        "Same image used for both art-directed sources"
+      ]
+    },
+    "tags": [
+      "html",
+      "media"
+    ]
+  },
+  {
+    "id": "html-hard-091",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Accessible Accordion Pattern",
+    "prompt": "Type a full accordion using button and aria-expanded per section.",
+    "approach": {
+      "steps": [
+        "Add heading wrapping a button with aria-expanded and aria-controls",
+        "Add a hidden content panel referenced by id",
+        "Repeat for a second section"
+      ],
+      "example": "<button aria-expanded=\"false\" aria-controls=\"p1\">Section</button>"
+    },
+    "code": "<h3>\n  <button aria-expanded=\"true\" aria-controls=\"panel1\" id=\"acc1\">What is ProCoder?</button>\n</h3>\n<div id=\"panel1\" role=\"region\" aria-labelledby=\"acc1\">\n  <p>A typing practice platform for developers.</p>\n</div>\n<h3>\n  <button aria-expanded=\"false\" aria-controls=\"panel2\" id=\"acc2\">How is WPM calculated?</button>\n</h3>\n<div id=\"panel2\" role=\"region\" aria-labelledby=\"acc2\" hidden>\n  <p>Correct characters divided by time elapsed.</p>\n</div>",
+    "timeTargetSec": 100,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "aria-expanded state must match the panel's visibility",
+        "role=region with aria-labelledby names each panel for assistive tech"
+      ],
+      "commonMistakes": [
+        "hidden attribute and aria-expanded getting out of sync",
+        "Buttons not wrapped in heading elements"
+      ]
+    },
+    "tags": [
+      "html",
+      "accessibility"
+    ]
+  },
+  {
+    "id": "html-hard-092",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Form with Custom Validation Messages",
+    "prompt": "Type a form using aria-invalid and aria-describedby for errors.",
+    "approach": {
+      "steps": [
+        "Add input with aria-invalid and aria-describedby",
+        "Add an error message element with matching id",
+        "Add a second valid field for contrast"
+      ],
+      "example": "<input aria-invalid=\"true\" aria-describedby=\"err\">"
+    },
+    "code": "<label for=\"pw\">Password</label>\n<input type=\"password\" id=\"pw\" aria-invalid=\"true\" aria-describedby=\"pw-error\">\n<span id=\"pw-error\" role=\"alert\">Password must be at least 8 characters.</span>\n\n<label for=\"email2\">Email</label>\n<input type=\"email\" id=\"email2\" aria-invalid=\"false\">",
+    "timeTargetSec": 95,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "aria-invalid communicates field validity to assistive tech",
+        "role=alert announces the error message immediately"
+      ],
+      "commonMistakes": [
+        "aria-describedby pointing to missing id",
+        "Leaving aria-invalid=true after the field is corrected"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-hard-093",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Structured Data with Microdata",
+    "prompt": "Type an article using schema.org microdata attributes.",
+    "approach": {
+      "steps": [
+        "Add itemscope/itemtype on the article",
+        "Mark up title, author, and date with itemprop"
+      ],
+      "example": "<article itemscope itemtype=\"https://schema.org/Article\"></article>"
+    },
+    "code": "<article itemscope itemtype=\"https://schema.org/Article\">\n  <h1 itemprop=\"headline\">Mastering Touch Typing</h1>\n  <span itemprop=\"author\">Aimrs</span>\n  <time itemprop=\"datePublished\" datetime=\"2026-08-01\">Aug 1, 2026</time>\n  <p itemprop=\"articleBody\">Consistent daily practice builds real speed.</p>\n</article>",
+    "timeTargetSec": 90,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "itemscope/itemtype declare the schema.org type being described",
+        "itemprop values must match the schema's defined property names"
+      ],
+      "commonMistakes": [
+        "Mismatched itemprop names against the schema",
+        "Missing itemscope on the root element"
+      ]
+    },
+    "tags": [
+      "html",
+      "seo"
+    ]
+  },
+  {
+    "id": "html-hard-094",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Accessible Skip Links and Landmarks Combined",
+    "prompt": "Type a full page skeleton combining skip link, header, nav, main, and footer landmarks.",
+    "approach": {
+      "steps": [
+        "Add skip link targeting main",
+        "Add header with nav",
+        "Add main with id matching skip link",
+        "Add footer"
+      ],
+      "example": "<a href=\"#main\">Skip</a><main id=\"main\"></main>"
+    },
+    "code": "<a href=\"#main-content\" class=\"skip-link\">Skip to main content</a>\n<header>\n  <nav aria-label=\"Primary\">\n    <a href=\"/\">Home</a>\n    <a href=\"/lessons\">Lessons</a>\n  </nav>\n</header>\n<main id=\"main-content\">\n  <h1>Dashboard</h1>\n</main>\n<footer>\n  <p>&copy; 2026 ProCoder</p>\n</footer>",
+    "timeTargetSec": 95,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "aria-label distinguishes multiple nav landmarks on one page",
+        "Skip link plus landmark roles together form a complete a11y baseline"
+      ],
+      "commonMistakes": [
+        "Multiple nav elements without distinguishing labels",
+        "Skip link href not matching main's id"
+      ]
+    },
+    "tags": [
+      "html",
+      "accessibility"
+    ]
+  },
+  {
+    "id": "html-hard-095",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Form with Grouped Radio and Fieldset Validation",
+    "prompt": "Type a required radio group wrapped in an accessible fieldset.",
+    "approach": {
+      "steps": [
+        "Open <fieldset>",
+        "Add <legend>",
+        "Add required radio inputs sharing one name",
+        "Close </fieldset>"
+      ],
+      "example": "<fieldset><legend>G</legend><input type=\"radio\" required></fieldset>"
+    },
+    "code": "<fieldset>\n  <legend>Preferred contact method</legend>\n  <input type=\"radio\" id=\"c-email\" name=\"contact\" value=\"email\" required>\n  <label for=\"c-email\">Email</label>\n  <input type=\"radio\" id=\"c-phone\" name=\"contact\" value=\"phone\">\n  <label for=\"c-phone\">Phone</label>\n</fieldset>",
+    "timeTargetSec": 85,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "required on one radio in a named group enforces that one must be selected",
+        "legend gives the whole group an accessible name"
+      ],
+      "commonMistakes": [
+        "Adding required to every radio unnecessarily",
+        "Different name attributes breaking the group"
+      ]
+    },
+    "tags": [
+      "html",
+      "forms"
+    ]
+  },
+  {
+    "id": "html-hard-096",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Video with Captions Track",
+    "prompt": "Type a video element including a captions track file.",
+    "approach": {
+      "steps": [
+        "Open <video> with controls",
+        "Add <track> with kind=captions and srclang",
+        "Close </video>"
+      ],
+      "example": "<video controls><track kind=\"captions\"></video>"
+    },
+    "code": "<video controls width=\"480\">\n  <source src=\"lesson.mp4\" type=\"video/mp4\">\n  <track kind=\"captions\" src=\"lesson-en.vtt\" srclang=\"en\" label=\"English\" default>\n  Your browser does not support this video.\n</video>",
+    "timeTargetSec": 75,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "track kind=captions provides synchronized text for deaf/hard-of-hearing users",
+        "default marks which track is shown automatically"
+      ],
+      "commonMistakes": [
+        "Missing srclang",
+        "No default track when only one exists"
+      ]
+    },
+    "tags": [
+      "html",
+      "accessibility"
+    ]
+  },
+  {
+    "id": "html-hard-097",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Complex Grid Layout Markup",
+    "prompt": "Type a semantic page layout designed for a CSS grid template.",
+    "approach": {
+      "steps": [
+        "Add a wrapping <div class=\"layout\">",
+        "Add header, aside, main, footer as grid areas",
+        "Give each a data area name via class"
+      ],
+      "example": "<div class=\"layout\"><header class=\"area-header\"></header></div>"
+    },
+    "code": "<div class=\"layout\">\n  <header class=\"area-header\">Site Header</header>\n  <aside class=\"area-sidebar\">\n    <nav aria-label=\"Secondary\">Sidebar links</nav>\n  </aside>\n  <main class=\"area-main\">\n    <h1>Content</h1>\n  </main>\n  <footer class=\"area-footer\">Site Footer</footer>\n</div>",
+    "timeTargetSec": 90,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Class names map directly to CSS grid-template-areas values",
+        "Semantic tags remain even inside a grid-based layout"
+      ],
+      "commonMistakes": [
+        "Class names not matching the CSS grid area names",
+        "Dropping semantic tags in favor of generic divs"
+      ]
+    },
+    "tags": [
+      "html",
+      "layout"
+    ]
+  },
+  {
+    "id": "html-hard-098",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Accessible Toast Notification Region",
+    "prompt": "Type a live region for transient status messages.",
+    "approach": {
+      "steps": [
+        "Add a container div with role=status and aria-live=polite",
+        "Add sample message content",
+        "Add aria-atomic for full re-announcement"
+      ],
+      "example": "<div role=\"status\" aria-live=\"polite\"></div>"
+    },
+    "code": "<div role=\"status\" aria-live=\"polite\" aria-atomic=\"true\" class=\"toast\">\n  Lesson progress saved.\n</div>",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "aria-live=polite announces updates without interrupting the user",
+        "aria-atomic ensures the whole message is re-read, not just the diff"
+      ],
+      "commonMistakes": [
+        "Using aria-live=assertive for non-urgent messages",
+        "Missing aria-atomic causing partial announcements"
+      ]
+    },
+    "tags": [
+      "html",
+      "accessibility"
+    ]
+  },
+  {
+    "id": "html-hard-099",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Print-Optimized Document Section",
+    "prompt": "Type a section marked up with print-specific structural hints.",
+    "approach": {
+      "steps": [
+        "Add a section with a class hook for print styles",
+        "Add a page-break hint element",
+        "Add a printable summary table"
+      ],
+      "example": "<div class=\"print-section\"></div>"
+    },
+    "code": "<section class=\"print-section\">\n  <h2>Results Summary</h2>\n  <table>\n    <tr><th scope=\"col\">Metric</th><th scope=\"col\">Value</th></tr>\n    <tr><td>Average WPM</td><td>76</td></tr>\n  </table>\n  <div class=\"page-break\"></div>\n</section>",
+    "timeTargetSec": 80,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Class hooks like page-break let CSS @media print control pagination",
+        "Tables remain the right structure for tabular print output"
+      ],
+      "commonMistakes": [
+        "Relying on JS for print layout instead of CSS",
+        "Missing scope on table headers even in print content"
+      ]
+    },
+    "tags": [
+      "html",
+      "layout"
+    ]
+  },
+  {
+    "id": "html-hard-100",
+    "language": "html",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Full Semantic Page Skeleton",
+    "prompt": "Type a complete semantic document combining all major landmark elements.",
+    "approach": {
+      "steps": [
+        "Add skip link",
+        "Add header with nav",
+        "Add main with article and aside",
+        "Add footer with address"
+      ],
+      "example": "<body><header></header><main></main><footer></footer></body>"
+    },
+    "code": "<a href=\"#main\" class=\"skip-link\">Skip to main content</a>\n<header>\n  <nav aria-label=\"Primary\">\n    <a href=\"/\">Home</a>\n  </nav>\n</header>\n<main id=\"main\">\n  <article>\n    <h1>Typing Progress Report</h1>\n    <p>Your average speed improved this week.</p>\n  </article>\n  <aside aria-label=\"Related tips\">\n    <p>Tip: focus on accuracy before speed.</p>\n  </aside>\n</main>\n<footer>\n  <address>Contact: <a href=\"mailto:team@procoder.dev\">team@procoder.dev</a></address>\n</footer>",
+    "timeTargetSec": 110,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "A full landmark structure (header/nav/main/aside/footer) gives assistive tech a complete page map",
+        "article vs aside separates primary content from tangential content"
+      ],
+      "commonMistakes": [
+        "Only one top-level landmark used for everything",
+        "aside missing an accessible label when multiple asides exist"
+      ]
+    },
+    "tags": [
+      "html",
+      "semantics"
+    ]
+  }
 ]

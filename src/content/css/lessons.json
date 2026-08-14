@@ -1443,5 +1443,2123 @@
 "layout",
 "box-model"
 ]
-}
+},
+  {
+    "id": "css-medium-041",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Flexbox Row with Gap",
+    "prompt": "Type a flex container arranging items in a row with spacing.",
+    "approach": {
+      "steps": [
+        "Set display: flex",
+        "Set flex-direction: row",
+        "Add gap between items"
+      ],
+      "example": ".row { display: flex; gap: 8px; }"
+    },
+    "code": ".nav-items {\n  display: flex;\n  flex-direction: row;\n  gap: 16px;\n  align-items: center;\n}",
+    "timeTargetSec": 35,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "gap adds space between flex items without extra margins",
+        "align-items controls cross-axis alignment"
+      ],
+      "commonMistakes": [
+        "Using margins instead of gap",
+        "Forgetting align-items for vertical centering"
+      ]
+    },
+    "tags": [
+      "css",
+      "flexbox"
+    ]
+  },
+  {
+    "id": "css-medium-042",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "CSS Grid Two Columns",
+    "prompt": "Type a grid container with two equal columns.",
+    "approach": {
+      "steps": [
+        "Set display: grid",
+        "Define grid-template-columns with fr units",
+        "Add gap"
+      ],
+      "example": ".grid { display: grid; grid-template-columns: 1fr 1fr; }"
+    },
+    "code": ".layout {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 24px;\n}",
+    "timeTargetSec": 32,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "fr units divide available space proportionally",
+        "Grid gap works like flex gap"
+      ],
+      "commonMistakes": [
+        "Using px instead of fr for flexible columns",
+        "Missing display: grid on the parent"
+      ]
+    },
+    "tags": [
+      "css",
+      "grid"
+    ]
+  },
+  {
+    "id": "css-medium-043",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Pseudo-class Hover State",
+    "prompt": "Type a button style with a hover transition.",
+    "approach": {
+      "steps": [
+        "Style the base button",
+        "Add :hover with a background change",
+        "Add transition for smoothness"
+      ],
+      "example": "button:hover { background: blue; }"
+    },
+    "code": "button {\n  background: #4f46e5;\n  transition: background 0.2s ease;\n}\nbutton:hover {\n  background: #4338ca;\n}",
+    "timeTargetSec": 35,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "transition smooths the property change over time",
+        ":hover applies only while the pointer is over the element"
+      ],
+      "commonMistakes": [
+        "Forgetting the transition property",
+        "Applying transition only on :hover instead of the base rule"
+      ]
+    },
+    "tags": [
+      "css",
+      "pseudo-classes"
+    ]
+  },
+  {
+    "id": "css-medium-044",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Nth-child Selector",
+    "prompt": "Type a style targeting alternating table rows.",
+    "approach": {
+      "steps": [
+        "Select tr elements",
+        "Use :nth-child(even)",
+        "Apply a background color"
+      ],
+      "example": "tr:nth-child(even) { background: #eee; }"
+    },
+    "code": "table tr:nth-child(even) {\n  background-color: #f3f4f6;\n}\ntable tr:nth-child(odd) {\n  background-color: #ffffff;\n}",
+    "timeTargetSec": 35,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "nth-child(even/odd) creates striped rows without extra classes",
+        "Keyword formulas are cleaner than numeric formulas here"
+      ],
+      "commonMistakes": [
+        "Off-by-one confusion between even/odd",
+        "Applying to the wrong element level"
+      ]
+    },
+    "tags": [
+      "css",
+      "selectors"
+    ]
+  },
+  {
+    "id": "css-medium-045",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Box Shadow Card",
+    "prompt": "Type a card style with a soft drop shadow.",
+    "approach": {
+      "steps": [
+        "Set background and border-radius",
+        "Add box-shadow with offset, blur, and color"
+      ],
+      "example": ".card { box-shadow: 0 2px 4px rgba(0,0,0,0.1); }"
+    },
+    "code": ".card {\n  background: #fff;\n  border-radius: 8px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n}",
+    "timeTargetSec": 30,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "box-shadow syntax: x-offset y-offset blur color",
+        "rgba alpha channel controls shadow softness"
+      ],
+      "commonMistakes": [
+        "Forgetting the blur value",
+        "Using solid black instead of a low-alpha shadow"
+      ]
+    },
+    "tags": [
+      "css",
+      "effects"
+    ]
+  },
+  {
+    "id": "css-medium-046",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "CSS Variables (Custom Properties)",
+    "prompt": "Type root-level CSS variables and use them.",
+    "approach": {
+      "steps": [
+        "Define variables in :root",
+        "Reference them with var()"
+      ],
+      "example": ":root { --main: #333; } p { color: var(--main); }"
+    },
+    "code": ":root {\n  --color-primary: #6366f1;\n  --spacing-md: 16px;\n}\n.button {\n  background: var(--color-primary);\n  padding: var(--spacing-md);\n}",
+    "timeTargetSec": 40,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Custom properties are declared with a -- prefix",
+        "var() reads the variable's current value, supports fallbacks"
+      ],
+      "commonMistakes": [
+        "Forgetting the -- prefix",
+        "Defining variables outside :root unnecessarily"
+      ]
+    },
+    "tags": [
+      "css",
+      "variables"
+    ]
+  },
+  {
+    "id": "css-medium-047",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Media Query Breakpoint",
+    "prompt": "Type a responsive style that changes layout below 768px.",
+    "approach": {
+      "steps": [
+        "Write base styles",
+        "Add @media (max-width: 768px)",
+        "Override layout inside the query"
+      ],
+      "example": "@media (max-width: 768px) { .row { flex-direction: column; } }"
+    },
+    "code": ".sidebar {\n  display: flex;\n}\n\n@media (max-width: 768px) {\n  .sidebar {\n    display: none;\n  }\n}",
+    "timeTargetSec": 40,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "max-width media queries apply below the given viewport width",
+        "Mobile-first vs desktop-first changes which query direction to use"
+      ],
+      "commonMistakes": [
+        "Wrong comparison (min vs max)",
+        "Query placed before the base rule it overrides"
+      ]
+    },
+    "tags": [
+      "css",
+      "responsive"
+    ]
+  },
+  {
+    "id": "css-medium-048",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Absolute Positioning Badge",
+    "prompt": "Type a notification badge positioned on a parent element.",
+    "approach": {
+      "steps": [
+        "Set parent to position: relative",
+        "Set badge to position: absolute",
+        "Offset with top/right"
+      ],
+      "example": ".badge { position: absolute; top: 0; right: 0; }"
+    },
+    "code": ".icon-wrapper {\n  position: relative;\n}\n.badge {\n  position: absolute;\n  top: -4px;\n  right: -4px;\n  background: red;\n  border-radius: 50%;\n}",
+    "timeTargetSec": 38,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "absolute positioning is relative to the nearest positioned ancestor",
+        "Parent needs position: relative to anchor the child"
+      ],
+      "commonMistakes": [
+        "Forgetting relative positioning on the parent",
+        "Using fixed instead of absolute"
+      ]
+    },
+    "tags": [
+      "css",
+      "positioning"
+    ]
+  },
+  {
+    "id": "css-medium-049",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Flexbox Space Between",
+    "prompt": "Type a header layout with items pushed to opposite ends.",
+    "approach": {
+      "steps": [
+        "Set display: flex on the container",
+        "Use justify-content: space-between"
+      ],
+      "example": ".header { display: flex; justify-content: space-between; }"
+    },
+    "code": ".navbar {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 12px 24px;\n}",
+    "timeTargetSec": 30,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "space-between pushes first/last items to the edges",
+        "Remaining space distributes evenly between items"
+      ],
+      "commonMistakes": [
+        "Confusing space-between with space-around",
+        "Missing align-items causing misalignment"
+      ]
+    },
+    "tags": [
+      "css",
+      "flexbox"
+    ]
+  },
+  {
+    "id": "css-medium-050",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Transform and Scale on Hover",
+    "prompt": "Type a hover effect that scales an image slightly.",
+    "approach": {
+      "steps": [
+        "Set base transform: scale(1)",
+        "Add transition",
+        "Set hover transform: scale(1.05)"
+      ],
+      "example": "img:hover { transform: scale(1.05); }"
+    },
+    "code": ".thumbnail {\n  transform: scale(1);\n  transition: transform 0.3s ease;\n}\n.thumbnail:hover {\n  transform: scale(1.05);\n}",
+    "timeTargetSec": 35,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "transform: scale() resizes without affecting layout flow",
+        "Transitioning transform is GPU-accelerated and smooth"
+      ],
+      "commonMistakes": [
+        "Animating width/height instead of transform",
+        "Missing the base transition declaration"
+      ]
+    },
+    "tags": [
+      "css",
+      "effects"
+    ]
+  },
+  {
+    "id": "css-medium-051",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Grid Template Areas",
+    "prompt": "Type a grid layout using named template areas.",
+    "approach": {
+      "steps": [
+        "Define grid-template-areas string",
+        "Assign grid-area to each child"
+      ],
+      "example": ".layout { grid-template-areas: \"header header\"; }"
+    },
+    "code": ".layout {\n  display: grid;\n  grid-template-columns: 200px 1fr;\n  grid-template-areas:\n    \"sidebar header\"\n    \"sidebar main\";\n}\n.sidebar { grid-area: sidebar; }\n.header { grid-area: header; }\n.main { grid-area: main; }",
+    "timeTargetSec": 55,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Named areas make grid layouts self-documenting",
+        "Each area name must appear as a rectangle in the string"
+      ],
+      "commonMistakes": [
+        "Area names not matching between template and children",
+        "Non-rectangular area shapes"
+      ]
+    },
+    "tags": [
+      "css",
+      "grid"
+    ]
+  },
+  {
+    "id": "css-medium-052",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Focus-visible Accessibility Style",
+    "prompt": "Type an accessible focus outline using :focus-visible.",
+    "approach": {
+      "steps": [
+        "Remove default outline carefully",
+        "Add :focus-visible with a clear outline"
+      ],
+      "example": "button:focus-visible { outline: 2px solid blue; }"
+    },
+    "code": "button {\n  outline: none;\n}\nbutton:focus-visible {\n  outline: 2px solid #2563eb;\n  outline-offset: 2px;\n}",
+    "timeTargetSec": 35,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        ":focus-visible only shows for keyboard navigation, not mouse clicks",
+        "outline-offset separates the outline from the element edge"
+      ],
+      "commonMistakes": [
+        "Removing outline globally without a focus-visible replacement",
+        "Using :focus instead, which also triggers on mouse clicks"
+      ]
+    },
+    "tags": [
+      "css",
+      "accessibility"
+    ]
+  },
+  {
+    "id": "css-medium-053",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Truncate Text with Ellipsis",
+    "prompt": "Type a single-line text truncation style.",
+    "approach": {
+      "steps": [
+        "Set white-space: nowrap",
+        "Set overflow: hidden",
+        "Set text-overflow: ellipsis"
+      ],
+      "example": ".truncate { text-overflow: ellipsis; }"
+    },
+    "code": ".title {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  max-width: 200px;\n}",
+    "timeTargetSec": 35,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "All three properties are required together for ellipsis truncation",
+        "max-width or a fixed width is needed to trigger overflow"
+      ],
+      "commonMistakes": [
+        "Missing one of the three required properties",
+        "No width constraint on the element"
+      ]
+    },
+    "tags": [
+      "css",
+      "text"
+    ]
+  },
+  {
+    "id": "css-medium-054",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "CSS Animation Keyframes",
+    "prompt": "Type a simple fade-in keyframe animation.",
+    "approach": {
+      "steps": [
+        "Define @keyframes with from/to",
+        "Apply animation property to an element"
+      ],
+      "example": "@keyframes fade { from { opacity: 0; } to { opacity: 1; } }"
+    },
+    "code": "@keyframes fadeIn {\n  from { opacity: 0; }\n  to { opacity: 1; }\n}\n.toast {\n  animation: fadeIn 0.4s ease-in;\n}",
+    "timeTargetSec": 40,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "@keyframes defines the animation steps by name",
+        "animation shorthand sets name, duration, and easing"
+      ],
+      "commonMistakes": [
+        "Animation name mismatch between keyframes and property",
+        "Forgetting duration in the shorthand"
+      ]
+    },
+    "tags": [
+      "css",
+      "animation"
+    ]
+  },
+  {
+    "id": "css-medium-055",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Flexbox Wrap for Cards",
+    "prompt": "Type a wrapping flex layout for a card grid.",
+    "approach": {
+      "steps": [
+        "Set display: flex",
+        "Enable flex-wrap: wrap",
+        "Set a basis width on each card"
+      ],
+      "example": ".cards { display: flex; flex-wrap: wrap; }"
+    },
+    "code": ".card-list {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 16px;\n}\n.card {\n  flex: 1 1 200px;\n}",
+    "timeTargetSec": 40,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "flex-wrap allows items to move to new lines",
+        "flex: 1 1 200px sets a flexible base width of 200px"
+      ],
+      "commonMistakes": [
+        "Forgetting flex-wrap causing overflow",
+        "Fixed width instead of flex-basis"
+      ]
+    },
+    "tags": [
+      "css",
+      "flexbox"
+    ]
+  },
+  {
+    "id": "css-medium-056",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Custom Scrollbar Styling",
+    "prompt": "Type webkit scrollbar styles for a scrollable container.",
+    "approach": {
+      "steps": [
+        "Target ::-webkit-scrollbar",
+        "Style the thumb and track"
+      ],
+      "example": "::-webkit-scrollbar { width: 8px; }"
+    },
+    "code": ".scroll-box::-webkit-scrollbar {\n  width: 8px;\n}\n.scroll-box::-webkit-scrollbar-thumb {\n  background: #999;\n  border-radius: 4px;\n}",
+    "timeTargetSec": 40,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "::-webkit-scrollbar is a non-standard but widely supported pseudo-element",
+        "Thumb and track can be styled independently"
+      ],
+      "commonMistakes": [
+        "Forgetting vendor prefix awareness (Firefox uses different properties)",
+        "Styling scrollbar globally instead of scoped"
+      ]
+    },
+    "tags": [
+      "css",
+      "effects"
+    ]
+  },
+  {
+    "id": "css-medium-057",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Object-fit for Images",
+    "prompt": "Type a style that crops an image to fill its box.",
+    "approach": {
+      "steps": [
+        "Set a fixed width/height on the image",
+        "Set object-fit: cover"
+      ],
+      "example": "img { object-fit: cover; }"
+    },
+    "code": ".avatar {\n  width: 64px;\n  height: 64px;\n  object-fit: cover;\n  border-radius: 50%;\n}",
+    "timeTargetSec": 30,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "object-fit: cover crops to fill without distortion",
+        "Commonly paired with border-radius for avatars"
+      ],
+      "commonMistakes": [
+        "Using object-fit: contain when cover is wanted",
+        "Missing fixed dimensions on the image"
+      ]
+    },
+    "tags": [
+      "css",
+      "layout"
+    ]
+  },
+  {
+    "id": "css-medium-058",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "CSS Grid Auto-fit Columns",
+    "prompt": "Type a responsive grid that auto-fits columns based on available space.",
+    "approach": {
+      "steps": [
+        "Set display: grid",
+        "Use grid-template-columns with repeat(auto-fit, minmax())"
+      ],
+      "example": ".grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }"
+    },
+    "code": ".gallery {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));\n  gap: 16px;\n}",
+    "timeTargetSec": 45,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "auto-fit collapses empty tracks, auto-fill keeps them",
+        "minmax sets a flexible min/max size per column"
+      ],
+      "commonMistakes": [
+        "Confusing auto-fit with auto-fill behavior",
+        "Missing minmax causing overly narrow columns"
+      ]
+    },
+    "tags": [
+      "css",
+      "grid"
+    ]
+  },
+  {
+    "id": "css-medium-059",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Sticky Positioned Header",
+    "prompt": "Type a header that sticks to the top while scrolling.",
+    "approach": {
+      "steps": [
+        "Set position: sticky",
+        "Set top: 0",
+        "Add a z-index"
+      ],
+      "example": ".header { position: sticky; top: 0; }"
+    },
+    "code": ".site-header {\n  position: sticky;\n  top: 0;\n  z-index: 10;\n  background: white;\n}",
+    "timeTargetSec": 32,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "sticky behaves like relative until a scroll threshold, then sticks",
+        "z-index ensures it layers above scrolling content"
+      ],
+      "commonMistakes": [
+        "Forgetting top: 0 (sticky needs a threshold value)",
+        "Parent with overflow:hidden breaking sticky"
+      ]
+    },
+    "tags": [
+      "css",
+      "positioning"
+    ]
+  },
+  {
+    "id": "css-medium-060",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Attribute Selector Styling",
+    "prompt": "Type a style targeting inputs by their type attribute.",
+    "approach": {
+      "steps": [
+        "Use an attribute selector on input",
+        "Apply distinct styles per type"
+      ],
+      "example": "input[type=\"text\"] { border: 1px solid gray; }"
+    },
+    "code": "input[type=\"email\"] {\n  border: 1px solid #d1d5db;\n  padding: 8px;\n}\ninput[type=\"checkbox\"] {\n  accent-color: #4f46e5;\n}",
+    "timeTargetSec": 35,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Attribute selectors target elements by attribute value",
+        "accent-color themes native checkboxes/radios"
+      ],
+      "commonMistakes": [
+        "Typos in the attribute value string",
+        "Forgetting quotes around the value"
+      ]
+    },
+    "tags": [
+      "css",
+      "selectors"
+    ]
+  },
+  {
+    "id": "css-medium-061",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Clamp for Responsive Font Size",
+    "prompt": "Type a fluid font size using clamp().",
+    "approach": {
+      "steps": [
+        "Use clamp(min, preferred, max)",
+        "Apply to font-size"
+      ],
+      "example": "h1 { font-size: clamp(1.5rem, 4vw, 3rem); }"
+    },
+    "code": "h1 {\n  font-size: clamp(1.75rem, 2vw + 1rem, 3.5rem);\n}",
+    "timeTargetSec": 35,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "clamp() picks a value between min and max based on the preferred expression",
+        "Removes the need for many separate media queries"
+      ],
+      "commonMistakes": [
+        "Min value greater than max value",
+        "Preferred value without a relative unit like vw"
+      ]
+    },
+    "tags": [
+      "css",
+      "responsive"
+    ]
+  },
+  {
+    "id": "css-medium-062",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Backdrop Filter Blur",
+    "prompt": "Type a frosted-glass overlay effect.",
+    "approach": {
+      "steps": [
+        "Set a semi-transparent background",
+        "Add backdrop-filter: blur()"
+      ],
+      "example": ".overlay { backdrop-filter: blur(8px); }"
+    },
+    "code": ".modal-overlay {\n  background: rgba(255, 255, 255, 0.6);\n  backdrop-filter: blur(10px);\n}",
+    "timeTargetSec": 35,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "backdrop-filter blurs content behind the element, not the element itself",
+        "Needs a translucent background to see the effect"
+      ],
+      "commonMistakes": [
+        "Opaque background hiding the blur effect",
+        "Missing vendor prefix for Safari (-webkit-backdrop-filter)"
+      ]
+    },
+    "tags": [
+      "css",
+      "effects"
+    ]
+  },
+  {
+    "id": "css-medium-063",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "CSS Counters for Numbered Sections",
+    "prompt": "Type a numbered list using CSS counters instead of markup.",
+    "approach": {
+      "steps": [
+        "Reset counter on the container",
+        "Increment counter on each item",
+        "Display it with content: counter()"
+      ],
+      "example": ".list { counter-reset: item; } li::before { counter-increment: item; content: counter(item); }"
+    },
+    "code": ".steps {\n  counter-reset: step;\n}\n.steps li {\n  counter-increment: step;\n}\n.steps li::before {\n  content: counter(step) \". \";\n  font-weight: bold;\n}",
+    "timeTargetSec": 45,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "counter-reset initializes, counter-increment advances",
+        "content: counter() renders the current value"
+      ],
+      "commonMistakes": [
+        "Resetting the counter inside the item instead of the container",
+        "Forgetting counter-increment on the item"
+      ]
+    },
+    "tags": [
+      "css",
+      "counters"
+    ]
+  },
+  {
+    "id": "css-medium-064",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Aspect Ratio Box",
+    "prompt": "Type a responsive box that maintains a 16:9 ratio.",
+    "approach": {
+      "steps": [
+        "Set aspect-ratio: 16 / 9",
+        "Set width to 100%"
+      ],
+      "example": ".video-box { aspect-ratio: 16 / 9; }"
+    },
+    "code": ".video-wrapper {\n  width: 100%;\n  aspect-ratio: 16 / 9;\n  background: #000;\n}",
+    "timeTargetSec": 28,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "aspect-ratio replaces the old padding-hack technique",
+        "Height is derived automatically from width"
+      ],
+      "commonMistakes": [
+        "Setting both height and aspect-ratio conflictingly",
+        "Browser support assumptions without checking baseline"
+      ]
+    },
+    "tags": [
+      "css",
+      "layout"
+    ]
+  },
+  {
+    "id": "css-medium-065",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Multi-column Text Layout",
+    "prompt": "Type a newspaper-style multi-column text block.",
+    "approach": {
+      "steps": [
+        "Set column-count",
+        "Add column-gap"
+      ],
+      "example": ".text { column-count: 2; column-gap: 20px; }"
+    },
+    "code": ".article-body {\n  column-count: 3;\n  column-gap: 32px;\n  column-rule: 1px solid #ddd;\n}",
+    "timeTargetSec": 35,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "column-count splits text into flowing columns",
+        "column-rule draws a divider line between columns"
+      ],
+      "commonMistakes": [
+        "Using columns for non-flowing layouts (better suited to grid)",
+        "Forgetting column-gap making text feel cramped"
+      ]
+    },
+    "tags": [
+      "css",
+      "layout"
+    ]
+  },
+  {
+    "id": "css-medium-066",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Gradient Border with Background Clip",
+    "prompt": "Type a card with a gradient border effect.",
+    "approach": {
+      "steps": [
+        "Set a solid border with transparent color",
+        "Use background with padding-box and border-box layering"
+      ],
+      "example": ".border-grad { border: 4px solid transparent; background-clip: padding-box, border-box; }"
+    },
+    "code": ".gradient-card {\n  border: 3px solid transparent;\n  border-radius: 12px;\n  background:\n    linear-gradient(white, white) padding-box,\n    linear-gradient(45deg, #6366f1, #ec4899) border-box;\n}",
+    "timeTargetSec": 50,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Two background layers with different clip boxes create a gradient border",
+        "border-box vs padding-box controls which layer shows through"
+      ],
+      "commonMistakes": [
+        "Missing transparent border color",
+        "Wrong layer order in the background shorthand"
+      ]
+    },
+    "tags": [
+      "css",
+      "effects"
+    ]
+  },
+  {
+    "id": "css-medium-067",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Grid with Minmax Rows",
+    "prompt": "Type a grid with flexible row heights using minmax.",
+    "approach": {
+      "steps": [
+        "Set display: grid",
+        "Use grid-auto-rows: minmax()"
+      ],
+      "example": ".grid { grid-auto-rows: minmax(100px, auto); }"
+    },
+    "code": ".masonry {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  grid-auto-rows: minmax(120px, auto);\n  gap: 12px;\n}",
+    "timeTargetSec": 40,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "grid-auto-rows sizes implicitly created rows",
+        "minmax(120px, auto) sets a floor but allows growth"
+      ],
+      "commonMistakes": [
+        "Fixed row height causing content overflow",
+        "Confusing grid-auto-rows with grid-template-rows"
+      ]
+    },
+    "tags": [
+      "css",
+      "grid"
+    ]
+  },
+  {
+    "id": "css-medium-068",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Will-change Performance Hint",
+    "prompt": "Type a style hinting the browser about an upcoming animation.",
+    "approach": {
+      "steps": [
+        "Add will-change to the animated property",
+        "Combine with a transform-based animation"
+      ],
+      "example": ".el { will-change: transform; }"
+    },
+    "code": ".draggable {\n  will-change: transform;\n  transition: transform 0.2s ease;\n}",
+    "timeTargetSec": 28,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "will-change lets the browser optimize ahead of a change",
+        "Overusing it on many elements can hurt performance instead"
+      ],
+      "commonMistakes": [
+        "Applying will-change broadly to the whole page",
+        "Using it on properties that never actually change"
+      ]
+    },
+    "tags": [
+      "css",
+      "performance"
+    ]
+  },
+  {
+    "id": "css-medium-069",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Logical Properties for RTL Support",
+    "prompt": "Type spacing using logical properties instead of physical ones.",
+    "approach": {
+      "steps": [
+        "Use margin-inline-start instead of margin-left",
+        "Use padding-block instead of padding-top/bottom"
+      ],
+      "example": ".el { margin-inline-start: 8px; }"
+    },
+    "code": ".card {\n  padding-block: 12px;\n  margin-inline-start: 16px;\n}",
+    "timeTargetSec": 35,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Logical properties adapt automatically to text direction (LTR/RTL)",
+        "block = vertical axis, inline = horizontal axis in LTR"
+      ],
+      "commonMistakes": [
+        "Mixing logical and physical properties inconsistently",
+        "Assuming inline always means horizontal regardless of writing mode"
+      ]
+    },
+    "tags": [
+      "css",
+      "internationalization"
+    ]
+  },
+  {
+    "id": "css-medium-070",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Container Queries",
+    "prompt": "Type a component style that responds to its container's width.",
+    "approach": {
+      "steps": [
+        "Set container-type: inline-size on the parent",
+        "Use @container query on the child"
+      ],
+      "example": ".wrapper { container-type: inline-size; }"
+    },
+    "code": ".card-wrapper {\n  container-type: inline-size;\n}\n@container (min-width: 400px) {\n  .card {\n    flex-direction: row;\n  }\n}",
+    "timeTargetSec": 50,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Container queries respond to a parent's size, not the viewport",
+        "container-type must be set before @container rules take effect"
+      ],
+      "commonMistakes": [
+        "Forgetting container-type on the ancestor",
+        "Confusing container queries with media queries"
+      ]
+    },
+    "tags": [
+      "css",
+      "responsive"
+    ]
+  },
+  {
+    "id": "css-medium-071",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Custom Radio/Checkbox Styling",
+    "prompt": "Type accent-color and appearance overrides for form controls.",
+    "approach": {
+      "steps": [
+        "Set appearance: none on the input",
+        "Add a custom checked style with :checked"
+      ],
+      "example": "input[type=checkbox] { appearance: none; }"
+    },
+    "code": "input[type=\"checkbox\"] {\n  appearance: none;\n  width: 18px;\n  height: 18px;\n  border: 2px solid #999;\n  border-radius: 4px;\n}\ninput[type=\"checkbox\"]:checked {\n  background: #4f46e5;\n  border-color: #4f46e5;\n}",
+    "timeTargetSec": 40,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "appearance: none removes native styling for full control",
+        ":checked targets the toggled state"
+      ],
+      "commonMistakes": [
+        "Forgetting to restyle the checked state entirely",
+        "Losing focus visibility after removing appearance"
+      ]
+    },
+    "tags": [
+      "css",
+      "forms"
+    ]
+  },
+  {
+    "id": "css-medium-072",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Flex Grow and Shrink",
+    "prompt": "Type flex items with different grow/shrink ratios.",
+    "approach": {
+      "steps": [
+        "Set flex-grow on a primary item",
+        "Set flex-shrink on a secondary item"
+      ],
+      "example": ".main { flex-grow: 2; }"
+    },
+    "code": ".sidebar {\n  flex: 0 1 200px;\n}\n.main {\n  flex: 2 1 auto;\n}",
+    "timeTargetSec": 38,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "flex-grow distributes extra space by ratio",
+        "flex-shrink controls how items shrink when space is tight"
+      ],
+      "commonMistakes": [
+        "Confusing grow and shrink values",
+        "Using width instead of flex-basis in shorthand"
+      ]
+    },
+    "tags": [
+      "css",
+      "flexbox"
+    ]
+  },
+  {
+    "id": "css-medium-073",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Linear Gradient Background",
+    "prompt": "Type a diagonal two-color gradient background.",
+    "approach": {
+      "steps": [
+        "Use linear-gradient() with an angle",
+        "Add two color stops"
+      ],
+      "example": ".bg { background: linear-gradient(90deg, red, blue); }"
+    },
+    "code": ".hero {\n  background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);\n}",
+    "timeTargetSec": 30,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Angle defines the gradient direction",
+        "Percentage stops control where each color is fully applied"
+      ],
+      "commonMistakes": [
+        "Forgetting the angle unit (deg)",
+        "Only one color stop instead of two"
+      ]
+    },
+    "tags": [
+      "css",
+      "effects"
+    ]
+  },
+  {
+    "id": "css-medium-074",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Grid Item Placement with Line Numbers",
+    "prompt": "Type explicit grid item placement using line numbers.",
+    "approach": {
+      "steps": [
+        "Define a grid on the parent",
+        "Place a child using grid-column and grid-row line numbers"
+      ],
+      "example": ".item { grid-column: 1 / 3; }"
+    },
+    "code": ".featured {\n  grid-column: 1 / 3;\n  grid-row: 1 / 2;\n}",
+    "timeTargetSec": 35,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Grid lines are numbered starting at 1",
+        "The end value is exclusive, like array slicing"
+      ],
+      "commonMistakes": [
+        "Off-by-one on the end line number",
+        "Using span incorrectly mixed with line numbers"
+      ]
+    },
+    "tags": [
+      "css",
+      "grid"
+    ]
+  },
+  {
+    "id": "css-medium-075",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Not Selector for Exclusions",
+    "prompt": "Type a style excluding the last child from a border rule.",
+    "approach": {
+      "steps": [
+        "Select all items with a border",
+        "Use :not(:last-child) to exclude the last one"
+      ],
+      "example": "li:not(:last-child) { border-bottom: 1px solid #eee; }"
+    },
+    "code": ".list-item:not(:last-child) {\n  border-bottom: 1px solid #e5e7eb;\n  margin-bottom: 8px;\n}",
+    "timeTargetSec": 32,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        ":not() negates a selector inside the parentheses",
+        "Common pattern for dividers between list items"
+      ],
+      "commonMistakes": [
+        "Forgetting :not() and styling every item",
+        "Nesting :not() incorrectly with multiple args pre-Level4"
+      ]
+    },
+    "tags": [
+      "css",
+      "selectors"
+    ]
+  },
+  {
+    "id": "css-medium-076",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Text Gradient Effect",
+    "prompt": "Type a heading with a gradient-filled text color.",
+    "approach": {
+      "steps": [
+        "Apply background: linear-gradient() to the text",
+        "Set background-clip: text and transparent color"
+      ],
+      "example": "h1 { background-clip: text; color: transparent; }"
+    },
+    "code": "h1 {\n  background: linear-gradient(90deg, #6366f1, #06b6d4);\n  background-clip: text;\n  -webkit-background-clip: text;\n  color: transparent;\n}",
+    "timeTargetSec": 38,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "background-clip: text clips the background to the glyph shapes",
+        "color: transparent reveals the background through the text"
+      ],
+      "commonMistakes": [
+        "Missing -webkit- prefix for Safari support",
+        "Forgetting color: transparent"
+      ]
+    },
+    "tags": [
+      "css",
+      "effects"
+    ]
+  },
+  {
+    "id": "css-medium-077",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Grid Auto-flow Dense",
+    "prompt": "Type a grid that fills gaps using dense packing.",
+    "approach": {
+      "steps": [
+        "Set display: grid",
+        "Set grid-auto-flow: dense"
+      ],
+      "example": ".grid { grid-auto-flow: dense; }"
+    },
+    "code": ".masonry-grid {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  grid-auto-flow: dense;\n  gap: 12px;\n}",
+    "timeTargetSec": 35,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "dense packing fills earlier gaps left by differently-sized items",
+        "Can change visual order away from DOM order"
+      ],
+      "commonMistakes": [
+        "Using dense when source order must be preserved",
+        "Not testing with varied item sizes"
+      ]
+    },
+    "tags": [
+      "css",
+      "grid"
+    ]
+  },
+  {
+    "id": "css-medium-078",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Custom Focus Ring with Box Shadow",
+    "prompt": "Type a focus style using box-shadow instead of outline.",
+    "approach": {
+      "steps": [
+        "Remove default outline",
+        "Add box-shadow ring on :focus-visible"
+      ],
+      "example": "input:focus-visible { box-shadow: 0 0 0 3px blue; }"
+    },
+    "code": "input {\n  outline: none;\n}\ninput:focus-visible {\n  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.4);\n}",
+    "timeTargetSec": 35,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "box-shadow rings can follow border-radius, unlike outline in some browsers",
+        "Still needs :focus-visible to stay keyboard-only"
+      ],
+      "commonMistakes": [
+        "Removing outline with no replacement at all",
+        "Ring color with too little contrast"
+      ]
+    },
+    "tags": [
+      "css",
+      "accessibility"
+    ]
+  },
+  {
+    "id": "css-medium-079",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Grid with Subgrid Columns",
+    "prompt": "Type a nested grid that aligns to its parent's column tracks.",
+    "approach": {
+      "steps": [
+        "Define parent grid columns",
+        "Set child display: grid with grid-template-columns: subgrid"
+      ],
+      "example": ".child { grid-template-columns: subgrid; }"
+    },
+    "code": ".parent {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n}\n.child {\n  display: grid;\n  grid-column: 1 / 5;\n  grid-template-columns: subgrid;\n}",
+    "timeTargetSec": 50,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "subgrid lets nested grids inherit the parent's track sizing",
+        "Child must span the relevant parent columns first"
+      ],
+      "commonMistakes": [
+        "Forgetting to span the right grid-column range on the child",
+        "Using subgrid without a supporting browser baseline check"
+      ]
+    },
+    "tags": [
+      "css",
+      "grid"
+    ]
+  },
+  {
+    "id": "css-medium-080",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Filter Effects on Images",
+    "prompt": "Type grayscale and brightness filters with a hover reset.",
+    "approach": {
+      "steps": [
+        "Apply filter: grayscale() to the base image",
+        "Reset filter: none on hover"
+      ],
+      "example": "img { filter: grayscale(100%); }"
+    },
+    "code": ".photo {\n  filter: grayscale(100%) brightness(0.9);\n  transition: filter 0.3s ease;\n}\n.photo:hover {\n  filter: grayscale(0%) brightness(1);\n}",
+    "timeTargetSec": 38,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Multiple filter functions can be chained in one declaration",
+        "Transitioning filter animates smoothly like transform"
+      ],
+      "commonMistakes": [
+        "Forgetting to reset filter on hover",
+        "Chaining filters in a way that fights each other"
+      ]
+    },
+    "tags": [
+      "css",
+      "effects"
+    ]
+  },
+  {
+    "id": "css-medium-081",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Flexbox Order Property",
+    "prompt": "Type flex items that reorder visually without changing HTML.",
+    "approach": {
+      "steps": [
+        "Set order on specific flex items",
+        "Leave others at default order 0"
+      ],
+      "example": ".item { order: 2; }"
+    },
+    "code": ".sidebar { order: 2; }\n.main { order: 1; }\n.footer { order: 3; }",
+    "timeTargetSec": 30,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "order controls visual sequence independent of DOM order",
+        "Default order value is 0 for all items"
+      ],
+      "commonMistakes": [
+        "Overusing order in ways that break keyboard tab order",
+        "Assuming order changes DOM structure (it doesn't)"
+      ]
+    },
+    "tags": [
+      "css",
+      "flexbox"
+    ]
+  },
+  {
+    "id": "css-medium-082",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "CSS Clip-path Shapes",
+    "prompt": "Type a custom polygon clip-path shape.",
+    "approach": {
+      "steps": [
+        "Use clip-path: polygon() with coordinate pairs",
+        "Apply to a div"
+      ],
+      "example": ".el { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }"
+    },
+    "code": ".badge-shape {\n  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);\n  background: #f59e0b;\n}",
+    "timeTargetSec": 45,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Coordinates are percentages of the element's box",
+        "Points are connected in the order listed"
+      ],
+      "commonMistakes": [
+        "Odd number of coordinate values",
+        "Shape points defined in a non-connecting order"
+      ]
+    },
+    "tags": [
+      "css",
+      "effects"
+    ]
+  },
+  {
+    "id": "css-medium-083",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Scroll Snap Container",
+    "prompt": "Type a horizontally scrolling gallery with snap points.",
+    "approach": {
+      "steps": [
+        "Set scroll-snap-type on the container",
+        "Set scroll-snap-align on each child"
+      ],
+      "example": ".scroller { scroll-snap-type: x mandatory; }"
+    },
+    "code": ".gallery {\n  display: flex;\n  overflow-x: auto;\n  scroll-snap-type: x mandatory;\n}\n.gallery img {\n  scroll-snap-align: start;\n}",
+    "timeTargetSec": 40,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "scroll-snap-type on the container defines the axis and strictness",
+        "scroll-snap-align on children defines the snap point"
+      ],
+      "commonMistakes": [
+        "Missing overflow-x: auto on the container",
+        "Setting snap-align only on some children"
+      ]
+    },
+    "tags": [
+      "css",
+      "layout"
+    ]
+  },
+  {
+    "id": "css-medium-084",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Custom Property Fallbacks",
+    "prompt": "Type a var() usage with a fallback value.",
+    "approach": {
+      "steps": [
+        "Use var(--name, fallback)",
+        "Test behavior when the variable is undefined"
+      ],
+      "example": "color: var(--brand, blue);"
+    },
+    "code": ".button {\n  background: var(--brand-color, #4f46e5);\n  color: var(--text-on-brand, white);\n}",
+    "timeTargetSec": 32,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Second argument to var() is used if the custom property is unset",
+        "Useful for theme-safe defaults"
+      ],
+      "commonMistakes": [
+        "Assuming fallback applies to invalid values, not just unset ones",
+        "Comma missing between name and fallback"
+      ]
+    },
+    "tags": [
+      "css",
+      "variables"
+    ]
+  },
+  {
+    "id": "css-medium-085",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "medium",
+    "title": "Grid Minmax with Auto-fill",
+    "prompt": "Type a fixed-slot responsive grid using auto-fill.",
+    "approach": {
+      "steps": [
+        "Use repeat(auto-fill, minmax())",
+        "Compare mentally against auto-fit behavior"
+      ],
+      "example": ".grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }"
+    },
+    "code": ".icon-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));\n  gap: 8px;\n}",
+    "timeTargetSec": 40,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "auto-fill keeps empty tracks reserved even without content",
+        "Useful when consistent slot sizing matters more than filling space"
+      ],
+      "commonMistakes": [
+        "Expecting auto-fill to collapse empty tracks like auto-fit",
+        "Minmax bounds too tight for content"
+      ]
+    },
+    "tags": [
+      "css",
+      "grid"
+    ]
+  },
+  {
+    "id": "css-hard-086",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Full Responsive Card Grid with Container Queries",
+    "prompt": "Type a complete component that adapts internally via container queries and externally via grid.",
+    "approach": {
+      "steps": [
+        "Set up outer grid with auto-fit columns",
+        "Mark each card as a query container",
+        "Add a @container rule changing internal layout"
+      ],
+      "example": ".card { container-type: inline-size; }"
+    },
+    "code": ".card-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n  gap: 20px;\n}\n.card {\n  container-type: inline-size;\n  display: flex;\n  flex-direction: column;\n}\n@container (min-width: 320px) {\n  .card {\n    flex-direction: row;\n  }\n}",
+    "timeTargetSec": 90,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Outer grid handles page-level responsiveness, container queries handle component-level",
+        "Each card must declare itself as a containment context"
+      ],
+      "commonMistakes": [
+        "Forgetting container-type on the card itself",
+        "Conflicting breakpoints between media and container queries"
+      ]
+    },
+    "tags": [
+      "css",
+      "responsive"
+    ]
+  },
+  {
+    "id": "css-hard-087",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Complex Animation with Multiple Keyframe Stops",
+    "prompt": "Type a bounce animation using several keyframe percentages.",
+    "approach": {
+      "steps": [
+        "Define keyframes with 0%, 50%, 100% stops",
+        "Vary transform at each stop",
+        "Apply with an easing curve"
+      ],
+      "example": "@keyframes bounce { 0% {} 50% {} 100% {} }"
+    },
+    "code": "@keyframes bounce {\n  0% { transform: translateY(0); }\n  30% { transform: translateY(-20px); }\n  60% { transform: translateY(0); }\n  80% { transform: translateY(-8px); }\n  100% { transform: translateY(0); }\n}\n.icon {\n  animation: bounce 1s ease-in-out infinite;\n}",
+    "timeTargetSec": 75,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Multiple percentage stops create more natural, non-linear motion",
+        "infinite keeps the animation looping continuously"
+      ],
+      "commonMistakes": [
+        "Uneven stop distribution producing jerky motion",
+        "Forgetting infinite when a loop is intended"
+      ]
+    },
+    "tags": [
+      "css",
+      "animation"
+    ]
+  },
+  {
+    "id": "css-hard-088",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "CSS Grid Full Page Layout with Named Lines",
+    "prompt": "Type a full-page grid using named grid lines instead of areas.",
+    "approach": {
+      "steps": [
+        "Define grid-template-columns with named lines",
+        "Place items using the named line references"
+      ],
+      "example": ".layout { grid-template-columns: [sidebar-start] 200px [sidebar-end main-start] 1fr [main-end]; }"
+    },
+    "code": ".page {\n  display: grid;\n  grid-template-columns: [side-start] 220px [side-end main-start] 1fr [main-end];\n  grid-template-rows: [head-start] 60px [head-end body-start] 1fr [body-end];\n}\n.sidebar {\n  grid-column: side-start / side-end;\n  grid-row: body-start / body-end;\n}\n.main {\n  grid-column: main-start / main-end;\n  grid-row: body-start / body-end;\n}",
+    "timeTargetSec": 95,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Named lines document layout intent directly in the grid definition",
+        "Placement references line names instead of raw numbers"
+      ],
+      "commonMistakes": [
+        "Mismatched line names between definition and placement",
+        "Duplicate line names causing ambiguous references"
+      ]
+    },
+    "tags": [
+      "css",
+      "grid"
+    ]
+  },
+  {
+    "id": "css-hard-089",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Custom Properties Driven Theme Switcher",
+    "prompt": "Type a light/dark theme setup using custom properties and a data attribute selector.",
+    "approach": {
+      "steps": [
+        "Define default variables in :root",
+        "Override them under [data-theme=\"dark\"]",
+        "Reference variables throughout component styles"
+      ],
+      "example": "[data-theme=\"dark\"] { --bg: #111; }"
+    },
+    "code": ":root {\n  --bg: #ffffff;\n  --text: #111111;\n}\n[data-theme=\"dark\"] {\n  --bg: #0f172a;\n  --text: #f1f5f9;\n}\nbody {\n  background: var(--bg);\n  color: var(--text);\n}",
+    "timeTargetSec": 80,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Attribute selector scopes an entire variable set to a theme toggle",
+        "Components stay theme-agnostic by only referencing variables"
+      ],
+      "commonMistakes": [
+        "Hardcoding colors in components instead of using variables",
+        "Forgetting to define every variable under both themes"
+      ]
+    },
+    "tags": [
+      "css",
+      "variables"
+    ]
+  },
+  {
+    "id": "css-hard-090",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Advanced Flexbox Holy Grail Layout",
+    "prompt": "Type a full holy-grail layout using flex with a fixed header/footer and flexible middle row.",
+    "approach": {
+      "steps": [
+        "Set body to display: flex, flex-direction: column, min-height: 100vh",
+        "Make the middle section flex: 1 and itself a flex row",
+        "Give sidebars fixed widths and main flex: 1"
+      ],
+      "example": ".page { display: flex; flex-direction: column; min-height: 100vh; }"
+    },
+    "code": ".page {\n  display: flex;\n  flex-direction: column;\n  min-height: 100vh;\n}\n.body-row {\n  display: flex;\n  flex: 1;\n}\n.sidebar { flex: 0 0 200px; }\n.main { flex: 1; }\nheader, footer { flex: 0 0 auto; }",
+    "timeTargetSec": 90,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "min-height: 100vh ensures the footer sits at the bottom on short pages",
+        "Nesting flex containers lets header/footer stay fixed while the middle grows"
+      ],
+      "commonMistakes": [
+        "Forgetting min-height causing a collapsed footer",
+        "Sidebar without a fixed flex-basis growing unexpectedly"
+      ]
+    },
+    "tags": [
+      "css",
+      "flexbox"
+    ]
+  },
+  {
+    "id": "css-hard-091",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Custom Loading Spinner Animation",
+    "prompt": "Type a CSS-only spinner using border and rotate keyframes.",
+    "approach": {
+      "steps": [
+        "Style a circle with a transparent top border",
+        "Add @keyframes spin rotating 360deg",
+        "Apply animation with linear timing and infinite"
+      ],
+      "example": "@keyframes spin { to { transform: rotate(360deg); } }"
+    },
+    "code": ".spinner {\n  width: 32px;\n  height: 32px;\n  border: 4px solid #e5e7eb;\n  border-top-color: #4f46e5;\n  border-radius: 50%;\n  animation: spin 0.8s linear infinite;\n}\n@keyframes spin {\n  to { transform: rotate(360deg); }\n}",
+    "timeTargetSec": 70,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "A single differently-colored border side creates the spinning indicator illusion",
+        "linear timing keeps rotation speed constant"
+      ],
+      "commonMistakes": [
+        "Using ease instead of linear causing uneven speed",
+        "Forgetting border-radius: 50% for a circle"
+      ]
+    },
+    "tags": [
+      "css",
+      "animation"
+    ]
+  },
+  {
+    "id": "css-hard-092",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Complex Selector Combinators Chain",
+    "prompt": "Type a rule chaining descendant, child, and sibling combinators together.",
+    "approach": {
+      "steps": [
+        "Combine a descendant selector, a child selector (>), and a sibling selector (~ or +)"
+      ],
+      "example": ".card > .header + .body ~ .footer { }"
+    },
+    "code": ".card > .header + .body ~ .footer {\n  border-top: 1px solid #eee;\n  padding-top: 12px;\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "> selects direct children only, + selects the immediate next sibling, ~ selects any following sibling",
+        "Chaining combinators expresses precise structural relationships"
+      ],
+      "commonMistakes": [
+        "Mixing up + (adjacent) and ~ (general sibling)",
+        "Overly specific chains that break if markup changes slightly"
+      ]
+    },
+    "tags": [
+      "css",
+      "selectors"
+    ]
+  },
+  {
+    "id": "css-hard-093",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Print Stylesheet with Page Breaks",
+    "prompt": "Type a print media query controlling page breaks and hiding UI chrome.",
+    "approach": {
+      "steps": [
+        "Add @media print block",
+        "Hide navigation/buttons",
+        "Force a page break before a section"
+      ],
+      "example": "@media print { nav { display: none; } }"
+    },
+    "code": "@media print {\n  nav, .no-print { display: none; }\n  .report-section {\n    break-before: page;\n  }\n  body {\n    color: #000;\n    background: #fff;\n  }\n}",
+    "timeTargetSec": 70,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "break-before: page forces a new printed page at that element",
+        "Print styles should hide interactive-only chrome"
+      ],
+      "commonMistakes": [
+        "Using outdated page-break-before instead of break-before",
+        "Forgetting to reset colors for print (dark backgrounds waste ink)"
+      ]
+    },
+    "tags": [
+      "css",
+      "print"
+    ]
+  },
+  {
+    "id": "css-hard-094",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Custom Properties with calc() Composition",
+    "prompt": "Type layout math combining multiple custom properties inside calc().",
+    "approach": {
+      "steps": [
+        "Define base spacing and multiplier variables",
+        "Combine them inside calc() for a derived value"
+      ],
+      "example": "--gap: 8px; padding: calc(var(--gap) * 2);"
+    },
+    "code": ":root {\n  --unit: 8px;\n  --cols: 12;\n}\n.container {\n  padding: calc(var(--unit) * 2);\n  width: calc(100% - var(--unit) * 4);\n}",
+    "timeTargetSec": 55,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "calc() can mix custom properties with literal units",
+        "Composing small tokens keeps spacing consistent system-wide"
+      ],
+      "commonMistakes": [
+        "Missing spaces around calc() operators (required syntax)",
+        "Unit mismatches inside calc()"
+      ]
+    },
+    "tags": [
+      "css",
+      "variables"
+    ]
+  },
+  {
+    "id": "css-hard-095",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Accessible Reduced Motion Handling",
+    "prompt": "Type an animation that respects the user's reduced-motion preference.",
+    "approach": {
+      "steps": [
+        "Define the normal animation",
+        "Add @media (prefers-reduced-motion: reduce)",
+        "Disable or simplify animation inside that query"
+      ],
+      "example": "@media (prefers-reduced-motion: reduce) { * { animation: none; } }"
+    },
+    "code": ".card {\n  animation: fadeIn 0.6s ease;\n}\n@media (prefers-reduced-motion: reduce) {\n  .card {\n    animation: none;\n  }\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "prefers-reduced-motion detects a user's OS-level accessibility setting",
+        "Reducing motion avoids triggering vestibular discomfort"
+      ],
+      "commonMistakes": [
+        "Ignoring reduced-motion entirely on decorative animations",
+        "Removing all transitions instead of just motion-heavy ones"
+      ]
+    },
+    "tags": [
+      "css",
+      "accessibility"
+    ]
+  },
+  {
+    "id": "css-hard-096",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "CSS Grid Masonry-style Layout",
+    "prompt": "Type a Pinterest-style layout using grid-row spans calculated by content.",
+    "approach": {
+      "steps": [
+        "Set a grid with dense auto-flow",
+        "Use grid-row-end: span N to vary item height"
+      ],
+      "example": ".item { grid-row-end: span 20; }"
+    },
+    "code": ".masonry {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n  grid-auto-rows: 10px;\n  grid-auto-flow: dense;\n}\n.item {\n  grid-row-end: span 24;\n}",
+    "timeTargetSec": 85,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "A small grid-auto-rows unit lets span values approximate variable heights",
+        "grid-auto-flow: dense fills visual gaps between differently-sized items"
+      ],
+      "commonMistakes": [
+        "Auto-row unit too large, producing chunky height jumps",
+        "Span values not derived from actual content height"
+      ]
+    },
+    "tags": [
+      "css",
+      "grid"
+    ]
+  },
+  {
+    "id": "css-hard-097",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Layered Box Shadows for Depth",
+    "prompt": "Type a multi-layer box-shadow creating realistic elevation.",
+    "approach": {
+      "steps": [
+        "Stack several box-shadow values separated by commas",
+        "Vary blur and opacity per layer for depth"
+      ],
+      "example": ".el { box-shadow: 0 1px 2px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.1); }"
+    },
+    "code": ".elevated {\n  box-shadow:\n    0 1px 2px rgba(0, 0, 0, 0.06),\n    0 4px 8px rgba(0, 0, 0, 0.08),\n    0 12px 24px rgba(0, 0, 0, 0.06);\n}",
+    "timeTargetSec": 60,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Multiple shadow layers mimic how real light diffuses at different distances",
+        "Commas separate independent shadow layers in one declaration"
+      ],
+      "commonMistakes": [
+        "Single heavy shadow looking flat and unrealistic",
+        "Layers with identical blur/opacity adding no depth"
+      ]
+    },
+    "tags": [
+      "css",
+      "effects"
+    ]
+  },
+  {
+    "id": "css-hard-098",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "CSS Houdini-style Custom Property Typing",
+    "prompt": "Type a @property rule giving a custom property a type and default.",
+    "approach": {
+      "steps": [
+        "Use @property with a name",
+        "Set syntax, inherits, and initial-value"
+      ],
+      "example": "@property --angle { syntax: \"<angle>\"; inherits: false; initial-value: 0deg; }"
+    },
+    "code": "@property --angle {\n  syntax: \"<angle>\";\n  inherits: false;\n  initial-value: 0deg;\n}\n.dial {\n  background: conic-gradient(from var(--angle), red, blue);\n  transition: --angle 0.3s ease;\n}",
+    "timeTargetSec": 75,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "@property gives custom properties a real type, enabling smooth transitions",
+        "Untyped custom properties can't be animated/transitioned directly"
+      ],
+      "commonMistakes": [
+        "Missing initial-value (required by spec)",
+        "Wrong syntax string format"
+      ]
+    },
+    "tags": [
+      "css",
+      "variables"
+    ]
+  },
+  {
+    "id": "css-hard-099",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Complex Grid Dashboard Layout",
+    "prompt": "Type a full dashboard layout combining grid-template-areas with responsive collapse.",
+    "approach": {
+      "steps": [
+        "Define desktop grid-template-areas with header/sidebar/main/aside",
+        "Add a media query collapsing to a single column on small screens"
+      ],
+      "example": ".dash { grid-template-areas: \"header header\"; }"
+    },
+    "code": ".dashboard {\n  display: grid;\n  grid-template-columns: 220px 1fr 260px;\n  grid-template-areas:\n    \"header header header\"\n    \"sidebar main aside\";\n}\n@media (max-width: 900px) {\n  .dashboard {\n    grid-template-columns: 1fr;\n    grid-template-areas:\n      \"header\"\n      \"main\"\n      \"sidebar\"\n      \"aside\";\n  }\n}",
+    "timeTargetSec": 95,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "Redefining grid-template-areas per breakpoint is cleaner than repositioning each child individually",
+        "Area names stay consistent; only the template layout changes"
+      ],
+      "commonMistakes": [
+        "Forgetting to redefine grid-template-columns alongside areas",
+        "Area name typos breaking the responsive version silently"
+      ]
+    },
+    "tags": [
+      "css",
+      "grid"
+    ]
+  },
+  {
+    "id": "css-hard-100",
+    "language": "css",
+    "trackType": "practice",
+    "difficulty": "hard",
+    "title": "Full Design Token System with Dark Mode and Motion Preferences",
+    "prompt": "Type a complete token setup combining theme variables, spacing scale, and reduced-motion handling.",
+    "approach": {
+      "steps": [
+        "Define a spacing and color token scale in :root",
+        "Add dark theme overrides via data attribute",
+        "Add reduced-motion override disabling transitions"
+      ],
+      "example": ":root { --space-1: 4px; }"
+    },
+    "code": ":root {\n  --space-1: 4px;\n  --space-2: 8px;\n  --space-3: 16px;\n  --color-bg: #ffffff;\n  --color-text: #111827;\n  --transition-base: 0.2s ease;\n}\n[data-theme=\"dark\"] {\n  --color-bg: #0f172a;\n  --color-text: #f1f5f9;\n}\n@media (prefers-reduced-motion: reduce) {\n  :root {\n    --transition-base: 0s;\n  }\n}\nbody {\n  background: var(--color-bg);\n  color: var(--color-text);\n  transition: background var(--transition-base), color var(--transition-base);\n}",
+    "timeTargetSec": 110,
+    "complexity": {
+      "time": "N/A",
+      "space": "N/A"
+    },
+    "review": {
+      "walkthroughSteps": [
+        "A token system centralizes spacing/color decisions into one source of truth",
+        "Feeding --transition-base through prefers-reduced-motion disables motion system-wide without touching every rule"
+      ],
+      "commonMistakes": [
+        "Hardcoding values elsewhere that bypass the token system",
+        "Reduced-motion override placed where specificity doesn't actually win"
+      ]
+    },
+    "tags": [
+      "css",
+      "variables"
+    ]
+  }
 ]
