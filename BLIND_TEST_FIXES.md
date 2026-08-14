@@ -186,3 +186,5 @@ After deployment, verify:
 3. **src/pages/LessonTyping.jsx** - Updated blind test button navigation
 
 All changes maintain backward compatibility with existing ReviewPanel blind test buttons that directly specify a mode.
+// Next make blind test as Optional task and improving its criteria for user to clear it with ease
+
