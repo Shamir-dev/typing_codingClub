@@ -1,12 +1,14 @@
 import { useState, useEffect, useCallback } from 'react'
 
+
 const THEME_KEY = 'typing-club-theme'
 const SOUND_KEY =
   'typing-club-sound-mode' // 'off' | 'mechanical' | 'typewriter' | 'recorded-mechanical'
 const CURSOR_KEY = 'typing-club-cursor-style' // 'line' | 'block' | 'underline'
 
 export function useSettings() {
-  const [theme, setThemeState] = useState(() => localStorage.getItem(THEME_KEY) || 'dark')
+  const [theme, setThemeState] = useState(() => localStorage.getItem(THEME_KEY) || 'light')
+
   const [soundMode, setSoundModeState] = useState(
     () => localStorage.getItem(SOUND_KEY) || 'mechanical'
   )

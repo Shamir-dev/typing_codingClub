@@ -260,7 +260,7 @@ export default function EnglishTest() {
           <h2 className="font-display font-semibold text-3xl sm:text-4xl text-text">English Practice</h2>
         </div>
         <p className="text-base text-text-muted mb-6">
-          Plain-word typing test, Random words, No code, No indentation.
+          Plain-word typing test, Type Freely, Type Fast.
         </p>
 
         {englishAttempts.length > 0 && (

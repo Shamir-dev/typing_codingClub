@@ -10,17 +10,18 @@
      token set, used whenever data-theme isn't "light" (see override
      below). Near-black navy rather than flat black or the old warm
      charcoal editor look. */
-  --color-base: #070b14;
+  --color-base: #190b14;
   --color-panel: #0d1320;
   --color-panel-raised: #121a2a;
   --color-line: #1c2536;
-  --color-text: #f5f7fb;
+  --color-text: #dbe0ee;
   --color-text-muted: #8993a5;
   --color-text-faint: #545e70;
 
   --color-correct: #7ec699;
   --color-incorrect: #e27878;
   --color-cursor: #f5f7fb;
+  
 
   /* Brand accents — purple/blue gradient family used for the hero
      emphasis line, primary CTAs, and active-nav glow. Deliberately
@@ -43,6 +44,13 @@
    setting data-theme="light" on <html>. Every Tailwind utility that
    reads var(--color-*) picks this up automatically, no class changes
    needed anywhere else in the app. */
+      [data-theme='light'] .lesson-complete {
+      background-color: #fcab1f;
+      }
+
+      [data-theme='dark'] .lesson-complete {
+        background-color: hsl(25, 82%, 53%);
+      }
 [data-theme='light'] {
   --color-base: #eaf3fb;
   --color-panel: #ffffff;
