@@ -32,7 +32,7 @@ export default function ReviewPanel({
   const [showCompiler, setShowCompiler] = useState(false)
 
   return (
-    <div className="max-w-8xl animate-pop-in">
+<div className="max-w-none w-full 2xl:max-w-[1600px] mx-auto animate-pop-in px-2">
 <div className="flex items-center gap-2 mb-4">
   <button
     onClick={onBack}

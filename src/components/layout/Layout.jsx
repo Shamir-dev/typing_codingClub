@@ -7,6 +7,7 @@ import { useAttemptsLog } from '../../hooks/useAttemptsLog'
 import { AVAILABLE_LANGUAGE_IDS } from '../../content/allLessons'
 import { Bell, Flame } from 'lucide-react'
 import { formatStreakRange, getStreakSummary } from '../../engine/streaks'
+import CompilerModal from './CompilerModal'
 
 export default function Layout() {
   const navigate = useNavigate()
@@ -22,27 +23,29 @@ export default function Layout() {
   const activeLanguageId = AVAILABLE_LANGUAGE_IDS.includes(firstSegment) ? firstSegment : null
   const isResultsActive = location.pathname === '/results'
   const isEnglishActive = location.pathname === '/english'
+  const [activeCompilerLanguage, setActiveCompilerLanguage] = useState(null)
 
   return (
     <div className="h-screen w-screen bg-base text-text overflow-hidden p-3">
       <div className="h-full flex gap-3">
-        <Sidebar
-          activeLanguageId={activeLanguageId}
-          onSelectLanguage={(id) => navigate(`/${id}`)}
-          onGoHome={() => navigate('/')}
-          onGoResults={() => navigate('/results')}
-          isResultsActive={isResultsActive}
-          onGoEnglish={() => navigate('/english')}
-          isEnglishActive={isEnglishActive}
-          theme={theme}
-          onToggleTheme={toggleTheme}
-          soundMode={soundMode}
-          onSetSoundMode={setSoundMode}
-          cursorStyle={cursorStyle}
-          onSetCursorStyle={setCursorStyle}
-          collapsed={sidebarCollapsed}
-          onToggleCollapsed={() => setSidebarCollapsed((v) => !v)}
-        />
+      <Sidebar
+        activeLanguageId={activeLanguageId}
+        onSelectLanguage={(id) => navigate(`/${id}`)}
+        onOpenCompiler={(id) => setActiveCompilerLanguage(id)}
+        onGoHome={() => navigate('/')}
+        onGoResults={() => navigate('/results')}
+        isResultsActive={isResultsActive}
+        onGoEnglish={() => navigate('/english')}
+        isEnglishActive={isEnglishActive}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+        soundMode={soundMode}
+        onSetSoundMode={setSoundMode}
+        cursorStyle={cursorStyle}
+        onSetCursorStyle={setCursorStyle}
+        collapsed={sidebarCollapsed}
+        onToggleCollapsed={() => setSidebarCollapsed((v) => !v)}
+      />
 
         <main className="relative flex-1 h-full min-w-0 overflow-hidden rounded-[24px] border border-line bg-panel/30 backdrop-blur-sm">
           <div className="absolute right-5 top-3 z-20 flex items-center gap-3">
@@ -76,6 +79,11 @@ export default function Layout() {
           </div>
         </main>
       </div>
+
+      <CompilerModal
+        language={activeCompilerLanguage}
+        onClose={() => setActiveCompilerLanguage(null)}
+      />
     </div>
   )
 }

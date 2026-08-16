@@ -26,7 +26,7 @@ export default function Review() {
 
   return (
     <div className="flex-1 overflow-auto">
-      <div className="px-5 py-6 sm:px-8 max-w-5xl mx-auto">
+    <div className="px-5 py-6 sm:px-8 max-w-none w-full 2xl:max-w-[1400px] mx-auto">
        <ReviewPanel
   lesson={lesson}
   wpm={result.wpm}
