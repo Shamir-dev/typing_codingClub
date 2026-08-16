@@ -178,7 +178,7 @@ export default function ReviewPanel({
             Walkthrough
           </span>
           {lesson.complexity && (
-            <span className="flex gap-2 text-[11px] font-mono">
+            <span className="flex gap-2 text-[22px] font-mono">
               <span className="bg-panel-raised border border-line rounded px-2 py-0.5 text-text-muted">
                 time {lesson.complexity.time}
               </span>
