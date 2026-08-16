@@ -4,6 +4,7 @@ import { formatTime } from '../../engine/timing'
 import { formatChar, summarizeMistakes } from '../../engine/mistakeSummary'
 import ConsistencyGraph from './ConsistencyGraph'
 import TypedTranscript from './TypedTranscript'
+import CompilerPanel from './CompilerPanel'
 
 export default function ReviewPanel({
   lesson,
@@ -16,6 +17,7 @@ export default function ReviewPanel({
   wpmHistory,
   keystrokeIntervals,
   accent,
+  language,
   nextLesson,
   previousLesson,
   onRetry,
@@ -27,29 +29,43 @@ export default function ReviewPanel({
   const mistakeSummary = summarizeMistakes(mistakes || [])
   const [showApproach, setShowApproach] = useState(false)
   const [showWalkthrough, setShowWalkthrough] = useState(false)
+  const [showCompiler, setShowCompiler] = useState(false)
 
   return (
-    <div className="max-w-5xl animate-pop-in">
-      <div className="flex items-center gap-2 mb-6">
-        <button
-          onClick={onBack}
-          title="Back to lessons"
-          className="text-text-faint hover:text-text p-1 -ml-1 rounded-md hover:bg-panel-raised transition-colors"
-        >
-          <ArrowLeft size={18} />
-        </button>
-        <span className="w-2 h-2 rounded-full" style={{ backgroundColor: accent }} />
-        <h2 className="font-display font-semibold text-lg text-text">{lesson.title}</h2>
-      </div>
+    <div className="max-w-8xl animate-pop-in">
+<div className="flex items-center gap-2 mb-4">
+  <button
+    onClick={onBack}
+    title="Back to lessons"
+    className="text-text-faint hover:text-text p-1 -ml-1 rounded-md hover:bg-panel-raised transition-colors"
+  >
+    <ArrowLeft size={18} />
+  </button>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+  <span
+    className="w-2 h-2 rounded-full"
+    style={{ backgroundColor: accent }}
+  />
+
+  <div>
+    <h2 className="font-display font-semibold text-lg text-text">
+      {lesson.title}
+    </h2>
+    <p className="text-sm text-gray-500 mt-1">
+      {lesson.prompt}
+    </p>
+  </div>
+</div>
+
+
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
         <div className="flex-1 border border-line rounded-md px-4 py-3 bg-panel">
-          <div className="text-xs text-text-faint font-mono uppercase tracking-wide">WPM</div>
-          <div className="text-xl font-display font-semibold text-correct mt-0.5">{wpm}</div>
+          <div className="text-xs text-text-faint font-mono uppercase tracking-wide ">WPM</div>
+          <div className="text-3xl font-display font-semibold text-correct mt-0.5">{wpm}</div>
         </div>
         <div className="flex-1 border border-line rounded-md px-4 py-3 bg-panel">
           <div className="text-xs text-text-faint font-mono uppercase tracking-wide">Accuracy</div>
-          <div className={`text-xl font-display font-semibold mt-0.5 ${accuracy < 90 ? 'text-incorrect' : 'text-correct'}`}>
+          <div className={`text-3xl font-display font-semibold mt-0.5 ${accuracy < 90 ? 'text-incorrect' : 'text-correct'}`}>
             {accuracy}%
           </div>
         </div>
@@ -102,38 +118,56 @@ export default function ReviewPanel({
         </div>
       </section>
       </div>
+ <section className="mb-6 bg-panel border border-line rounded-md p-4">
+  <div className="grid gap-4 sm:grid-cols-2 divide-x divide-line items-center">
+    {typed && targetCode && (
+      <div className="sm:pr-4">
+        <TypedTranscript
+          targetCode={targetCode}
+          typed={typed}
+          mistakes={mistakes}
+          open={showApproach}
+          onToggle={() => setShowApproach((v) => !v)}
+        />
+      </div>
+    )}
 
-      {typed && targetCode && <TypedTranscript targetCode={targetCode} typed={typed} mistakes={mistakes} />}
+    <div className="sm:pl-4">
+      <button
+        onClick={() => setShowApproach((v) => !v)}
+        className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-text-muted font-display font-medium hover:text-text transition-colors"
+      >
+        {showApproach ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+        View Approach
+      </button>
 
-      <section className="mb-6">
-        <button
-          onClick={() => setShowApproach((v) => !v)}
-          className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-text-muted font-display font-medium hover:text-text transition-colors"
-        >
-          {showApproach ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
-          View Approach
-        </button>
-
-        {showApproach && (
-          <div className="mt-3 bg-panel border border-line rounded-md p-4 animate-pop-in">
-            <ol className="space-y-2 mb-4">
-              {lesson.approach.steps.map((step, i) => (
-                <li key={i} className="text-sm text-text leading-relaxed flex gap-2">
-                  <span className="text-text-faint font-mono shrink-0">{i + 1}.</span>
-                  {step}
-                </li>
-              ))}
-            </ol>
-            {lesson.approach.example && (
-              <div className="bg-panel-raised rounded-md p-3 border border-line">
-                <div className="text-[10px] uppercase tracking-wide text-text-faint font-mono mb-1">Example</div>
-                <p className="text-xs text-text-muted font-mono leading-relaxed">{lesson.approach.example}</p>
-              </div>
-            )}
-          </div>
-        )}
-      </section>
-
+      {showApproach && (
+        <div className="mt-3 bg-panel-raised border border-line rounded-md p-4 animate-pop-in">
+          <ol className="space-y-2 mb-4">
+            {lesson.approach.steps.map((step, i) => (
+              <li key={i} className="text-sm text-text leading-relaxed flex gap-2">
+                <span className="text-text-faint font-mono shrink-0">{i + 1}.</span>
+                {step}
+              </li>
+            ))}
+          </ol>
+          {lesson.approach.example && (
+            <div className="bg-panel rounded-md p-3 border border-line">
+              <div className="text-[10px] uppercase tracking-wide text-text-faint font-mono mb-1">Example</div>
+              <p className="text-xs text-text-muted font-mono leading-relaxed">{lesson.approach.example}</p>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+      <CompilerPanel
+        language={language}
+        open={showCompiler}
+        onToggle={() => setShowCompiler((v) => !v)}
+      />
+      
       <section className="mb-8 bg-panel border border-line rounded-md p-4">
         <button
           onClick={() => setShowWalkthrough((v) => !v)}

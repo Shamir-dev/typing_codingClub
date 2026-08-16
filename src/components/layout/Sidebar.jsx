@@ -1,6 +1,6 @@
 import {
   Home, Keyboard, VolumeX, X, PanelLeftOpen, ListChecks, Type,
-  Braces, FileCode2, Hash, Coffee, Cpu, Palette, Atom, User,
+  Braces, FileCode2, Hash, Coffee, Cpu, Palette, Atom, User, Terminal,
 } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -36,6 +36,7 @@ const LANGUAGE_ICONS = {
 export default function Sidebar({
   activeLanguageId,
   onSelectLanguage,
+  onOpenCompiler,
   onGoHome,
   onGoResults,
   isResultsActive,
@@ -96,28 +97,44 @@ export default function Sidebar({
 
       <nav className="flex-1 overflow-y-auto py-3">
         <p className="px-5 text-[13px] font-semibold uppercase tracking-widest text-text-faint mb-2">Learn</p>
+
+
         {LANGUAGES.map((lang) => {
           const isAvailable = AVAILABLE_LANGUAGE_IDS.includes(lang.id)
           const isActive = lang.id === activeLanguageId
           return (
-            <button
+            <div
               key={lang.id}
-              disabled={!isAvailable}
-              onClick={() => isAvailable && onSelectLanguage(lang.id)}
               style={isActive ? {
                 borderColor: `color-mix(in srgb, ${lang.accent} 45%, transparent)`,
                 backgroundColor: `color-mix(in srgb, ${lang.accent} 10%, transparent)`,
               } : undefined}
-              className={`mx-3 w-[calc(100%-1.5rem)] flex items-center gap-3 px-3 py-2.5 text-left border rounded-lg transition-all duration-200
+              className={`mx-3 w-[calc(100%-1.5rem)] flex items-center border rounded-lg transition-all duration-200
                 ${isActive ? 'text-text font-bold shadow-[0_6px_18px_-10px_rgba(139,92,246,.7)]' : 'border-transparent text-text-muted hover:text-text hover:bg-panel-raised/60'}
-                ${!isAvailable ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
+                ${!isAvailable ? 'opacity-40' : ''}`}
             >
-              <div className="h-6 w-6 shrink-0 overflow-hidden rounded-md bg-panel-raised p-1">
-                <img src={lang.iconUrl} alt={lang.name} className="h-full w-full object-contain" />
-              </div>
-              <span className="font-mono text-[15px] font-bold tracking-wide">{lang.name}</span>
-              {!isAvailable && <span className="ml-auto text-[11px] text-text-faint font-medium">soon</span>}
-            </button>
+              <button
+                disabled={!isAvailable}
+                onClick={() => isAvailable && onSelectLanguage(lang.id)}
+                className={`flex-1 flex items-center gap-3 px-3 py-2.5 text-left ${!isAvailable ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+              >
+                <div className="h-6 w-6 shrink-0 overflow-hidden rounded-md bg-panel-raised p-1">
+                  <img src={lang.iconUrl} alt={lang.name} className="h-full w-full object-contain" />
+                </div>
+                <span className="font-mono text-[15px] font-bold tracking-wide">{lang.name}</span>
+                {/* {!isAvailable && <span className="ml-auto text-[11px] text-text-faint font-medium">soon</span>} */}
+              </button>
+
+              {isAvailable && (
+                <button
+                  onClick={() => onOpenCompiler(lang.id)}
+                  title={`Open ${lang.name} compiler`}
+                  className="shrink-0 p-1.5 mr-2 rounded-md text-text-faint hover:text-text hover:bg-panel-raised transition-colors"
+                > 
+                  <Terminal size={18} />
+                </button>
+              )}
+            </div>
           )
         })}
 

@@ -27,25 +27,26 @@ export default function Review() {
   return (
     <div className="flex-1 overflow-auto">
       <div className="px-5 py-6 sm:px-8 max-w-5xl mx-auto">
-        <ReviewPanel
-          lesson={lesson}
-          wpm={result.wpm}
-          accuracy={result.accuracy}
-          timeMs={result.timeMs}
-          mistakes={result.mistakes}
-          typed={result.typed}
-          targetCode={lesson.code}
-          wpmHistory={result.wpmHistory}
-          keystrokeIntervals={result.keystrokeIntervals}
-          accent={language.accent}
-          nextLesson={nextLesson}
-          previousLesson={previousLesson}
-          onRetry={() => navigate(`/${languageId}/lesson/${lesson.id}`)}
-          onNext={() => nextLesson && navigate(`/${languageId}/lesson/${nextLesson.id}`)}
-          onPrevious={() => previousLesson && navigate(`/${languageId}/lesson/${previousLesson.id}`)}
-          onBack={() => navigate(`/${languageId}`)}
-          onBlindTest={(mode) => navigate(`/${languageId}/lesson/${lessonId}/blind/${mode}`)}
-        />
+       <ReviewPanel
+  lesson={lesson}
+  wpm={result.wpm}
+  accuracy={result.accuracy}
+  timeMs={result.timeMs}
+  mistakes={result.mistakes}
+  typed={result.typed}
+  targetCode={lesson.code}
+  wpmHistory={result.wpmHistory}
+  keystrokeIntervals={result.keystrokeIntervals}
+  accent={language.accent}
+  language={languageId}
+  nextLesson={nextLesson}
+  previousLesson={previousLesson}
+  onRetry={() => navigate(`/${languageId}/lesson/${lesson.id}`)}
+  onNext={() => nextLesson && navigate(`/${languageId}/lesson/${nextLesson.id}`)}
+  onPrevious={() => previousLesson && navigate(`/${languageId}/lesson/${previousLesson.id}`)}
+  onBack={() => navigate(`/${languageId}`)}
+  onBlindTest={(mode) => navigate(`/${languageId}/lesson/${lessonId}/blind/${mode}`)}
+/>
       </div>
     </div>
   )

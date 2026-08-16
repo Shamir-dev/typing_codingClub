@@ -24,3 +24,17 @@ export const LANGUAGES = [
 export function getLanguage(id) {
   return LANGUAGES.find((l) => l.id === id)
 }
+export function getCompilerSlug(id) {
+  return oneCompilerSlugs[id] || 'python'
+}
+
+export const oneCompilerSlugs = {
+  python: 'python',
+  cpp: 'cpp',
+  c: 'c',
+  java: 'java',
+  javascript: 'javascript',
+  html: 'html',
+  css: 'tailwindcss',
+  react: 'react',
+}

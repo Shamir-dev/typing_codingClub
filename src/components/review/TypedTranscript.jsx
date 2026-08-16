@@ -1,24 +1,22 @@
 import { useState } from 'react'
 import { ChevronDown, ChevronRight } from 'lucide-react'
 
-// Per-character classification for the transcript:
-// - never mistyped at this position → plain text
-// - mistyped at some point but the FINAL character here is correct →
-//   "corrected": yellow underline, with the wrong attempt shown as a subscript
-// - mistyped and the final character here is still wrong → "uncorrected":
-//   red text + underline, with the wrong attempt shown as a subscript
-export default function TypedTranscript({ targetCode, typed, mistakes }) {
-  const [expanded, setExpanded] = useState(false)
+export default function TypedTranscript({ targetCode, typed, mistakes, open, onToggle }) {
+  const [internalExpanded, setInternalExpanded] = useState(false)
+
+  // Controlled if `open` is passed, otherwise falls back to its own state
+  const expanded = open !== undefined ? open : internalExpanded
+  const toggle = onToggle || (() => setInternalExpanded((v) => !v))
 
   const mistakesByIndex = new Map()
   for (const m of mistakes || []) {
-    mistakesByIndex.set(m.index, m.got) // last wrong attempt at that index wins
+    mistakesByIndex.set(m.index, m.got)
   }
 
   return (
-    <section className="mb-6">
+    <section>
       <button
-        onClick={() => setExpanded((v) => !v)}
+        onClick={toggle}
         className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-text-muted font-display font-medium hover:text-text transition-colors"
       >
         {expanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
@@ -26,7 +24,7 @@ export default function TypedTranscript({ targetCode, typed, mistakes }) {
       </button>
 
       {expanded && (
-        <div className="mt-3 bg-panel border border-line rounded-md p-4 animate-pop-in">
+        <div className="mt-3 bg-panel-raised border border-line rounded-md p-4 animate-pop-in">
           <pre className="font-mono text-sm leading-loose whitespace-pre-wrap break-words pb-2">
             {typed.split('').map((char, i) => {
               const expected = targetCode[i]
