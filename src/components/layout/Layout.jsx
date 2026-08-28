@@ -74,7 +74,7 @@ export default function Layout() {
             <div className="grid h-10 w-10 place-items-center rounded-xl bg-panel-raised text-sm font-semibold text-accent-purple">PC</div>
           </div>
 
-          <div className="h-full overflow-y-auto">
+          <div className="h-full overflow-y-auto ">
             <Outlet context={{ progress, recordCompletion, recordBlindAttempt, attempts, blindAttempts, attemptsForLanguage, blindAttemptsForLanguage, logAttempt, logBlindAttempt, soundMode, cursorStyle }} />
           </div>
         </main>

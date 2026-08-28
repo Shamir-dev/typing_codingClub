@@ -115,9 +115,22 @@ export default function LessonTyping() {
         </div>
       </div>
 
-      <div className="w-full max-w-5xl mx-auto px-5 sm:px-8 pb-4">
-        <p className="text-base text-text-muted leading-relaxed">{lesson.prompt}</p>
+     <div className="w-full max-w-5xl mx-auto px-5 sm:px-8 pb-4">
+  {/* Problem prompt */}
+  <p className="text-base text-text-muted leading-relaxed">
+    {lesson.prompt}
+  </p>
+
+  {/* Example section */}
+  {/* Example section */}
+    {lesson.approach?.example && (
+      <div className="mt-3">
+        <p className="text-sm text-gray-500 leading-relaxed">
+          <strong>Example:</strong> {lesson.approach.example}
+        </p>
       </div>
+    )}
+</div>
 
       <div className="flex-1 w-full max-w-5xl mx-auto px-5 sm:px-8 overflow-auto">
         <TypingPane
