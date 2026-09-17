@@ -3,6 +3,7 @@ import {
   Braces, FileCode2, Hash, Coffee, Cpu, Palette, Atom, User, Terminal,
 } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
+import { useState } from 'react'
 
 import { LANGUAGES } from '../../content/languages'
 import { AVAILABLE_LANGUAGE_IDS } from '../../content/allLessons'
@@ -19,6 +20,8 @@ const CURSOR_STYLES = [
   { id: 'block', label: 'block', glyph: '▉' },
   { id: 'underline', label: 'under', glyph: '_' },
 ]
+
+const CURSOR_COLORS = ['#111827', '#38bdf8', '#2563eb', '#22c55e', '#facc15', '#f97316', '#ec4899', '#a855f7']
 
 // Small per-language icon, not just a color dot — gives the nav real
 // hierarchy at a glance instead of a row of identical rows.
@@ -48,10 +51,13 @@ export default function Sidebar({
   onSetSoundMode,
   cursorStyle,
   onSetCursorStyle,
+  cursorColor,
+  onSetCursorColor,
   collapsed,
   onToggleCollapsed,
 }) {
   const location = useLocation()
+  const [showCursorColors, setShowCursorColors] = useState(false)
   const isAboutActive = location.pathname === '/about-creator'
 
   if (collapsed) {
@@ -192,19 +198,54 @@ export default function Sidebar({
           ))}
         </div>
 
-        <div className="flex border border-line rounded-md overflow-hidden">
-          {CURSOR_STYLES.map((style) => (
-            <button
-              key={style.id}
-              onClick={() => onSetCursorStyle(style.id)}
-              title={`${style.label} cursor`}
-              className={`flex-1 flex items-center justify-center gap-1 py-1.5 text-[11px] font-mono transition-colors
-                ${cursorStyle === style.id ? 'bg-panel-raised text-text' : 'text-text-faint hover:text-text-muted'}`}
-            >
-              <span className="text-[12px]">{style.glyph}</span>
-              {style.label}
-            </button>
-          ))}
+        <div className="relative flex items-stretch gap-1">
+          <div className="flex flex-1 border border-line rounded-md overflow-hidden">
+            {CURSOR_STYLES.map((style) => (
+              <div
+                key={style.id}
+                className={`flex-1 flex items-center justify-center gap-1 py-1.5 text-[11px] font-mono transition-colors
+                  ${cursorStyle === style.id ? 'bg-panel-raised text-text' : 'text-text-faint hover:text-text-muted'}`}
+              >
+                <button
+                  onClick={() => onSetCursorStyle(style.id)}
+                  title={`${style.label} cursor`}
+                  className="flex items-center gap-1"
+                >
+                  <span className="text-[12px]">{style.glyph}</span>
+                  {style.label}
+                </button>
+              </div>
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={() => setShowCursorColors((open) => !open)}
+            title="Choose caret color"
+            aria-label="Choose caret color"
+            aria-expanded={showCursorColors}
+            className="flex w-8 shrink-0 items-center justify-center rounded-md border border-line bg-panel-raised hover:border-text-faint"
+          >
+            <span className="h-3.5 w-3.5 rounded-full border border-white/60 ring-1 ring-line" style={{ backgroundColor: cursorColor }} />
+          </button>
+          {showCursorColors && (
+            <div className="absolute bottom-full right-0 z-30 mb-2 flex items-center gap-2 rounded-md border border-line bg-panel px-2.5 py-2 shadow-xl" aria-label="Caret color options">
+              {CURSOR_COLORS.map((color) => (
+                <button
+                  key={color}
+                  type="button"
+                  onClick={() => {
+                    onSetCursorColor(color)
+                    setShowCursorColors(false)
+                  }}
+                  title={`Use ${color} caret`}
+                  aria-label={`Use ${color} caret color`}
+                  aria-pressed={cursorColor === color}
+                  className={`h-3.5 w-3.5 rounded-full border transition-transform hover:scale-125 ${cursorColor === color ? 'border-text ring-2 ring-text/30' : 'border-white/60'}`}
+                  style={{ backgroundColor: color }}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </aside>

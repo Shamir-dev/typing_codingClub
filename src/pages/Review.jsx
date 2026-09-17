@@ -37,6 +37,7 @@ export default function Review() {
   targetCode={lesson.code}
   wpmHistory={result.wpmHistory}
   keystrokeIntervals={result.keystrokeIntervals}
+  keyMistakes={result.keyMistakes}
   accent={language.accent}
   language={languageId}
   nextLesson={nextLesson}

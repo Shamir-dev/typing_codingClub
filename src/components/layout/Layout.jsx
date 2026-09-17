@@ -12,7 +12,7 @@ import CompilerModal from './CompilerModal'
 export default function Layout() {
   const navigate = useNavigate()
   const location = useLocation()
-  const { theme, toggleTheme, soundMode, setSoundMode, cursorStyle, setCursorStyle } = useSettings()
+  const { theme, toggleTheme, soundMode, setSoundMode, cursorStyle, setCursorStyle, cursorColor, setCursorColor } = useSettings()
   const { progress, recordCompletion, recordBlindAttempt } = useProgress()
   const { attempts, blindAttempts, attemptsForLanguage, blindAttemptsForLanguage, logAttempt, logBlindAttempt } = useAttemptsLog()
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
@@ -43,6 +43,8 @@ export default function Layout() {
         onSetSoundMode={setSoundMode}
         cursorStyle={cursorStyle}
         onSetCursorStyle={setCursorStyle}
+        cursorColor={cursorColor}
+        onSetCursorColor={setCursorColor}
         collapsed={sidebarCollapsed}
         onToggleCollapsed={() => setSidebarCollapsed((v) => !v)}
       />
@@ -75,7 +77,7 @@ export default function Layout() {
           </div>
 
           <div className="h-full overflow-y-auto ">
-            <Outlet context={{ progress, recordCompletion, recordBlindAttempt, attempts, blindAttempts, attemptsForLanguage, blindAttemptsForLanguage, logAttempt, logBlindAttempt, soundMode, cursorStyle }} />
+            <Outlet context={{ progress, recordCompletion, recordBlindAttempt, attempts, blindAttempts, attemptsForLanguage, blindAttemptsForLanguage, logAttempt, logBlindAttempt, soundMode, cursorStyle, cursorColor }} />
           </div>
         </main>
       </div>

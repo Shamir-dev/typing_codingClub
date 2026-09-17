@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { ArrowLeft, ChevronDown, ChevronRight } from 'lucide-react'
 import { formatTime } from '../../engine/timing'
-import { formatChar, summarizeMistakes } from '../../engine/mistakeSummary'
 import ConsistencyGraph from './ConsistencyGraph'
 import TypedTranscript from './TypedTranscript'
 import CompilerPanel from './CompilerPanel'
+import KeyboardHeatmap, { getKeyboardKeyLabel } from './KeyboardHeatmap'
+import { topMistakeKeys } from '../../engine/keyMistakes'
 
 export default function ReviewPanel({
   lesson,
@@ -16,6 +17,7 @@ export default function ReviewPanel({
   targetCode,
   wpmHistory,
   keystrokeIntervals,
+  keyMistakes,
   accent,
   language,
   nextLesson,
@@ -26,7 +28,7 @@ export default function ReviewPanel({
   onBack,
   onBlindTest,
 }) {
-  const mistakeSummary = summarizeMistakes(mistakes || [])
+  const topKeys = topMistakeKeys(keyMistakes)
   const [showApproach, setShowApproach] = useState(false)
   const [showWalkthrough, setShowWalkthrough] = useState(false)
   const [showCompiler, setShowCompiler] = useState(false)
@@ -77,33 +79,21 @@ export default function ReviewPanel({
 
       <ConsistencyGraph wpmHistory={wpmHistory} keystrokeIntervals={keystrokeIntervals} accent={accent} />
 
-      <div className="mb-6 grid gap-4 lg:grid-cols-2">
-      {mistakeSummary.length > 0 && (
-        <section>
-          <h3 className="text-xs uppercase tracking-wider text-text-muted font-display font-medium mb-3 text-center">
-            Characters you mistyped
-          </h3>
-          <div className="flex flex-wrap justify-center gap-2.5">
-            {mistakeSummary.map((m) => (
-              <div
-                key={m.expected}
-                className="font-mono bg-incorrect/10 border border-incorrect/30 rounded-lg px-3 py-2.5 min-w-[86px] text-center"
-              >
-                <div className="text-sm text-incorrect font-semibold">
-                  {formatChar(m.expected)} × {m.count}
-                </div>
-                <div className="text-[10px] text-text-faint mt-1 leading-snug">
-                  typed:{' '}
-                  {[...m.gotChars.entries()]
-                    .map(([char, n]) => `${formatChar(char)}${n > 1 ? `×${n}` : ''}`)
-                    .join(', ')}
-                </div>
-              </div>
-            ))}
+      <div className="mb-6 grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(250px,0.42fr)] lg:items-start">
+      {keyMistakes && (
+        <section className="min-w-0 rounded-xl border border-line bg-panel p-4">
+          <p className="text-sm text-text">
+            Keys with most mistakes (in order):{' '}
+            <span className="font-mono text-yellow-300">
+              {topKeys.length ? topKeys.map(({ keyId }) => getKeyboardKeyLabel(keyId)).join(' , ') : 'none'}
+            </span>
+          </p>
+          <div className="mt-4">
+            <KeyboardHeatmap data={keyMistakes} />
           </div>
         </section>
       )}
-      <section className="rounded-xl border border-line bg-panel p-4">
+      <section className="min-w-0 rounded-xl border border-line bg-panel p-3">
         <p className="text-xs font-mono uppercase tracking-widest text-accent-purple">Blind Test</p>
         <p className="mt-2 text-sm font-semibold text-text">Retype this lesson from memory.</p>
       <p className="mt-1 text-xs leading-relaxed text-text-muted">
@@ -112,9 +102,9 @@ export default function ReviewPanel({
         <span className="mt-1.5 block text-[10px] text-[#e1b800]/80 italic">
           Strict word match can make the test tough So recommend using Learner Mode first.
         </span>
-        <div className="mt-4 grid gap-2 sm:grid-cols-2">
-          <button onClick={() => onBlindTest('pro')} className="rounded-lg border border-accent-purple/40 bg-accent-purple/10 px-3 py-2.5 text-left transition-colors hover:bg-accent-purple/20"><span className="block text-sm font-semibold text-text">Pro Mode</span><span className="mt-0.5 block text-[11px] text-text-muted">No code access Only word Review </span></button>
-          <button onClick={() => onBlindTest('learner')} className="rounded-lg border border-line bg-panel-raised px-3 py-2.5 text-left transition-colors hover:border-text-faint"><span className="block text-sm font-semibold text-text">Learner Mode</span><span className="mt-0.5 block text-[11px] text-text-muted">Hints + Code LookUp if needed</span></button>
+        <div className="mt-3 grid gap-2 sm:grid-cols-2">
+          <button onClick={() => onBlindTest('pro')} className="rounded-lg border border-accent-purple/40 bg-accent-purple/10 px-3 py-2 text-left transition-colors hover:bg-accent-purple/20"><span className="block text-sm font-semibold text-text">Pro Mode</span><span className="mt-0.5 block text-[11px] text-text-muted">No code access Only word Review </span></button>
+          <button onClick={() => onBlindTest('learner')} className="rounded-lg border border-line bg-panel-raised px-3 py-2 text-left transition-colors hover:border-text-faint"><span className="block text-sm font-semibold text-text">Learner Mode</span><span className="mt-0.5 block text-[11px] text-text-muted">Hints + Code LookUp if needed</span></button>
         </div>
       </section>
       </div>

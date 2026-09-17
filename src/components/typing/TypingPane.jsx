@@ -12,6 +12,15 @@ const STATUS_CLASS = {
   [CHAR_STATUS.CURRENT]: 'text-text',
 }
 
+function caretTextColor(color) {
+  const hex = color.replace('#', '')
+  if (hex.length !== 6) return '#ffffff'
+  const red = Number.parseInt(hex.slice(0, 2), 16)
+  const green = Number.parseInt(hex.slice(2, 4), 16)
+  const blue = Number.parseInt(hex.slice(4, 6), 16)
+  return red * 0.299 + green * 0.587 + blue * 0.114 > 150 ? '#111827' : '#ffffff'
+}
+
 export default function TypingPane({
   targetCode,
   typed,
@@ -22,11 +31,16 @@ export default function TypingPane({
   accent,
   soundMode,
   cursorStyle = 'line',
+  caretColor = '#38bdf8',
   wrap = false,
 }) {
   const containerRef = useRef(null)
   const preRef = useRef(null)
   const currentElRef = useRef(null)
+  const caretElRef = useRef(null)
+  const targetCaretRef = useRef(null)
+  const animatedCaretRef = useRef(null)
+  const rafRef = useRef(null)
   const [caret, setCaret] = useState(null)
 
   useEffect(() => {
@@ -41,9 +55,24 @@ export default function TypingPane({
   // the old approach mounted a brand new caret element per character,
   // which can only ever teleport.
   useLayoutEffect(() => {
-    if (currentElRef.current) {
+    function measureCaret() {
+      if (!currentElRef.current || !preRef.current) return null
       const el = currentElRef.current
-      setCaret({ left: el.offsetLeft, top: el.offsetTop, width: el.offsetWidth || 2, height: el.offsetHeight })
+      const pre = preRef.current
+      const charRect = el.getBoundingClientRect()
+      const preRect = pre.getBoundingClientRect()
+      return {
+        left: charRect.left - preRect.left + pre.scrollLeft,
+        top: charRect.top - preRect.top + pre.scrollTop,
+        width: charRect.width || 2,
+        height: charRect.height,
+      }
+    }
+
+    const nextCaret = measureCaret()
+    if (nextCaret) {
+      targetCaretRef.current = nextCaret
+      setCaret(nextCaret)
 
       // English-test prose mode only: keep the active line within a
       // fixed 3-line window, scrolling one line at a time as the caret
@@ -54,22 +83,78 @@ export default function TypingPane({
       // directly rather than a parsed computed-style line-height,
       // which was drifting slightly and clipping a line at the edge.
       if (wrap && preRef.current) {
-        const lineHeight = el.offsetHeight
-        const lineIndex = Math.round(el.offsetTop / lineHeight)
+        const lineHeight = nextCaret.height
+        const lineIndex = Math.round(nextCaret.top / lineHeight)
         preRef.current.scrollTop = Math.max(0, lineIndex - 1) * lineHeight
       }
     } else {
+      targetCaretRef.current = null
       setCaret(null)
     }
   }, [typed, targetCode, wrap])
+
+  useEffect(() => {
+    let rafId
+    const ease = 0.35
+
+    function animateCaret() {
+      const target = targetCaretRef.current
+      const element = caretElRef.current
+      if (!target || !element) {
+        rafRef.current = null
+        return
+      }
+
+      if (!animatedCaretRef.current) {
+        animatedCaretRef.current = { left: target.left, top: target.top }
+      }
+
+      const current = animatedCaretRef.current
+      const dx = target.left - current.left
+      const dy = target.top - current.top
+      current.left += dx * ease
+      current.top += dy * ease
+      const underlineOffset = cursorStyle === 'underline' ? target.height - 2 : 0
+      element.style.transform = `translate(${current.left}px, ${current.top + underlineOffset}px)`
+
+      if (Math.abs(dx) > 0.2 || Math.abs(dy) > 0.2) {
+        rafId = requestAnimationFrame(animateCaret)
+        rafRef.current = rafId
+      } else {
+        current.left = target.left
+        current.top = target.top
+        element.style.transform = `translate(${target.left}px, ${target.top + underlineOffset}px)`
+        rafRef.current = null
+      }
+    }
+
+    if (targetCaretRef.current && caretElRef.current) {
+      if (!rafRef.current) rafId = requestAnimationFrame(animateCaret)
+      rafRef.current = rafId
+    }
+
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId)
+      if (rafRef.current === rafId) rafRef.current = null
+    }
+  }, [caret, cursorStyle])
 
   // Re-measure on resize too — wrap mode reflows when the container
   // width changes, which shifts where the current character sits.
   useEffect(() => {
     function remeasure() {
-      if (currentElRef.current) {
+      if (currentElRef.current && preRef.current) {
         const el = currentElRef.current
-        setCaret({ left: el.offsetLeft, top: el.offsetTop, width: el.offsetWidth || 2, height: el.offsetHeight })
+        const charRect = el.getBoundingClientRect()
+        const preRect = preRef.current.getBoundingClientRect()
+        const nextCaret = {
+          left: charRect.left - preRect.left + preRef.current.scrollLeft,
+          top: charRect.top - preRect.top + preRef.current.scrollTop,
+          width: charRect.width || 2,
+          height: charRect.height,
+        }
+        targetCaretRef.current = nextCaret
+        setCaret(nextCaret)
       }
     }
     window.addEventListener('resize', remeasure)
@@ -161,8 +246,14 @@ if (!isAltGr && (e.ctrlKey || e.altKey)) return
               const status = line.statuses[ci]
               const isCurrent = status === CHAR_STATUS.CURRENT
               const displayChar = char === ' ' ? (wrap ? ' ' : '\u00A0') : char
+              const blockCurrent = isCurrent && cursorStyle === 'block'
               return (
-                <span key={ci} ref={isCurrent ? setCurrentRef : null} className={STATUS_CLASS[status]}>
+                <span
+                  key={ci}
+                  ref={isCurrent ? setCurrentRef : null}
+                  className={`${STATUS_CLASS[status]} ${blockCurrent ? 'relative z-10' : ''}`}
+                  style={blockCurrent ? { color: caretTextColor(caretColor) } : undefined}
+                >
                   {displayChar}
                 </span>
               )
@@ -183,20 +274,10 @@ if (!isAltGr && (e.ctrlKey || e.altKey)) return
     top: cursorStyle === 'underline' ? caret.top + caret.height - 2 : caret.top,
     width: cursorStyle === 'underline' ? caret.width : cursorStyle === 'block' ? caret.width : wrap ? 3 : 2,
     height: cursorStyle === 'underline' ? 2 : caret.height,
-    backgroundColor: wrap && cursorStyle !== 'block' ? '#ffd60a' : undefined,
+    backgroundColor: caretColor,
+    opacity: 1,
   }
-  const caretClass =
-    cursorStyle === 'block'
-      ? wrap
-        ? 'bg-[#ffd60a]/35 rounded-[2px]'
-        : 'bg-cursor/35 rounded-[2px]'
-      : cursorStyle === 'underline'
-      ? wrap
-        ? 'bg-[#ffd60a] rounded-full'
-        : 'bg-cursor rounded-full'
-      : wrap
-      ? 'rounded-full'
-      : 'bg-cursor'
+  const caretClass = cursorStyle === 'block' ? 'bg-transparent rounded-[2px]' : 'bg-transparent rounded-full'
 
   return (
     <div
@@ -228,8 +309,9 @@ if (!isAltGr && (e.ctrlKey || e.altKey)) return
           >
             {caret && (
               <div
-                className={`pointer-events-none absolute transition-[left,top,width,height] duration-100 ease-out ${caretClass}`}
-                style={caretStyle}
+                ref={caretElRef}
+                className={`typing-caret pointer-events-none absolute z-0 ${caretClass}`}
+                style={{ ...caretStyle, left: 0, top: 0, transform: `translate(${caret.left}px, ${caret.top}px)` }}
               />
             )}
             {renderLines()}
@@ -242,8 +324,9 @@ if (!isAltGr && (e.ctrlKey || e.altKey)) return
         >
           {caret && (
             <div
-              className={`pointer-events-none absolute transition-[left,top,width,height] duration-100 ease-out ${caretClass}`}
-              style={caretStyle}
+              ref={caretElRef}
+              className={`typing-caret pointer-events-none absolute z-0 ${caretClass}`}
+              style={{ ...caretStyle, left: 0, top: 0, transform: `translate(${caret.left}px, ${caret.top}px)` }}
             />
           )}
           {renderLines()}

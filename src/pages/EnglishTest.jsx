@@ -104,7 +104,7 @@ const ENGLISH_LESSON_TITLES = {
 }
 
 export default function EnglishTest() {
-  const { soundMode, cursorStyle, logAttempt, attemptsForLanguage } = useOutletContext()
+  const { soundMode, cursorStyle, cursorColor, logAttempt, attemptsForLanguage } = useOutletContext()
   const [settings, setSettings] = useState({ difficulty: 'easy', mode: 'time', timeSec: 60, wordCount: 50 })
   const [customTime, setCustomTime] = useState('')
   const [customWords, setCustomWords] = useState('')
@@ -577,6 +577,7 @@ export default function EnglishTest() {
               accent={accent}
               soundMode={soundMode}
               cursorStyle={cursorStyle}
+              caretColor={cursorColor}
               wrap
             />
             <div className="mt-3">

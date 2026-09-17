@@ -43,6 +43,7 @@ export function useTypingEngine(targetCode, { autoIndent = false, timeLimitSec =
   const lastSampleCorrectRef = useRef(0)
 
   const firstAttemptRef = useRef(new Map())
+  const keystrokeLogRef = useRef([])
 
   // For timed English tests: the session ends when the clock runs out,
   // not when the (deliberately oversized) word pool is fully typed.
@@ -144,6 +145,10 @@ export function useTypingEngine(targetCode, { autoIndent = false, timeLimitSec =
     }
   }
 
+  const recordKeystroke = (expectedChar, typedChar, correct) => {
+    keystrokeLogRef.current.push({ expectedChar, typedChar, correct, timestamp: Date.now() })
+  }
+
   const handleKeystroke = useCallback(
     (key) => {
       if (finishedAt || isPaused) return
@@ -176,6 +181,7 @@ export function useTypingEngine(targetCode, { autoIndent = false, timeLimitSec =
         setTyped((prev) => {
           let idx = prev.length
           let insertion = ''
+          const expectedChar = targetCode[prev.length]
           while (idx < targetCode.length && targetCode[idx] === ' ') {
             recordFirstAttempt(idx, true)
             recordKeystrokeTiming()
@@ -187,6 +193,7 @@ export function useTypingEngine(targetCode, { autoIndent = false, timeLimitSec =
             recordKeystrokeTiming()
             insertion = ' '
           }
+          recordKeystroke(expectedChar, 'Tab', insertion.length > 0 && expectedChar === ' ')
           const next = prev + insertion
           liveTypedRef.current = next
           return next
@@ -206,6 +213,7 @@ export function useTypingEngine(targetCode, { autoIndent = false, timeLimitSec =
           const isCorrect = targetCode[nextIndex] === '\n'
           recordFirstAttempt(nextIndex, isCorrect)
           recordKeystrokeTiming()
+          recordKeystroke(targetCode[nextIndex], 'Enter', isCorrect)
           if (!isCorrect) {
             mistakeLog.current.push({ index: nextIndex, expected: targetCode[nextIndex], got: key })
           }
@@ -234,6 +242,7 @@ export function useTypingEngine(targetCode, { autoIndent = false, timeLimitSec =
         const isCorrect = key === targetCode[nextIndex]
         recordFirstAttempt(nextIndex, isCorrect)
         recordKeystrokeTiming()
+        recordKeystroke(targetCode[nextIndex], key, isCorrect)
         if (!isCorrect) {
           mistakeLog.current.push({ index: nextIndex, expected: targetCode[nextIndex], got: key })
         }
@@ -253,6 +262,7 @@ export function useTypingEngine(targetCode, { autoIndent = false, timeLimitSec =
     setIsPaused(false)
     setTimedOut(false)
     mistakeLog.current = []
+    keystrokeLogRef.current = []
     firstAttemptRef.current = new Map()
     wpmHistoryRef.current = []
     keystrokeIntervalsRef.current = []
@@ -285,6 +295,7 @@ export function useTypingEngine(targetCode, { autoIndent = false, timeLimitSec =
     accuracy,
     mistakeCount: mistakeLog.current.length,
     mistakes: mistakeLog.current,
+    keystrokeLog: keystrokeLogRef.current,
     wpmHistory: wpmHistoryRef.current,
     keystrokeIntervals: keystrokeIntervalsRef.current,
     consistency: consistencyScore(wpmHistoryRef.current),

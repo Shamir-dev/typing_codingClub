@@ -24,6 +24,24 @@ typing engine and review UI work for all 8 languages.
 }
 ```
 
+## Attempt schema (`typing-club-attempts`)
+
+Completed typing attempts may include an additive `keyMistakes` object keyed by
+physical US-QWERTY key id. Each value stores the number of correct and incorrect
+keystrokes recorded for that key:
+
+```json
+{
+  "keyMistakes": {
+    "KeyA": { "correct": 12, "incorrect": 1 },
+    "BracketRight": { "correct": 3, "incorrect": 4 }
+  }
+}
+```
+
+Older attempts without `keyMistakes` remain valid and are rendered without the
+keyboard heatmap.
+
 ## Field notes
 
 - **charCount is a guardrail, not decoration.** At 45 WPM (≈225 chars/min):

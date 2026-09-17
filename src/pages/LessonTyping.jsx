@@ -6,6 +6,7 @@ import StatusBar from '../components/layout/StatusBar'
 import { useTypingEngine } from '../engine/useTypingEngine'
 import { getLanguage } from '../content/languages'
 import { LESSONS_BY_LANGUAGE } from '../content/allLessons'
+import { aggregateKeyMistakes } from '../engine/keyMistakes'
 
 const TIPS = [
   'Use Tab to auto-fill a full run of indentation spaces at once, instead of pressing space repeatedly.',
@@ -16,7 +17,7 @@ const TIPS = [
 export default function LessonTyping() {
   const { languageId, lessonId } = useParams()
   const navigate = useNavigate()
-  const { soundMode, cursorStyle, recordCompletion, logAttempt } = useOutletContext()
+  const { soundMode, cursorStyle, cursorColor, recordCompletion, logAttempt } = useOutletContext()
 
   const lessons = LESSONS_BY_LANGUAGE[languageId] || []
   const lesson = lessons.find((l) => l.id === lessonId)
@@ -41,6 +42,7 @@ export default function LessonTyping() {
         keystrokeIntervals: engine.keystrokeIntervals,
         consistency: engine.consistency,
         isPerfect: engine.isPerfect,
+        keyMistakes: aggregateKeyMistakes(engine.keystrokeLog),
       }
       recordCompletion(lesson.id, { wpm: result.wpm, accuracy: result.accuracy })
       logAttempt({
@@ -52,6 +54,7 @@ export default function LessonTyping() {
         consistency: result.consistency,
         timeMs: result.timeMs,
         isPerfect: result.isPerfect,
+        keyMistakes: result.keyMistakes,
       })
       navigate(`/${languageId}/lesson/${lessonId}/review`, { state: result })
     }
@@ -144,6 +147,7 @@ export default function LessonTyping() {
           accent={language.accent}
           soundMode={soundMode}
           cursorStyle={cursorStyle}
+          caretColor={cursorColor}
         />
       </div>
 
